@@ -115,6 +115,12 @@
              placeholder="Work email address"
              required>
     </div>
+    
+    {% if captcha %}
+    <div class="form-group">
+      {{ captcha }}
+    </div>
+    {% endif %}
 
     <!-- Both buttons side by side -->
     <div class="text-center" style="margin: 20px 0;">
@@ -173,14 +179,11 @@ $(document).ready(function () {
   $('#healthProForm').on('submit', function (e) {
     e.preventDefault();
 
-    var postData = {
-        work_email: $('input[name="work_email"]').val(),
-        product_id: $('input[name="product_id"]').val()
-    };
+    var formData = $(this).serialize();
 
     $.post(
         'index.php?route=information/marketingpopup/submit',
-        postData,
+        formData,
         function (res) {
             if (res.success) {
                 $('#healthProModal').modal('hide');
