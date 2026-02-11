@@ -1,72 +1,144 @@
-{{ text_received }}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>New Order Alert</title>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background-color: #f4f4f4; }
+        .email-container { max-width: 600px; margin: 20px auto; background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 2px 10px rgba(0,0,0,0.1); }
+        .header { background: #034488; color: #fff; padding: 20px; text-align: center; }
+        .header h1 { margin: 0; font-size: 24px; }
+        .content { padding: 25px; }
+        .section { margin-bottom: 25px; padding-bottom: 20px; border-bottom: 1px solid #eee; }
+        .section:last-child { border-bottom: none; margin-bottom: 0; }
+        .section-title { color: #034488; font-size: 18px; font-weight: bold; margin-bottom: 15px; padding-bottom: 8px; border-bottom: 2px solid #034488; }
+        .info-row { margin-bottom: 8px; }
+        .info-label { font-weight: bold; color: #555; display: inline-block; width: 120px; }
+        .order-info { background: #f9f9f9; padding: 15px; border-radius: 5px; margin-bottom: 20px; }
+        .order-info p { margin: 5px 0; }
+        .product-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+        .product-table th { background: #034488; color: #fff; padding: 10px; text-align: left; }
+        .product-table td { padding: 10px; border-bottom: 1px solid #eee; }
+        .product-table tr:nth-child(even) { background: #f9f9f9; }
+        .total-table { width: 100%; margin-top: 15px; }
+        .total-table td { padding: 8px 10px; }
+        .total-table tr:last-child { font-weight: bold; font-size: 16px; background: #f0f0f0; }
+        .option { color: #666; font-size: 12px; padding-left: 15px; }
+        .alert-badge { background: #e76f1f; color: #fff; padding: 5px 15px; border-radius: 20px; font-size: 14px; display: inline-block; margin-bottom: 15px; }
+        .footer { background: #f4f4f4; padding: 15px; text-align: center; font-size: 12px; color: #666; }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="header">
+            <h1>🛒 New Order Received!</h1>
+        </div>
+        
+        <div class="content">
+            <div class="order-info">
+                <p><strong>{{ text_order_id }}</strong> #{{ order_id }}</p>
+                <p><strong>{{ text_date_added }}</strong> {{ date_added }}</p>
+                <p><strong>{{ text_order_status }}</strong> <span class="alert-badge">{{ order_status }}</span></p>
+            </div>
 
-{{ text_order_id }} {{ order_id }}
-{{ text_date_added }} {{ date_added }}
-{{ text_order_status }} {{ order_status }}
+            <div class="section">
+                <div class="section-title">👤 Customer Details</div>
+                <div class="info-row"><span class="info-label">Name:</span> {{ firstname }} {{ lastname }}</div>
+                <div class="info-row"><span class="info-label">Email:</span> {{ email }}</div>
+                <div class="info-row"><span class="info-label">Phone:</span> {{ telephone }}</div>
+            </div>
 
+            {% if payment_method or payment_address %}
+            <div class="section">
+                <div class="section-title">💳 Payment</div>
+                {% if payment_method %}
+                <div class="info-row"><span class="info-label">Method:</span> {{ payment_method }}</div>
+                {% endif %}
+                {% if payment_address %}
+                <div class="info-row"><span class="info-label">Address:</span> {{ payment_address }}</div>
+                {% endif %}
+            </div>
+            {% endif %}
 
-Customer Details
-Name: {{ firstname }} {{ lastname }} <br>
-Email: {{ email }} <br>
-Phone: {{ telephone }} <br>
+            {% if shipping_method or shipping_address %}
+            <div class="section">
+                <div class="section-title">🚚 Shipping</div>
+                {% if shipping_method %}
+                <div class="info-row"><span class="info-label">Method:</span> {{ shipping_method }}</div>
+                {% endif %}
+                {% if shipping_address %}
+                <div class="info-row"><span class="info-label">Address:</span> {{ shipping_address }}</div>
+                {% endif %}
+            </div>
+            {% endif %}
 
-{% if payment_method or payment_address %}
-Payment
+            {% if customer_comment %}
+            <div class="section">
+                <div class="section-title">💬 Order Comment</div>
+                <p>{{ customer_comment }}</p>
+            </div>
+            {% endif %}
 
-{% if payment_method %}
-Method: {{ payment_method }} <br>
-{% endif %}
+            <div class="section">
+                <div class="section-title">📦 {{ text_product }}</div>
+                <table class="product-table">
+                    <thead>
+                        <tr>
+                            <th>Product</th>
+                            <th>Model</th>
+                            <th>Qty</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for product in products %}
+                        <tr>
+                            <td>
+                                {{ product.name }}
+                                {% if product.option %}
+                                <br>
+                                {% for option in product.option %}
+                                <span class="option">- {{ option.name }}: {{ option.value }}</span><br>
+                                {% endfor %}
+                                {% endif %}
+                            </td>
+                            <td>{{ product.model }}</td>
+                            <td>{{ product.quantity }}</td>
+                            <td>{{ product.total }}</td>
+                        </tr>
+                        {% endfor %}
+                        {% if vouchers %}
+                        {% for voucher in vouchers %}
+                        <tr>
+                            <td colspan="3">{{ voucher.description }}</td>
+                            <td>{{ voucher.amount }}</td>
+                        </tr>
+                        {% endfor %}
+                        {% endif %}
+                    </tbody>
+                </table>
 
-{% if payment_address %}
-Address: {{ payment_address }} <br>
-{% endif %}
+                <table class="total-table">
+                    {% for total in totals %}
+                    <tr>
+                        <td style="text-align: right;">{{ total.title }}:</td>
+                        <td style="text-align: right; width: 120px;">{{ total.value }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
 
-{% endif %}
+            {% if comment %}
+            <div class="section">
+                <div class="section-title">{{ text_comment }}</div>
+                <p>{{ comment }}</p>
+            </div>
+            {% endif %}
+        </div>
 
-{% if shipping_method or shipping_address %}
-Shipping
-
-{% if shipping_method %}
-Method: {{ shipping_method }} <br>
-{% endif %}
-
-{% if shipping_address %}
-Address: {{ shipping_address }} <br>
-{% endif %}
-
-{% endif %}
-
-
-{% if customer_comment %}
-Order Comment
-{{ customer_comment }}
-{% endif %}
-
-
-{{ text_product }}
-
-{% for product in products %}
-{{ product.quantity }}x {{ product.name }} ({{ product.model }}) {{ product.total }}
-{% if product.option %}
-{% for option in product.option %}
-	- {{ option.name }} {{ option.value }}
-{% endfor %}
-{% endif %}
-{% endfor %}
-{% if vouchers %}
-
-{% for voucher in vouchers %}
-1x {{ voucher.description }} {{ voucher.amount }}
-{% endfor %}
-{% endif %}
-{{ text_total }}
-
-{% for total in totals %}
-{{ total.title }}: {{ total.value }}
-{% endfor %}
-  
-{% if comment %}
-{{ text_comment }}
-
-{{ comment }}
-{% endif %}
+        <div class="footer">
+            <p>This is an automated order notification from MobilityCare</p>
+        </div>
+    </div>
+</body>
+</html>
