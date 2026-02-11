@@ -4,15 +4,25 @@
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <title>{{ title }}</title>
 </head>
-<body style="font-family: Arial, Helvetica, sans-serif; font-size: 12px; color: #000000;">
-<div style="width: 680px;">
+<body style="font-family: Arial, Helvetica, sans-serif; font-size: 14px; color: #333333; line-height: 1.6;">
+<div style="width: 680px; max-width: 100%; margin: 0 auto;">
   <a href="{{ store_url }}" title="{{ store_name }}"><img src="{{ logo }}" alt="{{ store_name }}" style="margin-bottom: 20px; border: none;" /></a>
-  <p style="margin-top: 0px; margin-bottom: 20px;">We've received your order and payment method has been set to invoice/bank transfer.</p>
-  <p style="margin-top: 0px; margin-bottom: 20px;">We will send you an invoice with bank details for payment. Please transfer the total amount using your Order Number <b>{{ order_id }}</b> as the payment reference.</p>
+  
+  <p style="margin-top: 0px; margin-bottom: 20px; font-size: 16px;"><strong>Thank You</strong>, we've received your order. The payment method has been set to invoice/bank transfer.</p>
+  
+  <p style="margin-top: 0px; margin-bottom: 20px;">Please find attached your <strong>Confirmation_{{ order_id }}.pdf</strong>, which includes our bank details for payment.</p>
+  
+  <p style="margin-top: 0px; margin-bottom: 20px;">Kindly transfer the total amount and use the name of the person associated with this order or: <strong>Confirmation_{{ order_id }}.pdf</strong>, as your payment reference.</p>
+  
   <p style="margin-top: 0px; margin-bottom: 20px;">Your order will be shipped as soon as payment is received.</p>
+  
   <p style="margin-top: 0px; margin-bottom: 20px;">If additional details are required, a member of our team will contact you directly.</p>
-  <p style="margin-top: 0px; margin-bottom: 20px;">Thank you for choosing Mobilitycare.</p>
-  <p style="margin-top: 0px; margin-bottom: 20px;">{{ text_footer }}</p>
+  
+  <p style="margin-top: 0px; margin-bottom: 20px;">Thank you for choosing <strong>MobilityCare</strong>.</p>
+  
+  <p style="margin-top: 0px; margin-bottom: 20px; color: #666;">Please reply to this e-mail if you have any questions.</p>
+  
+  <p style="margin-top: 30px; margin-bottom: 20px; border-top: 1px solid #eee; padding-top: 20px;">{{ text_footer }}</p>
 </div>
 </body>
 </html>

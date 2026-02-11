@@ -39,7 +39,7 @@ class ModelExtensionModulePdfInvoice extends Model {
         $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
         $pdf->SetCreator(PDF_CREATOR);
         $pdf->SetAuthor($order_info['store_name']);
-        $pdf->SetTitle('Conformation #' . $order_id);
+        $pdf->SetTitle('Confirmation #' . $order_id);
         $pdf->SetMargins(15, 20, 15);
         $pdf->AddPage();
 
@@ -266,18 +266,18 @@ class ModelExtensionModulePdfInvoice extends Model {
 
         $html .= '<hr><p style="text-align:center; color:#666; font-size:10px;">
             Thank you for ordering with Mobilitycare!<br>
-            This Conformation file was generated on ' . date('Y-m-d H:i:s') . '
+            This Confirmation file was generated on ' . date('Y-m-d H:i:s') . '
         </p>';
 
         $pdf->writeHTML($html, true, false, true, false, '');
        
 
-        $file = DIR_UPLOAD . 'conformation_' . $order_id . '.pdf';
+        $file = DIR_UPLOAD . 'Confirmation_' . $order_id . '.pdf';
         $pdf->Output($file, 'F'); // save to file
         
 
         if (!file_exists($file)) {
-             error_log("❌ conformation file NOT found after generation: " . $file);
+             error_log("❌ Confirmation file NOT found after generation: " . $file);
         } 
 
         return $file;
