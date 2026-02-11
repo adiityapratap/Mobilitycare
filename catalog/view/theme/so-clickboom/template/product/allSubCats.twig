@@ -1,0 +1,197 @@
+
+{{ header }}
+<style>
+.thumbnail--title{
+    text-wrap: auto !important;
+    color: #201e1e;
+}
+</style>
+{#==== Loader breadcrumbs ==== #}
+{#==== Variables url parameter ==== #}
+{% if url_asidePosition %}{% set col_position = url_asidePosition %}
+{% else %}{% set col_position = soconfig.get_settings('catalog_col_position') %} {% endif %}
+{% if url_asideType %} {% set col_canvas = url_asideType %}
+{% else %}{% set col_canvas = soconfig.get_settings('catalog_col_type') %}{% endif %}
+{% set desktop_canvas = col_canvas =='off_canvas' ? 'desktop-offcanvas' : '' %}
+{% set displaySidebar = soconfig.get_settings('catalog_display_sidebar')%}
+{% if col_position == 'inside' %}
+<div class="container">
+    {% include theme_directory~'/template/soconfig/subcategory.twig' %}
+</div>
+{% endif %}
+<div class="container product-listing content-main {{desktop_canvas}}">
+    <div class="row">
+        {% if displaySidebar =='left' or displaySidebar =='all'%}
+            {{ column_left }}
+        {% endif %}
+        {% if col_canvas =='off_canvas' %}
+            {% set class = 'col-sm-12' %}
+        {% elseif displaySidebar =='left' and displaySidebar =='right' %}
+            {% set class = 'col-md-6 col-sm-12 col-xs-12 fluid-allsidebar' %}
+        {% elseif displaySidebar =='left' or displaySidebar =='right' %}
+            {% set class = 'col-md-9 col-sm-12 col-xs-12 fluid-sidebar' %}
+        {% elseif displaySidebar =='all' %}
+            {% set class = 'col-md-8 col-sm-12 col-xs-12 fluid-sidebar' %}
+        {% else %}
+            {% set class = 'col-sm-12' %}
+        {% endif %}
+        <div id="content" class="{{ class }} mt-5">
+            {% if soconfig.get_settings('featured_cate_status') %} {{ content_top }}{% endif %}
+            <div class="products-category clearfix">
+                {% if col_position == 'outside' %}
+                    {% include theme_directory~'/template/soconfig/subcategory.twig' %}
+                {% endif %}
+                <h3 class="title-category tcc">{{ heading_title }}</h3>
+                {% if categories %}
+                    <div class="row subCatrow mt-5">
+                        {% for category in categories %}
+                            <div class="col-xs-6 col-sm-4 col-md-3 refine-search__subitem">
+                                <div class="category-card">
+                                    <div class="category-image">
+                                        <a href="{{ category.href }}" class="thumbnail">
+                                            <img src="{{ category.thumb }}" alt="{{ category.name }}" class="img-responsive center-block lazyload" data-sizes="auto" style="max-height: 100%; width: 100%; height: 100%; object-fit: cover;" />
+                                        </a>
+                                    </div>
+                                    <div class="category-name">
+                                        <a href="{{ category.href }}" class="thumbnail--title">{{ category.name }}</a>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                    </div>
+                {% endif %}
+                {% if not categories and not products %}
+                    <p>{{ text_empty }}</p>
+                    <div class="buttons">
+                        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+                    </div>
+                {% endif %}
+                {{ content_bottom }}
+            </div>
+        </div>
+        {% if displaySidebar =='right' or displaySidebar =='all'%}
+            {{ column_right }}
+        {% endif %}
+        
+        {% if url_sidebarsticky %} {% set sidebar_sticky = url_sidebarsticky %}
+        {% else %} {% set sidebar_sticky = soconfig.get_settings('catalog_sidebar_sticky') %}{% endif %}
+        <script type="text/javascript"><!--
+            $(window).load(sidebar_sticky_update());
+            $(window).resize(sidebar_sticky_update());
+            function sidebar_sticky_update(){
+                var viewportWidth = $(window).width();
+                if (viewportWidth > 1200) {
+                    sidebar_sticky = '{{sidebar_sticky}}';
+                    if(sidebar_sticky=='left'){
+                        $(".left_column").stick_in_parent({
+                            offset_top: 10,
+                            bottoming : true
+                        });
+                    }else if (sidebar_sticky=='right'){
+                        $(".right_column").stick_in_parent({
+                            offset_top: 10,
+                            bottoming : true
+                        });
+                    }else if (sidebar_sticky=='all'){
+                        $(".content-aside").stick_in_parent({
+                            offset_top: 10,
+                            bottoming : true
+                        });
+                    }
+                }
+            }
+        //--></script>
+    </div>
+</div>
+{{ footer }}
+<style>
+.refine-search__subitem {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Ensure cards stretch to fill container */
+    margin-bottom: 20px; /* Consistent spacing between rows */
+}
+
+.category-card {
+    display: flex;
+    flex-direction: column;
+    height: 100%; /* Make card fill parent container */
+    border: none; /* Remove border for clean look */
+    border-radius: 0; /* Remove rounded corners */
+    box-shadow: none; /* Explicitly remove any shadow */
+    overflow: hidden; /* Prevent content overflow */
+    background-color: #fff; /* Ensure consistent background */
+}
+
+.category-image {
+    height: 200px; /* Reduced height for better mobile scaling */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: #f5f5f5; /* Fallback background for lazy-loaded images */
+}
+
+.category-image .thumbnail {
+    border: none; /* Remove Bootstrap thumbnail border */
+    margin: 0; /* Remove default margin */
+    width: 100%;
+    height: 100%;
+    box-shadow: none; /* Remove any thumbnail shadow */
+    padding: 0; /* Remove default Bootstrap thumbnail padding */
+}
+
+.category-image img {
+    max-height: 100%;
+    max-width: 100%;
+    width: 100%; /* Ensure image fills container width */
+    height: 100%; /* Ensure image fills container height */
+    object-fit: cover; /* Maintain aspect ratio */
+}
+
+.category-name {
+    flex-grow: 1; /* Allow name to take available space */
+    min-height: 60px; /* Fixed minimum height for consistency */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: #333; /* Match original color */
+    background-color: #fff; /* Remove blue background to match original */
+    padding: 10px;
+    font-weight: 600; /* Match original font-weight */
+    font-size: 14px; /* Consistent font size */
+    overflow: hidden; /* Prevent text overflow */
+    text-overflow: ellipsis; /* Handle long names gracefully */
+    white-space: nowrap; /* Prevent wrapping */
+}
+
+@media (max-width: 767px) {
+    .category-image {
+        height: 150px; /* Smaller height for mobile */
+    }
+    .category-name {
+        min-height: 50px; /* Adjust for mobile */
+        font-size: 12px; /* Smaller font for mobile */
+    }
+}
+
+@media (max-width: 479px) {
+    .category-image {
+        height: 120px; /* Even smaller for extra-small screens */
+    }
+}
+</style>
+<script type="text/javascript">
+$(document).ready(function() {
+    // Ensure grid alignment on page load and resize
+    $(window).on('resize', function() {
+        var maxHeight = 0;
+        $('.refine-search__subitem:visible').each(function() {
+            $(this).height('auto'); // Reset height
+            maxHeight = Math.max(maxHeight, $(this).height());
+        });
+        $('.refine-search__subitem:visible').height(maxHeight);
+    }).trigger('resize');
+});
+</script>

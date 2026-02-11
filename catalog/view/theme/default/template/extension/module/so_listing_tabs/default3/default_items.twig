@@ -1,0 +1,339 @@
+{# Item Feature - Custom Dev #}
+<div class="ltabs-items-feature ltabs-slider">
+	{% if child_items is not empty %}
+		{% for product in child_items |slice(0, 2) %}
+			<div class="ltabs-item">
+				<div class="item-inner product-layout transition product-grid2 ">
+					<div class="product-item-container">
+						<div class="left-block-w">
+							<div class="left-block">										
+								{% if product_image %}								
+									<div class="product-image-container {% if product_image_num  == 2 %} {{ 'second_img' }} {% endif %}	">
+										<a href="{{ product.href }}" target="{{ item_link_target }}" title="{{ product.name_maxlength }}"  >
+										{% if display_numberProduct == false %}
+												{% if product_image_num ==2 %}
+											<img data-sizes="auto" src="image/catalog/productLoading.svg" data-src="{{ product.thumb }}" class="img-1 lazyload" alt="{{ product.name }}">
+											<img data-sizes="auto" src="image/catalog/productLoading.svg" data-src="{{ product.thumb2 }}" class="img-2 lazyload" alt="{{ product.name }}">
+										{% else %}
+											<img data-sizes="auto" src="image/catalog/productLoading.svg" data-src="{{ product.thumb }}" alt="{{ product.name }}" class="lazyload">
+										{% endif %}
+											{% else %}
+												<img data-sizes="auto" src="image/catalog/productLoading.svg" data-src="{{ product.image_large }}" alt="{{ product.name }}" class="lazyload">
+											{% endif %}		
+										</a>						
+									</div>
+								{% endif %}	
+								<div class="box-label">
+									{% if product.productNew and display_new %}
+										<span class="label-product label-new">{{ objlang.get('text_new') }}</span>
+									{% endif %}
+									{% if product.special and display_sale %}
+										<span class="label-product label-sale">{# {{ objlang.get('text_sale') }} #} {{ product.discount }} </span>
+									{% endif %}
+								</div>
+
+								{% if display_wishlist  or  display_compare %} 
+									<div class="button-group so-quickview">
+										 
+										{% if display_wishlist  %} 
+										<button type="button" class="wishlist btn-button" title="{{ objlang.get('button_wishlist') }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i><span>{{ objlang.get('button_wishlist') }}</span></button>
+										{% endif %} 
+										{% if display_compare %} 
+										<button type="button" class="compare btn-button" title="{{ objlang.get('button_compare') }} " onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-refresh"></i><span>{{ objlang.get('button_compare') }}</span></button>
+										{% endif %} 
+
+										<a class="hidden" data-product='{{ product.product_id }}' href="{{ product.href }}" target="{{ item_link_target }}" ></a>
+										
+									</div>
+								{% endif %} 
+
+								{% if product.price and display_price %}
+									<div class="price">
+									  	{% if product.special is empty %}
+									  		{{ product.price }}
+									  	{% else %}
+									  		<span class="price-new">{{ product.special }}</span>
+									  		<span class="price-old">{{ product.price }}</span>
+									  	{% endif %}
+									  	
+									</div>
+								{% endif %}
+
+								
+							</div>
+							{% if display_add_to_cart  %} 							           
+	                		<button type="button" class="addToCart" title="{{ objlang.get('button_cart') }}" onclick="cart.add('{{ product.product_id }} ');"><span>{{ objlang.get('button_cart') }}</span></button>
+							{% endif %}
+						</div>
+						<div class="right-block">
+							
+							{# {% if display_title  or display_price or display_rating %} #}
+							<div class="caption">
+								
+								{% if display_title %}
+									<h4><a href="{{ product.href }}" title="{{ product.name }}" target="{{ item_link_target }}">{{ product.name_maxlength }}</a></h4>
+								{% endif %}
+											
+								
+									<div class="rating">
+									  	{% for j in 1..5 %}
+									  		{% if product.rating < j %}
+									  			<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+									  		{% else %}
+									  			<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+									  		{% endif %}
+									  	{% endfor %}
+									</div>
+						
+													
+								<div class="item-des">
+									{{ product.description_maxlength }} 
+								</div>
+							</div>
+							{# {% endif %} #}
+							
+							<div class="item-available">
+								<div class="row">
+									<span class="col-sm-7 col-xs-12 text-left">{{ objlang.get('text_available') }} <b>{{product.avail_number}}</b> </span>
+									<span class="col-sm-5 col-xs-12 text-right">{{ objlang.get('text_sold') }} <b>{{product.sold_number}}</b>  </span>
+								</div>
+								{% if product.sold_number > 0 %}
+									<div class="available">
+										<span class="color_width" data-title="{{product.sold_width}}%" data-toggle='tooltip' style="width: {{product.sold_width}}%"></span>
+									</div>
+								{% endif %}
+							</div>
+							{% if product.discount %}
+							<div class="countdown_boxx hidden-xs">
+								<div class="countdown_inner">
+									 <script type="text/javascript">
+									 $(function () {
+										var austDay = new Date('{{product.special_end_date}}');
+										$('.defaultCountdown-{{product.product_id}}').countdown(austDay, function(event) {
+											var $this = $(this).html(event.strftime(''
+											   + '<div class="time-item time-day"><div class="num-time">%D</div><div class="name-time">{{objlang.get('text_labelDay')}} </div></div>'
+											   + '<div class="time-item time-hour"><div class="num-time">%H</div><div class="name-time">{{objlang.get('text_labelHour')}}</div></div>'
+											   + '<div class="time-item time-min"><div class="num-time">%M</div><div class="name-time">{{objlang.get('text_labelMin')}} </div></div>'
+											   + '<div class="time-item time-sec"><div class="num-time">%S</div><div class="name-time">{{objlang.get('text_labelSec')}}</div></div>'));
+										});
+										
+									});
+									</script>
+									<div class="defaultCountdown-{{product.product_id}}"></div>
+								</div>
+							</div>
+							{% endif %}
+
+						</div>
+
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	{% endif %}
+</div>
+
+{% if type_show == 'slider' %}
+		<div class="ltabs-items-inner owl2-carousel  ltabs-slider ">
+{% else %}
+		<div class="ltabs-items-inner {{ type_show == 'loadmore' ? class_ltabs ~ ' '~ effect : ' ' }}">
+{% endif %}
+{% if child_items is not empty %}
+	{% set i = 0 %}
+	{% set k = rl_loaded is defined ? rl_loaded : 0 %}
+	{% set count = child_items|length %}
+		{% for product in child_items |slice(2, total) %}
+			{% set i = i + 1 %}
+			{% set k = k + 1 %}
+
+			
+			{% if type_show == 'slider' and (i % nb_rows == 1 or nb_rows == 1) %}
+				<div class="ltabs-item ">
+			{% endif %}
+			{% if type_show == 'loadmore' %}
+				<div class="ltabs-item new-ltabs-item" >
+			{% endif %}	
+				
+			
+			<div class="item-inner product-layout transition product-grid2 ">
+				<div class="product-item-container">
+					<div class="left-block">										
+						{% if product_image %}								
+							<div class="product-image-container {% if product_image_num  == 2 %} {{ 'second_img' }} {% endif %}	">
+								<a href="{{ product.href }}" target="{{ item_link_target }}" title="{{ product.name_maxlength }}"  >
+									{% if display_numberProduct == false %}
+										{% if product_image_num ==2 %}
+											<img src="{{ product.thumb }}" class="img-1 img-responsive" alt="{{ product.name }}">
+											<img src="{{ product.thumb2 }}" class="img-2 img-responsive" alt="{{ product.name }}">
+										{% else %}
+											<img src="{{ product.thumb }}" alt="{{ product.name }}" class="img-responsive">
+										{% endif %}
+									{% else %}
+										<img src="{{ product.image_large }}" class="img-responsive" alt="{{ product.name }}">
+									{% endif %}		
+								</a>						
+							</div>
+						{% endif %}	
+						<div class="box-label">
+							{% if product.productNew and display_new %}
+								<span class="label-product label-new">{{ objlang.get('text_new') }}</span>
+							{% endif %}
+							{% if product.special and display_sale %}
+								<span class="label-product label-sale">{# {{ objlang.get('text_sale') }} #} {{ product.discount }} </span>
+							{% endif %}
+						</div>
+
+						{% if display_wishlist  or  display_compare %} 
+							<div class="button-group so-quickview">
+								 
+								{% if display_wishlist  %} 
+								<button type="button" class="wishlist btn-button" title="{{ objlang.get('button_wishlist') }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i><span>{{ objlang.get('button_wishlist') }}</span></button>
+								{% endif %} 
+								{% if display_compare %} 
+								<button type="button" class="compare btn-button" title="{{ objlang.get('button_compare') }} " onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-refresh"></i><span>{{ objlang.get('button_compare') }}</span></button>
+								{% endif %} 
+
+								<a class="hidden" data-product='{{ product.product_id }}' href="{{ product.href }}" target="{{ item_link_target }}" ></a>
+								
+							</div>
+						{% endif %} 
+					</div>
+					<div class="right-block">
+						
+						{% if display_title or display_description or display_price or display_rating %}
+						<div class="caption">
+							
+							{% if display_title %}
+								<h4><a href="{{ product.href }}" title="{{ product.name }}" target="{{ item_link_target }}">{{ product.name_maxlength }}</a></h4>
+							{% endif %}
+										
+							{% if display_rating %}
+								<div class="rating">
+								  	{% for j in 1..5 %}
+								  		{% if product.rating < j %}
+								  			<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+								  		{% else %}
+								  			<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+								  		{% endif %}
+								  	{% endfor %}
+								</div>
+							{% endif %}
+					
+							{% if product.price and display_price %}
+								<div class="price">
+								  	{% if product.special is empty %}
+								  		{{ product.price }}
+								  	{% else %}
+								  		<span class="price-new">{{ product.special }}</span>
+								  		<span class="price-old">{{ product.price }}</span>
+								  	{% endif %}
+								  	
+								</div>
+							{% endif %}
+							
+							{% if display_description %} 
+								<div class="item-des">
+									{{ product.description }} 
+								</div>
+							{% endif %}
+							
+						</div>
+						{% endif %}
+						{% if display_add_to_cart  %} 
+						
+                {% if (cfp_setting.module_so_call_for_price_status and product.price_0 <= 0) %}
+                    {% if cfp_setting.module_so_call_for_price_hide_cart is defined and cfp_setting.module_so_call_for_price_hide_cart == '0' %}
+                        {% if cfp_setting.module_so_call_for_price_replace_cart is defined and cfp_setting.module_so_call_for_price_replace_cart == '1' %}
+                            <button type="button" data-fancybox data-type="ajax" data-src="{{ base }}index.php?route=extension/module/so_call_for_price&product_id={{ product.product_id }}">{{ text_price_0 }}</button>
+                        {% else %}
+                            <button class="addToCart" type="button" style="cursor: default; background-color: #eee; color: #ccc;"><span>{{ objlang.get('button_cart') }}</span></button>
+                        {% endif %}
+                    {% else %}
+                        {% if cfp_setting.module_so_call_for_price_replace_cart is defined and cfp_setting.module_so_call_for_price_replace_cart == '1' %}
+                            <button type="button" data-fancybox data-type="ajax" data-src="{{ base }}index.php?route=extension/module/so_call_for_price&product_id={{ product.product_id }}">{{ text_price_0 }}</button>
+                        {% endif %}
+                    {% endif %}
+                {% else %}
+                    <button type="button" class="addToCart" title="{{ objlang.get('button_cart') }}" onclick="cart.add('{{ product.product_id }} ');"><span>{{ objlang.get('button_cart') }}</span></button>
+                {% endif %}
+            
+						{% endif %}
+					</div>
+
+				</div>
+			</div>
+			
+			{% if type_show == 'slider' and (i % nb_rows == 0 or i == count) %}
+			</div>
+			{% endif %}
+			
+			{% if type_show == 'loadmore' %}
+			</div>
+			{% endif %}
+
+			{% if type_show == 'loadmore' %}
+				{% set clear = 'clr1' %}
+				{% if k % 2 == 0 %} {% set clear = clear ~' clr2' %} {% endif %}
+				{% if k % 3 == 0 %} {% set clear = clear ~' clr3' %} {% endif %}
+				{% if k % 4 == 0 %} {% set clear = clear ~' clr4' %} {% endif %}
+				{% if k % 5 == 0 %} {% set clear = clear ~' clr5' %} {% endif %}
+				{% if k % 6 == 0 %} {% set clear = clear ~' clr6' %} {% endif %}
+				<div class="{{ clear }}"></div>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+</div>
+
+{% if type_show == 'slider' %}
+<script type="text/javascript">
+	jQuery(document).ready(function($){
+		var $tag_id = $('#{{ tag_id }}'), 
+		parent_active = 	$('.items-category-{{ tab_id }}', $tag_id),
+		total_product = parent_active.data('total'),
+		tab_active = $('.ltabs-items-inner',parent_active),
+		nb_column0 = {{ nb_column0 }},
+		nb_column1 = {{ nb_column1 }},
+		nb_column2 = {{ nb_column2 }},
+		nb_column3 = {{ nb_column3 }},
+		nb_column4 = {{ nb_column4 }};
+		tab_active.owlCarousel2({
+			rtl: {{ direction }},
+			nav: {{ display_nav }},
+			dots: false,	
+			margin: 30,
+			loop:  {{ display_loop }},
+			autoplay: {{ autoplay }},
+			autoplayHoverPause: {{ pausehover }},
+			autoplayTimeout: {{ autoplayTimeout }},
+			autoplaySpeed: {{ autoplaySpeed }},
+			mouseDrag: {{ mousedrag }},
+			touchDrag: {{ touchdrag }},
+			navRewind: true,
+			navText: [ '', '' ],
+			responsive: {
+				0: {
+					items: nb_column4,
+					nav: total_product <= nb_column0 ? false : (({{display_nav}}) ? true: false),
+				},
+				480: {
+					items: nb_column3,
+					nav: total_product <= nb_column0 ? false : (({{display_nav}}) ? true: false),
+				},
+				768: {
+					items: nb_column2,
+					nav: total_product <= nb_column0 ? false : (({{display_nav}}) ? true: false),
+				},
+				992: {
+					items: nb_column1,
+					nav: total_product <= nb_column0 ? false : (({{display_nav}}) ? true: false),
+				},
+				1200: {
+					items: nb_column0,
+					
+					nav: total_product <= nb_column0 ? false : (({{display_nav}}) ? true: false),
+				}
+			}
+		});
+	});
+</script>
+{% endif %}

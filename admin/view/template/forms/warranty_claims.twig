@@ -1,0 +1,44 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+     
+      <h1>Warranty Claims</h1>
+    
+    </div>
+  </div>
+  
+ <div class="container-fluid"> 
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone</th>
+            <th>Invoice Number</th>
+            <th>Purchase Date</th>
+            <th>Date Added</th>
+            <th>Action</th>
+            </tr>
+    </thead>
+    <tbody>
+        {% for request in requests %}
+            <tr>
+                <td>{{ request.full_name }}</td>
+                <td>{{ request.email }}</td>
+                <td>{{ request.phone_number }}</td>
+                <td>{{ request.invoice_number }}</td>
+                <td>{{ request.purchase_date |date("d M Y") }}</td>
+                <td>{{ request.date_added |date("d M Y") }}</td>
+                 <td class="text-right">
+                     <div class="d-flex">
+                     <a href="{{ actionurl ~ '&id=' ~ request.claim_id }}" class="btn btn-sm btn-success"><i class="fa fa-eye"></i> View</a>
+                    <a href="#" data-id="{{ request.claim_id }}" class="btn btn-sm btn-danger"><i class="fa fa-trash-o"></i> Delete</a>
+                    </div>
+                    </td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+  </div>
+  {{  footer }}

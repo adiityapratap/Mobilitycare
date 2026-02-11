@@ -1,0 +1,188 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right"><a href="{{ invoice }}" target="_blank" data-toggle="tooltip" title="{{ button_invoice_print }}" class="btn btn-info"><i class="fa fa-print"></i></a> <a href="{{ shipping }}" target="_blank" data-toggle="tooltip" title="{{ button_shipping_print }}" class="btn btn-info">
+          <i class="fa fa-truck"></i></a>
+
+              <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i></a>
+              </div>
+      <h1>Warranty Claims Details</h1>
+      
+    </div>
+  </div>
+  
+   <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-shopping-cart"></i>Customer Details</h3>
+          </div>
+          
+           <table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>Claim ID</th>
+            <th>Full Name</th>
+            <th>Phone Number</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Postcode</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for request in requests %}
+        <tr>
+            <td>{{ request.claim_id }}</td>
+            <td>{{ request.full_name }}</td>
+            <td>{{ request.phone_number }}</td>
+            <td>{{ request.email }}</td>
+            <td>{{ request.address }}</td>
+            <td>{{ request.city }}</td>
+            <td>{{ request.state }}</td>
+            <td>{{ request.postcode }}</td>
+           
+          
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+           </div>
+            </div>
+            </div>
+            
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-shopping-cart"></i>Product Details</h3>
+          </div>
+          
+           <table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+           
+            <th>Product Name</th>
+            <th>Model Number</th>
+            <th>Serial Number</th>
+            <th>Purchase Date</th>
+            <th>Purchased From</th>
+            <th>Dealer Name</th>
+            <th>Invoice Number</th>
+            
+        </tr>
+    </thead>
+    <tbody>
+        {% for request in requests %}
+        <tr>
+           
+            <td>{{ request.product_name }}</td>
+            <td>{{ request.model_number }}</td>
+            <td>{{ request.serial_number }}</td>
+            <td>{{ request.purchase_date }}</td>
+            <td>{{ request.purchased_from }}</td>
+            <td>{{ request.dealer_name }}</td>
+            <td>{{ request.invoice_number }}</td>
+            
+           
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+           </div>
+            </div>
+            </div>                
+            
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-shopping-cart"></i>Issue Details</h3>
+          </div>
+          
+           <table class="table table-striped table-bordered table-hover">
+    <thead>
+        <tr>
+           
+           
+            <th>Issue Description</th>
+            <th>Issue Date</th>
+            <th>Issue Frequency</th>
+            <th>Troubleshooting Attempted</th>
+            <th>Troubleshooting Details</th>
+            
+            <th>Agreed Terms</th>
+            <th>Date Added</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for request in requests %}
+        <tr>
+           
+            <td>{{ request.issue_description }}</td>
+            <td>{{ request.issue_date }}</td>
+            <td>{{ request.issue_frequency }}</td>
+            <td>{{ request.troubleshooting_attempted }}</td>
+            <td>{{ request.troubleshooting_details }}</td>
+            <td>{{ request.agreed_terms }}</td>
+            <td>{{ request.date_added }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+           </div>
+            </div>
+            </div>    
+            
+    <div class="row mt-5">
+      <div class="col-md-12">
+        <div class="panel panel-default">
+          <div class="panel-heading">
+            <h3 class="panel-title"><i class="fa fa-shopping-cart"></i>Documents Uploaded</h3>
+          </div>
+          
+           <table class="table table-striped table-bordered table-hover">
+       <thead>
+        <tr>
+            <th>Proof of Purchase</th>
+            <th>Photos or Videos</th>
+            <th>Uploaded Files</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        {% for request in requests %}
+        <tr>
+           <td>{{ request.proof_of_purchase }}</td>
+            <td>{{ request.photos_or_videos }}</td>
+            <td>
+    {% if uploaded_files is not empty and uploaded_files is iterable %}
+        {% for file in uploaded_files %}
+            <a href="{{ base_urlnew }}/image/{{ file }}" target="_blank">View File</a><br>
+        {% endfor %}
+    {% else %}
+        <p>No files uploaded.</p>
+    {% endif %}
+</td>
+
+
+
+            
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+           </div>
+            </div>
+            </div>         
+         
+  </div>
+  </div>

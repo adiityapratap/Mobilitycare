@@ -1,0 +1,380 @@
+{{ header }}
+
+<style>
+body {
+  background: #f8f9fb;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* filter css start */
+
+/* ====== FILTER WRAPPER ====== */
+.filters {
+  padding: 20px;
+  background: #fff;
+}
+
+.filters h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+/* ====== STATE TABS ====== */
+.state-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.state-tabs .btn {
+  background: #f7f8fa;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  box-shadow: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.state-tabs .btn:hover {
+  background: #e9ecef;
+}
+
+.state-tabs .btn.active {
+  background: #000;
+  color: #fff;
+}
+
+/* ====== FORM CONTROLS ====== */
+.custom-form-control {
+  height: 44px;
+  background: #f7f8fa;
+  border: none;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  box-shadow: none;
+}
+
+.custom-form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #d1d5db;
+}
+
+/* ====== POSTCODE INPUT WITH ICON ====== */
+.custom-input-icon {
+  height: 44px;
+  background: #f7f8fa url('data:image/svg+xml;utf8,<svg fill="%23999" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M168 0C75.12 0 0 75.12 0 168c0 87.27 150.4 308.5 158.8 320.6C161.5 492.9 164.7 496 168 496c3.301 0 6.453-3.066 9.197-7.422C185.6 476.5 336 255.3 336 168C336 75.12 260.9 0 168 0zm0 256c-48.53 0-88-39.47-88-88s39.47-88 88-88 88 39.47 88 88S216.5 256 168 256z"/></svg>') no-repeat 12px center;
+  background-size: 16px;
+  padding-left: 36px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.custom-input-icon:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #d1d5db;
+}
+
+/* ====== SEARCH BUTTON ====== */
+#searchBtn {
+  border-radius: 8px;
+  font-weight: 600;
+  background-color: #000;
+  border: none;
+  margin-left:20px;
+  font-size: 14px;
+}
+
+#searchBtn:hover {
+  background-color: #333;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .state-tabs {
+    justify-content: center;
+  }
+
+  .filters .row > div {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .state-tabs {
+    gap: 6px;
+  }
+  
+  .state-tabs .btn {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
+}
+
+
+
+
+/*filter css end*/
+
+h3.section-title {
+  font-weight: 700;
+  font-size: 24px;
+  margin: 40px 0 25px;
+  text-align: left;
+  padding-left: 15px;
+  color: #1e1e1e;
+}
+
+
+
+/* ===== Dealer Card Layout ===== */
+
+/* Column container (Bootstrap 3 override for flex equal height) */
+/* Dealer list card + InfoWindow style (Bootstrap 3) */
+
+.dealer-col { display:flex; flex-direction:column; margin-bottom:20px; }
+.dealer-card {
+  background:#fff;
+  border-radius:10px;
+  padding:14px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size:14px;
+  color:#2c3e50;
+}
+.dealer-card strong { font-size:16px; margin-bottom:8px; display:block; color:#111827; }
+.dealer-card .icon-with-text { margin:5px 0; color:#4b5563; display:flex; align-items:center; }
+.dealer-card .icon-with-text i { margin-right:8px; color:#6b7280; width:18px; text-align:center; }
+
+/* distance shows near bottom */
+.dealer-card .distance { margin-top:auto; font-style:italic; color:#374151; font-size:13px; }
+
+/* rounded square location button (bottom-right) */
+.btn-map {
+  background:#f5f6f8;
+  border:none;
+  width:40px; height:40px;
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  position:absolute; bottom:14px; right:14px;
+  font-size:18px; color:#2c3e50; cursor:pointer;
+  transition:background .15s, transform .06s;
+}
+.btn-map:hover{ background:#000000;color:#fff; transform:translateY(-1px); }
+.btn-map i{ pointer-events:none; }
+
+/* favorite icon top-right */
+.dealer-card .fa-star, .dealer-card .fa-star-o {
+  position:absolute; top:12px; left:14px; font-size:16px; color:#d1d5db;
+}
+.dealer-card .fa-star.highlight { color:#facc15; }
+
+/* small info card used inside InfoWindow (keeps consistent look) */
+.gm-info-card {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  max-width:260px;
+  color:#111827;
+}
+.gm-info-card strong { display:block; font-size:14px; margin-bottom:4px; }
+.gm-info-card .addr { font-size:13px; color:#444; margin-bottom:6px; }
+.gm-info-card .phone { font-size:13px; color:#444; margin-bottom:8px; }
+.gm-info-card .gm-btn {
+  display:inline-block; padding:6px 10px; background:#007bff; color:#fff; border-radius:4px;
+  text-decoration:none; font-size:13px;
+}
+
+/* responsive */
+@media (max-width:991px) {
+  .dealer-card { padding:12px; font-size:13px; }
+  .btn-map { width:36px; height:36px; font-size:16px; bottom:12px; right:12px; }
+}
+@media (max-width:767px) {
+  .dealer-col { flex:1 0 100%; }
+  .dealer-card { margin-bottom:12px; }
+}
+
+
+
+#map {
+  height: 400px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .dealer-col {
+    min-height: 200px;
+  }
+}
+
+.custom-form-control {
+  background-color: #f9fafb !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  color: #374151 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  height: 44px !important;
+  padding: 10px 14px !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease-in-out !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  position: relative !important;
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 10px center !important;
+  background-size: 16px !important;
+  padding-right: 36px !important;
+}
+
+.custom-form-control:focus {
+  border-color: #3b82f6 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.custom-input-icon {
+  background-color: #f9fafb !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  height: 44px !important;
+  padding: 10px 14px 10px 36px !important;
+  font-weight: 600 !important;
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17.657 16.657L13 21.314 8.343 16.657a8 8 0 1111.314 0z'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: left 10px center !important;
+  background-size: 16px !important;
+}
+
+.custom-input-icon:focus {
+  border-color: #3b82f6 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+</style>
+
+<div class="container" id="content">
+  {% if success %}
+    <div class="alert alert-success">{{ success }}</div>
+  {% endif %}
+
+  <div class="filters">
+    <h2 class="text-center text-black">Find a Dealer</h2>
+    <div class="state-tabs">
+      <button class="btn active" data-state="All">All</button>
+      <button class="btn" data-state="ACT">ACT</button>
+      <button class="btn" data-state="NSW">NSW</button>
+      <button class="btn" data-state="VIC">VIC</button>
+      <button class="btn" data-state="QLD">QLD</button>
+      <button class="btn" data-state="WA">WA</button>
+      <button class="btn" data-state="NT">NT</button>
+      <button class="btn" data-state="SA">SA</button>
+      <button class="btn" data-state="TAS">TAS</button>
+    </div>
+    <br>
+   <div class="row text-center" style="margin-top: 20px;">
+      
+  <div class="col-sm-4">
+    <select name="manufacturer" id="manufacturer" class="form-control custom-form-control">
+      <option value="">Select Brand</option>
+      {% for manufacturer in manufacturers %}
+        <option value="{{ manufacturer.id }}">{{ manufacturer.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-sm-4">
+    <select name="brandProduct" id="brandProduct" class="form-control custom-form-control">
+      <option value="">Select Product (Optional)</option>
+    </select>
+  </div>
+
+  <div class="col-sm-4">
+    <div class="input-group">
+      <input type="text" id="postcode" placeholder="Enter Postcode" class="form-control custom-input-icon">
+      <span class="input-group-btn">
+        <button id="searchBtn" class="btn btn-primary dealer-email" type="button" style="height: 44px; padding: 0 16px;">Search</button>
+      </span>
+    </div>
+  </div>
+   <div class="row text-left">
+       <small style="color:#003264;font-weight:bold;margin-left: 40px;"><i>*Select Brand or Product</i></small>
+         </div>
+</div>
+
+  </div>
+
+  <h3 class="section-title">Dealers Near You</h3>
+  
+  <div class="row">
+    <div id="map"></div>
+    <div id="dealer-results"></div>
+  </div>
+</div>
+
+<script>
+  $(document).ready(function () {
+    // Auto trigger dealer search on page load to load dealer from all state and postcode by default
+    if ($('#searchBtn').length) {
+        console.log("Trigged Search");
+      $('#searchBtn').trigger('click');
+    }
+  });
+</script>
+
+<style>
+/* Loader inside dropdown */
+.loading-option {
+  color: #999;
+  font-style: italic;
+  background: #f8f9fa; /* light bg to stand out */
+  pointer-events: none; /* can't select it */
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  border: 2px solid #ccc;
+  border-top: 2px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+    </style>
+{{ footer }}
+ {#All Js code is in /home/healthychoicesca/public_html/catalog/view/theme/so-clickboom/template/header/header5.twig file#}
+

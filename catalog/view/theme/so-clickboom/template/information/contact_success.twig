@@ -1,0 +1,100 @@
+{{ header }}
+<div class="container mt-5">
+  <div class="row text-black">
+    {{ column_left }}
+    {% if column_left and column_right %}
+      {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+      {% set class = 'col-sm-9' %}
+    {% else %}
+      {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">
+      {{ content_top }}
+
+      <div class="row mt-5">
+        <div class="col-sm-12 text-center">
+          {% if ndis_message %}
+            <div class="order-success-message" style="
+              background-color: #f8f9fa;
+              border-left: 6px solid #28a745;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+              border-radius: 8px;
+              padding: 30px;
+              margin: 40px auto;
+              max-width: 800px;
+              font-family: 'Helvetica Neue', Arial, sans-serif;
+              color: #212529;
+            ">
+              <h2 style="color: #002a5c; margin-bottom: 20px; font-weight: 600;">
+                <i class="fa fa-check-circle" style="color: #28a745; margin-right: 12px;"></i>
+                Thank You for Your Submission
+              </h2>
+              <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
+                {{ ndis_message }}
+              </p>
+              <p style="font-size: 1.05rem; margin-bottom: 15px;">
+                We have received your enquiry and will review it promptly. One of our team members will review your request and be in touch during our normal business hours (9:00am–5:00pm, Monday to Friday).
+              </p>
+              <p style="margin-bottom: 20px;">
+                Should you have any urgent questions, please feel free to reach out to us directly at:
+              </p>
+              <p style="font-size: 1.1rem; margin-bottom: 10px;">
+                Phone: <a href="tel:+61395688383" style="color: #002a5c; font-weight: 600;">(03) 9568 8383</a><br>
+                Email: <a href="mailto:contact@mobilitycare.net.au" style="color: #002a5c; font-weight: 600;">contact@mobilitycare.net.au</a>
+              </p>
+              <p style="font-size: 0.95rem; color: #555;">
+                Our team is available Monday to Friday, 9:00 AM – 5:00 PM AEST.<br>
+                NDIS Organisation ID: 4050000656
+              </p>
+            </div>
+          {% else %}
+            <div class="order-success-message" style="
+              background-color: #f8f9fa;
+              border-left: 6px solid #28a745;
+              box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+              border-radius: 8px;
+              padding: 30px;
+              margin: 40px auto;
+              max-width: 800px;
+              font-family: 'Helvetica Neue', Arial, sans-serif;
+              color: #212529;
+            ">
+              <h2 style="color: #002a5c; margin-bottom: 20px; font-weight: 600;">
+                <i class="fa fa-check-circle" style="color: #28a745; margin-right: 12px;"></i>
+                Thank You – Your Enquiry Has Been Received
+              </h2>
+              <p style="font-size: 1.1rem; line-height: 1.6; margin-bottom: 20px;">
+                Thank you for getting in touch with MobilityCare. We have successfully received your message and appreciate you taking the time to contact us.
+              </p>
+              <p style="font-size: 1.05rem; margin-bottom: 15px;">
+                One of our team members will review your enquiry and respond within the next <strong>24–48 business hours</strong>.
+              </p>
+              <p style="margin-bottom: 20px;">
+                For any immediate assistance, please do not hesitate to contact us directly:
+              </p>
+              <p style="font-size: 1.1rem; margin-bottom: 10px;">
+                Phone: <a href="tel:+61395688383" style="color: #002a5c; font-weight: 600;">(03) 9568 8383</a><br>
+                Email: <a href="mailto:contact@mobilitycare.net.au" style="color: #002a5c; font-weight: 600;">contact@mobilitycare.net.au</a>
+              </p>
+              <p style="font-size: 0.95rem; color: #555;">
+                Office hours: Monday to Friday, 9:00 AM – 5:00 PM AEST.<br>
+                NDIS Organisation ID: 4050000656
+              </p>
+            </div>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="buttons mt-4 text-center">
+        <a href="/" class="btn btn-primary btn-lg">
+          <i class="fa fa-home"></i> Return to Homepage
+        </a>
+      </div>
+
+      {{ content_bottom }}
+    </div>
+    {{ column_right }}
+  </div>
+</div>
+{{ footer }}

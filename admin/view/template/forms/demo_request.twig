@@ -1,0 +1,197 @@
+{{ header }}{{ column_left }}
+
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> {{ text_list }}</h3>
+            </div>
+            <div class="panel-body">
+                {% if demo_requests %}
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="demo-requests-table">
+                        <!-- Filter Row -->
+                        <thead>
+                            <tr>
+                                <th><input type="text" class="form-control input-sm filter" data-column="0" placeholder="Name..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="1" placeholder="Email..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="2" placeholder="Phone..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="3" placeholder="Postcode..."></th>
+                                <th>
+                                    <select class="form-control input-sm filter" data-column="4">
+                                        <option value="">All Demo Types</option>
+                                        <option value="In-Store">In-Store</option>
+                                        <option value="Home">Home</option>
+                                        <option value="Virtual">Virtual</option>
+                                        <!-- Add your actual demo types here -->
+                                    </select>
+                                </th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="5" placeholder="Product..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="6" placeholder="Make..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="7" placeholder="Model..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="8" placeholder="Year..."></th>
+                                <th>
+                                    <select class="form-control input-sm filter" data-column="9">
+                                        <option value="">All Body Types</option>
+                                        <option value="Sedan">Sedan</option>
+                                        <option value="SUV">SUV</option>
+                                        <option value="Hatchback">Hatchback</option>
+                                        <option value="Coupe">Coupe</option>
+                                        <option value="Wagon">Wagon</option>
+                                        <!-- Add your actual body types here -->
+                                    </select>
+                                </th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="10" placeholder="Additional info..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="11" placeholder="Date..."></th>
+                            </tr>
+
+                            <!-- Header Row -->
+                            <tr>
+                                <td class="text-left">Full Name</td>
+                                <td class="text-left">Email</td>
+                                <td class="text-left">Phone</td>
+                                <td class="text-left">Postcode</td>
+                                <td class="text-left">Demo Type</td>
+                                <td class="text-left">Product</td>
+                                <td class="text-left">Make</td>
+                                <td class="text-left">Model</td>
+                                <td class="text-left">Year</td>
+                                <td class="text-left">Body Type</td>
+                                <td class="text-left">Additional info</td>
+                                <td class="text-left">Date Added</td>
+                            </tr>
+                        </thead>
+
+                        <tbody id="demo-table-body">
+                            {% for demo_request in demo_requests %}
+                            <tr>
+                                <td class="text-left">{{ demo_request.fullname }}</td>
+                                <td class="text-left">{{ demo_request.email }}</td>
+                                <td class="text-left">{{ demo_request.phone }}</td>
+                                <td class="text-left">{{ demo_request.postcode }}</td>
+                                <td class="text-left">{{ demo_request.demo_type }}</td>
+                                <td class="text-left">{{ demo_request.product_name }}</td>
+                               
+                               
+                                <td class="text-left">{{ demo_request.car_make }}</td>
+                                <td class="text-left">{{ demo_request.car_model }}</td>
+                                <td class="text-left">{{ demo_request.car_year }}</td>
+                              
+                                <td class="text-left">{{ demo_request.body_type }}</td>
+                                <td class="text-left">{{ demo_request.additional_info }}</td>
+                                <td class="text-left">
+    {% if demo_request.date_added and demo_request.date_added != '0000-00-00 00:00:00' %}
+        {{ demo_request.date_added|date("d M Y") }}
+    {% else %}
+        -
+    {% endif %}
+</td>
+                                
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="12" class="text-center">No demo requests found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>{{ text_no_results }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-black, .table, .table th, .table td, .panel-heading, .panel-title {
+        color: #000 !important;
+    }
+    .table-responsive {
+        -webkit-overflow-scrolling: touch;
+    }
+    @media (max-width: 767px) {
+        .table-responsive {
+            overflow-x: auto;
+        }
+    }
+    .filter {
+        width: 100%;
+        margin-bottom: 2px;
+        font-size: 12px;
+        padding: 4px;
+    }
+</style>
+
+{{ footer }}
+
+<script>
+// Plain JavaScript column filtering - Demo Requests
+document.addEventListener('DOMContentLoaded', function () {
+    const table = document.getElementById('demo-requests-table');
+    if (!table) return;
+
+    const tbody = document.getElementById('demo-table-body');
+    const filters = document.querySelectorAll('#demo-requests-table .filter');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    function applyFilters() {
+        let anyVisible = false;
+
+        rows.forEach(row => {
+            let show = true;
+
+            filters.forEach(filter => {
+                const columnIndex = parseInt(filter.dataset.column);
+                const filterValue = filter.value.trim().toLowerCase();
+                const cell = row.cells[columnIndex];
+
+                if (!cell) return;
+
+                const cellText = cell.textContent.trim().toLowerCase();
+
+                if (filterValue && !cellText.includes(filterValue)) {
+                    show = false;
+                }
+            });
+
+            row.style.display = show ? '' : 'none';
+            if (show) anyVisible = true;
+        });
+
+        // Show/hide "no results" message
+        const noResultsRow = document.querySelector('#no-results-demo');
+        if (!anyVisible && rows.length > 0) {
+            if (!noResultsRow) {
+                const tr = document.createElement('tr');
+                tr.id = 'no-results-demo';
+                tr.innerHTML = '<td colspan="12" class="text-center">No matching demo requests found</td>';
+                tbody.appendChild(tr);
+            }
+        } else if (noResultsRow) {
+            noResultsRow.remove();
+        }
+    }
+
+    // Add event listeners
+    filters.forEach(filter => {
+        filter.addEventListener('input', applyFilters);
+        filter.addEventListener('change', applyFilters); // for select elements
+    });
+
+    // Run once on page load (in case of pre-filled values)
+    applyFilters();
+});
+</script>

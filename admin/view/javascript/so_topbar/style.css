@@ -1,0 +1,54 @@
+.accordion, .accordion-heading, .accordion-heading .accordion-toggle, .accordion-group, .accordion-body, .accordion-inner, .accordion-content {
+    background-color: transparent;
+    font-weight: normal;
+    border-radius: 0;
+    border: none;
+    margin: 0;
+    padding: 0;
+}
+.accordion-group .accordion-heading {
+    height: 40px;
+    overflow: hidden;
+}
+.accordion-heading a {
+    float: none;
+}
+.accordion-bar {
+    height: 40px;
+    background-color: #48a0d0;
+    display: block;
+    text-decoration: none;
+    line-height: 40px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s;
+    color: white;
+}
+.accordion-group .accordion-bar {
+    padding-left: 15px;
+    background-color: #51617A;
+    border-top: 1px solid #657999;
+    border-bottom: 1px solid #3d495b;
+    text-transform: uppercase;
+}
+.accordion-group:first-child .accordion-bar {
+    border-top: none;
+}
+.accordion-group .collapse {
+    transition: height 0.35s ease;
+}
+.colorSelector {
+    position: relative;
+    width: 36px;
+    height: 36px;
+    background: url(images/select.png);
+    display: block;
+}
+.colorSelector div {
+    position: absolute;
+    top: 3px;
+    left: 3px;
+    width: 30px;
+    height: 30px;
+    background: url(images/select.png) center;
+}

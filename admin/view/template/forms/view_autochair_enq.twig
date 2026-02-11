@@ -1,0 +1,70 @@
+{{ header }}{{ column_left }}
+<div id="content">
+  <div class="page-header">
+    <div class="container-fluid">
+      <h1>View Autochair enquiry Details</h1>
+      <a href="{{ cancel }}" class="btn btn-default pull-right"><i class="fa fa-reply"></i> Back</a>
+    </div>
+  </div>
+
+  <div class="container-fluid">
+
+    <!-- Customer Information -->
+    <div class="panel panel-info">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-user"></i> Customer Information</h3>
+      </div>
+      <table class="table table-bordered">
+      
+        <tr><th>Full Name</th><td>{{ quoteData.fullname }}</td></tr>
+        <tr><th>Email</th><td>{{ quoteData.email }}</td></tr>
+        <tr><th>Phone</th><td>{{ quoteData.phone }}</td></tr>
+        <tr><th>Postcode</th><td>{{ quoteData.postcode }}</td></tr>
+        <tr><th>Contact Type</th><td>{{ quoteData.contact_type }}</td></tr>
+        <tr><th>Healthcare Profession</th><td>{{ quoteData.healthcare_profession }}</td></tr>
+        <tr><th>Quote Type</th><td>{{ quoteData.quote_type }}</td></tr>
+        <tr><th>Date Added</th><td>{{ quoteData.date_added| date("d M Y") }}</td></tr>
+      </table>
+    </div>
+
+    <!-- Product Information -->
+    <div class="panel panel-success">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-cube"></i> Product Information</h3>
+      </div>
+      <table class="table table-bordered">
+      
+      
+
+        <tr><th>Additional Info</th><td>{{ quoteData.additional_info }}</td></tr>
+      </table>
+    </div>
+
+    <!-- Vehicle Details -->
+    <div class="panel panel-warning">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-car"></i> Vehicle Details</h3>
+      </div>
+      <table class="table table-bordered">
+        <tr><th>Vehicle Make</th><td>{{ quoteData.vehicle_make }}</td></tr>
+        <tr><th>Vehicle Model</th><td>{{ quoteData.vehicle_model }}</td></tr>
+        <tr><th>Vehicle Year</th><td>{{ quoteData.vehicle_year }}</td></tr>
+        <tr><th>Body Type</th><td>{{ quoteData.body_type }}</td></tr>
+      </table>
+    </div>
+
+    <!-- Item / Lifting Details -->
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-cogs"></i> Lifting Item Details</h3>
+      </div>
+      <table class="table table-bordered">
+        <tr><th>Lifting Item</th><td>{{ quoteData.lifting_item }}</td></tr>
+        <tr><th>Item Weight (kg)</th><td>{{ quoteData.item_weight }}</td></tr>
+        <tr><th>Item Height (cm)</th><td>{{ quoteData.item_height }}</td></tr>
+      </table>
+    </div>
+
+  </div>
+</div>
+{{ footer }}

@@ -1,0 +1,236 @@
+ {{ header }}
+ 
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+    <div class="container text-black">
+         
+    <div class="row mt-5 form-container">
+      <div class="row text-center"><h3>Warranty Claim Form</h3></div>
+      <div class="row text-red mt-3"><strong><small>Note : Important: Before submitting this claim, please review our https://www.mobilitycare.net.au/returns-warranty-policy/ to check if your product is covered under warranty. </small></strong></div>
+    <form action="{{ action }}" method="post" enctype="multipart/form-data" class="mt-3">
+    <fieldset>
+        <legend>Customer Information</legend>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Full Name</label>
+                <input type="text" name="full_name" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>Phone Number</label>
+                <input type="text" name="phone_number" class="form-control" required />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Email Address</label>
+                <input type="email" name="email" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>City</label>
+                <input type="text" name="city" class="form-control" required />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>State</label>
+                <input type="text" name="state" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>Postcode</label>
+                <input type="text" name="postcode" class="form-control" required />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label>Address</label>
+            <textarea name="address" class="form-control" required></textarea>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Product Details</legend>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Product Name</label>
+                <input type="text" name="product_name" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>Model Number</label>
+                <input type="text" name="model_number" class="form-control" required />
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>Serial Number</label>
+                <input type="text" name="serial_number" class="form-control" />
+            </div>
+            <div class="col-md-6">
+                <label>Purchase Date</label>
+                <input type="date" name="purchase_date" class="form-control" required />
+            </div>
+        </div>
+        <div class="mb-3">
+            <label>Purchased From</label>
+            <select name="purchased_from" class="form-control">
+                <option value="Showroom">MobilityCare Showroom</option>
+                <option value="Online">Online (MobilityCare Website)</option>
+                <option value="Dealer">Dealer</option>
+            </select>
+        </div>
+         <div class="mb-3">
+            <label>Dealer Name</label>
+            <input type="text" name="dealer_name" class="form-control" required />
+        </div>
+        
+        <div class="mb-3">
+            <label>Invoice Number</label>
+            <input type="text" name="invoice_number" class="form-control" required />
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Issue Description</legend>
+        <div class="mb-3">
+            <label>Please describe the issue in detail</label>
+            <textarea name="issue_description" class="form-control" required></textarea>
+        </div>
+        <div class="row mb-3">
+            <div class="col-md-6">
+                <label>When did the issue first occur?</label>
+                <input type="date" name="issue_date" class="form-control" required />
+            </div>
+            <div class="col-md-6">
+                <label>How frequently does the issue occur?</label>
+                <select name="issue_frequency" class="form-control">
+                    <option value="Constantly">Constantly</option>
+                    <option value="Intermittently">Intermittently</option>
+                    <option value="Specific Conditions">Only in specific conditions</option>
+                </select>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label>Has any troubleshooting been attempted?</label>
+            <div class="form-check">
+                <input type="radio" name="troubleshooting_attempted" value="Yes" class="form-check-input" required />
+                <label class="form-check-label">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" name="troubleshooting_attempted" value="No" class="form-check-input" required />
+                <label class="form-check-label">No</label>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label>If yes, please describe:</label>
+            <textarea name="troubleshooting_details" class="form-control"></textarea>
+        </div>
+    </fieldset>
+
+    <fieldset>
+        <legend>Supporting Documents</legend>
+        <div class="form-check">
+            <input type="checkbox" name="proof_of_purchase" value="1" class="form-check-input"  required />
+            <label class="form-check-label">Proof of Purchase (Invoice or Receipt)</label>
+        </div>
+        <div class="form-check">
+            <input type="checkbox" name="photos_or_videos" value="1" class="form-check-input" required />
+            <label class="form-check-label">Photos or Videos of the Issue</label>
+        </div>
+        <div class="mb-3">
+            <label>Upload Files (max 10MB each):</label>
+            <input type="file" name="upload_files[]" multiple class="form-control" required />
+        </div>
+    </fieldset>
+ {{ captcha }}
+    <fieldset>
+        <legend>Terms & Conditions</legend>
+        <div class="form-check mb-3">
+            <input type="checkbox" name="agreed_terms" value="1" class="form-check-input" required />
+            <label class="form-check-label">I agree to the terms and conditions.</label>
+        </div>
+    </fieldset>
+ <input type="hidden" name="originalCaptcha" value={{ originalCaptcha }}>
+    <button type="submit" class="btn btn-primary">Submit Warranty Claim</button>
+</form>
+
+
+
+
+    </div> 
+    </div>
+    </div> 
+    {{ column_right }}
+    </div> 
+    <style>
+.form-container {
+    
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    border: 7px solid black;
+    border-radius: 15px;
+}
+
+.form-container h1 {
+    font-size: 36px;
+    font-weight: bold;
+}
+.form-container ul {
+    list-style: none;
+    padding: 0;
+}
+.form-container ul li {
+    margin-bottom: 10px;
+}
+.profile {
+    display: flex;
+    align-items: center;
+    margin-top: 20px;
+}
+.profile img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+.demo-request-right {
+    
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+.form-group {
+    display: flex;
+    gap: 10px;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    background: #0066FF;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #0055DD;
+}
+</style>
+     {{ footer }}

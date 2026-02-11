@@ -1,0 +1,126 @@
+{# Ask Question Modal #}
+<style>
+.form-group {
+    margin-bottom: 15px !important;  /* better spacing - adjust as needed */
+}
+</style>
+
+<div id="askQuestionModal" class="modal fade" tabindex="-1" role="dialog">
+  <div class="modal-dialog modal-md">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        <h4 class="modal-title">Find a local dealer</h4>
+      </div>
+      <div class="modal-body">
+        <!-- Normal form submission - no AJAX -->
+        <form action="{{ find_dealer_submit_url }}" method="post" id="askQuestionForm">
+          <input type="hidden" name="product_id" value="{{ product_id|default(0) }}">
+
+          <div class="form-group">
+            <label>Name *</label>
+            <input type="text" name="name" id="customerName" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" name="email" id="customerEmail" class="form-control" required>
+          </div>
+
+          <div class="form-group">
+            <label>Phone *</label>
+            <input type="tel" name="phone" id="customerPhone" class="form-control phoneValidate" required>
+          </div>
+
+          <div class="form-group">
+            <label>Postcode *</label>
+            <input type="text" name="postcode" class="form-control postcodeValidate" required>
+          </div>
+
+          <div class="form-group">
+            <label>State</label>
+            <input type="text" name="state" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label>Message</label>
+            <textarea name="message" class="form-control" rows="4"></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary btn-block">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Optional simple loader (fade in/out on submit) -->
+<div id="askQuestionLoader" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1051;">
+  <div style="position:absolute; top:50%; left:50%; transform:translate(-50%, -50%); background:#fff; padding:25px 40px; border-radius:6px; font-size:18px;">
+    <i class="fa fa-spinner fa-spin"></i> Processing...
+  </div>
+</div>
+
+<script>
+(function ($) {
+
+  function showLoader() {
+      $("#askQuestionLoader").fadeIn(200);
+  }
+
+  function hideLoader() {
+      $("#askQuestionLoader").fadeOut(200);
+  }
+
+  function showToast(message, type = 'success') {
+      var toast = $("#toastMessageAsk");
+      toast
+        .removeClass("alert-success alert-danger")
+        .addClass(type === 'success' ? 'alert-success' : 'alert-danger')
+        .html(message)
+        .fadeIn();
+
+      setTimeout(function () {
+          toast.fadeOut();
+      }, 3000);
+  }
+
+  function validateForm() {
+      var name  = $.trim($("#customerName").val());
+      var email = $.trim($("#customerEmail").val());
+      var phone = $.trim($("#customerPhone").val());
+
+      if (name === "") {
+          showToast("Name is required", "error");
+          return false;
+      }
+      if (email === "") {
+          showToast("Email is required", "error");
+          return false;
+      }
+      if (phone === "") {
+          showToast("Phone is required", "error");
+          return false;
+      }
+      return true;
+  }
+
+  // Open modal + loader
+  $(document).on("click", "#so_askquestion_product", function (e) {
+      e.preventDefault();
+      console.log("Modal Show")
+      showLoader();
+      $("#askQuestionModal").modal("show");
+
+      setTimeout(function () {
+          hideLoader();
+      }, 300);
+  });
+
+ 
+
+})(jQuery);
+</script>
+

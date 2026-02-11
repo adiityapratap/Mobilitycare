@@ -1,0 +1,223 @@
+<footer id="footer" class="footer-container wow fadeInUp typefooter-{{typefooter ? typefooter : '1'}}">
+
+
+	{# Optional Collapsible Footer Block #}
+	{% if footer_block5 is defined and footer_block5 is not empty %}
+	<div class="footer-additional-content collapse description-has-toggle" id="collapse-footer">
+		<div class="container">
+			{{ footer_block5 }}
+		</div>
+	</div>
+	<div class="description-toggle hidden-lg hidden-md">
+		<div class="container">
+			<a class="showmore" data-toggle="collapse" href="#collapse-footer" aria-expanded="false" aria-controls="collapse-footer">
+				<span class="toggle-more">
+					{% if objlang is defined and objlang.get('show_more') %}{{ objlang.get('show_more') }}{% else %}Show More{% endif %} 
+					<i class="fa fa-angle-down"></i>
+				</span> 
+				<span class="toggle-less">
+					{% if objlang is defined and objlang.get('show_less') %}{{ objlang.get('show_less') }}{% else %}Show Less{% endif %} 
+					<i class="fa fa-angle-up"></i>
+				</span>           
+			</a>
+		</div>
+	</div>
+	{% endif %}
+	
+	{#======	FOOTER BOTTOM	=======#} 
+	<div class="footer-divider">
+		<div class="container">
+			<div class="row">				
+				<div class="col-md-8 col-sm-12">
+					<p class="footer-copyright">
+						{% if soconfig.get_settings is defined and soconfig.get_settings('copyright') is not empty %}
+							{{ soconfig.get_settings('copyright')|replace({'{year}': "now"|date("Y")}) }}
+						{% elseif powered is defined %}
+							{{ powered }}
+						{% else %}
+							&copy; {{ "now"|date("Y") }} All rights reserved.
+						{% endif %}
+					</p>
+				</div>
+				
+				{% if soconfig.get_settings is defined and soconfig.get_settings('imgpayment_status') %} 
+				<div class="col-md-4 col-sm-12">
+					<div class="footer-payment">
+						<img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="image/{{ soconfig.get_settings('imgpayment') }}" alt="Payment Methods">
+					</div>
+				</div>
+				{% endif %}
+			</div>
+		</div>
+	</div>
+</footer>
+<style>
+/* Footer Styles */
+#footer {
+    background-color: #111827;
+    color: #d1d5db;
+}
+
+.footer-main-content {
+    padding: 48px 0;
+}
+
+.footer-container {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.footer-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffffff;
+    margin-bottom: 24px;
+    margin-top: 0;
+}
+
+.footer-description {
+    color: #9ca3af;
+    margin-bottom: 24px;
+    line-height: 1.5;
+}
+
+.social-links {
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.social-icon {
+    color: #9ca3af;
+    font-size: 20px;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover,
+.social-icon:focus {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-section-title {
+    font-weight: 600;
+    color: #ffffff;
+    margin-bottom: 16px;
+    margin-top: 0;
+    font-size: 16px;
+}
+
+.footer-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.footer-links li {
+    margin-bottom: 8px;
+}
+
+.footer-link {
+    color: #d1d5db;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    text-decoration: none;
+}
+
+.footer-link:hover,
+.footer-link:focus {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-additional-content {
+    background-color: #0f172a;
+    padding: 24px 0;
+    border-top: 1px solid #374151;
+}
+
+.description-toggle {
+    background-color: #0f172a;
+    padding: 16px 0;
+    text-align: center;
+}
+
+.showmore {
+    color: #d1d5db;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.showmore:hover,
+.showmore:focus {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+.footer-divider {
+    border-top: 1px solid #374151;
+    padding: 32px 0;
+    background-color: #111827;
+}
+
+.footer-copyright {
+    color: #9ca3af;
+    margin: 0;
+    text-align: left;
+}
+
+.footer-payment {
+    text-align: right;
+}
+
+.footer-payment img {
+    max-height: 40px;
+    width: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 767px) {
+    .footer-columns .col-md-3 {
+        margin-bottom: 30px;
+    }
+    
+    .social-links {
+        justify-content: flex-start;
+    }
+    
+    .footer-copyright {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    
+    .footer-payment {
+        text-align: center;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 991px) {
+    .footer-columns .col-md-3 {
+        margin-bottom: 25px;
+    }
+}
+
+/* Animation support */
+.fadeInUp {
+    animation-duration: 1s;
+    animation-fill-mode: both;
+    animation-name: fadeInUp;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translate3d(0, 40px, 0);
+    }
+    to {
+        opacity: 1;
+        transform: none;
+    }
+}
+</style>

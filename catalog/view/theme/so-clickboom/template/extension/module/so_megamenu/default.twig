@@ -1,0 +1,597 @@
+{% set suffix_id = 'so_megamenu_' ~ random(100) %}
+{% set show_verticalmenu_id = 'show-verticalmenu-' ~ random(100) %}
+{% set remove_verticalmenu_id = 'remove-verticalmenu-' ~ random(100) %}
+{% set show_megamenu_id = 'show-megamenu-' ~ random(100) %}
+{% set remove_megamenu_id = 'remove-megamenu-' ~ random(100) %}
+  <style>
+        
+        .mega-menu h6,.menuwithoutchild,.menuwithchild {
+            font-weight: bold;
+            color: #f23333 !important;
+        }
+        .mega-menu ul {
+            list-style: none;
+            padding: 0;
+        }
+        .mega-menu ul li a {
+            text-decoration: none;
+            color: #333 !important;
+            font-size:14px !important;
+            display: block;
+            padding: 2px 0;
+            line-height:18px !important;
+        }
+        .mega-menu ul li a:hover {
+            color: #f23333 !important;
+        }
+       
+    </style>
+
+<div id="{{suffix_id}}" class="responsive megamenu-style-dev">
+	{% if ustawienia.orientation == 1 %}
+	<div class="so-vertical-menu no-gutter">
+	{% endif %}
+	
+	{% if ustawienia.disp_title_module and head_name %}
+		<h3>{{ head_name }}</h3>
+	{% endif %}
+	<nav class="navbar-default">
+		<div class=" container-megamenu {% if ustawienia.full_width != 1 %} {{ 'container' }} {% endif %} {% if ustawienia.orientation == 1 %} {{ 'vertical ' }} {% else %} {{ 'horizontal' }} {% endif %}">
+		{% if ustawienia.orientation == 1 %}
+			<div id="menuHeading">
+				<div class="megamenuToogle-wrapper">
+					<div class="megamenuToogle-pattern">
+						<div class="container">
+							<div><span></span><span></span><span></span></div>
+							<b>{{ navigation_text }}</b>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="navbar-header">
+				<button type="button" id="{{show_verticalmenu_id}}" data-toggle="collapse"  class="navbar-toggle">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+
+				</button>
+			</div>
+		{% else %}
+			<div class="navbar-header">
+				<button type="button" id="{{show_megamenu_id}}" data-toggle="collapse"  class="navbar-toggle">
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+					<span class="icon-bar"></span>
+				</button>
+			</div>
+		{% endif %}
+
+		{% if ustawienia.orientation == 1 %}
+			<div class="vertical-wrapper">
+		{% else %}
+			<div class="megamenu-wrapper">
+		{% endif %}
+
+		{% if ustawienia.orientation == 1 %}
+			<span id="{{remove_verticalmenu_id}}" class="remove-verticalmenu pe-7s-close icon-close"></span>
+		{% else %}
+			<span id="{{remove_megamenu_id}}" class="pe-7s-close icon-close"></span>
+		{% endif %}
+
+			<div class="megamenu-pattern p1">			
+				<ul class="megamenu"
+				data-transition="{% if ustawienia.animation != '' %}{{ ustawienia.animation }}{% else %}{{ 'none' }}{% endif %}" data-animationtime="{% if ustawienia.animation_time > 0 and ustawienia.animation_time < 5000 %}{{ ustawienia.animation_time }}{% else %}{{ 500 }}{% endif %}">
+					{% if ustawienia.home_item == 'icon' or ustawienia.home_item == 'text' %}
+						<li class="home">
+							<a href="{{ home }}">
+							{% if ustawienia.home_item == 'icon' %}
+								<i class="fa fa-home"></i>
+							{% else %}
+								<span><strong>{{ home_text }}</strong></span>
+							{% endif %}
+							</a>
+						</li>
+					{% endif %}
+					
+					{% for key, row in menu %}
+						{% set class 		= '' %}
+						{% set icon_font 	= '' %}
+						{% set class_link 	= 'clearfix' %}
+						{% set label_item 	= '' %}
+						{% set title 		= false %}
+						{% set target 		= false %}
+
+						{% if 'no_image' in row.icon %}
+							{% set icon = '' %}
+						{% else %}
+							{% set icon = row.icon %}
+						{% endif %}
+						
+						{% if row.description != '' %}
+							{% set class_link = class_link~' description' %}
+						{% endif %}
+
+						{% if route and route == row.route and path and path == row.path %}
+							{% set class = class~' active_menu' %}
+						{% endif %}
+
+						{% if row.class_menu %}
+							{% set class = class~row.class_menu %}
+						{% endif %}
+
+						{% if row.icon_font %}
+							{% set icon_font = icon_font~'<i class="'~row.icon_font~'"></i>' %}
+						{% endif %}
+
+						{% if row.label_item %}
+							{% set label_item = label_item~'<span class="label'~row.label_item~'"></span>' %}
+						{% endif %}
+
+						{% if row.submenu is iterable and row.submenu %}
+							{% set class = class~' with-sub-menu' %}
+							{% if row.submenu_type == 1 %}
+								{% set class = class~' click' %}
+							{% else %}
+								{% set class = class~' hover' %}
+							{% endif %}
+						{% endif %}
+
+						{% if row.position == 1 %}
+							{% set class = class~' pull-right' %}
+						{% endif %}
+
+						{% if row.submenu_type == 2 %}
+							{% set title = 'title="hover-intent"' %}
+						{% endif %}
+
+						{% if row.new_window == 1 %}
+							{% set target = 'target="_blank"' %}
+						{% endif %}
+
+						{% if ustawienia.orientation == 1 %}
+							<li class="item-vertical {{ class }}" {{ title }}>
+								<p class='close-menu'></p>
+								{% if row.submenu is iterable and row.submenu %}
+									<a href="{{ row.link }}" class="155 {{ class_link }}" {{ target }}>
+										<span>
+											<strong>{{ icon_font~icon~row.name[lang_id]~row.description }}</strong>
+										</span>
+										{{ label_item }}
+										<b class='fa fa-angle-right' ></b>
+									</a>
+								{% else %}
+							 		<a href="{{ row.link }}" class="163 {{ class_link }}" {{ target }}>
+										<span>
+											<strong>{{ icon_font~icon~row.name[lang_id]~row.description }}</strong>
+										</span>
+										{{ label_item }}
+									</a>
+								{% endif %}
+
+								{% if row.submenu is iterable and row.submenu %}
+									{% if '%' in row.submenu_width %}
+										<div class="sub-menu" data-subwidth ="{{ row.submenu_width|replace({'%': ''}) }}">
+									{% else %}
+										<div class="sub-menu" style="width:{{ row.submenu_width }}">
+									{% endif %}
+
+									<div class="content">
+										<div class="row">
+											{% set row_fluid = 0 %}
+											{% for submenu in row.submenu %}
+												{% if row_fluid+submenu.content_width > 12 %}
+													{% set row_fluid = submenu.content_width %}
+									 				</div><div class="border"></div><div class="row">
+												{% else %}
+													{% set row_fluid = row_fluid+submenu.content_width %}
+												{% endif %}
+												<div class="col-sm-{{ submenu.content_width }}">
+													{% if submenu.content_type == 0 %}
+														<div class="html {{submenu.class_menu }}">{{ submenu.html }}</div>
+													{% elseif submenu.content_type == 1 %}
+														{% if submenu.product is iterable %}
+															<div class="product {{ submenu.class_menu }}">
+																<div class="image"><a href="{{ submenu.product.link }}" onclick="window.location = '{{ submenu.product.link }}'"><img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ submenu.product.image }}" alt=""></a></div>
+																<div class="name"><a href="{{ submenu.product.link }}" onclick="window.location = '{{ submenu.product.link }}'">{{ submenu.product.name }}</a></div>
+																<div class="price">
+																	{% if not submenu.product.special %}
+																		{{ submenu.product.price }}
+																	{% else %}
+																		{{ submenu.product.special }}
+																	{% endif %}
+																</div>
+															</div>
+														{% endif %}
+													{% elseif submenu.content_type == 2 %}
+														<div class="categories {{ submenu.class_menu }}">{{ submenu.categories }}</div>
+													{% elseif submenu.content_type == 3 %}
+														{% if submenu.manufactures is iterable %}
+															<ul class="manufacturer {{ submenu.class_menu }}">
+																{% for manufacturer in submenu.manufactures %}
+																	<li><a href="{{ manufacturer.link }}">{{ manufacturer.name }}</a></li>
+																{% endfor %}
+															</ul>
+														{% endif %}
+													{% elseif submenu.content_type == 4 %}
+														{% if submenu.images.show_title == 1 %}
+															<span class="title-submenu">{{ submenu.name[lang_id] }}</span>
+														{% endif %}
+														<div class="link {{ submenu.class_menu }}">
+															{{ submenu.images.link }}
+														</div>
+													{% elseif submenu.content_type == 5 %}
+														{% if submenu.subcategory.categories %}
+															<ul class="subcategory {{ submenu.class_menu }}">
+																{% for categories in submenu.subcategory.categories %}
+																	<li>
+																		{% if submenu.subcategory.show_title == 1 %}
+																			<a href="{{ categories.href }}" class="title-submenu {{ submenu.class_menu }}">{{ categories.name }}</a>
+																		{% endif %}
+																		{% if categories.categories %}
+																			{{ categories.categories }}
+																		{% endif %}
+																		{% if submenu.subcategory.show_image == 1 %}
+																			<img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ categories.thumb }}" alt="" >
+																		{% endif %}
+																	</li>
+																{% endfor %}
+															</ul>
+														{% endif %}
+													{% elseif submenu.content_type == 6 %}
+														{% if submenu.productlist.show_title == 1 %}
+															<span class="title-submenu">{{ submenu.name[lang_id] }}</span>
+														{% endif %}
+														{% if submenu.productlist.products %}
+															{% for product in submenu.productlist.products %}
+																{% set itempage = submenu.productlist.col ? 12/submenu.productlist.col : 4 %}
+																<div class="col-xs-{{ itempage }} {{ submenu.class_menu }}">
+																	<div class="product-thumb">
+																		<div class="image">
+																			<a href="{{ product.href }}">
+																				<img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}"  />
+																			</a>
+																		</div>
+																		<div>
+																			<div class="caption">
+																				<h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+																				<p>{{ product.description }}</p>
+																				{% if product.rating %}
+																					<div class="rating">
+																						{% for i in 1..5 %}
+																							{% if product.rating < i %}
+																								<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+																							{% else %}
+																								<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+																							{% endif %}
+																						{% endfor %}
+																					</div>
+																				{% endif %}
+																		
+																				{% if product.price %}
+																					<p class="price">
+																						{% if not product.special %}
+																							{{ product.price }}
+																				   		{% else %}
+																							<span class="price-new">{{ product.special }}</span>
+																							<span class="price-old">{{ product.price }}</span>
+																				   		{% endif %}
+
+																				   		
+																					</p>
+																				{% endif %}
+																	  		</div>
+																		</div>
+																  	</div>
+																</div>
+														 	{% endfor %}
+														{% endif %}
+													{% endif %}													
+												</div>
+											{% endfor %}
+										</div>
+									</div>				
+									</div>			
+								{% endif %}
+							</li>							
+						{% else %}						
+							<li class="{{ class }}" {{ title }}>
+								<p class='close-menu'></p>
+								{% if row.submenu is iterable and row.submenu %}
+									<a href="{{ row.link }}" class="300 {{ class_link }}" {{ target }}>
+										
+										<strong>
+											{{ icon_font~icon~row.name[lang_id]~row.description }}
+										</strong>
+										{{ label_item }}
+										<b class='caret'></b>
+									</a>
+								{% else %}
+									<a href="{{ row.link }}" class="309 {{ class_link }}" {{ target }}>
+										<strong>
+											{{ icon_font~icon~row.name[lang_id]~row.description }}
+										</strong>
+										{{ label_item }}
+									</a>
+								{% endif %}
+
+								{% if row.submenu is iterable and row.submenu %}
+									<div class="sub-menu" style="width: {{ row.submenu_width }}">
+										<div class="content">
+											<div class="row">
+												{% set row_fluid = 0 %}
+												{% for submenu in row.submenu %}
+													{% if row_fluid+submenu.content_width > 12 %}
+														{% set row_fluid = submenu.content_width %}
+														</div><div class="border"></div><div class="row">
+													{% else %}
+														{% set row_fluid = row_fluid+submenu.content_width %}
+													{% endif %}
+													<div class="col-sm-{{ submenu.content_width }}">
+														{% if submenu.content_type == 0 %}
+															<div class="html {{ submenu.class_menu }}">
+																{{ submenu.html }}
+															</div>
+														{% elseif submenu.content_type == 1 %}
+															{% if submenu.product is iterable %}
+																<div class="product {{ submenu.class_menu }}">
+																	<div class="image"><a href="{{ submenu.product.link }}" onclick="window.location = '{{ submenu.product.link }}'"><img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ submenu.product.image }}" alt=""></a></div>
+																	<div class="name"><a href="{{ submenu.product.link }}" onclick="window.location = '{{ submenu.product.link }}'">{{ submenu.product.name }}</a></div>
+																	<div class="price">
+																		{% if not submenu.product.special %}
+																			{{ submenu.product.price }}
+																		{% else %}
+																			{{ submenu.product.special }}
+																		{% endif %}
+																	</div>
+																</div>
+															{% endif %}
+														{% elseif submenu.content_type == 2 %}
+															<div class="categories {{ submenu.class_menu }}">
+																{{ submenu.categories }}
+															</div>															
+														{% elseif submenu.content_type == 3 %}
+															{% if submenu.manufactures is iterable %}
+																<ul class="manufacturer {{ submenu.class_menu }}">
+																	{% for manufacturer in submenu.manufactures %}
+																		<li><a href="{{ manufacturer.link }}">{{ manufacturer.name }}</a></li>
+																	{% endfor %}
+																</ul>
+															{% endif %}
+														{% elseif submenu.content_type == 4 %}
+															{% if submenu.images.show_title == 1 %}
+																<span class="title-submenu">{{ submenu.name[lang_id] }}</span>
+															{% endif %}
+															<div class="link {{ submenu.class_menu }}">
+																{{ submenu.images.link }}
+															</div>
+														{% elseif submenu.content_type == 5 %}
+															{% if submenu.subcategory.categories %}
+																<ul class="subcategory secondsubmenu {{ submenu.class_menu }}">
+																	{% for categories in submenu.subcategory.categories %} 
+																		<li>
+																			{% if submenu.subcategory.show_title == 1 %}
+																			<div class="menu-item mti">
+    <a href="{{ categories.href }}" class="title-submenu {{ submenu.class_menu }}">{{ categories.name }}</a>
+    {% if submenu.has_children %}
+        <span class="toggle-submenu"><i class="fa fa-chevron-down"></i></span>
+    {% endif %}
+</div>
+																			{% endif %}
+																			{% if categories.categories %}
+																				{{ categories.categories }}
+																			{% endif %}
+																			{% if submenu.subcategory.show_image == 1 %}
+																				<img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ categories.thumb }}" alt="" />
+																			{% endif %}
+																		</li>		
+																	{% endfor %}
+																</ul>
+															{% endif %}
+														{% elseif submenu.content_type == 6 %}
+															{% if submenu.productlist.show_title == 1 %}
+																<span class="title-submenu">{{ submenu.name[lang_id] }}</span>
+															{% endif %}
+															{% if submenu.productlist.products %}
+																{% for product in submenu.productlist.products %}
+																	{% set itempage = submenu.productlist.col ? 12/submenu.productlist.col : 4 %}
+																	<div class="col-sm-{{ itempage }} {{ submenu.class_menu }}">
+																		<div class="product-thumb">
+																			<div class="image">
+																				<a href="{{ product.href }}">
+																					<img class="lazyload" data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ product.thumb }}" alt="{{ product.name }}" title="{{ product.name }}"/>
+																				</a>
+																			</div>
+																			<div>
+																				<div class="caption">
+																					<h4><a href="{{ product.href }}">{{ product.name }}</a></h4>
+																					<p>{{ product.description }}</p>
+																					{% if product.rating %}
+																						<div class="rating">
+																							{% for i in 1..5 %}
+																								{% if product.rating < i %}
+																									<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+																								{% else %}
+																									<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+																								{% endif %}
+																							{% endfor %}
+																						</div>
+																					{% endif %}
+
+																					{% if product.price %}
+																						<p class="price">
+																							{% if not product.special %}
+																								{{ product.price }}
+																						   	{% else %}
+																								<span class="price-new">{{ product.special }}</span>
+																								<span class="price-old">{{ product.price }}</span>
+																						   	{% endif %}
+																						   	
+																						   
+																						</p>
+																					{% endif %}
+																		  		</div>
+																			</div>
+													  					</div>
+																	</div>
+												 				{% endfor %}
+															{% endif %}
+														{% endif %}
+													</div>
+												{% endfor %}
+											</div>												
+										</div>
+									</div>										
+								{% endif %}
+							</li>
+						{% endif %}
+					{% endfor %}
+				</ul>		
+			</div>
+		</div>
+		</div>
+	</nav>
+	{% if ustawienia.orientation == 1 %}
+		</div>
+	{% endif %}
+</div>
+
+{% if ustawienia.orientation == 1 %}
+<script type="text/javascript">
+
+
+	$(document).ready(function() {
+
+		(function (element) {
+			var $element = $(element);
+			var itemver =  {{ ustawienia.show_itemver }};
+			
+			$("ul.megamenu  li.item-vertical", $element ).addClass('demo');
+			
+			if(itemver <= $( ".vertical ul.megamenu >li", $element ).length){
+				$('.vertical ul.megamenu', $element).append('<li class="loadmore"><i class="fa fa-plus-square-o"></i><span class="more-view"> {{text_more_category}}</span></li>');
+				$('.horizontal ul.megamenu li.loadmore', $element).remove();
+			}
+			
+			var show_itemver = itemver-1 ;
+			$('ul.megamenu > li.item-vertical', $element).each(function(i){
+				if(i>show_itemver){
+						$(this).css('display', 'none');
+				} 
+			});
+			
+			$(".megamenu .loadmore", $element).click(function(){
+				if($(this).hasClass('open')){
+					$('ul.megamenu li.item-vertical', $element).each(function(i){
+							if(i>show_itemver){
+									$(this).slideUp(200);
+									$(this).css('display', 'none');
+							}
+					});
+					
+					$(this).removeClass('open');
+					$('.loadmore', $element).html('<i class="fa fa-plus"></i><span class="more-view">{{text_more_category}}</span>');
+				}else{
+					$('ul.megamenu li.item-vertical', $element).each(function(i){
+							if(i>show_itemver){
+									$(this).slideDown(200);
+							}
+					});
+					$(this).addClass('open');
+					$('.loadmore', $element).html('<i class="fa fa-minus"></i><span class="more-view">{{text_close_category}}</span>');
+				}
+			});
+		})("#{{suffix_id}}");
+
+
+	
+
+	    $("#{{show_verticalmenu_id}}").click(function () {
+			if($('#{{suffix_id}} .vertical-wrapper').hasClass('so-vertical-active'))
+				$('#{{suffix_id}} .vertical-wrapper').removeClass('so-vertical-active');
+			else
+				$('#{{suffix_id}} .vertical-wrapper').addClass('so-vertical-active');
+		}); 
+		
+		$('#{{remove_verticalmenu_id}}').click(function() {
+	        $('#{{suffix_id}} .vertical-wrapper').removeClass('so-vertical-active');
+	        return false;
+	    });	
+	});
+</script>
+{% else %}
+<script>
+$(document).ready(function(){
+  const megaMenu = document.querySelector(".mega-menu"); 
+    if (!megaMenu) return;
+    const columns = megaMenu.querySelectorAll(".col-md-3"); 
+
+ 
+    columns.forEach((col, index) => {
+        const nextCol = columns[index + 1]; // Get the next column
+
+        if (nextCol) {
+            const colBottom = col.getBoundingClientRect().bottom;
+            const nextColTop = nextCol.getBoundingClientRect().top;
+             console.log("nextCol",nextCol);
+           
+              
+            let extraSpace = nextColTop - colBottom; // Space between two columns
+             
+           
+            if (extraSpace > 30) { // If space is more than 30px
+                let reduceSpace = extraSpace - 30;
+                nextCol.style.marginTop = `-${reduceSpace}px`;
+            }
+        }
+    });
+});
+
+
+
+$(document).ready(function(){
+	$("#{{show_megamenu_id}}").click(function () {
+		if($('#{{suffix_id}} .megamenu-wrapper',).hasClass('so-megamenu-active'))
+			$('#{{suffix_id}} .megamenu-wrapper').removeClass('so-megamenu-active');
+		else
+			$('#{{suffix_id}} .megamenu-wrapper').addClass('so-megamenu-active');
+	}); 
+	$("#{{remove_megamenu_id}}").click(function() {
+        $('#{{suffix_id}} .megamenu-wrapper').removeClass('so-megamenu-active');
+        return false;
+    });		
+	
+});
+</script>
+
+{% endif %}
+<script>
+$(document).ready(function(){
+	$('a[href="{{ actual_link }}"]').each(function() {
+		$(this).parents('.with-sub-menu').addClass('sub-active');
+	});  
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle submenu toggle
+    document.querySelectorAll('.toggle-submenu').forEach(function(element) {
+        element.addEventListener('click', function(event) {
+            event.preventDefault();
+            const submenu = this.nextElementSibling;
+            if (submenu && submenu.classList.contains('submenu')) {
+                submenu.style.display = submenu.style.display === 'block' ? 'none' : 'block';
+            }
+        });
+    });
+
+    // Ensure link navigation works
+    document.querySelectorAll('.title-submenu').forEach(function(link) {
+        link.addEventListener('click', function(event) {
+            // Allow default navigation unless a submenu toggle is intended
+            if (!event.target.closest('.toggle-submenu')) {
+                window.location.href = this.getAttribute('href');
+            }
+        });
+    });
+});
+</script>
+

@@ -1,0 +1,281 @@
+{{ header }}
+{{ column_left }}
+<div id="content">
+
+    <form action="{{ update }}" method="post">
+<div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i> Update</button>
+          <a href="{{ cancel }}" data-toggle="tooltip" title="Back" class="btn btn-default">Back</a>
+
+      </div>
+      <h1>Edit Dealer</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+<div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_form }}</h3>
+      </div>
+      <div class="panel-body">
+
+    <input type="hidden" name="dealer_id" value="{{ dealer.dealer_id }}">
+    
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Full Name</label>
+                <input type="text" name="full_name" value="{{ dealer.full_name }}" class="form-control" required>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Business Name</label>
+                <input type="text" name="business_name" value="{{ dealer.business_name }}" class="form-control" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Email Address</label>
+                <input type="email" name="email" value="{{ dealer.email }}" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="form-group">
+                <label>Phone Number</label>
+                <input type="text" name="phone" value="{{ dealer.phone }}" class="form-control">
+            </div>
+        </div>
+        
+         <div class="col-md-4">
+            <div class="form-group">
+                <label> Suburb</label>
+               <input type="text" name="suburb" value="{{ dealer.suburb }}" class="form-control" required>
+            </div>
+        </div>
+        
+        <div class="col-md-4">
+            <div class="form-group">
+                <label> State</label>
+              <input type="text" name="state" value="{{ dealer.state }}" class="form-control" required>
+            </div>
+        </div>
+        
+         <div class="col-md-4">
+            <div class="form-group">
+                <label>Postcode</label>
+                <input type="text" name="postcode" value="{{ dealer.postcode }}" class="form-control" required>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Business Address</label>
+                <textarea name="business_address" class="form-control" required>{{ dealer.business_address }}</textarea>
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>ABN (Australian Business Number)</label>
+                <input type="text" name="abn" value="{{ dealer.abn }}" class="form-control">
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Website URL (if applicable)</label>
+                <input type="text" name="website" value="{{ dealer.website }}" class="form-control">
+            </div>
+        </div>
+        <div class="col-md-6">
+            <div class="form-group">
+                <label>Brief Description of the Business</label>
+                <textarea name="description" class="form-control">{{ dealer.description }}</textarea>
+            </div>
+        </div>
+    </div>
+
+    <div id="dynamic-rows">
+    {% if dealer_brands is not empty %}
+        {% for brand in dealer_brands %}
+        <div class="row product-row">
+            <!-- Preferred Category (Select Box) -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Preferred Category</label>
+                    <select class="form-control preferred-category" name="dealer_products[{{ loop.index0 }}][brand_id]">
+                        <option value="">Select Category</option>
+                        {% for manufacturer in manufacturers %}
+                            <option value="{{ manufacturer.manufacturer_id }}" 
+                                {% if manufacturer.manufacturer_id == brand.brand_id %}selected{% endif %}>
+                                {{ manufacturer.name }}
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Product Name (Dropdown with Checkboxes) -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <select class="form-control product-select" name="dealer_products[{{ loop.index0 }}][product_id][]" multiple>
+                        {% for product in products %}
+                            {% if product.manufacturer_id == brand.brand_id %}
+                                <option value="{{ product.product_id }}" 
+                                    {% if product.product_id in brand.product_id %}selected{% endif %}>
+                                    {{ product.name }}
+                                </option>
+                            {% endif %}
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+
+            <!-- Show Demo Checkbox -->
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Show Demo</label><br>
+                    <input type="checkbox" class="show-demo" 
+                        name="dealer_products[{{ loop.index0 }}][show_demo]" 
+                        value="1" {% if brand.show_demo == '1' %}checked{% endif %}>
+                </div>
+            </div>
+
+            <!-- Add/Remove Buttons -->
+            <div class="col-md-3 d-flex align-items-center">
+                <button type="button" class="btn btn-danger btn-sm remove-row">-</button>
+                <button type="button" class="btn btn-success btn-sm add-row ml-2">+</button>
+            </div>
+        </div>
+        {% endfor %}
+    {% else %}
+        <!-- Fallback: Empty row same as Add Dealer -->
+        <div class="row product-row">
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Preferred Category</label>
+                    <select class="form-control preferred-category" name="dealer_products[{index}][brand_id]">
+                        <option value="">Select Category</option>
+                        {% for manufacturer in manufacturers %}
+                            <option value="{{ manufacturer.manufacturer_id }}">{{ manufacturer.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Product Name</label>
+                    <select class="form-control product-select" name="dealer_products[{index}][product_id][]" multiple>
+                        <!-- Options will be loaded dynamically via AJAX -->
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-group">
+                    <label>Show Demo</label><br>
+                    <input type="checkbox" class="show-demo" name="dealer_products[{index}][show_demo]" value="1">
+                </div>
+            </div>
+            <div class="col-md-3 d-flex align-items-center">
+                <button type="button" class="btn btn-danger btn-sm remove-row">-</button>
+                <button type="button" class="btn btn-success btn-sm add-row ml-2">+</button>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+
+
+
+
+   
+
+    <div class="text-center">
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </div>
+
+</div>
+</div>
+</div>
+</form>
+ </div>
+  </div>
+  <script>
+ $(document).ready(function () {
+    // When a Preferred Category is selected
+    $(document).on("change", ".preferred-category", function () {
+        let manufacturerId = $(this).val();
+        let productSelect = $(this).closest(".product-row").find(".product-select");
+
+        if (manufacturerId) {
+            $.ajax({
+                
+                url: 'index.php?route=dealer/dealer/fetchProducts&user_token={{ user_token }}',
+                type: "POST",
+                data: { manufacturer_id: manufacturerId },
+                dataType: "json",
+                success: function (data) {
+                    productSelect.empty(); // Clear previous options
+                    $.each(data, function (index, item) {
+                        productSelect.append(
+                            `<option value="${item.product_id}">${item.name}</option>`
+                        );
+                    });
+                }
+            });
+        } else {
+            productSelect.empty(); // Reset product dropdown if no category selected
+        }
+    });
+
+   
+});
+
+$(document).ready(function () {
+    // Start index at the last rendered row
+    let index = $(".product-row").length - 1;
+
+    $(document).on("click", ".add-row", function () {
+        index++;
+
+        let newRow = $(".product-row").first().clone();
+
+        newRow.find("select, input").each(function () {
+            let name = $(this).attr("name");
+            if (name) {
+                $(this).attr("name", name.replace(/\[\d+\]/, "[" + index + "]"));
+            }
+        });
+
+        // Reset values
+        newRow.find("select").val("");
+        newRow.find("input[type='checkbox']").prop("checked", false);
+
+        $(".product-row").last().after(newRow);
+    });
+
+    $(document).on("click", ".remove-row", function () {
+        if ($(".product-row").length > 1) {
+            $(this).closest(".product-row").remove();
+        }
+    });
+});
+
+
+
+ </script>
+{{ footer }}

@@ -1,0 +1,548 @@
+<style>
+.item-des{
+    color: #101d2f !important;
+    line-height: 30px !important;
+}
+/* Explore Benefits button */
+.btn-explore {
+    background-color: #fff;
+    color: #d9534f;
+    border: 1px solid #d9534f;
+    padding: 10px 40px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.btn-explore:hover {
+    background-color: #d9534f;
+    color: #fff;
+    border:1px solid #d9534f;
+}
+
+/* Add to Cart / Custom Quote button */
+.btn-cart {
+    background-color: #d9534f;
+    color: #fff;
+    border: 1px solid #d9534f;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+}
+.btn-cart:hover {
+    background-color: #fff;
+    color: #d9534f;
+    border:1px solid #d9534f;
+}
+/* iPad portrait + landscape (768px–1024px) */
+@media (min-width: 768px) and (max-width: 1024px) {
+  .d-flex.gap-5.justify-content-center {
+    flex-direction: column !important;
+    align-items: center;
+  }
+
+  .d-flex.gap-5.justify-content-center .btn {
+    width: 80%;   /* optional, make them uniform */
+    margin-bottom: 10px;
+  }
+}
+
+</style>
+{% if type_show == 'slider' %}
+		<div class="ltabs-items-inner owl2-carousel  ltabs-slider ">
+{% else %}
+		<div class="ltabs-items-inner {{ type_show == 'loadmore' ? class_ltabs ~ ' '~ effect : ' ' }}">
+{% endif %}
+{% if child_items is not empty %}
+	{% set i = 0 %}
+	{% set k = rl_loaded is defined ? rl_loaded : 0 %}
+	{% set count = child_items|length %}
+		{% for product in child_items %}
+			{% set i = i + 1 %}
+			{% set k = k + 1 %}
+			
+			{% if type_show == 'slider' and (i % nb_rows == 1 or nb_rows == 1) %}
+				<div class="ltabs-item ">
+			{% endif %}
+			{% if type_show == 'loadmore' %}
+				<div class="ltabs-item new-ltabs-item" >
+			{% endif %}			
+			<div class="product-layout transition product-grid  module_id_{{ moduleid }}">
+
+				<div class="product-item-container">
+					<div class="left-block">										
+						{% if product_image %}								
+							<div class="product-image-container {% if product_image_num  == 2 %} {{ 'second_img' }} {% endif %}	">
+								<a href="{{ product.href }}" target="{{ item_link_target }}" title="{{ product.name_maxlength }}"  >
+									
+									{% if product_image_num ==2 %}
+										<img data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ product.thumb }}" class="img-1 lazyload" alt="{{ product.name_maxlength }}">
+										<img data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ product.thumb2 }}" class="img-2 lazyload" alt="{{ product.name_maxlength }}">
+									{% else %}
+    {% if moduleid =='1239' %}
+<img data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ product.featureImage }}" alt="{{ product.name_maxlength }}" class="lazyload">
+	{% else %}
+<img data-sizes="auto" src="data:image/gif;base64,R0lGODlhAQABAAAAACH5BAEKAAEALAAAAAABAAEAAAICTAEAOw==" data-src="{{ product.thumb }}" alt="{{ product.name_maxlength }}" class="lazyload">
+
+	{% endif %}	
+    
+    
+									{% endif %}	
+								</a>						
+							</div>
+						{% endif %}	
+						<div class="box-label">
+							{% if product.productNew and display_new %}
+								<span class="label-product label-new">{{ objlang.get('text_new') }}</span>
+							{% endif %}
+							{% if product.special and display_sale %}
+								<span class="label-product label-sale">{# {{ objlang.get('text_sale') }} #} {{ product.discount }} </span>
+							{% endif %}
+						</div>
+						
+						<!-- <div class="button-group cartinfo--static">												
+							{% if display_wishlist  %} 
+							<button type="button" class="wishlist btn-button" title="{{ objlang.get('button_wishlist') }}" onclick="wishlist.add('{{ product.product_id }}');"><i class="fa fa-heart"></i><span>{{ objlang.get('button_wishlist') }}</span></button>
+							{% endif %} 
+										
+							{% if display_compare %} 
+							<button type="button" class="compare btn-button" title="{{ objlang.get('button_compare') }} " onclick="compare.add('{{ product.product_id }}');"><i class="fa fa-refresh"></i><span>{{ objlang.get('button_compare') }}</span></button>
+							{% endif %} 
+
+							<div class="so-quickview">		
+								<a class="hidden" data-product='{{ product.product_id }}' href="{{ product.href }}" target="{{ item_link_target }}" ></a>
+							</div>	
+							
+						</div>-->										
+					</div>
+					<div class="right-block">
+						
+						{% if display_title or display_description or display_price or display_rating %}
+							{% if display_rating %}
+								<div class="rating">
+								
+								  	{% for j in 1..5 %}
+								  		{% if product.rating < j %}
+								  			<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-2x"></i></span>
+								  		{% else %}
+								  			<span class="fa fa-stack"><i class="fa fa-star fa-stack-2x"></i><i class="fa fa-star-o fa-stack-2x"></i></span>
+								  		{% endif %}
+								  	{% endfor %}
+								  
+								</div>
+							{% endif %}
+
+							{% if display_title %}
+								<h4><a class="text-black" href="{{ product.href }}" title="{{ product.name }}" target="{{ item_link_target }}">{{ product.name_maxlength }}</a></h4>
+							{% endif %}
+
+								
+
+							{% if display_description %} 
+								<div class="item-des">
+									{{ product.description_maxlength }} 
+								</div>
+							{% endif %}
+							
+								{% if product.price and display_price %}
+								<div class="price hidden">
+								  	{% if product.special is empty %}
+								  		<span class="price hidden">{{ product.price }}</span>
+								  	{% else %}
+								  		<span class="price-new hidden">{{ product.special }}</span>
+								  		<span class="price-old hidden">{{ product.price }}</span>
+								  	{% endif %}
+								  	
+								</div>
+							{% endif %}	
+														
+						{% endif %}
+                        <div class="d-flex gap-5 justify-content-center">
+    {% if display_explore_benefits %}
+    <a href="{{ product.href }}" 
+       class="btn btn-button btn-explore" 
+       title="{{ objlang.get('explore_benefits') }}">
+        <span><i class="fa fa-search-plus"></i> {{ objlang.get('explore_benefits') }}</span>
+    </a>
+    {% endif %}
+
+    {% if display_add_to_cart == 1 and product.display_add_to_cart == 1 %}
+    <button type="button" 
+            class="btn btn-button btn-cart" 
+            title="{{ objlang.get('button_cart') }}" 
+            onclick="cart.add('{{ product.product_id }}');">
+        <span><i class="fa fa-cart-plus"></i> {{ objlang.get('button_cart') }}</span>
+    </button>
+    {% endif %}
+
+    {% if product.display_custom_quote == 1 and moduleid == 1239 %}
+    <button type="button" 
+            class="btn btn-button btn-cart" 
+            onclick="openModal({{ product.product_id }})"  
+            title="Get Your Custom Quote">
+        <span><i class="fa fa-cart-plus"></i> Get Your Custom Quote</span>
+    </button>
+    {% endif %} 
+</div>
+
+						
+					</div>
+
+				</div>
+			</div>
+			{% if type_show == 'slider' and (i % nb_rows == 0 or i == count) %}
+			</div>
+			{% endif %}
+			
+			{% if type_show == 'loadmore' %}
+			</div>
+			{% endif %}
+
+			{% if type_show == 'loadmore' %}
+				{% set clear = 'clr1' %}
+				{% if k % 2 == 0 %} {% set clear = clear ~' clr2' %} {% endif %}
+				{% if k % 3 == 0 %} {% set clear = clear ~' clr3' %} {% endif %}
+				{% if k % 4 == 0 %} {% set clear = clear ~' clr4' %} {% endif %}
+				{% if k % 5 == 0 %} {% set clear = clear ~' clr5' %} {% endif %}
+				{% if k % 6 == 0 %} {% set clear = clear ~' clr6' %} {% endif %}
+				<div class="{{ clear }}"></div>
+			{% endif %}
+		{% endfor %}
+	{% endif %}
+</div>
+
+<div class="modal fade" id="customQuoteModal" tabindex="-1" role="dialog" aria-labelledby="customQuoteModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="customQuoteModalLabel">Get Your Custom Quote</h4>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ action }}" method="post" class="form-horizontal quoteForm">
+                        <div class="form-group">
+                            <label for="fullname" class="col-sm-3 control-label">Full Name *</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="fullname" id="fullname" placeholder="Full Name *" class="form-control" required>
+                                {% if error_fullname %}
+                                <div class="text-danger">{{ error_fullname }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email" class="col-sm-3 control-label">Email *</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="email" id="email" placeholder="Email *" class="form-control" required>
+                                {% if error_email %}
+                                <div class="text-danger">{{ error_email }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phone" class="col-sm-3 control-label">Phone Number *</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="phone" id="phone" placeholder="Phone Number *" class="form-control" required>
+                                {% if error_phone %}
+                                <div class="text-danger">{{ error_phone }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+                        
+                         <div class="form-group">
+                            <label for="postcode" class="col-sm-3 control-label">Postcode *</label>
+                            <div class="col-sm-9">
+                                <input type="text" name="postcode" id="postcode" placeholder="Postcode *" class="form-control" required>
+                                {% if error_postcode %}
+                                <div class="text-danger">{{ error_postcode }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label for="contact_type" class="col-sm-3 control-label">Are you contacting us as? *</label>
+                            <div class="col-sm-9">
+                                <select name="contact_type" id="contact_type" class="form-control">
+                                    <option value="" disabled selected>Are you contacting us as?</option>
+                                  
+                                    <option value="For Myself">For Myself</option>
+                                    <option value="For a Friend/Family Member">For a Friend/Family Member</option>
+                                    <option value="Healthcare Professional">Healthcare Professional</option>
+                                    <option value="Dealer or Business">Dealer or Business</option>
+                                    <option value="Government or Non-Profit Organisation">Government or Non-Profit Organisation</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group" id="healthcare_profession" style="display: none;">
+                            <label for="healthcare_profession" class="col-sm-3 control-label">If Healthcare Professional, please specify:</label>
+                            <div class="col-sm-9">
+                                <select name="healthcare_profession" class="form-control">
+                                    <option value="" disabled selected>If Healthcare Professional, please specify:</option>
+                                    <option value="Occupational Therapist">Occupational Therapist</option>
+                                    <option value="Physiotherapist">Physiotherapist</option>
+                                    <option value="Rehabilitation Specialist">Rehabilitation Specialist</option>
+                                    <option value="Aged Care Professional">Aged Care Professional</option>
+                                    <option value="Nurse or Caregiver">Nurse or Caregiver</option>
+                                    <option value="Neurologist">Neurologist</option>
+                                    <option value="Orthopedic Specialist">Orthopedic Specialist</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label for="quote_type" class="col-sm-3 control-label">Preferred Quote Type *</label>
+                            <div class="col-sm-9">
+                                <select name="quote_type" id="quote_type" class="form-control">
+                                    <option value="" disabled selected>Preferred Quote Type *</option>
+                                    <option value="Standard Quote">Standard Quote</option>
+                                    <option value="NDIS Funding Quote">NDIS Funding Quote</option>
+                                    <option value="Insurance/WorkSafe Quote">Insurance/WorkSafe Quote</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group required">
+                            <label for="product_id" class="col-sm-3 control-label">Choose a Product *</label>
+                            <div class="col-sm-9">
+                                <select name="product_id" class="form-control quote_product_id" required>
+                                    <option value="" disabled>Choose a Product *</option>
+                                    {% for product in products %}
+                                    <option value="{{ product.product_id }}" >{{ product.name }}</option>
+                                    {% endfor %}
+                                </select>
+                                {% if error_product %}
+                                <div class="text-danger">{{ error_product }}</div>
+                                {% endif %}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="additional_info" class="col-sm-3 control-label">Additional Information</label>
+                            <div class="col-sm-9">
+                                <textarea name="additional_info" id="additional_info" class="form-control" placeholder="Additional Information"></textarea>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                {{ captcha }}
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-sm-offset-3 col-sm-9">
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Submit Your Request</button>
+                            </div>
+                        </div>
+                    </form>
+                    
+                     
+            </div>
+        </div>
+    </div>
+    </div>
+    <div id="loaderOverlay" class="loader-overlay">
+       <div class="loader"></div>
+                </div>
+     
+    <div id="toastMessage" class="toast"></div>
+  <style>
+
+ /* Loader styling */
+.loader-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+     /* Use flexbox to center the loader */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0066FF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+        /* Toast message styling */
+        .toast {
+            position: fixed;
+            top: 30px;
+            right: 20px;
+            min-width: 250px;
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1050;
+            display: none;
+        }
+        .toast.error {
+            background-color: #d9534f;
+        }
+</style>
+{% if type_show == 'slider' %}
+<script type="text/javascript">
+	jQuery(document).ready(function($){
+		var $tag_id = $('#{{ tag_id }}'), 
+		parent_active = 	$('.items-category-{{ tab_id }}', $tag_id),
+		total_product = parent_active.data('total'),
+		tab_active = $('.ltabs-items-inner',parent_active),
+		nb_column0 = {{ nb_column0 }},
+		nb_column1 = {{ nb_column1 }},
+		nb_column2 = {{ nb_column2 }},
+		nb_column3 = {{ nb_column3 }},
+		nb_column4 = {{ nb_column4 }};
+		tab_active.owlCarousel2({
+			rtl: {{ direction }},
+			nav: {{ display_nav }},
+			dots: false,	
+			margin: 30,
+			loop:  {{ display_loop }},
+			autoplay: {{ autoplay }},
+			autoplayHoverPause: {{ pausehover }},
+			autoplayTimeout: {{ autoplayTimeout }},
+			autoplaySpeed: {{ autoplaySpeed }},
+			mouseDrag: {{ mousedrag }},
+			touchDrag: {{ touchdrag }},
+			navRewind: true,
+			navText: [ '', '' ],
+			responsive: {
+				0: {
+					items: nb_column4,
+					nav: total_product <= nb_column0 ? false : (({{display_nav}}) ? true: false),
+				},
+				480: {
+					items: nb_column3,
+					nav: total_product <= nb_column0 ? false : (({{display_nav}}) ? true: false),
+				},
+				768: {
+					items: nb_column2,
+					nav: total_product <= nb_column0 ? false : (({{display_nav}}) ? true: false),
+				},
+				992: {
+					items: nb_column1,
+					nav: total_product <= nb_column0 ? false : (({{display_nav}}) ? true: false),
+				},
+				1200: {
+					items: nb_column0,
+					
+					nav: total_product <= nb_column0 ? false : (({{display_nav}}) ? true: false),
+				}
+			}
+		});
+	});
+</script>
+{% endif %}
+
+<script>
+function openModal(productId) {
+   
+    $('#customQuoteModal').modal('show');
+    
+    $('.quote_product_id').each(function () {
+    $(this).val(productId);
+});
+}
+
+
+document.getElementById("contact_type").addEventListener("change", function() {
+    var healthcareField = document.getElementById("healthcare_profession");
+    if (this.value === "Healthcare Professional") {
+        healthcareField.style.display = "block";
+    } else {
+        healthcareField.style.display = "none";
+    }
+});
+
+$(document).ready(function() {
+    $('#loaderOverlay').hide();
+});
+
+ $(document).on('submit', '.quoteForm', function(e) {
+                e.preventDefault();
+                console.log("Clicked");
+                var form = $(this);
+             
+                $('.text-red').remove(); // Clear previous errors
+               $('#loaderOverlay').show();
+                $.ajax({
+  url: form.attr('action'),
+  type: 'POST',
+  data: form.serialize(),
+  dataType: 'json',
+  success: function(response) {
+    $('#loaderOverlay').hide();
+    $('.text-red').remove(); // remove old validation messages
+    if (response.success) {
+      $('#toastMessage')
+        .text(response.success)
+        .removeClass('error')
+        .show();
+
+      setTimeout(function() {
+        $('#toastMessage').fadeOut();
+         $('#customQuoteModal').modal('hide');
+      }, 20000);
+
+      form[0].reset();
+     
+    } 
+    else if (response.error) {
+      // if it's an object (like { field1: "msg", field2: "msg2" })
+      if (typeof response.error === 'object') {
+  $('.text-red').remove(); // clear old errors
+
+  let lastError = ''; // variable to store last message
+  $.each(response.error, function(key, value) {
+    $('#' + key).after('<div class="text-red">' + value + '</div>');
+    lastError = value; // keep updating with latest error
+  });
+
+  // show only the last one in toast
+  $('#toastMessage')
+    .text(lastError)
+    .addClass('error')
+    .show();
+
+  setTimeout(() => $('#toastMessage').fadeOut(), 20000);
+}
+
+      // if it's a string
+      else if (typeof response.error === 'string') {
+        $('#toastMessage')
+          .text(response.error)
+          .addClass('error')
+          .show();
+      }
+
+      setTimeout(function() {
+        $('#toastMessage').fadeOut();
+      }, 20000);
+    }
+  }
+ 
+});
+
+            });
+            
+</script>
+

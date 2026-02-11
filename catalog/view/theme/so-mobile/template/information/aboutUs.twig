@@ -1,0 +1,298 @@
+
+  <style>
+   
+    .titleh2 {
+      font-size: 36px;
+      margin-bottom: 20px;
+    }
+    .leading-relaxed {
+      line-height: 1.9 !important;
+      font-size: 16px !important;
+    }
+    .bg-primary {
+      background-color: #044488 !important;
+    }
+    .text-primary {
+      color: #f33333 !important
+    }
+    h2,p {
+     color: #000000 !important
+    }
+    h3{
+       color: #003264 !important
+    }
+    .bg-accent {
+      background-color: #ea3a3c !important;
+    }
+    .btn-accent {
+      background-color: #ea3a3c;
+      color: #fff;
+      padding: 12px 30px;
+      border-radius: 50px;
+      font-weight: 600;
+      display: inline-block;
+      transition: background 0.3s;
+    }
+    .btn-accent:hover {
+      background-color: #c53032;
+      color: #fff;
+    }
+    .hero-section {
+      position: relative;
+      height: 500px;
+      background: #222;
+      color: #fff;
+      overflow: hidden;
+    }
+    .hero-section img {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0.5;
+      top: 0;
+      left: 0;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+    .card {
+      background: #fff;
+      border-radius: 10px;
+      padding: 25px;
+      margin-bottom: 30px;
+      box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
+      transition: all .3s ease-in-out;
+      height: 306px; 
+      /*height: 100%;*/
+    }
+    #commitmentSection .card{
+        height: 416px;  
+    }
+    .card:hover {
+      box-shadow: 0px 6px 18px rgba(0,0,0,0.15);
+    }
+    .card-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 20px;
+      border-radius: 50%;
+      background: rgba(4,68,136,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      color: #044488;
+    }
+    .btnContactFooter {
+      background: #ea3a3c;
+      padding: 20px 50px;
+      border-radius: 50px;
+      font-size: 20px;
+      font-weight: bold;
+      color: #fff;
+      display: inline-block;
+      transition: background .3s;
+    }
+    .btnContactFooter:hover {
+      background: #c53032;
+      color: #fff;
+    }
+  </style>
+
+
+{{ header }}
+<div class="container-fluid mt-5">
+        <div class="row">{{ column_left }}
+            {% if column_left and column_right %}
+            {% set class = 'col-sm-6' %}
+            {% elseif column_left or column_right %}
+            {% set class = 'col-sm-9' %}
+            {% else %}
+            {% set class = 'col-sm-12' %}
+            {% endif %}
+            <div id="content" class="{{ class }}">{{ content_top }}
+                <!-- Hero -->
+                <section class="hero-section">
+                    <img src="https://storage.googleapis.com/uxpilot-auth.appspot.com/51ea10ee69-2eabf675ae123ff5300b.png" alt="mobility aids for elderly and disabled people, walkers, wheelchairs and powerchairs in a modern showroom, professional photography">
+                    <div class="container" style="margin-top: 200px;">
+                        <div class="hero-content col-md-8">
+                            <h1 class="titleh2">Welcome to Mobilitycare</h1>
+                            <p class="lead" style="color:#fff !important;">Empowering lives with innovative mobility solutions</p>
+                            <a href="?route=product/category&path=63" class="btn-accent">Explore Our Products</a>
+                        </div>
+                    </div>
+                </section>
+                <!-- Our Story -->
+                <section class="py-60" style="padding:60px 0;background:#fff;">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h2 class="titleh2" style="color: #f33333 !important">Our Story</h2>
+                                <p class="leading-relaxed">
+                                    At Mobilitycare, our journey began as a family-run business driven by a passion for enhancing lives through mobility solutions. Today, we have grown into a leading wholesaler with over 250 dealer partners across Australia, while continuing to sell directly to our valued customers.
+                                </p>
+                                <p class="leading-relaxed">
+                                    Our mission is simple: to improve the quality of life for those with mobility challenges. We treat our customers like family, understanding their unique needs and providing innovative solutions that make a real difference.
+                                </p>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="{{ base }}image/aboutUs.jpeg" alt="elderly person smiling while using a mobility aid with caregiver, warm lighting, professional photography" class="img-responsive img-rounded" style="max-height:500px;">
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Our Commitment -->
+               <section style="padding:60px 0;background:#f9f9f9;" id="commitmentSection">
+    <div class="container text-center">
+        <h2 class="titleh2 text-primary" style="color: #f33333 !important">Our Commitment</h2>
+        <div class="row">
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-icon"><i class="fa fa-lightbulb-o"></i></div>
+                    <h3>Cutting-Edge Products</h3>
+                    <p>Our product range designed to improve safety and stability. From the U-step and Topro Neuro walkers for those with neurological conditions to the Mangar ELK and Eagle inflatable patient lifters used by 90% of ambulances in Australia, our products are built to last and provide unmatched support.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-icon"><i class="fa fa-users"></i></div>
+                    <h3>Trusted Network</h3>
+                    <p>With over 250 dealer partners across Australia, we ensure local support and service, enhancing your experience with us.</p>
+                </div>
+            </div>
+            <div class="col-sm-4">
+                <div class="card">
+                    <div class="card-icon"><i class="fa fa-heart"></i></div>
+                    <h3>Holistic Approach</h3>
+                    <p>We work closely with therapists and health professionals to provide safe and effective solutions tailored to individual needs.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+                <!-- Our Promise -->
+                <section class="bg-primary" style="padding:60px 0;color:#fff;">
+                    <div class="container text-center max-w-4xl">
+                        <h2 class="titleh2" style="color:#fff !important;">Our Promise</h2>
+                        <blockquote style="font-size:24px;font-style:italic;" >"We believe in the power of mobility to transform lives"</blockquote>
+                        <p class="leading-relaxed" style="color:#fff !important;">At Mobilitycare, we are dedicated to offering reliable, high quality products that empower you to move with confidence and dignity. Join us on our mission to make mobility accessible for all.</p>
+                    </div>
+                </section>
+                <!-- Our Products -->
+                <section id="featured-products" style="padding:60px 0;background:#fff;">
+                    <div class="container text-center">
+                        <h2 class="titleh2" style="color: #f33333 !important">Our Products</h2>
+                        <p class="lead">Innovative mobility aids designed to support independence, safety, and quality of life.</p>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="card product-card">
+                                    <h3>Light Drive</h3>
+                                    <p>Transforms wheelchairs into lightweight power chairs for convenient travel.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card product-card">
+                                    <h3>Autochair Smart Transfer & Lifter</h3>
+                                    <p>Facilitates easy vehicle access and transport of mobility aids.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card product-card">
+                                    <h3>Trekinetic Powerchair</h3>
+                                    <p>An all-terrain wheelchair for adventurous users, designed for outdoor enjoyment.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card product-card">
+                                    <h3>U-step & Topro Neuro Walkers</h3>
+                                    <p>Designed for Parkinson’s, Ataxia & other conditions to offer improved stability and safety.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card product-card">
+                                    <h3>Topro Rollators & Seat Walkers</h3>
+                                    <p>Enhance confidence, balance, and posture while reducing fall risk.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card product-card">
+                                    <h3>Mangar ELK, CAMEL & Eagle</h3>
+                                    <p>Portable inflatable patient lifters offering safe and dignified recovery from falls.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card product-card">
+                                    <h3>Lift Seat</h3>
+                                    <p>Assists with toileting while reducing stress on joints and tendons.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- Why Choose Us -->
+                <section id="why-choose-us" style="padding:60px 0;background:#f9f9f9;" class="hidden">
+                    <div class="container text-center">
+                        <h2 class="titleh2" style="color: #f33333 !important">Why Choose Us?</h2>
+                        <p class="lead">We stand apart through our unwavering commitment to quality, service, and customer satisfaction.</p>
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-icon"><i class="fa-solid fa-award"></i></div>
+                                    <h3>Quality Guaranteed</h3>
+                                    <p>All our products undergo rigorous testing and quality control to ensure reliability, durability, and safety.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-icon"><i class="fa-solid fa-users"></i></div>
+                                    <h3>Expert Guidance</h3>
+                                    <p>Our team of trained specialists provides personalized advice to help you find the perfect solution for your needs.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-icon"><i class="fa-solid fa-headset"></i></div>
+                                    <h3>Ongoing Support</h3>
+                                    <p>We provide comprehensive after-sales service, including maintenance, repairs, and product training.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-icon"><i class="fa-solid fa-truck"></i></div>
+                                    <h3>Nationwide Coverage</h3>
+                                    <p>Trusted by Over 250 Dealer Partners Nationwide</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-icon"><i class="fa-solid fa-star"></i></div>
+                                    <h3>Customer Satisfaction</h3>
+                                    <p>Our high customer satisfaction rates reflect our dedication to exceeding expectations in every interaction.</p>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card">
+                                    <div class="card-icon"><i class="fa-solid fa-heart"></i></div>
+                                    <h3>Community Engagement</h3>
+                                    <p>We actively participate in community initiatives and advocacy for improved accessibility and inclusion.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- CTA -->
+                <section class="bg-primary text-center" style="padding:60px 0;">
+                    <div class="container">
+                        <h2 class="titleh2" style="color:#fff !important;">Join us on our journey to make mobility accessible for all</h2>
+                        <p style="color:#fff !important;" class="lead">At Mobilitycare, we are dedicated to improving lives through innovative and reliable mobility solution.</p>
+                        <a href="?route=information/contact" class="btnContactFooter">Contact Us</a>
+                    </div>
+                </section>
+                {{ footer }}
+            </div>
+        </div>
+    </div>

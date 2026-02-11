@@ -1,0 +1,209 @@
+<style>
+#healthProModal .modal-dialog {
+  max-width: 520px;
+  margin: 60px auto;
+}
+
+#healthProModal .modal-header,
+#healthProModal .modal-body {
+  color: #fff;
+}
+
+#healthProModal .modal-body {
+  background: #ffffff;
+  color: #333;
+  position: relative;          /* for absolute positioning of bottom button */
+  padding-bottom: 80px;        /* extra space for bottom button */
+}
+
+#healthProModal .modal-header h4,
+#healthProModal .modal-header p {
+  color: #fff;
+}
+
+#healthProModal .btn-primary {
+  background-color: #042e57;
+  border-color: #042e57;
+}
+
+#healthProModal input.form-control {
+  height: 50px;
+  font-size: 16px;
+  text-align: center;
+}
+
+/* Improved close icon in header */
+#healthProModal .modal-header .close {
+  color: #ffffff !important;
+  opacity: 1;
+  font-size: 32px;
+  font-weight: bold;
+  text-shadow: none;
+  margin-top: -8px;
+}
+
+#healthProModal .modal-header .close:hover,
+#healthProModal .modal-header .close:focus {
+  color: #e0e0e0 !important;
+}
+
+/* Red close button at bottom-right */
+#healthProModal .btn-close-bottom {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background-color: #dc3545;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+#healthProModal .btn-close-bottom:hover {
+  background-color: #c82333;
+}
+
+/* Toast styles */
+.toast {
+  position: fixed;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #042e57;
+  color: #fff;
+  padding: 12px 24px;
+  border-radius: 6px;
+  opacity: 0;
+  transition: opacity .3s;
+  z-index: 9999;
+}
+
+.toast.show {
+  opacity: 1;
+}
+</style>
+
+<!-- Health Professional Modal -->
+<div class="modal fade" id="healthProModal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center" style="background:#042e57; color:#fff; border-bottom: none;">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          ×
+        </button>
+        <h4 class="modal-title">
+          Are you an Occupational Therapist<br>or Health Professional?
+        </h4>
+      </div>
+
+    <div class="modal-body text-center">
+  <p>
+    Enter your <strong>work email</strong> to receive product prescription templates
+    and clinical justification documents.
+  </p>
+
+  <form id="healthProForm">
+    
+
+    <div class="form-group">
+      <input type="email"
+             class="form-control text-center"
+             name="work_email"
+             placeholder="Work email address"
+             required>
+    </div>
+
+    <!-- Both buttons side by side -->
+    <div class="text-center" style="margin: 20px 0;">
+      <button type="submit" class="btn btn-primary">
+        SEND ME THE DOCUMENTS
+      </button>
+     
+    </div>
+  </form>
+</div>
+    </div>
+  </div>
+</div>
+
+<div id="toastMessage" class="toast"></div>
+
+<script>
+$(document).ready(function () {
+  if (!$('#healthProModal').length) {
+    return; // modal not present on page
+  }
+  
+  if(!sessionStorage.getItem('healthProModalShownFlag')){
+     localStorage.removeItem('healthProModalShown') 
+  }
+
+  if (localStorage.getItem('healthProModalShown')) {
+    return;
+  }
+  
+ sessionStorage.setItem('healthProModalShownFlag', '1');
+
+  function showModal() {
+    $('#healthProModal').modal({
+      backdrop: 'static',
+      keyboard: false
+    });
+    localStorage.setItem('healthProModalShown', '1');
+    $(window).off('scroll', scrollTrigger);
+  }
+
+  // Show after 30 seconds
+  setTimeout(showModal, 30000);
+
+  // Or when user scrolls ~60% of page
+  function scrollTrigger() {
+    var scrollPos = $(window).scrollTop() + $(window).height();
+    if (scrollPos / $(document).height() >= 0.6) {
+      showModal();
+    }
+  }
+
+  $(window).on('scroll', scrollTrigger);
+
+  // Form submit
+  $('#healthProForm').on('submit', function (e) {
+    e.preventDefault();
+
+    var postData = {
+        work_email: $('input[name="work_email"]').val(),
+        product_id: $('input[name="product_id"]').val()
+    };
+
+    $.post(
+        'index.php?route=information/marketingpopup/submit',
+        postData,
+        function (res) {
+            if (res.success) {
+                $('#healthProModal').modal('hide');
+                showToast(res.message || "Documents request sent successfully!");
+            } else {
+                showToast(res.message || "Something went wrong. Please try again.");
+            }
+        },
+        'json'
+    ).fail(function () {
+        showToast("Network error. Please check your connection.");
+    });
+});
+
+});
+
+function showToast(msg) {
+  $('#toastMessage')
+    .text(msg)
+    .addClass('show');
+
+  setTimeout(function () {
+    $('#toastMessage').removeClass('show');
+  }, 4000);
+}
+</script>

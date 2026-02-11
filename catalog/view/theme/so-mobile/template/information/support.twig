@@ -1,0 +1,345 @@
+ {{ header }}
+ <style>
+.caret-arrow {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease-in-out;
+    margin-left: 10px;
+}
+
+.faq-toggle:not(.collapsed) .caret-arrow {
+    transform: rotate(-135deg);
+}
+
+
+ </style>
+ <div class="container mt-5">
+     
+      <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+    
+    {% block content %}
+<div class="container text-black">
+    <div class="row">
+        <div class="col-md-12 text-center">
+            <h1>MobilityCare Customer Support</h1>
+            <p class="lead mb-5">Your Trusted Partner in Mobility Solutions</p>
+            <p class="text-black mt-5 mb-5">At MobilityCare, we are committed to providing top-quality support to help you find the right mobility and rehabilitation aids. Whether you're making a purchase, scheduling a demo, or need assistance with servicing and repairs, our expert team is here to assist you.</p>
+
+        </div>
+    </div>
+    
+    <div class="row mt-5">
+        <div class="col-md-6">
+            <h2 class="text-black">How to Contact Us</h2>
+    <p class="text-black"><b>Phone:</b> (03) 9568 8383 (Monday – Friday, 9 AM – 5 PM AEST)</p>
+    <p class="text-black"><b>Email:</b> enquiries@mobilitycare.net.au</p>
+    <p class="text-black"><b>Showroom Address:</b> 39 Cambro Road, Clayton VIC 3168</p>
+<p class="text-black">We encourage you to visit our showroom to trial a range of products or speak to our specialists in person.</p>
+        </div>
+        <div class="col-md-6 text-center">
+            <img src="image/contactphoto.jpeg" class="img-responsive " alt="MobilityCare Showroom">
+        </div>
+    </div>
+    
+    <hr>
+    
+    <div class="row">
+        
+        <div class="col-md-6 text-center">
+            <img src="image/placeorder.jpeg" class="img-responsive " alt="Order Process">
+        </div>
+        <div class="col-md-6">
+           <h2 class="text-black">Placing an Order</h2>
+    <ul class="text-black">
+        <li><b>Online Enquiry:</b> Fill out our <a href="{{ product_enq }}" class="text-success"><b><u><em>Product Enquiry Form</em></u></b> </a> and our team will assist you with pricing and payment options.</li>
+        <li><b>Visit Our Showroom:</b> Explore our product range in person at 39 Cambro Road, Clayton VIC.</li>
+        <li><b>Phone Order:</b> Call us at (03) 9568 8383 to place an order directly.</li>
+        <li><b>Dealer Network:</b> We work with 250+ dealers across Australia. For more details, visit our
+        <a href="{{ payment_options }}" class="text-success"><b> <u><em>Payment Options</em></u> </b> </a> page </li>
+    </ul>
+    
+        </div>
+    </div>
+    
+    <hr>
+    
+    <div class="row">
+        <div class="col-md-12">
+             <h2 class="text-black">Delivery & Shipping Information</h2>
+    <p class="text-black">We ship Australia-wide from Melbourne and always aim to find the most cost-effective courier for your location.</p>
+    
+            <table class="table table-bordered text-black">
+                <thead class="bg-danger">
+                    <tr>
+                        <th>Destination</th>
+                        <th>Standard Shipping</th>
+                        <th>Express Shipping</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr><td>VIC (Metro)</td><td>1-2 Days</td><td>1-2 Days</td></tr>
+                    <tr><td>VIC (Rural)</td><td>1-3 Days</td><td>1-2 Days</td></tr>
+                    <tr><td>NSW (Metro)</td><td>2-3 Days</td><td>1-2 Days</td></tr>
+                    <tr><td>NSW (Rural)</td><td>3-4 Days</td><td>1-2 Days</td></tr>
+                    <tr><td>QLD (Metro)</td><td>2-3 Days</td><td>1-2 Days</td></tr>
+                    <tr><td>QLD (Rural)</td><td>3-4 Days</td><td>1-2 Days</td></tr>
+                    <tr><td>WA / NT / TAS (Metro) </td><td>3-4 Days</td><td>1-2 Days</td></tr>
+                    <tr><td>WA / NT / TAS (Rural) </td><td>4-5 Days</td><td>1-2 Days</td></tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    
+    <hr>
+    
+    <div class="row">
+        <h2 class="text-black">Returns & Warranty Policy</h2>
+    <p class="text-black">We stand by the quality of our products and offer a 7-day money-back guarantee on non-customised items.</p>
+    <ul class="text-black">
+        <li><strong>Full Refund (excluding shipping costs):</strong> Return your product within 7 days in original condition.</li>
+        <li><strong>30% Restocking Fee:</strong> For returns between 8-30 days from purchase.</li>
+        <li><strong>Manufacturer Warranty:</strong> Most of our products come with a minimum 12-month warranty.</li>
+        <li><strong>Battery Warranty:</strong> 6 months warranty on all battery-operated products.</li>
+    </ul>
+    <p class="text-black">Need to start a return or warranty claim? <a href="{{ warranty_claim }}" class="text-success"><b><u><em>Submit a Request Here</em></u></b></a></p>
+
+    <h2 class="text-black">Repairs & Servicing</h2>
+    <p class="text-black">We provide comprehensive servicing and repairs for all products purchased through MobilityCare.</p>
+    <p class="text-black">To book a service demonstration, please email us at <a href="mailto:enquiries@mobilitycare.net.au" class="text-black">enquiries@mobilitycare.net.au</a></p>
+    <p class="text-black">Visit Our Service Centre at 39 Cambro Road, Clayton VIC 3168</p>
+    <p class="text-black">Call Us: (03) 9568 8383</p>
+
+    <h2 class="text-black">Product Demonstrations</h2>
+    <ul class="text-black">
+        <li><strong>In-Store Demo:</strong> Visit our showroom where our expert team will guide you.</li>
+        <li><strong>Home Demonstration:</strong> For eligible customers, we offer home demonstrations.</li>
+        <li><strong>Virtual Demo:</strong> Live video session from the comfort of your home.</li>
+        <li><strong>Dealer Network:</strong> If outside our service area, we can arrange a dealer demonstration.</li>
+    </ul>
+    <p class="text-black"><a href="{{ bookDemo }}" class="text-black">Request a Free Demo</a></p>
+
+    <h2 class="text-black">Find a Local Dealer</h2>
+    <p class="text-black">MobilityCare works with a nationwide dealer network. If we have a dealer near you, we will direct you to them for local service, demonstrations, and purchase assistance.</p> 
+    <p class="text-black"> Enter your postcode <a href="{{ findDealer_link }}" class="text-success"><b> <u><em>here</em></u> </b></a>to find your nearest dealer.</p>
+    
+    </div>
+    
+   
+    
+   
+   
+    
+    <div class="row mt-5" id="faq">
+        <div class="col-md-12">
+            <h3>Frequently Asked Questions</h3>
+            <div class="panel-group" id="faqAccordion">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#faqAccordion" class="faq-toggle collapsed" href="#faq1">
+            <h4 class="panel-title">
+                How do I purchase a product?
+                <span class="caret-arrow pull-right"></span>
+            </h4>
+            </a>
+        </div>
+        <div id="faq1" class="panel-collapse collapse">
+            <div class="panel-body">
+                You can order through the following methods:  
+                <ul>
+                    <li>Call Us – Speak with our team at (03) 9568 8383 for assistance.</li>
+                    <li>Online – Place an order on our website.</li>
+                    <li>Showroom Visit – Visit us at 39 Cambro Road, Clayton VIC 3168.</li>
+                    <li>Approved Dealer – Purchase through a local dealer in our network.</li>
+                </ul>
+                <strong>Note:</strong> Customised products require a Custom Quote Request.
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#faqAccordion" href="#faq2">
+            <h4 class="panel-title">
+                How do I track my order?
+                 <span class="caret-arrow pull-right"></span>
+            </h4>
+            </a>
+        </div>
+        <div id="faq2" class="panel-collapse collapse">
+            <div class="panel-body">
+                Once your order is processed, you’ll receive an email with an estimated delivery date. 
+                Use the tracking number on your invoice to check your order’s status. If you need an update, contact us with your order number.
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#faqAccordion" href="#faq3">
+            <h4 class="panel-title">
+                How much does delivery cost?
+                 <span class="caret-arrow pull-right"></span>
+            </h4>
+            </a>
+        </div>
+        <div id="faq3" class="panel-collapse collapse">
+            <div class="panel-body">
+                Delivery costs are calculated at checkout based on location, product size, and weight. We aim to find the most affordable shipping option for you.
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#faqAccordion" href="#faq4">
+            <h4 class="panel-title">
+                Will my product arrive fully assembled?
+                 <span class="caret-arrow pull-right"></span>
+            </h4>
+            </a>
+        </div>
+        <div id="faq4" class="panel-collapse collapse">
+            <div class="panel-body">
+                For customers near our Melbourne showroom, we offer assembled delivery. For other locations, minor assembly may be required. We provide assistance via phone or video call if needed.
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#faqAccordion" href="#faq5">
+            <h4 class="panel-title">
+                How do I arrange a demonstration?
+                 <span class="caret-arrow pull-right"></span>
+            </h4>
+            </a>
+        </div>
+        <div id="faq5" class="panel-collapse collapse">
+            <div class="panel-body">
+                <ul>
+                    <li><strong>In-Store Demo:</strong> Visit our showroom for a hands-on trial.</li>
+                    <li><strong>Home Demonstration:</strong> Available with an Occupational Therapist (location limits apply).</li>
+                    <li><strong>Virtual Demo:</strong> Live video demonstration from your home.</li>
+                    <li><strong>Dealer Network Demo:</strong> We can connect you with a local dealer.</li>
+                </ul>
+                <a href="{{ bookDemo }} " class="text-success"><b><u><em>Book a Demo Here</em></u></b></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#faqAccordion" href="#faq6">
+            <h4 class="panel-title">
+                How do I find a local dealer?
+                 <span class="caret-arrow pull-right"></span>
+            </h4>
+            </a>
+        </div>
+        <div id="faq6" class="panel-collapse collapse">
+            <div class="panel-body">
+                Use our dealer locator or provide your postcode, and we’ll connect you with a local supplier. If no dealer is available, we can ship directly to you.
+                <a href="{{ findDealer_link }} " class="text-success"><b><u><em>Find a Dealer</em></u></b></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#faqAccordion" href="#faq7">
+            <h4 class="panel-title">
+                What are my payment options?
+                 <span class="caret-arrow pull-right"></span>
+            </h4>
+            </a>
+        </div>
+        <div id="faq7" class="panel-collapse collapse">
+            <div class="panel-body">
+                We accept multiple payment methods, including credit card, bank transfer, and NDIS funding. Payments are securely processed via our website.
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#faqAccordion" href="#faq8">
+            <h4 class="panel-title">
+                Can I return my purchase?
+                 <span class="caret-arrow pull-right"></span>
+            </h4>
+            </a>
+        </div>
+        <div id="faq8" class="panel-collapse collapse">
+            <div class="panel-body">
+                We offer a 7-day money-back guarantee on non-customised items. If returned within 7 days, you receive a full refund (excluding shipping costs). Returns after 8-30 days may incur a 30% restocking fee. 
+                <a href="" class="text-success"><b><u><em>Request a Return</em></u></b></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#faqAccordion" href="#faq9">
+            <h4 class="panel-title">
+                What warranty does my product come with?
+                 <span class="caret-arrow pull-right"></span>
+            </h4>
+            </a>
+        </div>
+        <div id="faq9" class="panel-collapse collapse">
+            <div class="panel-body">
+                All MobilityCare products have a minimum 12-month warranty (batteries: 6 months). Some brands offer extended warranties. Check the product page for details.
+                <a href="{{ warranty_claim }}" class="text-success"><b><u><em>Submit a Warranty Claim</em></u></b></a>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <a data-toggle="collapse" data-parent="#faqAccordion" href="#faq10">
+                <h4 class="panel-title">
+                What funding options are available?
+                 <span class="caret-arrow pull-right"></span>
+            </h4>
+            </a>
+        </div>
+        <div id="faq10" class="panel-collapse collapse">
+            <div class="panel-body">
+                We accept multiple Australian funding options, including:
+                <ul>
+                    <li>✅ National Disability Insurance Scheme (NDIS) – For eligible participants with disabilities.</li>
+                    <li>✅ My Aged Care – For seniors requiring mobility equipment.</li>
+                    <li>✅ TTransport Accident Commission (TAC) VIC – Support for individuals in transport accidents.</li>
+                    <li>✅ WorkSafe (State-Based) – Assistance for workplace injuries.</li>
+                    <li>✅ Department of Veterans’ Affairs (DVA) – Support for eligible veterans.</li>
+                </ul>
+                <p>We will work with any funding body available to help you secure the funds needed for your mobility equipment. For more details, visit our <a href="index.php?route=information/ndis" class="text-success"><b><u><em>NDIS & Funding Page</em></u></b> </a> or speak with our team.</p>
+                
+            </div>
+        </div>
+    </div>
+</div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}
+    
+    </div> 
+    
+     {{ column_right }}
+    </div> 
+     </div> 
+     {{ footer }}

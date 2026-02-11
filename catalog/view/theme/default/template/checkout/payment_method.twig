@@ -1,0 +1,108 @@
+{% if error_warning %}
+<div class="alert alert-warning alert-dismissible"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}</div>
+{% endif %}
+{% if payment_methods %}
+<p>{{ text_payment_method }}</p>
+{% for payment_method in payment_methods %}
+<div class="radio">
+  <label>{% if payment_method.code == code or not code %}
+    {% set code = payment_method.code %}
+    <input type="radio" name="payment_method" value="{{ payment_method.code }}" checked="checked" />
+    {% else %}
+    <input type="radio" name="payment_method" value="{{ payment_method.code }}" />
+    {% endif %}
+    {{ payment_method.title }}
+    {% if payment_method.terms %}
+    ({{ payment_method.terms }})
+    {% endif %} </label>
+</div>
+{% endfor %}
+{% endif %}
+
+
+<div id="ndis-form" class="well">
+    <h4><img src="catalog/view/theme/default/image/ndis.png" width="40"> {{ text_title }}</h4>
+    <p>{{ text_description }}</p>
+
+    <div class="form-group">
+        <label>{{ entry_dob }}</label>
+        <input type="date" name="dob" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label>{{ entry_participant }}</label>
+        <input type="text" name="participant_number" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label>{{ entry_plan_type }}</label>
+        <select name="plan_type" class="form-control" required>
+            <option value="NDIS Managed">NDIS Managed</option>
+            <option value="Plan Manager Managed">Plan Manager Managed</option>
+            <option value="Self-Managing">Self-Managing</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label>{{ entry_manager_name }}</label>
+        <input type="text" name="manager_name" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>{{ entry_manager_email }}</label>
+        <input type="email" name="manager_email" class="form-control">
+    </div>
+
+    <div class="form-group">
+        <label>{{ entry_manager_phone }}</label>
+        <input type="text" name="manager_phone" class="form-control">
+    </div>
+</div>
+
+<p><strong>{{ text_comments }}</strong></p>
+<p>
+  <textarea name="comment" rows="8" class="form-control">{{ comment }}</textarea>
+</p>
+{% if text_agree %}
+<div class="buttons">
+  <div class="pull-right">{{ text_agree }}
+    {% if agree %}
+    <input type="checkbox" name="agree" value="1" checked="checked" />
+    {% else %}
+    <input type="checkbox" name="agree" value="1" />
+    {% endif %}
+    &nbsp;
+    <input type="button" value="{{ button_continue }}" id="button-payment-method" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+  </div>
+</div>
+{% else %}
+<div class="buttons">
+  <div class="pull-right">
+    <input type="button" value="{{ button_continue }}" id="button-payment-method" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+  </div>
+</div>
+{% endif %} 
+
+<script>
+    
+
+    $('form').on('submit', function (e) {
+        $.ajax({
+            url: '{{ action }}',
+            type: 'post',
+            data: $('#ndis-form :input'),
+            dataType: 'json',
+            async: false,
+            success: function(json) {
+                if (!json.success) {
+                    alert('Failed to save NDIS data');
+                }
+            }
+        });
+    });
+
+    // Initial state
+    if ($('input[name="payment_method"]:checked').val() !== 'ndis') {
+        $('#ndis-form').hide();
+    }
+</script>

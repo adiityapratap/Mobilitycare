@@ -1,0 +1,216 @@
+
+//** simple and lightweight mixin library for Sass **
+//-- url : http://bourbon.io/docs ---
+@import 'bourbon/bourbon';
+
+//** Mixins for Rem Font Sizing **
+//-- url : http://hugogiraudel.com/2013/03/18/ultimate-rem-mixin/
+@import 'utilities/rem';
+
+//** Variables for responsive design in bootstrap with sass **
+//-- url : https://gist.github.com/webinfinita/11407836
+@import 'utilities/bootstrap_breakpoints';
+
+//** Makes supporting both left-to-right (LTR) and right-to-left (RTL) easy.**
+//-- url : https://github.com/tysonmatanich/directional-scss
+@import 'utilities/directional';
+
+//Mixins utilities
+@import 'utilities/theme_variables';
+@import 'utilities/utilities';
+
+/* ================================================================================ */
+
+.footer-container{
+  
+}
+.typefooter-3{
+  background-color: #1f2534;
+
+
+  /* FOOTER CENTER */
+
+  /* block spotlight */
+  .modtitle{
+        color: #f5f5f5;
+        @include rem(font-size,18px);
+        line-height: 20px;
+        margin-bottom: 10px !important;
+        padding-bottom: 25px;
+        position: relative;
+        font-weight: 600;
+        text-transform: capitalize;
+           &:before {
+            //background-color: $background;
+            content: "";
+            height: 2px;
+            position: absolute;
+            top: 35px;
+            width: 20px;
+            z-index: 3;
+        }      
+  }
+  .box-footer{    
+    .modcontent{
+      ul{
+        li{
+              line-height: 35px;
+              a{
+                display: inline-block;
+                border: 0 none;
+                color: #ccc;
+                @include rem(font-size,14px);
+                padding: side-values(0 0 0 15px);
+                position: relative;
+                font-weight: 400;
+
+                &:before{
+                   background-color: #222;
+                    border: 1px solid #ccc;
+                    border-radius: 50%;
+                    content: "";
+                    height: 5px;
+                    #{$left}: 0;
+                    position: absolute;
+                    top: 15px;
+                    width: 5px;
+                }
+                &:hover{
+                  //color: $linkColor;
+                  &:before{
+                    //border-color: $linkColor;
+                      //background-color: $background;
+                  }
+                }
+              }
+            }
+      }
+    }
+  }
+    .links-contact {margin-bottom: 15px;}
+      ul.links-contact > li {
+          @include rem(font-size, 14px);
+          line-height: 24px;
+          padding: 9px 0;
+          color: #ccc;
+          .fa {
+              color: #eee;
+              margin-right: 12px;
+          }
+          .label-footer {
+            display: none;
+            color: #eee;    
+            @include rem(font-size, 14px);
+            font-weight: 500;
+            min-width: 70px;
+            //display:inline-block;
+          }
+          &.contact-phone {
+            font-weight: 600; 
+            @include rem(font-size, 18px);
+            color: #fff;
+          }
+          a{
+            color: #ccc;
+          }
+     }
+  .socials-wrap{
+      display: inline-block;
+      ul{
+        li{
+            float: $left;
+            margin-right: 10px;
+          a{
+             background-color: #404552;
+              border-radius: 50%;
+              color: #fff;
+              display: inline-block;
+              font-size: 14px;
+              height: 36px;
+              line-height: 36px;
+              text-align: center;
+              width: 36px;
+
+            .name-social{
+              display: none;
+            }
+            &:hover{
+              //background-color: $background;
+            }
+          }
+        }
+      }
+  }
+  /* end block spotlight */
+
+  .footer-center1{
+    padding: 65px 0 50px 0;
+  }
+  
+  .footer-center2{
+    border-top: 1px solid rgba(255,255,255,0.1);
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+    background-color: #1a1f2c;
+    padding: 40px 0 33px 0;
+  }
+
+  /* policy footer */
+  .policy .item {
+    padding: 0;
+    position: relative;
+    .text {
+      padding-#{$left}: 70px;
+      color: #a8a9ac;
+      h4 {        
+        @include rem(font-size,16px);
+        font-weight: 600;
+        margin: 0 0 4px;
+        text-transform: uppercase;
+      }
+      p {       
+        margin: 0;
+      }
+      &:hover{
+        cursor: pointer;
+        h4, p {color: #fff;}
+      }
+    } 
+    .icon{
+      background: url(#{$imgPath}icon/icons-sprites.png) no-repeat;
+      width: 40px;
+      height: 35px;
+      display: inline-block;
+      float: $left;
+      height: 45px;
+      margin:3px 0 0 0;
+      width: 38px;  
+      text-indent: -9999px;
+    }
+    &.money .icon{
+      background-position: 0 0px ;
+    }
+
+    &.shipping .icon{
+      background-position: 0 -50px ;
+    }
+    
+    &.support .icon {
+      background-position: 0 -100px ;
+    }
+  }
+
+  /* FOOTER BOTTOM */
+  .footer-bottom{
+      color: #fff;
+      padding: 20px 0;
+      a {color: #fff;}
+      .copyright{
+          margin-top: 5px;
+      }
+
+      .footer-payment{
+        text-align: right;
+      }
+
+  }
+}

@@ -1,0 +1,97 @@
+
+<h3>{{ text_activation }}</h3>
+								
+<form id="activation-form" class="form-horizontal form-activation">
+    
+    <div class="row row-activation">
+        <label class="col-sm-12">{{ text_status }}</label>
+        <div class="col-sm-12" id="activation_status">
+        </div>
+    </div>
+    
+    <div class="row row-activation" id="container_domain">
+        <label class="col-sm-12">{{ text_domain }}</label>
+        <div class="col-sm-12">
+            <input type="text" class="form-control" name="activation_domain" readonly>
+        </div>
+    </div>
+    
+    <div id="activation_new" style="display:none;">
+        
+        <div class="row row-activation">
+            <label class="col-sm-12">{{ text_activate_now }}</label>
+            <div class="col-sm-12">
+                <label class="radio-inline">
+                    <input type="radio" name="activation_way" value="order_id">
+                    {{ text_i_have_opencart_com_order_id }}
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="activation_way" value="key">
+                    {{ text_i_have_key }}
+                </label>
+            </div>
+        </div>
+        
+        <div class="row row-activation" id="container_activation_new_order_id" style="display:none;">
+            <label class="col-sm-12">{{ text_order_id }}</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" name="activation_new_order_id" value="">
+            </div>
+        </div>
+        
+        <div class="row row-activation" id="container_activation_new_key" style="display:none;">
+            <label class="col-sm-12">{{ text_key }}</label>
+            <div class="col-sm-12">
+                <input type="text" class="form-control" name="activation_new_key" value="">
+            </div>
+        </div>
+        
+        <div class="row row-activation" id="container_activation_this_is_test_domain" style="display:none;">
+            <div class="col-sm-12">
+                <label class="radio-inline">
+                    <input type="radio" name="activation_this_is_test_domain" value="0">
+                    {{ text_this_is_live_domain }}
+                </label>
+                <label class="radio-inline">
+                    <input type="radio" name="activation_this_is_test_domain" value="1">
+                    {{ text_this_is_test_domain }}
+                </label>
+            </div>
+        </div>
+        
+        <div class="row row-activation" id="container_activation_new_button" style="display:none;">
+            <div class="col-sm-12">
+                <button class="btn btn-primary" type="button" id="button_activate_new">{{ button_activate }}</button>
+                <span id="activation_result"></span>
+            </div>
+        </div>
+        
+        
+    </div>
+    
+    <div id="activation_old" style="display:none;">
+        
+        <div class="row row-activation" id="container_activation_key">
+            <label class="col-sm-12">{{ text_key }}</label>
+            <div class="col-sm-12">
+                <div class="input-group">
+                    <input type="text" class="form-control" name="activation_key" value="{{ module_details.extension_lic_key }}" readonly>
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button" id="button_change_key">{{ button_change_key }}</button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</form>
+
+<style>
+	.row-activation {
+		padding-top: 10px;
+		padding-bottom: 10px;
+	}
+	.form-activation {
+		padding-bottom: 20px;
+	}
+</style>

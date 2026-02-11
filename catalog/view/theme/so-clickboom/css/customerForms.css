@@ -1,0 +1,158 @@
+
+        .demo-request-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 40px;
+            /*background: #FDF3E7;*/
+        }
+        .demo-request-left h1 {
+            font-size: 36px;
+            font-weight: bold;
+            color: #000;
+        }
+        .demo-request-left p, .demo-request-left ul li {
+            color: #000;
+        }
+        .demo-request-left ul {
+            list-style: none;
+            padding: 0;
+        }
+        .demo-request-left ul li {
+            margin-bottom: 10px;
+        }
+        
+        .demo-request-right {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+          
+        }
+        
+        .profile {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .profile p {
+            color: #000;
+            font-weight: bold;
+        }
+        .profile img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .demo-request-right {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+            /*max-height: calc(100vh - 100px);*/
+            /*overflow-y: auto;*/
+            -webkit-overflow-scrolling: touch; /* iOS scrolling fix */
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        form input, form select, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc !important;
+            border-radius: 5px;
+            color: #000;
+        }
+        .text-red {
+            color: #a94442;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        button {
+            background: #0066FF;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            position: relative;
+        }
+        button:hover {
+            background: #0055DD;
+        }
+        /* Loader styling */
+        /* Loader styling */
+.loader-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 2000;
+    display: flex; /* Use flexbox to center the loader */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+}
+.loader {
+    border: 4px solid #f3f3f3;
+    border-top: 4px solid #0066FF;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    animation: spin 1s linear infinite;
+}
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+        /* Toast message styling */
+        @media (min-width: 768px) {
+             .toast {
+                bottom: 20px !important;; 
+            }
+        }
+        .toast {
+            position: fixed;
+            right: 20px;
+            min-width: 250px;
+            background-color: #5cb85c;
+            color: #fff;
+            padding: 15px;
+            border-radius: 4px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 1050;
+            display: none;
+        }
+        .toast.error {
+            background-color: #d9534f;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            
+            .toast {
+            top: 50px !important;
+            }
+            .demo-request-container {
+                flex-direction: column;
+                padding: 20px;
+            }
+            .demo-request-left, .demo-request-right {
+                width: 100%;
+            }
+            .demo-request-right {
+                /*max-height: calc(100vh - 150px);*/
+            }
+            .demo-request-right {
+            /*max-height: calc(100vh - 100px);*/
+            /*// uncomment if iphone scroll doesnt work*/
+            /*overflow-y: auto;*/
+        }
+            
+        }
+  

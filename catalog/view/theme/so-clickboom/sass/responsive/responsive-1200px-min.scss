@@ -1,0 +1,34 @@
+@include breakpoint(lg){
+	.container{
+		overflow: visible;
+		padding-#{$left}: 15px;
+		padding-#{$right}: 15px;
+	}
+	
+	
+	//SHOW MORE Footer
+	footer #collapse-footer{max-height: 100%;
+		&:before{display:none;}
+	}
+	.layout-1.common-home .vertical .vertical-wrapper {
+		display: block !important;
+		  visibility: visible;
+	    -webkit-opacity: 1;
+	    -moz-opacity: 1;
+	    -ms-opacity: 1;
+	    -o-opacity: 1;
+	    opacity: 1;
+	     top: 100%;
+	}
+	
+}
+@media (min-width: 1200px) and (max-width: 1649px){
+	#content .so-groups-sticky{
+		width: 40px;
+	}
+	
+}
+
+
+
+

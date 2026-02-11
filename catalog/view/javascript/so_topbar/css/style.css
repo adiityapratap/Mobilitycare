@@ -1,0 +1,54 @@
+.so-topbar {
+    /*display: none;*/
+    position: relative;
+}
+.so-topbar-close {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+}
+.so-topbar.topbar_opened {
+	max-height: 200px;
+	/*-webkit-transition: max-height 0.5s ease-in-out;
+    -moz-transition: max-height 0.5s ease-in-out;
+    -o-transition: max-height 0.5s ease-in-out;
+    transition: max-height 0.5s ease-in-out;*/
+}
+.so-topbar.topbar_closed {
+	max-height: 0px;
+    top: -100px;
+	/*-webkit-transition: max-height 0.5s ease-in-out;
+    -moz-transition: max-height 0.5s ease-in-out;
+    -o-transition: max-height 0.5s ease-in-out;
+    transition: max-height 0.5s ease-in-out;*/
+}
+.so-topbar.twitter-feed-slider.topbar_opened,
+.so-topbar.subscribe-newsletter.topbar_opened,
+.so-topbar.social-type.topbar_opened {
+    padding: 15px 0;
+}
+.so-topbar.html-type.topbar_opened {
+    padding: 25px 0;
+}
+.so-topbar.countdown-layout1.topbar_opened {
+    padding: 30px 0;
+}
+.so-topbar.countdown-layout2.topbar_opened {
+	padding: 30px 0;
+}
+.so-topbar.twitter-feed-slider.topbar_closed,
+.so-topbar.subscribe-newsletter.topbar_closed,
+.so-topbar.html-type.topbar_closed,
+.so-topbar.countdown-layout1.topbar_closed,
+.so-topbar.countdown-layout2.topbar_closed,
+.so-topbar.social-type.topbar_closed {
+    padding: 0;
+}
+.so-topbar.topbar_closed .so-topbar-close {
+    top: 100px;
+}

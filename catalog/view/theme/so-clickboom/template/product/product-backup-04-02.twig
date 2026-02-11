@@ -1,0 +1,2341 @@
+{{ header }}
+
+{#for modal not scrolling in iphone#}
+  <link href="catalog/view/theme/so-clickboom/css/customerForms.css" rel="stylesheet" type="text/css" />
+
+<style>
+        /* Ensure modal body is scrollable on all devices, including iOS */
+        .modal-body {
+            max-height: calc(100vh - 200px); /* Adjust based on modal header/footer height */
+            overflow-y: auto;
+            -webkit-overflow-scrolling: touch; /* Enable smooth scrolling on iOS */
+        }
+        /* Fix for iOS touch scrolling */
+        .modal-content {
+            -webkit-overflow-scrolling: touch;
+        }
+        /* Ensure modal dialog takes full height on smaller screens */
+        .modal-dialog {
+            margin: 10px auto; /* Adjust margin for better responsiveness */
+            width: 90%; /* Ensure modal fits on smaller screens */
+            max-width: 800px; /* Keep max-width for larger screens */
+        }
+        /* Fix for modal backdrop on iOS */
+        .modal {
+            overflow: auto !important;
+        }
+        /* Section headers and form styling */
+        .section-header {
+            background: #eee;
+            padding: 8px;
+            font-weight: bold;
+            margin-top: 15px;
+        }
+        .form-group.mt-5 {
+            margin-top: 15px;
+        }
+        /* Ensure form inputs and labels are black */
+        .control-label, .modal-title, .modal-body, .form-control {
+            color: #000;
+        }
+        /* Responsive adjustments */
+        @media (max-width: 767px) {
+            .modal-dialog {
+                width: 95%;
+                margin: 5px auto;
+            }
+            .modal-body {
+                max-height: calc(100vh - 150px); /* Adjust for smaller screens */
+            }
+        }
+    </style>
+
+   <link href="catalog/view/theme/so-clickboom/css/product.css" rel="stylesheet">
+{#====  Loader breadcrumbs ==== #}
+{% include theme_directory~'/template/soconfig/breadcrumbs.twig' %}
+
+{#====  Variables url parameter ==== #}
+{% if url_asidePosition %}{% set col_position = url_asidePosition %}
+{% else %}{% set col_position = soconfig.get_settings('catalog_col_position') %}{% endif %}
+
+{% if url_asideType %} {% set col_canvas = url_asideType %}
+{% else %}{% set col_canvas = soconfig.get_settings('catalog_col_type') %}{% endif %}
+
+{% if url_productGallery %} {% set productGallery = url_productGallery %}
+{% else %}{% set productGallery = soconfig.get_settings('thumbnails_position') %}{% endif %}
+
+{% if url_sidebarsticky %} {% set sidebar_sticky = url_sidebarsticky %}
+{% else %} {% set sidebar_sticky = soconfig.get_settings('catalog_sidebar_sticky') %}{% endif %}
+{% set displaySidebar = soconfig.get_settings('catalog_display_sidebar')%}
+
+
+{% set desktop_canvas = col_canvas =='off_canvas' ? 'desktop-offcanvas' : '' %}
+
+<div class="content-main container-fluid product-detail  {{desktop_canvas}} mt-5 px-5">
+	<div class="row  mt-5">
+		
+		{#==== Column Left Outside ==== #}
+
+		{% if col_position== 'outside' %}
+			{% if displaySidebar =='left' or displaySidebar =='all'%}
+				{{ column_left }}
+			{% endif %}
+			
+			 {% if col_canvas =='off_canvas' %}
+				{% set class_pos = 'col-sm-12' %}
+			{% elseif displaySidebar =='left' and displaySidebar =='right' %}
+				{% set class_pos = 'col-md-6 col-sm-12 col-xs-12 fluid-allsidebar' %}
+			{% elseif displaySidebar =='left' or displaySidebar =='right'  %}
+				{% set class_pos = 'col-md-9 col-sm-12 col-xs-12 fluid-sidebar' %}
+			{% elseif displaySidebar =='all' %}
+				{% set class_pos = 'col-md-8 col-sm-6 col-xs-12 fluid-sidebar' %}
+			{% else %}
+				{% set class_pos = 'col-sm-12' %}
+			{% endif %}
+		{% else %}
+			{% set class_pos = 'col-sm-12' %}
+		{% endif %}
+		{#==== End Column Outside ==== #}
+    	
+		<div id="content" class="product-view {{class_pos}}"> 
+		
+		{#====  Product Gallery ==== #}
+		{% if productGallery =='grid' %}
+			{% set class_left_gallery  = 'col-md-6 col-sm-12 col-xs-12' %}
+			{% set class_right_gallery = 'col-md-6 col-sm-12 col-xs-12' %}
+		{% elseif productGallery =='list' %}
+			{% set class_left_gallery  = 'col-md-3 col-sm-12 col-xs-12' %}
+			{% set class_middle_gallery ='col-md-6 col-sm-12 col-xs-12' %}
+			{% set class_right_gallery = 'col-md-3 col-sm-12 col-xs-12' %}
+		{% elseif productGallery =='left' %}
+			{% set class_left_gallery  = 'col-md-6 col-sm-12 col-xs-12' %}
+			{% set class_right_gallery = 'col-md-6 col-sm-12 col-xs-12' %}
+			{% elseif productGallery =='bottom' %}
+		   {% set class_left_gallery  = 'col-md-3 col-sm-12 col-xs-12' %}
+			{% set class_middle_gallery ='col-md-6 col-sm-12 col-xs-12' %}
+			{% set class_right_gallery = 'col-md-3 col-sm-12 col-xs-12' %}
+		{% else %}
+			{% set class_left_gallery  = 'col-md-12 col-sm-12 col-xs-12' %}
+			{% set class_right_gallery = 'col-md-12 col-sm-12 col-xs-12 col-gallery-slider' %}
+		{% endif %}
+
+		{#====  Button Sidebar canvas==== #}
+		{% if column_left or column_right %}
+			{% set class_canvas = col_canvas =='off_canvas' ? '' : 'hidden-lg hidden-md' %}
+			<a href="javascript:void(0)" class="open-sidebar {{class_canvas}}"><i class="fa fa-bars"></i>{{ text_sidebar }}</a>
+			<div class="sidebar-overlay "></div>
+		{% endif %}
+
+
+		<div class="content-product-mainheader clearfix"> 
+			<div class="row">	
+			{#========== Product Left ============#}
+			<div class="content-product-left  {{ class_left_gallery }}" >
+			    {% set last_feature_image = '' %}
+				{% if images %}
+				
+				{% for key,image in images %}
+		{% set last_feature_image = image.thumb %}
+		{% endfor %}
+					<div class="so-loadeding" ></div>
+					{#==== Gallery -  Thumbnails ==== #}
+					{% if productGallery=='left' %}
+					 	{% include theme_directory~'/template/product/gallery/gallery-left.twig' %}
+
+					{% elseif productGallery=='bottom' %}
+						{% include theme_directory~'/template/product/gallery/gallery-bottom.twig' %}
+
+					{% elseif productGallery=='grid' %}
+						{% include theme_directory~'/template/product/gallery/gallery-grid.twig' %}
+
+					{% elseif productGallery=='list' %}
+						{% include theme_directory~'/template/product/gallery/gallery-list.twig' %}
+
+					{% elseif productGallery=='slider' %}
+						{% include theme_directory~'/template/product/gallery/gallery-slider.twig' %}
+					{% else %}
+						{% include theme_directory~'/template/product/gallery/gallery-left.twig' %}
+					{% endif %}
+				{% endif %}
+			</div>
+        	{#========== //Product Left ============#}
+        	
+			{#========== Product Middle ============#}
+			<div class="content-product-right {{ class_middle_gallery }}" data-imageSchema="{{ last_feature_image }}">
+				<div class="title-product">
+					<h1>{{heading_title}}</h1>
+				</div>
+				
+				{% if review_status %}
+				{#======== Review - Rating ========== #}
+				<div class="box-review">
+					<div class="rating ">
+						<div class="rating-box">
+						{% for i in 1..5 %}
+							{% if rating < i %}<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>{% else %}<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i><i class="fa fa-star-o fa-stack-1x"></i></span>{% endif %}
+						{% endfor %}
+						</div>
+					</div>
+					<a class="reviews_button" href="javascript:void(0)">{{ reviews }}</a>
+					{% if soconfig.get_settings('product_sold') %}
+						<span class="order-num"><i class="fa fa-free-code-camp" aria-hidden="true"></i> {{orders}}</span>
+					{% endif %}
+				
+				</div>
+				{% endif %}
+				
+				<div class="inner-box-viewed">
+    <strong>
+        <span class="text-black" id="dynamicText" data-messages="{{ dynamic_messages|join('|') }}">
+      </span>
+
+    </strong>
+</div>
+
+				
+				{% if description %}
+				<div class="product_description mt-5 text-black">
+    {{ description|raw }}
+</div>
+				{% endif %}	
+				
+				
+				{% if tooltip_text %}
+			<div class="product_tooltip mt-5">
+  <i class="fa fa-info-circle" aria-hidden="true"></i>
+  <span class="tooltip_text">{{ tooltip_text }}</span>
+</div>
+
+				{% endif %}	
+
+					
+
+				<div class="product-box-desc">
+					<div class="inner-box-desc">
+						{% if manufacturer %}
+							<div class="brand hidden"><span>{{ text_manufacturer }} </span><a href="{{ manufacturers }}">{{ manufacturer }}</a></div>
+						{% endif %}
+						
+						{% if model %}
+					<!--	<div class="model"><span>{{ text_model }} </span> {{ model }}</div> -->
+						{% endif %}
+						
+						{% if reward %}
+							<div class="reward"><span>{{ text_reward }}</span> {{ reward }}</div>
+						{% endif %}
+						
+						<!-- <div class="stock"><span>{{ text_stock }}</span> <i class="fa fa-check-square-o"></i> {{ stock }}</div>	-->
+					</div>	
+						
+				</div>
+				
+				{#===== Show CountDown Product =======#}
+				{% if soconfig.get_settings('listing_countdown_status') and special_end_date %}
+					{% include theme_directory~'/template/soconfig/countdown.twig' with {product: product,special_end_date:special_end_date} %}
+				{% endif %}		
+
+				<div id="product">	
+					{% if options %} 
+					<h3>{{ text_option }}</h3>
+					{% for option in options %}
+						
+						{% if option.type == 'select' %}
+						<div class="form-group{% if option.required %} required {% endif %}">
+							<label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+							<select name="option[{{ option.product_option_id }}]" id="input-option{{ option.product_option_id }}" class="form-control width50">
+								<option value="">{{ text_select }}</option>
+							{% for option_value in option.product_option_value %}
+								<option value="{{ option_value.product_option_value_id }}">{{ option_value.name }}
+								{% if option_value.price %}
+									({{ option_value.price_prefix }}{{ option_value.price }})
+								{% endif %}
+								</option>
+							{% endfor %}
+						  </select>
+						</div>
+						{% endif %}
+						
+						{% if option.type == 'radio' %}
+						<div class="form-group{% if option.required %} required {% endif %}">
+						  	<label class="control-label">{{ option.name }}</label>
+							<div id="input-option{{ option.product_option_id }}">
+								{% set radio_style 	 = soconfig.get_settings('radio_style') %}
+								{% set radio_type 	 = radio_style ? ' radio-type-button':'' %}
+
+								{% for option_value in option.product_option_value %} 
+								{% set radio_image 	=  option_value.image ? 'option_image' : '' %} 
+								{% set radio_price 	=  radio_style ? option_value.price_prefix ~ option_value.price : '' %} 
+								
+									<div class="radio {{ radio_image ~ radio_type }}">
+										<label>							
+											<input type="radio" name="option[{{ option.product_option_id }}]" value="{{ option_value.product_option_value_id }}" />
+											<span class="option-content-box" data-title="{{ option_value.name}} {{ radio_price }}" data-toggle='tooltip'>
+												{% if option_value.image %} 
+													<img src="{{ option_value.image }} " alt="{{ option_value.name}}  {{radio_price}}" /> 
+												{% endif %} 
+												<span class="option-name">{{ option_value.name }} </span>
+												{% if option_value.price  and  radio_style  != '1' %} ({{ option_value.price_prefix }} {{ option_value.price }} ){% endif %} 
+											  
+											</span>
+										</label>
+									</div>
+								{% endfor %}	
+								 
+								{% if radio_style %} 
+								<script type="text/javascript">
+									 $(document).ready(function(){
+										  $('#input-option{{ option.product_option_id }} ').on('click', 'span', function () {
+											   $('#input-option{{ option.product_option_id }}  span').removeClass("active");
+											   $(this).toggleClass("active");
+										  });
+									 });
+								</script>
+								{% endif %} 
+
+							</div>
+						</div>
+						{% endif %}
+
+						{% if option.type == 'checkbox' %}
+						<div class="form-group{% if option.required %} required {% endif %}">
+						  	<label class="control-label">{{ option.name }}</label>
+						  	<div id="input-option{{ option.product_option_id }}">
+								{% set radio_style 	 = soconfig.get_settings('radio_style') %}
+								{% set radio_type 	 = radio_style ? ' radio-type-button':'' %}
+
+								{% for option_value in option.product_option_value %} 
+								{% set radio_image 	=  option_value.image ? 'option_image' : '' %} 
+								{% set radio_price 	=  radio_style ? option_value.price_prefix ~ option_value.price : '' %} 
+								
+									<div class="checkbox  {{ radio_image ~ radio_type }}">
+										<label>
+											<input type="checkbox" name="option[{{ option.product_option_id }}][]" value="{{ option_value.product_option_value_id }}" />
+											<span class="option-content-box" data-title="{{ option_value.name}} {{ radio_price }}" data-toggle='tooltip'>
+												{% if option_value.image %} 
+													<img src="{{ option_value.image }} " alt="{{ option_value.name}}  {{radio_price}}" /> 
+												{% endif %} 
+
+												<span class="option-name">{{ option_value.name }} </span>
+												{% if option_value.price  and  radio_style  != '1' %} 
+													({{ option_value.price_prefix }} {{ option_value.price }} )
+												{% endif %} 
+											  
+											</span>
+										</label>
+									</div>
+								{% endfor %}	
+								 
+								{% if radio_style %} 
+								<script type="text/javascript">
+									 $(document).ready(function(){
+										  $('#input-option{{ option.product_option_id }} ').on('click', 'span', function () {
+											   $(this).toggleClass("active");
+										  });
+									 });
+								</script>
+								{% endif %} 
+
+							</div>
+						</div>
+						{% endif %}
+
+						{% if option.type == 'text' %}
+						<div class="form-group{% if option.required %} required {% endif %}">
+						  <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+						  <input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" placeholder="{{ option.name }}" id="input-option{{ option.product_option_id }}" class="form-control" />
+						</div>
+						{% endif %}
+
+						{% if option.type == 'textarea' %}
+						<div class="form-group{% if option.required %} required {% endif %}">
+						  <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+						  <textarea name="option[{{ option.product_option_id }}]" rows="5" placeholder="{{ option.name }}" id="input-option{{ option.product_option_id }}" class="form-control">{{ option.value }}</textarea>
+						</div>
+						{% endif %}
+
+						{% if option.type == 'file' %}
+						<div class="form-group{% if option.required %} required {% endif %}">
+						  <label class="control-label">{{ option.name }}</label>
+						  <button type="button" id="button-upload{{ option.product_option_id }}" data-loading-text="{{ text_loading }}" class="btn btn-default btn-block"><i class="fa fa-upload"></i> {{ button_upload }}</button>
+						  <input type="hidden" name="option[{{ option.product_option_id }}]" value="" id="input-option{{ option.product_option_id }}" />
+						</div>
+						{% endif %}
+
+						{% if option.type == 'date' %}
+						<div class="form-group{% if option.required %} required {% endif %}">
+						  <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+						  <div class="input-group date">
+							<input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="YYYY-MM-DD" id="input-option{{ option.product_option_id }}" class="form-control" />
+							<span class="input-group-btn">
+							<button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+							</span></div>
+						</div>
+						{% endif %}
+
+						{% if option.type == 'datetime' %}
+						<div class="form-group{% if option.required %} required {% endif %}">
+						  <label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+						  <div class="input-group datetime">
+							<input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="YYYY-MM-DD HH:mm" id="input-option{{ option.product_option_id }}" class="form-control" />
+							<span class="input-group-btn">
+							<button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+							</span></div>
+						</div>
+						{% endif %}
+						
+						{% if option.type == 'time' %}
+						<div class="form-group{% if option.required %} required {% endif %}">
+							<label class="control-label" for="input-option{{ option.product_option_id }}">{{ option.name }}</label>
+							<div class="input-group time">
+							<input type="text" name="option[{{ option.product_option_id }}]" value="{{ option.value }}" data-date-format="HH:mm" id="input-option{{ option.product_option_id }}" class="form-control" />
+							<span class="input-group-btn">
+							<button type="button" class="btn btn-default"><i class="fa fa-calendar"></i></button>
+							</span></div>
+						</div>
+						{% endif %}
+						
+					{% endfor %}
+					{% endif %}
+
+					<div class="box-cart clearfix form-group">
+						{% if recurrings %}
+						<h3>{{ text_payment_recurring }}</h3>
+						<div class="form-group required">
+							<select name="recurring_id" class="form-control">
+							<option value="">{{ text_select }}</option>
+							{% for recurring in recurrings %}
+							<option value="{{ recurring.recurring_id }}">{{ recurring.name }}</option>
+							{% endfor %}
+							</select>
+						  <div class="help-block" id="recurring-description"></div>
+						</div>
+						{% endif %}
+					  
+						<div class="form-group box-info-product">
+						    
+						    {% if display_add_to_cart and display_add_to_cart == 1  %}
+							<div class="option quantity">
+								<label class="control-label" for="input-quantity">{{ entry_qty }}</label>
+								<div class="input-group quantity-control">
+									  <input class="form-control" type="text" name="quantity" value="{{ minimum }}" />
+									  <input type="hidden" name="product_id" value="{{ product_id }}" />	
+									  <span class="input-group-addon product_quantity_down fa fa-angle-down"></span>							  
+									  <span class="input-group-addon product_quantity_up fa fa-angle-up"></span>
+								</div>
+							</div> 
+							
+							{% endif %}
+							<div class="detail-action">
+								{# =========button Cart ======#}
+								<!-- <div class="cart"> -->
+								    <div class="cartButtons">
+								    {% if display_add_to_cart and display_add_to_cart == 1  %}
+								      <a  value="{{ button_cart }}" id="button-cart" class="btn btn-mega btn btn-custom-blue" ><i class="fa fa-shopping-cart"></i> {{ button_cart }}</a>
+								<!--	<input type="button"  value="Buy Now" data-loading-text="{{ text_loading }}" id="button-checkout" class="btn btn-custom-blue" /> -->
+									{% endif %}
+									
+							 {% if display_custom_quote and display_custom_quote == 1  and  display_custom_quote_for_vehicle_modification == 0 %}
+                            <a class="btn btn-custom-blue" onclick="openModal({{ product_id }})"><i class="fa fa-file-text"></i> Get a Custom Quote</a>
+                              {% endif %}
+                              {% if display_custom_quote_for_vehicle_modification and display_custom_quote_for_vehicle_modification == 1  %}
+                            <a class="btn btn-custom-blue" onclick="openVMModal({{ product_id }})"><i class="fa fa-file-text"></i> Get a Custom Quote</a>
+                              {% endif %}
+							 <a class="btn btn-custom-blue-border" onclick="openDemoModal({{ product_id }})"><i class="fa fa-calendar"></i> Book a Free Demo</a>		
+									
+								</div>
+								
+								<div id="btn-addquestion"></div>
+							
+ 
+                    {% if price %}
+				{#========= Product - Price ========= #}
+				<div class="product_page_price price mt-5" itemprop="offerDetails" itemscope itemtype="http://data-vocabulary.org/Offer">
+					{% if not special %}
+					 <span class="price-new">
+				      {% if display_custom_quote and display_custom_quote == 1  %}
+					 From
+					 {% endif %}      
+				    <span itemprop="price" id="price-old">{{ price }}</span></span>
+				    {% else %}
+				        <span class="price-new"><span itemprop="price" id="price-special">{{ special }}</span></span>
+					   <span class="price-old" id="price-old">{{ price }}</span>
+				    {% endif %}
+					
+					{% if special and soconfig.get_settings('listing_discount_status')   %} 
+					{#=======Discount Label======= #}
+					<span class="label-product label-sale">
+						 {{ discount }}
+					</span>
+					{% endif %} 
+
+					{% if tax %}
+					<!--	<div class="price-tax"><span>{{ text_tax }}</span> <span id="price-tax"> {{ tax }} </span></div> -->
+					{% endif %}
+				</div>
+				{% endif %}
+				
+					{% if discounts %} 
+					<ul class="list-unstyled text-success">
+					{% for discount in discounts %} 
+						<li><strong>{{ discount.quantity }} {{ text_discount }} {{ discount.price }}</strong> </li>
+					{% endfor %}
+					</ul>
+				{% endif %} 
+				
+				  <div class="badge-container mt-3">
+     
+      {% if display_custom_quote and display_custom_quote == 1  %}
+      <span class="badge-custom-light"><i class="fa fa-lock"></i> Custom Fit Guaranteed</span>
+      {% else %} 
+       <span class="badge-custom-light"><i class="fa fa-lock"></i> Secure Payment</span>
+      {% endif %} 
+        <span class="badge-custom-light"><i class="fa fa-shield"></i> Warranty Included</span>
+        <span class="badge-custom-light"><i class="fa fa-refresh"></i> Money-Back Guarantee</span>
+    </div>
+    
+    	
+		
+     <div class="alert alert-custom mt-5 hide">
+        <span class="emoji">ðŸ”¥</span> Limited availability: This item is popular among our customers
+    </div>
+					
+
+    <!-- Badges -->
+<div class="row trustedByRow">
+    <div class="col-xs-12 text-center" style="padding:30px 10px;">
+      <h4 style="font-weight:bold; margin-bottom:5px;">
+        Trusted by Health Professionals &amp; Backed by Mobilitycare's 250+ Dealer Partners
+      </h4>
+      <p style="color:#666; font-size:15px; margin-bottom:0;">
+        Recommended by Neurologists, Physiatrists and Allied Health Experts
+      </p>
+    </div>
+  </div>
+
+<!-- CSS for Custom Badges -->
+<style>
+.trustedByRow{
+        background-color: #f6f6f6 !important;
+    color: #042e57 !important;
+}
+    .badge-custom-green {
+        display: inline-block;
+        padding: 8px 15px;
+        margin: 5px;
+        font-size: 14px;
+        font-weight: bold;
+        color: #ffffff; /* White text */
+        background-color: #28a745; /* Bootstrap 3 green, adjustable */
+        border-radius: 4px;
+        text-transform: uppercase;
+        transition: all 0.3s ease;
+    }
+
+    .badge-custom-green:hover {
+        background-color: #218838; /* Darker green on hover */
+        color: #ffffff;
+        text-decoration: none;
+    }
+
+    /* Ensure text-black overrides other styles */
+    .text-black {
+        color: #000000 !important;
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .badge-custom-green {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+</style>
+    
+    
+
+    <!-- Alert Box -->
+   
+
+    <!-- Bottom Badges -->
+  
+    
+								<div class="add-to-links wish_comp hidden-lg hidden-md hidden-xs">
+									<ul class="blank list-inline">
+										<li class="wishlist">
+											<a onclick="wishlist.add({{ product_id }});"><i class="fa fa-heart"></i> {{ objlang.get('text_addwishlist') }} </a>
+										</li>
+										<li class="compare">
+											<a onclick="compare.add({{ product_id }});"><i class="fa fa-retweet"></i> {{ objlang.get('text_addcompare') }} </a>
+										</li>										
+									</ul>
+								</div>
+								
+							</div>
+						</div>
+
+						<div class="clearfix"></div>
+						{% if minimum > 1 %}
+							<div class="alert alert-info"><i class="fa fa-info-circle"></i> {{ text_minimum }}</div>
+						{% endif %}
+					</div>
+
+					{% if soconfig.get_settings('product_page_button') and soconfig.get_settings('product_socialshare') %}
+					<div class="form-group social-share clearfix">
+						{{ soconfig.get_settings('product_socialshare')}}
+					</div>
+					{% endif %}
+					<!-- Go to www.addthis.com/dashboard to customize your tools -->
+					{#<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-529be2200cc72db5"></script>#}
+					
+					 {% if tags %}
+					<div id="tab-tags" class="hidden d-none">
+						{{ text_tags }}
+						{% for i in 0..tags|length %}
+						{% if i < (tags|length - 1) %} <a class="btn btn-primary btn-sm" href="{{ tags[i].href }}">{{ tags[i].tag }}</a>
+						{% else %} 
+						{% if tags[i] is not empty  %}
+						<a class="btn btn-primary btn-sm 22" href="{{ tags[i].href }}">{{ tags[i].tag }}</a> {% endif %}
+						{% endif %}
+						{% endfor %} 
+						
+					 
+					</div>
+					{% endif %}
+
+				</div>
+				<div class="ask-hiddencart"></div>
+			</div>
+			{#========== //End Product Middle ============#}
+			
+				{#========== Start Product Right ============#}
+			<div class="{{ class_right_gallery }}">
+			    
+			<div class="review-container">
+             <div class="text-center reviewtitle-product ">
+            <h1>{{heading_title}}</h1>
+            <p class="review-content">{% for i in 1..5 %}
+			{% if rating < i %}<span class="fa fa-stack"><i class="fa fa-star-o fa-stack-1x"></i></span>{% else %}<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i></span>{% endif %}
+			{% endfor %}
+			</p>
+            <button class="btn btn-sm btn-success mb-4" onclick="showReviewModal()">Write a review</button>
+        </div>
+              
+     {% for productReview in productReviews %}
+      <div class="review-card text-black">
+        <div class="review-header">
+            <strong>{{ productReview.author }}</strong>
+        </div>
+        <small>{{ productReview.date_added|date("d/m/Y") }}</small>
+        <div class="review-content">
+            <span>{% for i in 1..productReview.rating %}<span class="fa fa-stack"><i class="fa fa-star fa-stack-1x"></i></span>  {% endfor %}</span>
+            <p>{{ productReview.text }}</p>
+        </div>
+     </div>
+   {% endfor %}
+
+        
+           
+        
+           </div>  
+			    
+			    
+			 </div>
+			  {#========== // END Product Right ============#}
+			</div>
+		</div>
+
+		{#====  content_Top==== #}
+		{% if content_top %}
+		<div class="content-product-maintop form-group clearfix">
+			{{ content_top }}
+		</div>
+		{% endif %}
+	
+			<div class="content-product-mainbody clearfix row">
+			
+			{% if col_position== 'inside' %}
+			{#====  Column left inside==== #}
+				{% if displaySidebar =='left' or displaySidebar =='all'%}
+					{{ column_left }}
+				{% endif %}
+			    {% if col_canvas =='off_canvas' %}
+					{% set class_left = 'col-sm-12' %}
+				{% elseif displaySidebar =='left' and displaySidebar =='right' %}
+					{% set class_left = 'col-md-6 col-sm-12 col-xs-12 fluid-allsidebar' %}
+				{% elseif displaySidebar =='left' or displaySidebar =='right' %}
+					{% set class_left = 'col-md-9 col-sm-12 col-xs-12 fluid-sidebar' %}
+				{% elseif displaySidebar =='all' %}
+					{% set class_left = 'col-md-8 col-sm-6 col-xs-12 fluid-sidebar' %}
+				{% else %}
+					{% set class_left = 'col-sm-12' %}
+				{% endif %}
+			{% else %}
+				{% set class_left = 'col-sm-12' %}
+			{% endif %}
+
+		    <div class="content-product-content {{ class_left }}">
+				<div class="content-product-midde clearfix">
+					{#========== TAB BLOCK ============#}
+					{% set related_position = soconfig.get_settings('tabs_position') == 1 ? 'vertical-tabs' : ''  %}
+					{% set tabs_position	= soconfig.get_settings('tabs_position')  %}
+					{% set showmore			= soconfig.get_settings('product_enableshowmore')  %}
+					{% if showmore %} {% set class_showmore = 'showdown' %}
+					{% else %} {% set class_showmore = 'showup' %}
+					{% endif %}
+
+					<div class="producttab ">
+						<div class="tabsslider {{related_position}} {% if tabs_position == 1 %} {{'vertical-tabs'}} {% else %} {{'horizontal-tabs'}} {% endif %} col-xs-12">
+							{#========= Tabs - Bottom horizontal =========#}
+							{% if tabs_position == 2 %}
+							<ul class="nav nav-tabs font-sn">
+								<li class="active"><a data-toggle="tab" href="#tab-description">Overview</a></li>
+								<li><a data-toggle="tab" href="#tab-features">Features</a></li>
+                                <li><a data-toggle="tab" href="#tab-Specifications">Specs</a></li>
+                                <li><a data-toggle="tab" href="#tab-userguide">Downloads & User Guide</a></li>
+                                
+                                <li><a data-toggle="tab" href="#tab-funding">NDIS & Funding</a></li>
+					            {% if review_status %}
+					            <li class="hidden"><a href="#tab-review" data-toggle="tab">{{ tab_review }}</a></li> 
+					            {% endif %}
+								
+								{% if soconfig.get_settings('product_enableshipping') %}
+								 <li class="hidden"><a href="#tab-contentshipping" data-toggle="tab">{{ tab_shipping}}</a></li>
+								{% endif %}
+
+								{% if product_tabtitle %}
+					           	 <li class="hidden"><a href="#tab-customhtml" data-toggle="tab">{{ product_tabtitle}}</a></li>
+					            {% endif %}
+
+								{% if product_video %}
+					           	 <li class="hidden"><a class="thumb-video" href="{{product_video}}"><i class="fa fa-youtube-play fa-lg"></i> {{ tab_video}}</a></li>
+					            {% endif %}
+								
+								{% if soconfig.get_settings('product_enablesizechart') %}
+									<li class="hidden"><a href="#tab-sizechart" data-toggle="tab">{{ text_size_chart}}</a></li>
+								{% endif %}
+								
+							</ul>
+
+							{#========= Tabs - Left vertical =========#}
+							{% elseif tabs_position == 1  %}
+								<ul class="nav nav-tabs col-lg-3 col-sm-4">
+								<li class="active"><a data-toggle="tab" href="#tab-description">Overview</a></li>
+								
+					            {% if review_status %}
+					           	 <li><a href="#tab-review" data-toggle="tab">{{ tab_review }}</a></li>
+					            {% endif %}
+								
+								{% if soconfig.get_settings('product_enableshipping')  %}
+								 <li><a href="#tab-contentshipping" data-toggle="tab">{{ tab_shipping}}</a></li>
+								{% endif %}
+
+								{% if product_tabtitle %}
+					           	 <li><a href="#tab-customhtml" data-toggle="tab">{{ product_tabtitle}}</a></li>
+					            {% endif %}
+					            
+								{% if product_video %}
+					           	 <li><a class="thumb-video" href="{{product_video}}"><i class="fa fa-youtube-play fa-lg"></i> {{ tab_video}}</a></li>
+					            {% endif %}
+								
+								{% if soconfig.get_settings('product_enablesizechart') %}
+									<li><a href="#tab-sizechart" data-toggle="tab">{{ text_size_chart}}</a></li>
+								{% endif %}
+								</ul>
+							{% endif %}
+
+							<div class="tab-content {% if tabs_position == 1  %} {{ 'col-lg-9 col-sm-8' }} {% endif %} col-xs-12">
+							    
+							    
+								<div class="tab-pane active" id="tab-description">
+								
+								
+                               <div class="row mt-5">
+  {% if product.right_for_you %}
+  <div class="col-sm-6 col-xs-12">
+    <div class="panel-default">
+      <div class="panel-body">
+        <h4 class="text-black"><i class="fa fa-lightbulb-o"></i> <strong>Is This Right for You?</strong></h4>
+        <p class="text-black">{{ product.right_for_you }}</p>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if product.why_love %}
+  <div class="col-sm-6 col-xs-12">
+    <div class="panel-default">
+      <div class="panel-body">
+        <h4 class="text-black"><i class="fa fa-heart"></i> <strong>Why You will Love It</strong></h4>
+        <ul>
+          {% for line in product.why_love|split('\n') %}
+            {% if line|trim is not empty %}
+              <li class="text-black">{{ line }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+<div class="row mt-5">
+  {% if product.what_different %}
+  <div class="col-sm-6 col-xs-12">
+    <div class="panel-default">
+      <div class="panel-body">
+        <h4 class="text-black"><i class="fa fa-trophy"></i> <strong>What Makes It Different</strong></h4>
+        <ul>
+          {% for line in product.what_different|split('\n') %}
+            {% if line|trim is not empty %}
+              <li class="text-black">{{ line }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+      </div>
+    </div>
+  </div>
+  {% endif %}
+
+  {% if product.everyday_life %}
+  <div class="col-sm-6 col-xs-12">
+    <div class="panel-default">
+      <div class="panel-body">
+        <h4 class="text-black"><i class="fa fa-star"></i> <strong>Built for Everyday Life</strong></h4>
+        <ul>
+          {% for line in product.everyday_life|split('\n') %}
+            {% if line|trim is not empty %}
+              <li class="text-black">{{ line }}</li>
+            {% endif %}
+          {% endfor %}
+        </ul>
+
+        {% if product.desc_video %}
+          <div class="embed-responsive embed-responsive-16by9 mt-3">
+            {% set embed_url = product.desc_video|replace({'https://youtu.be/': 'https://www.youtube.com/embed/'}) %}
+<iframe class="embed-responsive-item" src="{{ embed_url }}" allowfullscreen></iframe>
+
+          </div>
+        {% endif %}
+      </div>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+                                 
+
+								</div>
+								
+								 <div class="tab-pane" id="tab-features">
+  {% if product_features %}
+    <div class="product-features">
+      {% for feature in product_features %}
+      
+        <div class="row feature-section" itemscope itemtype="https://schema.org/PropertyValue">
+          <div class="col-sm-4">
+            {% if feature.image %}
+<div class="img-magnifier-container" data-image="{{ feature.image }}">
+    <img src="{{ feature.image }}" alt="{{ feature.title ? feature.title ~ ' feature image' : product_name ~ ' feature ' ~ loop.index }}"
+         class="img-fluid feature-image" itemprop="image" />
+    {#<div class="img-magnifier-glass"></div>#}
+</div>
+
+
+  <div class="magnifier" id="magnifier-{{ loop.index }}"></div>
+            {% else %}
+              <img src="image/placeholder.png" alt="{{ product_name }} feature placeholder" class="img-fluid" />
+            {% endif %}
+          </div>
+          <div class="col-sm-8 feature-text">
+            <div class="feature-divider"></div>
+            <h3 itemprop="name">{{ feature.title }}</h3>
+            <p itemprop="value">{{ feature.text }}</p>
+            {% if feature.video %}
+              <button class="btn feature-button" onclick="openVideoModal('{{ feature.video }}')">Watch the video</button>
+            {% elseif feature.link %}
+              <a href="{{ feature.link }}" class="btn feature-button" target="_blank" rel="noopener noreferrer">Learn more</a>
+            {% endif %}
+          </div>
+        </div>
+      {% endfor %}
+    </div>
+
+    <!-- Schema.org Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": "{{ heading_title }}",
+      "image": ["{{ last_feature_image }}"],
+       "offers": {
+      "@type": "Offer",
+      "priceCurrency": "AUD",
+      "price": "{{ price|replace({'$':'', ',':''}) }}"
+  },
+      "description": "{{ product_description }}",
+      "additionalProperty": [
+        {% for feature in product_features %}
+        {
+          "@type": "PropertyValue",
+          "name": "{{ feature.title }}",
+          "value": "{{ feature.text }}",
+          "image": "{{ feature.image }}"
+        }{% if not loop.last %},{% endif %}
+        {% endfor %}
+      ]
+    }
+    </script>
+  {% endif %}
+
+  
+
+
+</div>
+								
+						     	<div class="tab-pane" id="tab-Specifications">
+							   
+    {%   if product_specs is not empty %}
+        <h4 class="panel-title">{{ item.title }}</h4>
+                {% for item in product_specs %}
+                {% if item.image %}
+                                        {# Use slice to check if the image URL starts with "http" #}
+                                       
+<img src="{{ item.image | slice(0, 4) == 'http' ? item.image : base_url ~ 'image/' ~ item.image }}" alt="{{ item.title }}"  />
+                                    {% else %}
+                                        No Image
+                                    {% endif %}
+                                    
+                           
+                        {% endfor %}
+    {% else %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h4 class="panel-title">Specifications</h4>
+            </div>
+            <div class="panel-body">
+                <p>No specifications available.</p>
+            </div>
+        </div>
+    {% endif %}
+</div>
+
+                                <div class="tab-pane " id="tab-userguide">
+                                    {% if downloads %}
+  <div class="downloads-section" style="margin-top: 30px;">
+    <h3 class="text-black">Documents</h3>
+    <div style="display: flex; flex-wrap: wrap; gap: 30px;">
+      {% for download in downloads %}
+        <div style="text-align: center;">
+          <a href="{{ download.href }}" target="_blank">
+            <img src="catalog/view/theme/default/image/pdfImage.png" alt="{{ download.name }}" style="width: 100px; height: auto; box-shadow: 0 2px 6px rgba(0,0,0,0.2); border-radius: 4px;">
+            <div style="margin-top: 8px; color: #337ab7; font-weight: 500;">{{ download.name }}</div>
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+{% endif %}
+</div>
+
+                                <div class="tab-pane " id="tab-funding">
+                                
+                                </div>
+                                	    
+
+					            {% if soconfig.get_settings('product_enableshipping') and soconfig.get_settings('product_contentshipping') %}
+								<div class="tab-pane" id="tab-contentshipping">
+									{{ soconfig.get_settings('product_contentshipping') }}
+								</div>
+								{% endif %}
+
+								{% if product_tabtitle %}
+								<div class="tab-pane " id="tab-customhtml">{{ product_tabcontent }}</div>
+								{% endif %}
+								
+								{% if soconfig.get_settings('product_enablesizechart') %}
+								<div class="tab-pane " id="tab-sizechart">
+									<img src="image/{{soconfig.get_settings('img_sizechart')}}" alt="Size Chart">
+								</div>
+								{% endif %}
+								
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				{#====  Related_Product==== #}
+				{% if products and soconfig.get_settings('related_status') %}
+				<div class="content-product-bottom clearfix">
+					<ul class="nav nav-tabs">
+					  <li class="active"><a data-toggle="tab" href="#product-related">{{ text_related }}</a></li> 
+					  {% if content_bottom %}
+					  <li><a data-toggle="tab" href="#product-upsell">{{ text_upsell }}</a></li>
+					  {% endif %}
+					</ul>
+					<div class="tab-content">
+					  	<div id="product-related" class="tab-pane fade in active">
+							{% include theme_directory~'/template/soconfig/related_product.twig' %}
+					  	</div>
+					  	<div id="product-upsell" class="tab-pane fade">
+					  		{#====  content_bottom==== #}
+					  		{{ content_bottom }}
+					  	</div>
+					</div>
+					
+				</div>
+				{% endif %}
+
+				
+			</div>
+			{#====  Column Right inside==== #}
+			{% if col_position== 'inside' %}
+			{% if displaySidebar =='right' or displaySidebar =='all'%}
+				{{ column_right }}
+			{% endif %}
+			{% endif %}
+
+		</div>
+    
+    </div>
+    {#====  Column Right outside==== #}
+    {% if col_position== 'outside' %} 
+		{% if displaySidebar =='right' or displaySidebar =='all'%}
+			{{ column_right }}
+		{% endif %}
+	{% endif %}
+    </div>
+
+
+</div>
+{# review modal #}
+{{ marketing_popup }}
+ <div class="modal fade" id="reviewModal" tabindex="-1" role="dialog" aria-labelledby="reviewModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-md" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title text-center" id="reviewModalLabel" style="color: #003264; font-weight: 600;">{{ text_write }}</h4>
+            </div>
+            <div class="modal-body" style="padding: 25px 30px;">
+                <form class="form-horizontal" id="form-review">
+                    {#// its for showing existing reviews#}
+                    {#<div id="review"></div>#}
+                    <div id="reviewMessage"></div>
+                    
+                    {% if review_guest %}
+                    <div class="form-group required">
+                        <div class="col-sm-12">
+                            <label class="control-label" for="input-name">{{ entry_name }} <span class="text-danger">*</span></label>
+                            <input type="text" name="name" value="{{ customer_name }}" id="input-name" class="form-control" placeholder="Enter your name" required />
+                        </div>
+                    </div>
+                    
+                    <div class="form-group required">
+                        <div class="col-sm-12">
+                            <label class="control-label" for="input-review">{{ entry_review }} <span class="text-danger">*</span></label>
+                            <textarea name="text" rows="5" id="input-review" class="form-control" placeholder="Write your review here..." required></textarea>
+                            <div class="help-block">{{ text_note }}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group required">
+                        <div class="col-sm-12">
+                            <label class="control-label">{{ entry_rating }} <span class="text-danger">*</span></label>
+                            <div class="star-rating">
+                                <span class="rating-label">{{ entry_bad }}</span>
+                                <div class="stars-container">
+                                    <input type="radio" name="rating" value="1" id="rating-1" required />
+                                    <label for="rating-1" class="star-label">★</label>
+                                    <input type="radio" name="rating" value="2" id="rating-2" />
+                                    <label for="rating-2" class="star-label">★</label>
+                                    <input type="radio" name="rating" value="3" id="rating-3" />
+                                    <label for="rating-3" class="star-label">★</label>
+                                    <input type="radio" name="rating" value="4" id="rating-4" />
+                                    <label for="rating-4" class="star-label">★</label>
+                                    <input type="radio" name="rating" value="5" id="rating-5" />
+                                    <label for="rating-5" class="star-label">★</label>
+                                </div>
+                                <span class="rating-label">{{ entry_good }}</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    {{ captcha }}
+                    
+                    {% else %}
+                    <div class="alert alert-info">
+                        {{ text_login }}
+                    </div>
+                    {% endif %}
+                </form>
+            </div>
+            
+            {% if review_guest %}
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" id="button-review" data-loading-text="{{ text_loading }}" class="btn btn-primary">
+                    {{ button_continue }}
+                </button>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</div>
+
+ <div class="modal fade" id="videoModal" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="videoModalLabel">Watch the Video</h4>
+                </div>
+                <div class="modal-body">
+                    <div class="embed-responsive embed-responsive-16by9">
+                        <iframe id="videoFrame" class="embed-responsive-item" src="" allowfullscreen></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+<div class="modal fade" id="customQuoteModal" tabindex="-1" role="dialog" aria-labelledby="customQuoteModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="customQuoteModalLabel">Get Your Custom Quote</h4>
+      </div>
+
+      <div class="modal-body">
+        <form action="{{ action }}" method="post" class="quoteForm">
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="fullname">Full Name *</label>
+                <input type="text" name="fullname" id="fullname" placeholder="Full Name *" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" name="email" id="email" placeholder="Email *" class="form-control" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="text" maxlength="10" name="phone"  placeholder="Phone Number *" class="form-control phoneValidate" required>
+              </div>
+            </div>
+            
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="postcode">Postcode *</label>
+<input type="text" class="form-control postcodeValidate" name="postcode" placeholder="Postcode *" maxlength="4" pattern="^[0-9]{1,4}$" title="Please enter up to 4 digits only" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,4);" required>
+              </div>
+            </div>
+
+            
+          </div>
+
+          
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group required">
+                <label for="quote_type">Preferred Quote Type *</label>
+                <select name="quote_type" id="quote_type" class="form-control">
+                  <option value="" disabled selected>Preferred Quote Type *</option>
+                  <option value="Standard Quote">Standard Quote</option>
+                  <option value="NDIS Funding Quote">NDIS Funding Quote</option>
+                  <option value="Insurance/WorkSafe Quote">Insurance/WorkSafe Quote</option>
+                </select>
+              </div>
+            </div>
+          
+          <div class="col-sm-6">
+              <div class="form-group required">
+                <label for="contact_type">Are you contacting us as? *</label>
+                <select name="contact_type" class="form-control contact_type">
+                  <option value="" disabled selected>Are you contacting us as?</option>
+                  
+                  <option value="For Myself">For Myself</option>
+                  <option value="For a Friend/Family Member">For a Friend/Family Member</option>
+                  <option value="Healthcare Professional">Healthcare Professional</option>
+                  <option value="Dealer or Business">Dealer or Business</option>
+                  <option value="Government or Non-Profit Organisation">Government or Non-Profit Organisation</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+            
+          </div>
+          
+          <div class="row healthcare_profession" style="display: none;">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="healthcare_profession">If Healthcare Professional, please specify:</label>
+                <select name="healthcare_profession" class="form-control">
+                  <option value="" disabled selected>If Healthcare Professional, please specify:</option>
+                  <option value="Occupational Therapist">Occupational Therapist</option>
+                  <option value="Physiotherapist">Physiotherapist</option>
+                  <option value="Rehabilitation Specialist">Rehabilitation Specialist</option>
+                  <option value="Aged Care Professional">Aged Care Professional</option>
+                  <option value="Nurse or Caregiver">Nurse or Caregiver</option>
+                  <option value="Neurologist">Neurologist</option>
+                  <option value="Orthopedic Specialist">Orthopedic Specialist</option>
+                </select>
+              </div>
+            </div>
+          </div>
+          
+           <div class="row">
+               <div class="col-sm-12">
+              <div class="form-group">
+                <label for="additional_info">Additional Information</label>
+                <textarea name="additional_info" id="additional_info" class="form-control" placeholder="Additional Information"></textarea>
+              </div>
+            </div>
+                </div>
+
+          <input type="hidden" name="manufacturer_id" value="{{ product_id }}" />
+          <input type="hidden" name="is_manufacturer_or_product" value="1" />	
+
+          <div class="form-group">
+            {{ captcha }}
+          </div>
+
+          <div class="form-group text-right">
+               <input type="hidden" name="originalCaptcha" value={{ originalCaptcha }}>
+            <button type="submit" class="btn btn-primary">
+              <i class="fa fa-paper-plane"></i> Submit Your Request
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="modal fade" id="customQuoteModalForVM" tabindex="-1" role="dialog" aria-labelledby="customQuoteModalForVMLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="customQuoteModalForVMLabel">Get Your Custom Quote</h4>
+      </div>
+
+      <div class="modal-body">
+        <form action="{{ action }}" method="post" class="quoteForm">
+            
+               <!-- VEHICLE MAKE SECTION -->
+<div class="section-header" style="background:#eee; padding:8px; font-weight:bold; margin-top:15px;">VEHICLE MAKE</div>
+
+<div class="row" style="margin-top:15px;">
+  <!-- Vehicle Make -->
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label  for="vehicle_make">Vehicle Make*</label>
+      <input type="text" name="vehicle_make" id="vehicle_make" placeholder="Vehicle Make*" class="form-control" required>
+    </div>
+  </div>
+
+  <!-- Vehicle Model -->
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label  for="vehicle_model">Model*</label>
+      <input type="text" name="vehicle_model" id="vehicle_model" placeholder="Model*" class="form-control" required>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <!-- Vehicle Year -->
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label  for="vehicle_year">Year*</label>
+      <input type="text" name="vehicle_year" id="vehicle_year" placeholder="Year*" class="form-control yearValidate" required>
+    </div>
+  </div>
+
+  <!-- Body Type -->
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label  for="body_type">Body Type*</label>
+      <input type="text" name="body_type" id="body_type" placeholder="Body Type (e.g. Wagon/Ute/Sedan/Van)" class="form-control" required>
+    </div>
+  </div>
+</div>
+
+
+<!-- LIFTING DETAILS SECTION -->
+<div class="section-header" style="background:#eee; padding:8px; font-weight:bold; margin-top:15px;">LIFTING DETAILS</div>
+
+<div class="row" style="margin-top:15px;">
+  <!-- Left Column -->
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label  for="lifting_item">Select Item to be lifted*</label>
+      <select name="lifting_item" id="lifting_item" class="form-control" required>
+        <option value="" disabled selected>Select Item to be lifted*</option>
+        <option value="Mobility Scooter">Mobility Scooter</option>
+        <option value="Electric Wheelchair">Electric Wheelchair</option>
+        <option value="Manual Wheelchair">Manual Wheelchair</option>
+      </select>
+    </div>
+  </div>
+
+  <!-- Right Column -->
+  
+</div>
+
+<div class="row">
+  <!-- Full-width below -->
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label for="item_height">Item Height (Folded)*</label>
+      
+        <input type="text" name="item_height" id="item_height" placeholder="Item Height (Folded) (mm)*" class="form-control validateDecimal" required>
+       
+      
+    </div>
+  </div>
+  
+  
+  <div class="col-sm-6">
+    <div class="form-group">
+      <label  for="item_weight">Item Weight*</label>
+        <input type="text" name="item_weight" id="item_weight" placeholder="Item Weight* (kg)" class="form-control validateDecimal" required>
+    </div>
+  </div>
+</div>
+
+
+<div class="section-header" style="background:#eee; padding:8px; font-weight:bold; margin-top:15px;">CONTACT DETAILS</div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Full Name *</label>
+                <input type="text" name="fullname" placeholder="Full Name *" class="form-control" required>
+                {% if error_fullname %}
+                  <div class="text-danger">{{ error_fullname }}</div>
+                {% endif %}
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Email *</label>
+                <input type="text" name="email" placeholder="Email *" class="form-control" required>
+                
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Phone Number *</label>
+                <input type="text" maxlength="10" name="phone" placeholder="Phone Number *" maxlength="10" class="form-control phoneValidate" required>
+                {% if error_phone %}
+                  <div class="text-danger">{{ error_phone }}</div>
+                {% endif %}
+              </div>
+            </div>
+            
+            
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label>Postcode *</label>
+                <input type="text" name="postcode" placeholder="Postcode *" maxlength="4" title="Please enter up to 4 digits only" class="form-control postcodeValidate" required>
+                       
+                        
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group required">
+                <label>Are you contacting us as? *</label>
+                <select name="contact_type" class="form-control contact_type">
+                  <option value="" disabled selected>Are you contacting us as?</option>
+                  <option value="For Myself">For Myself</option>
+                  <option value="For a Friend/Family Member">For a Friend/Family Member</option>
+                  <option value="Healthcare Professional">Healthcare Professional</option>
+                  <option value="Dealer or Business">Dealer or Business</option>
+                  <option value="Government or Non-Profit Organisation">Government or Non-Profit Organisation</option>
+                  <option value="Other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-sm-6 healthcare_profession"  style="display: none;">
+              <div class="form-group">
+                <label>If Healthcare Professional, please specify:</label>
+                <select name="healthcare_profession" class="form-control">
+                  <option value="" disabled selected>If Healthcare Professional, please specify:</option>
+                  <option value="Occupational Therapist">Occupational Therapist</option>
+                  <option value="Physiotherapist">Physiotherapist</option>
+                  <option value="Rehabilitation Specialist">Rehabilitation Specialist</option>
+                  <option value="Aged Care Professional">Aged Care Professional</option>
+                  <option value="Nurse or Caregiver">Nurse or Caregiver</option>
+                  <option value="Neurologist">Neurologist</option>
+                  <option value="Orthopedic Specialist">Orthopedic Specialist</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group required">
+                <label>Preferred Quote Type *</label>
+                <select name="quote_type" class="form-control" required>
+                  <option value="" disabled selected>Preferred Quote Type *</option>
+                  <option value="Standard Quote">Standard Quote</option>
+                  <option value="NDIS Funding Quote">NDIS Funding Quote</option>
+                  <option value="Insurance/WorkSafe Quote">Insurance/WorkSafe Quote</option>
+                </select>
+              </div>
+            </div>
+
+           <input type="hidden" name="product_id" value="{{ product_id }}" />
+          </div>
+
+          <div class="form-group">
+            <label>Additional Information</label>
+            <textarea name="additional_info" class="form-control" placeholder="Additional Information"></textarea>
+          </div>
+ <input type="hidden" name="is_manufacturer_or_product" value="1" />
+ <input type="hidden" name="manufacturer_id" value="{{ product_id }}" />
+          <div class="form-group">
+            {{ captcha }}
+          </div>
+
+          <div class="form-group text-right">
+               <input type="hidden" name="originalCaptcha" value={{ originalCaptcha }}>
+            <button type="submit" class="btn btn-primary">
+              <i class="fa fa-paper-plane"></i> Submit Your Request
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+ 
+<div class="modal fade" id="bookaDemoModal" tabindex="-1" role="dialog" aria-labelledby="bookaDemoModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+      
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <h4 class="modal-title" id="bookaDemoModalLabel">Book a demo</h4>
+      </div>
+
+      <div class="modal-body">
+        <form id="demoRequestForm" action="{{ demo_form_action }}" method="post" class="bookaDemoForm">
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="fullname">Full Name *</label>
+                <input type="text" name="fullname" id="fullname" placeholder="Full Name *" class="form-control" required>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="email">Email *</label>
+                <input type="email" name="email" id="email" placeholder="Email *" class="form-control" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="phone">Phone Number *</label>
+                <input type="text" maxlength="10" name="phone" placeholder="Phone Number *" class="form-control phoneValidate" required>
+              </div>
+            </div>
+
+            <div class="col-sm-6">
+              <div class="form-group">
+                <label for="postcode">Postcode *</label>
+                <input type="text" name="postcode" id="postcode" placeholder="Postcode *" class="form-control postcodeValidate" required>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="form-group required">
+                <label for="demo_type">Choose Your Demo Type *</label>
+                <select name="demo_type" id="demo_type" class="form-control" required>
+                  <option value="" disabled selected>Choose Your Demo Type *</option>
+                  <option value="In-Store">In-Store Demo</option>
+                  <option value="Home">Home Demonstration</option>
+                  <option value="Virtual">Virtual Demo</option>
+                  <option value="Dealer">Dealer Network Demo</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="col-sm-6" id="dealer_details" style="display: none;">
+              <div class="form-group">
+                <label for="dealer_name">Dealer Name (if applicable)</label>
+                <input type="text" name="dealer_name" id="dealer_name" class="form-control" placeholder="Dealer Name (if applicable)">
+              </div>
+            </div>
+          </div>
+          {#.. show only for autochair products#}
+         {% set car_products = [79, 67, 115, 116, 117] %}
+
+{% if product_id in car_products %}
+<div class="row">
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="car_make">Make</label>
+            <input type="text" name="car_make" id="car_make" class="form-control" placeholder="e.g. Toyota">
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="car_model">Model</label>
+            <input type="text" name="car_model" id="car_model" class="form-control" placeholder="e.g. Hilux">
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="car_year">Year of the Car</label>
+            <input type="text" name="car_year" id="car_year" class="form-control" placeholder="e.g. 2020">
+        </div>
+    </div>
+
+    <div class="col-sm-3">
+        <div class="form-group">
+            <label for="body_type">Body Type</label>
+            <select name="body_type" id="body_type" class="form-control">
+                <option value="" selected disabled>Select Body Type</option>
+                <option value="Wagon">Wagon</option>
+                <option value="UTE">UTE</option>
+                <option value="Sedan">Sedan</option>
+                <option value="Van">Van</option>
+                <option value="Hatchback">Hatchback</option>
+                <option value="SUV">SUV</option>
+            </select>
+        </div>
+    </div>
+</div>
+{% endif %}
+
+
+
+          <input type="hidden" name="manufacturer_id" value="{{ product_id }}" />
+         <input type="hidden" name="is_manufacturer_or_product" value="1" />
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="form-group">
+                <label for="additional_info">Additional Information</label>
+                <textarea name="additional_info" id="additional_info" class="form-control" placeholder="Additional Information"></textarea>
+              </div>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-sm-12 text-right">
+              {{ captcha }}
+              
+               <input type="hidden" name="originalCaptcha" value={{ originalCaptcha }}>
+              <button type="submit" class="btn btn-primary" style="margin-top:10px;">
+                <i class="fa fa-paper-plane"></i> Submit Your Request
+              </button>
+            </div>
+          </div>
+
+        </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+{{ so_askquestion_modal }}
+
+
+
+
+ 
+ <div id="toastMessage" class="toast"></div>
+  <div id="loaderOverlay" class="loader-overlay">
+        <div class="loader"></div>
+         </div>
+<script>
+// Function to open video modal
+function openVideoModal(videoUrl) {
+    // Remove any existing modal backdrop to prevent stacking
+    $('.modal-backdrop').remove();
+    $('body').removeClass('modal-open').css('padding-right', '');
+
+    // Extract YouTube video ID from URL
+    let videoId = '';
+    if (videoUrl.includes('youtu.be/')) {
+        videoId = videoUrl.split('youtu.be/')[1].split(/[?&#]/)[0];
+    } else if (videoUrl.includes('watch?v=')) {
+        videoId = videoUrl.split('watch?v=')[1].split(/[&?]/)[0];
+    } else if (videoUrl.includes('youtube.com/embed/')) {
+        videoId = videoUrl.split('youtube.com/embed/')[1].split(/[?&#]/)[0];
+    }
+
+    if (videoId) {
+        const embedUrl = 'https://www.youtube.com/embed/' + videoId + '?autoplay=1&rel=0';
+        $('#videoFrame').attr('src', embedUrl);
+        $('#videoModal').modal('show');
+    } else {
+        console.error('Invalid YouTube URL:', videoUrl);
+    }
+}
+
+// Reset iframe src when modal is closed to stop video playback
+$('#videoModal').on('hidden.bs.modal', function () {
+    $('#videoFrame').attr('src', '');
+});
+
+function openModal(productId) {
+    $('#customQuoteModal').modal('show');
+    
+    $('.quote_product_id').each(function () {
+    $(this).val(productId);
+   });
+}
+
+function openVMModal(productId) {
+    $('#customQuoteModalForVM').modal('show');
+    
+    $('.quote_product_id').each(function () {
+    $(this).val(productId);
+   });
+}
+
+function openDemoModal(productId) {
+    $('#bookaDemoModal').modal('show');
+    
+    $('.demo_product_id').each(function () {
+        $(this).val(productId).trigger('change'); // set value and trigger UI update
+    });
+}
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+  var contactTypes = document.querySelectorAll(".contact_type");
+  var healthcareFields = document.querySelectorAll(".healthcare_profession");
+
+  contactTypes.forEach(function(select, index) {
+    select.addEventListener("change", function() {
+      if (this.value === "Healthcare Professional") {
+        healthcareFields[index].style.display = "block";
+      } else {
+        healthcareFields[index].style.display = "none";
+      }
+    });
+  });
+});
+</script>
+
+<script type="text/javascript">
+<!--
+$('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
+	$.ajax({
+		url: 'index.php?route=product/product/getRecurringDescription',
+		type: 'post',
+		data: $('input[name=\'product_id\'], input[name=\'quantity\'], select[name=\'recurring_id\']'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#recurring-description').html('');
+		},
+		success: function(json) {
+			$('.alert-dismissible, .text-danger').remove();
+
+			if (json['success']) {
+				$('#recurring-description').html(json['success']);
+			}
+		}
+	});
+});
+//--></script>
+
+<script type="text/javascript"><!--
+$('#button-cart').on('click', function() {
+	
+	$.ajax({
+		url: 'index.php?route=extension/soconfig/cart/add',
+		type: 'post',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-cart').html('loading...');
+		},
+		complete: function() {
+			 $('#button-cart').html('<i class="fa fa-shopping-cart"></i> Add to Cart');
+		},
+		success: function(json) {
+			$('.alert').remove();
+			$('.text-danger').remove();
+			$('.form-group').removeClass('has-error');
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+						
+						if (element.parent().hasClass('input-group')) {
+							element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						} else {
+							element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						}
+					}
+				}
+				
+				if (json['error']['recurring']) {
+					$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+				}
+				
+				// Highlight any found errors
+				$('.text-danger').parent().addClass('has-error');
+			}
+			
+			if (json['success']) {
+				$('.text-danger').remove();
+				/*Leader custom code*/
+				$('#previewModal').modal('show'); 
+				$('#previewModal .modal-body').load('index.php?route=extension/soconfig/cart/info&product_id='+ {{ product_id }});
+				/*End Leader custom code*/
+			
+				$('#cart  .total-shopping-cart .items_cart').html(json['total']);
+				$('#cart > ul').load('index.php?route=common/cart/info ul li');
+				
+				
+				$('.so-groups-sticky .popup-mycart .popup-content').load('index.php?route=extension/module/so_tools/info .popup-content .cart-header');
+			}
+			
+		
+		},
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+	});
+});
+
+
+$('#button-checkout').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=checkout/cart/add',
+		type: 'post',
+		data: $('#product input[type=\'text\'], #product input[type=\'hidden\'], #product input[type=\'radio\']:checked, #product input[type=\'checkbox\']:checked, #product select, #product textarea'),
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-checkout').button('loading');
+		},
+		complete: function() {
+			$('#button-checkout').button('reset');
+		},
+		success: function(json) {
+			$('.alert').remove();
+			$('.text-danger').remove();
+			$('.form-group').removeClass('has-error');
+
+			if (json['error']) {
+				if (json['error']['option']) {
+					for (i in json['error']['option']) {
+						var element = $('#input-option' + i.replace('_', '-'));
+ 
+						 {% if option_data %} 
+						 if(ProductOptionId != undefined && ProductOptionId==i.replace('_', '-')){ 
+						 $('.so-colorswatch-productpage-icons').after('<div class="text-danger">' + json['error']['option'][i] + '</div>'); 
+						 } 
+						 {% endif %} 
+ 
+						
+						if (element.parent().hasClass('input-group')) {
+							element.parent().after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						} else {
+							element.after('<div class="text-danger">' + json['error']['option'][i] + '</div>');
+						}
+					}
+				}
+				
+				if (json['error']['recurring']) {
+					$('select[name=\'recurring_id\']').after('<div class="text-danger">' + json['error']['recurring'] + '</div>');
+				}
+				
+				// Highlight any found errors
+				$('.text-danger').parent().addClass('has-error');
+			}
+
+			if (json['success']) {
+				$('.text-danger').remove();
+				$('#cart  .total-shopping-cart ').html(json['total'] );
+				 window.location.href = "index.php?route=checkout/checkout";
+			}
+		},
+        error: function(xhr, ajaxOptions, thrownError) {
+            alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+        }
+	});
+});
+//--></script> 
+
+<script type="text/javascript"><!--
+$('.date').datetimepicker({
+	language: document.cookie.match(new RegExp('language=([^;]+)'))[1],
+	pickTime: false
+});
+
+$('.datetime').datetimepicker({
+	language: document.cookie.match(new RegExp('language=([^;]+)'))[1],
+	pickDate: true,
+	pickTime: true
+});
+
+$('.time').datetimepicker({
+	language: document.cookie.match(new RegExp('language=([^;]+)'))[1],
+	pickDate: false
+});
+
+$('button[id^=\'button-upload\']').on('click', function() {
+	var node = this;
+
+	$('#form-upload').remove();
+
+	$('body').prepend('<form enctype="multipart/form-data" id="form-upload" style="display: none;"><input type="file" name="file" /></form>');
+
+	$('#form-upload input[name=\'file\']').trigger('click');
+
+	if (typeof timer != 'undefined') {
+		clearInterval(timer);
+	}
+
+	timer = setInterval(function() {
+		if ($('#form-upload input[name=\'file\']').val() != '') {
+			clearInterval(timer);
+
+			$.ajax({
+				url: 'index.php?route=tool/upload',
+				type: 'post',
+				dataType: 'json',
+				data: new FormData($('#form-upload')[0]),
+				cache: false,
+				contentType: false,
+				processData: false,
+				beforeSend: function() {
+					$(node).button('loading');
+				},
+				complete: function() {
+					$(node).button('reset');
+				},
+				success: function(json) {
+					$('.text-danger').remove();
+
+					if (json['error']) {
+						$(node).parent().find('input').after('<div class="text-danger">' + json['error'] + '</div>');
+					}
+
+					if (json['success']) {
+						alert(json['success']);
+
+						$(node).parent().find('input').val(json['code']);
+					}
+				},
+				error: function(xhr, ajaxOptions, thrownError) {
+					alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+				}
+			});
+		}
+	}, 500);
+});
+//--></script> 
+<script type="text/javascript">
+
+function showReviewModal() {
+    $('#reviewModal').modal('show');
+}
+
+$('#review').delegate('.pagination a', 'click', function(e) {
+    e.preventDefault();
+
+    $('#review').fadeOut('slow');
+    $('#review').load(this.href);
+    $('#review').fadeIn('slow');
+});
+
+$('#review').load('index.php?route=product/product/review&product_id={{ product_id }}');
+
+$('#button-review').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=product/product/write&product_id={{ product_id }}',
+		type: 'post',
+		dataType: 'json',
+		data: $("#form-review").serialize(),
+		beforeSend: function() {
+			$('#button-review').button('loading');
+		},
+		complete: function() {
+			$('#button-review').button('reset');
+		},
+		success: function(json) {
+			$('.alert-dismissible').remove();
+
+			if (json['error']) {
+				$('#reviewMessage').after('<div class="alert alert-danger alert-dismissible"><i class="fa fa-exclamation-circle"></i> ' + json['error'] + '</div>');
+			}
+
+			if (json['success']) {
+				$('#reviewMessage').after('<div class="alert alert-success alert-dismissible"><i class="fa fa-check-circle"></i> ' + json['success'] + '</div>');
+               alert("Thank you for your review.")
+				$('input[name=\'name\']').val('');
+				$('textarea[name=\'text\']').val('');
+				$('input[name=\'rating\']:checked').prop('checked', false);
+				 $('#reviewModal').modal('hide');
+			}
+		}
+	});
+});
+
+//--></script>
+
+
+
+<script type="text/javascript"><!--
+	$(document).ready(function() {
+		
+		// Initialize the sticky scrolling on an item 
+		sidebar_sticky = '{{sidebar_sticky}}';
+		
+		if(sidebar_sticky=='left'){
+			$(".left_column").stick_in_parent({
+			    offset_top: 10,
+			    bottoming   : true
+			});
+		}else if (sidebar_sticky=='right'){
+			$(".right_column").stick_in_parent({
+			    offset_top: 10,
+			    bottoming   : true
+			});
+		}else if (sidebar_sticky=='all'){
+			$(".content-aside").stick_in_parent({
+			    offset_top: 10,
+			    bottoming   : true
+			});
+		}
+		
+
+		$("#thumb-slider .image-additional").each(function() {
+			$(this).find("[data-index='0']").addClass('active');
+		});
+		
+		$('.product-options li.radio').click(function(){
+			$(this).addClass(function() {
+				if($(this).hasClass("active")) return "";
+				return "active";
+			});
+			
+			$(this).siblings("li").removeClass("active");
+			$(this).parent().find('.selected-option').html('<span class="label label-success">'+ $(this).find('img').data('original-title') +'</span>');
+		})
+		
+		$('.thumb-video').magnificPopup({
+		  type: 'iframe',
+		  iframe: {
+			patterns: {
+			   youtube: {
+				  index: 'youtube.com/', // String that detects type of video (in this case YouTube). Simply via url.indexOf(index).
+				  id: 'v=', // String that splits URL in a two parts, second part should be %id%
+				  src: '//www.youtube.com/embed/%id%?autoplay=1' // URL that will be set as a source for iframe. 
+					},
+				}
+			}
+		});
+	});
+//--></script>
+
+
+<script type="text/javascript">
+var ajax_price = function() {
+	$.ajax({
+		type: 'POST',
+		url: 'index.php?route=extension/soconfig/liveprice/index',
+		data: $('.product-detail input[type=\'text\'], .product-detail input[type=\'hidden\'], .product-detail input[type=\'radio\']:checked, .product-detail input[type=\'checkbox\']:checked, .product-detail select, .product-detail textarea'),
+		dataType: 'json',
+			success: function(json) {
+			if (json.success) {
+				change_price('#price-special', json.new_price.special);
+				change_price('#price-tax', json.new_price.tax);
+				change_price('#price-old', json.new_price.price);
+			}
+		}
+	});
+}
+
+var change_price = function(id, new_price) {$(id).html(new_price);}
+$('.product-detail input[type=\'text\'], .product-detail input[type=\'hidden\'], .product-detail input[type=\'radio\'], .product-detail input[type=\'checkbox\'], .product-detail select, .product-detail textarea, .product-detail input[name=\'quantity\']').on('change', function() {
+	ajax_price();
+});
+
+$(document).ready(function () {
+    let $dynamic = $("#dynamicText");
+    let messages = $dynamic.data("messages");
+    
+    
+    
+    if (messages && messages.length > 0) {
+        const firstMessage = messages.split('|')[0];
+        $("#dynamicText").html('<i class="fa fa-eye mr-3"></i> ' + firstMessage);
+        
+        messages = messages.split('|'); // split messages from DB
+        let index = 0;
+
+        function changeText() {
+            index = (index + 1) % messages.length;
+            $dynamic.fadeOut(1000, function () {
+                $(this).html('<i class="fa fa-eye mr-3"></i> ' + messages[index]).fadeIn(1000);
+            });
+        }
+
+        setInterval(changeText, 5000);
+    }
+});
+
+
+
+</script>
+
+ <script>
+// document.addEventListener('DOMContentLoaded', function () {
+//     console.log('Magnifier script loaded'); // Debug: Confirm script runs
+//     const containers = document.querySelectorAll('.img-magnifier-container');
+//     if (!containers.length) {
+//         console.warn('No img-magnifier-container elements found');
+//         return;
+//     }
+
+//     containers.forEach(container => {
+//         const img = container.querySelector('.feature-image');
+//         const glass = container.querySelector('.img-magnifier-glass');
+//         const imageSrc = container.dataset.image;
+
+//         if (!img || !glass || !imageSrc) {
+//             console.error('Missing img, glass, or image src', container);
+//             return;
+//         }
+
+//         // Set magnifier properties
+//         glass.style.backgroundImage = `url('${imageSrc}')`;
+//         glass.style.backgroundRepeat = 'no-repeat';
+//         const zoom = 3; // 3x magnification
+//         glass.style.backgroundSize = (img.width * zoom) + 'px ' + (img.height * zoom) + 'px';
+//         const bw = 3; // Border width
+//         const w = glass.offsetWidth / 2;
+//         const h = glass.offsetHeight / 2;
+
+//         // Show magnifier and handle movement
+//         function moveMagnifier(e) {
+//             e.preventDefault();
+//             const pos = getCursorPos(e);
+//             let x = pos.x;
+//             let y = pos.y;
+
+//             // Prevent magnifier from showing outside image bounds
+//             if (x > img.width - (w / zoom)) x = img.width - (w / zoom);
+//             if (x < w / zoom) x = w / zoom;
+//             if (y > img.height - (h / zoom)) y = img.height - (h / zoom);
+//             if (y < h / zoom) y = h / zoom;
+
+//             // Position the magnifier (fixed beside image)
+//             glass.style.display = 'block';
+//             glass.style.backgroundPosition = `-${((x * zoom) - w + bw)}px -${((y * zoom) - h + bw)}px`;
+//         }
+
+//         // Get cursor position relative to image
+//         function getCursorPos(e) {
+//             let x = 0, y = 0;
+//             e = e || window.event;
+//             const a = img.getBoundingClientRect();
+//             x = e.pageX - a.left;
+//             y = e.pageY - a.top;
+//             x = x - window.pageXOffset;
+//             y = y - window.pageYOffset;
+//             return { x: x, y: y };
+//         }
+
+//         // Event listeners
+//         img.addEventListener('mousemove', moveMagnifier);
+//         img.addEventListener('touchmove', moveMagnifier);
+//         img.addEventListener('mouseenter', function () {
+//             glass.style.display = 'block';
+//         });
+//         img.addEventListener('mouseleave', function () {
+//             glass.style.display = 'none';
+//         });
+//     });
+// });
+
+
+// </script>
+
+
+
+
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#demo_type').on('change', function() {
+        if ($(this).val() === 'Dealer') {
+            $('#dealer_details').show();
+        } else {
+            $('#dealer_details').hide();
+        }
+    });
+    
+    // review modal Js code :
+    
+     $('.star-label').on('click', function() {
+        var rating = $(this).prev('input[type="radio"]').val();
+        $('input[name="rating"][value="' + rating + '"]').prop('checked', true).trigger('change');
+        updateStarDisplay(rating);
+    });
+    
+    $('.star-label').on('mouseenter', function() {
+        var rating = $(this).prev('input[type="radio"]').val();
+        highlightStars(rating);
+    });
+    
+    $('.stars-container').on('mouseleave', function() {
+        var checkedRating = $('input[name="rating"]:checked').val();
+        if (checkedRating) {
+            updateStarDisplay(checkedRating);
+        } else {
+            resetStars();
+        }
+    });
+    
+    function updateStarDisplay(rating) {
+        $('.star-label').each(function(index) {
+            if (index < rating) {
+                $(this).css('color', '#ffc107');
+            } else {
+                $(this).css('color', '#ddd');
+            }
+        });
+    }
+    
+    function highlightStars(rating) {
+        $('.star-label').each(function(index) {
+            if (index < rating) {
+                $(this).css('color', '#ffc107');
+            } else {
+                $(this).css('color', '#ddd');
+            }
+        });
+    }
+    
+    function resetStars() {
+        $('.star-label').css('color', '#ddd');
+    }
+    
+});
+</script>
+
+
+{#book a demo and request a quote form submit#}
+<script>
+
+      $('#loaderOverlay').hide();
+//   $(document).on('submit', '.quoteForm', function(e) {
+//                 e.preventDefault();
+//                 var form = $(this);
+//                 $('.text-red').remove(); // Clear previous errors
+//               $('#loaderOverlay').show();
+//                 $.ajax({
+//   url: form.attr('action'),
+//   type: 'POST',
+//   data: form.serialize(),
+//   dataType: 'json',
+//   success: function(response) {
+//     $('#loaderOverlay').hide();
+//     $('.text-red').remove(); // remove old validation messages
+//     if (response.success) {
+//       $('#toastMessage')
+//         .text(response.success)
+//         .removeClass('error')
+//         .show();
+
+//       setTimeout(function() {
+//         $('#toastMessage').fadeOut();
+//       }, 20000);
+
+//       form[0].reset();
+//       $('#customQuoteModal, #customQuoteModalForVM, #bookaDemoModal').modal('hide');
+//     } 
+//     else if (response.error) {
+//       // if it's an object (like { field1: "msg", field2: "msg2" })
+//       if (typeof response.error === 'object') {
+//   $('.text-red').remove(); // clear old errors
+
+//   let lastError = ''; // variable to store last message
+//   $.each(response.error, function(key, value) {
+//     $('#' + key).after('<div class="text-red">' + value + '</div>');
+//     lastError = value; // keep updating with latest error
+//   });
+
+//   // show only the last one in toast
+//   $('#toastMessage')
+//     .text(lastError)
+//     .addClass('error')
+//     .show();
+
+//   setTimeout(() => $('#toastMessage').fadeOut(), 20000);
+// }
+
+//       // if it's a string
+//       else if (typeof response.error === 'string') {
+//         $('#toastMessage')
+//           .text(response.error)
+//           .addClass('error')
+//           .show();
+//       }
+
+//       setTimeout(function() {
+//         $('#toastMessage').fadeOut();
+//       }, 20000);
+//     }
+//   }
+ 
+// });
+
+//             });
+            
+ 
+$(document).on('submit', '.bookaDemoForm', function (e) {
+ $('#loaderOverlay').show();
+    // Guard: allow normal submit after validation
+    if ($(this).data('validated') === true) {
+        return true; // allow normal submit
+    }
+
+    e.preventDefault();
+
+    var form = $(this);
+    $('.text-red').remove();
+
+    $.ajax({
+        url: 'index.php?route=information/demo_request/validateAjax',
+        type: 'POST',
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (res) {
+
+            if (res.success) {
+                // Mark form as validated
+                form.data('validated', true);
+ $('#loaderOverlay').hide();
+                // 🔁 Trigger normal submit (this time it will pass through)
+                form.trigger('submit');
+                return;
+            }
+
+            if (res.error) {
+                let lastError = '';
+
+                $.each(res.error, function (key, msg) {
+                    $('[name="' + key + '"]', form)
+                        .after('<div class="text-red">' + msg + '</div>');
+                    lastError = msg;
+                });
+
+                $('#toastMessage')
+                    .text(lastError)
+                    .addClass('error')
+                    .show();
+
+                setTimeout(() => $('#toastMessage').fadeOut(), 8000);
+            }
+        }
+    });
+});
+
+
+
+
+$(document).on('submit', '.quoteForm', function (e) {
+ $('#loaderOverlay').show();
+    // Guard: allow normal submit after validation
+    if ($(this).data('validated') === true) {
+        return true; // allow normal submit
+    }
+
+    e.preventDefault();
+
+    var form = $(this);
+    $('.text-red').remove();
+
+    $.ajax({
+        url: 'index.php?route=information/quote_request/validateAjax',
+        type: 'POST',
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (res) {
+
+            if (res.success) {
+                //  Mark form as validated
+                form.data('validated', true);
+ $('#loaderOverlay').hide();
+                // 🔁 Trigger normal submit (this time it will pass through)
+                form.trigger('submit');
+                return;
+            }
+
+            if (res.error) {
+                let lastError = '';
+
+                $.each(res.error, function (key, msg) {
+                    $('[name="' + key + '"]', form)
+                        .after('<div class="text-red">' + msg + '</div>');
+                    lastError = msg;
+                });
+
+                $('#toastMessage')
+                    .text(lastError)
+                    .addClass('error')
+                    .show();
+
+                setTimeout(() => $('#toastMessage').fadeOut(), 8000);
+            }
+        }
+    });
+});
+     </script>
+     
+    
+
+     {{ footer }} 

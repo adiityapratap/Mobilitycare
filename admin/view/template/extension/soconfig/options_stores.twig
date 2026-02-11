@@ -1,0 +1,833 @@
+{# ==========Twig variable So Config ==============#}
+
+{% set param_columns = { 
+	'1' : '1 column',
+	'2' : '2 columns',
+	'3' : '3 columns',
+	'4' : '4 columns',
+	'5' : '5 columns',
+	'6' : '6 columns',
+	'7' : '7 columns',
+	'8' : '8 columns',
+	'9' : '9 columns',
+} %}
+
+{% set param_cardGallery = { 
+	'1' : 'Align Left',
+	'2' : 'Align Right',
+	'3' : 'Align Bottom',
+} %}
+
+{% set param_refineSearch = { 
+	'0' : 'Disable ',
+	'1' : 'Image only',
+	'2' : 'Text and image',
+	'3' : 'Block light'
+} %}
+
+
+{% set param_scssFormat = { 
+	'Expanded' : 'Expanded',
+	'Nested' : 'Nested (default)',
+	'Compressed' : 'Compressed',
+	'Compact' : 'Compact',
+	'Crunched' : 'Crunched',
+} %}
+
+{% set param_layoutStyle = { 
+	'full' : 'Default',
+	'fluid' : 'Layout fluid',
+	'boxed' : 'Layout boxed',
+} %}
+
+{% set param_contentbgMode = { 
+	'repeat' : 'Repeat',
+	'no-repeat' : 'No-Repeat',
+} %}
+
+{% set param_contentAttachment = { 
+	'scroll' : 'Scroll',
+	'fixed' : 'Fixed',
+} %}
+
+
+
+{% set param_productGallery = { 
+	'bottom' : 'Gallery Bottom',
+	'left' : 'Gallery Left',
+	'grid' : 'Gallery Grid',
+	'list' : 'Gallery List',
+	'slider' : 'Gallery Slider',
+} %}
+
+
+
+{% set param_tabsPosition = { 
+	'1' : 'Bottom vertical',
+	'2' : 'Bottom horizontal',
+} %}
+
+{% set param_toppanel = { 
+	'1' : 'Show Header Center',
+	'2' : 'Show Header Bottom',
+	'3' : 'Show All'
+} %}
+
+{% set param_catalogMode = { 
+	'grid-list' : 'List Column',
+	'grid-table' : 'Table Column',
+	'grid-2' : '2 Columns',
+	'grid-3' : '3 Columns',
+	'grid-4' : '4 Columns',
+	'grid-5' : '5 Columns',
+} %}
+
+
+{% set param_totalBanner = { 
+	'1' : 'Hover effect 1',
+	'2' : 'Hover effect 2',
+	'3' : 'Hover effect 3',
+	'4' : 'Hover effect 4',
+	'5' : 'Hover effect 5',
+	'6' : 'Hover effect 6',
+	'7' : 'Hover effect 7',
+	'8' : 'Hover effect 8',
+	'9' : 'Hover effect 9',
+	'10' : 'Hover effect 10',
+	'11' : 'Hover effect 11',
+	'12' : 'Hover effect 12',
+} %}
+
+{% set param_carticon = { 
+	'cart-1' : 'Cart Icon 1',
+	'cart-2' : 'Cart Icon 2',
+	'cart-3' : 'Cart Icon 3',
+	'cart-4' : 'Cart Icon 4',
+	'cart-5' : 'Cart Icon 5',
+	'cart-6' : 'Cart Icon 6'
+} %}
+
+{% set param_preloaderAnimation = { 
+	'line' : 'Default line',
+	'double-loop' : 'Double Bounce',
+	'cube-move' : 'Cube Move',
+	'circle-bounce' : 'Circle Bounce',
+	'folding-cube' : 'Cube Folding',
+} %}
+
+{% set param_blogColumn = { 
+	'blog-grid' : '1 Column',
+	'blog-2' : '2 Columns',
+	'blog-3' : '3 Columns',
+	'blog-4' : '4 Columns',
+	'blog-list' : 'List Column',
+} %}
+
+{% set param_articlesStyle= { 
+	'default' : 'Default',
+	'style1' : 'Style1',
+	'style2' : 'Style2',
+	'style3' : 'Style3',
+	'style4' : 'Style4',
+	'style5' : 'Style5',
+} %}
+
+{% set customSelectorsDesc = 'Add custom CSS selectors separated by a comma.' %}
+{% set desc_Sidebar = 'If sidebar has no content. Then click Design → Layouts add content for sidebar' %}
+{% set desc_NoSidebar = 'If no sidebar has not working.' %}
+{% set desc_newcolor = 'New Color showing in box select color.' %}
+{% set desc_notnewcolor = ' <b>Create New Color working : </b> </br> Tab Advanced → SCSS Compile = Off, Developer Compile Muti Color = Off' %}
+{% set customCssDesc = 'You can use custom CSS use the custom.css file' %}
+{% set customJSDesc = 'You can add custom JavaScript code. It loads your custom Javascript file after all other JavaScript files (except special hardcoded occasions), allowing you to be the last one who will affect your website.' %}
+{% set desc_contact = '<a href="https://developers.google.com/maps/documentation/javascript/get-api-key" target="_blank" style="display: block;float: left;width: auto;margin-top: 7px">Find your API Key »</a>' %}
+
+{# //=============End variable So Config============= #}
+
+    {#============= Tab General============== #}
+    <div class="so-ultimate-fieldset so-ultimate-fieldset-basic clearfix">
+		{{ fields.fieldsetHeader(objlang.get('maintabs_general'),'icon-home')}} 
+		
+		<div class="so-ultimate-group-list">
+			{{ fields.fieldsetHeader(objlang.get('maintabs_general'),'sub-header',true)}} 
+			
+			<div class="so-ultimate-group-list__content">
+			{# General  Blocks---------------------------------------------  #}
+			<div class="so-ultimate-group-wrap so-ultimate-group-Style">
+				{{ fields.groupHeaderBox(objlang.get('general_tab_Styles'))}} 
+				
+				<div class="so-ultimate-field-list field-list--scheme {% if not validate %} disable-applyHome {% endif %}">
+					{{ fields.homepageSelect('soconfig_general_store','typelayout',homeStyle, objlang.get('general_homestyle')) }} 
+					{{ fields.select('soconfig_general_store','themecolor',totalLayoutColor,objlang.get('general_colorstyles'),'field--listcolor') }} 
+					
+					{{ fields.onOff('soconfig_advanced_store','newcolor_status',objlang.get('general_newcolor'), 'parent newcolor' )}} 
+					{{ fields.text('soconfig_advanced_store','name_color',objlang.get('general_namecolor'), 'child newcolor newcolor_1' ) }} 
+					{{ fields.field_colors('soconfig_advanced_store','theme_color',' ', 'child newcolor newcolor_1') }} 
+					
+					<div class="control-group control-group-advanced">
+						<div class="control-group-inner child newcolor newcolor_1">
+							<button onclick="buttonApplyColor();" class="btn btn-info" type="button"  {% if scsscompile %} {{ "disabled='disabled'" }} {% endif %}><i class="fa fa-magic" aria-hidden="true"></i> New Color</button>
+						</div>
+					</div>
+					<div class="control-group control-group-advanced"> <div class="control-help control-group-inner child newcolor newcolor_1">
+						{% if scsscompile %}
+							{{desc_notnewcolor}}
+						{% else %}
+							{{desc_newcolor}} 
+						{% endif %}
+					</div></div>
+				</div>
+			</div>
+			
+			<div class="so-ultimate-group-wrap so-ultimate-group-general">
+				{{ fields.groupHeaderBox(objlang.get('general_tab_general'))}} 
+				<div class="so-ultimate-field-list">
+					{{ fields.effectBanner('soconfig_general_store','type_banner',param_totalBanner, objlang.get('general_effectBanner') )}} 
+					{{ fields.onOff('soconfig_general_store','backtop',objlang.get('general_back_top') )}} 
+					{{ fields.onOff('soconfig_general_store','preloader',objlang.get('general_preloader'), 'parent preloader' )}} 
+					{{ fields.select('soconfig_general_store','preloader_animation', param_preloaderAnimation,'Preloader Styles', 'child preloader preloader_1 ')}} 
+					
+				</div>
+			</div>
+		   
+			<div class="so-ultimate-group-wrap so-ultimate-group-comingsoon">
+				{{ fields.groupHeaderBox(pages_comingsoon)}} 
+				
+			   <div class="so-ultimate-field-list">
+					
+					{{ fields.field_addimage('soconfig_pages_store','comingsoon_imglogo', objlang.get('pages_comingsoonLogo')) }} 
+					{{ fields.langTextarea(languages,'soconfig_pages_store','comingsoon_title', objlang.get('pages_comingsoonTitle')) }}
+					{{ fields.field_date('soconfig_pages_store','comingsoon_date',objlang.get('pages_comingsoonDate') ) }}
+					{{ fields.langTextarea(languages,'soconfig_pages_store','comingsoon_content', objlang.get('pages_comingsoonContent') ) }}
+						
+					
+				</div>
+			</div>
+			
+			<div class="so-ultimate-group-wrap so-ultimate-group-contactus">
+				{{ fields.groupHeaderBox(pages_contactus)}} 
+				
+			   <div class="so-ultimate-field-list">
+					{{ fields.text('soconfig_pages_store','mapaddress','Address Text') }} 
+					{{ fields.text('soconfig_pages_store','mapgeocode','Maps Geocode') }} 
+					{{ fields.text('soconfig_pages_store','mapkeys','API Key Text','',desc_contact) }} 
+					{{ fields.text('soconfig_pages_store','mapzoom','Maps Zoom') }} 
+					
+					
+					
+				</div>
+			</div>
+			
+			</div>
+		</div>
+    </div>
+	{#============= /Tab General============== #}
+	
+	{#============= Tab Header & Footer ============== #}
+	<div class="so-ultimate-fieldset so-ultimate-fieldset-headerFooter" >
+		{{ fields.fieldsetHeader(objlang.get('maintabs_headerfoter'),'icon-header')}} 
+	
+		<div class="so-ultimate-group-list">
+			{{ fields.fieldsetHeader(objlang.get('maintabs_headerfoter'),'sub-header',true)}} 
+			
+			<div class="so-ultimate-group-list__content">
+				<div class="so-ultimate-group-wrap so-ultimate-group-header">
+					{{ fields.groupHeaderBox(objlang.get('general_tab_header'))}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.headerStyle('soconfig_general_store','typeheader',homeStyle, objlang.get('general_styleheader'),'' )}} 
+						{{ fields.goLink('Configure to Megamenu','index.php?route=extension/module/so_megamenu')}} 
+						{{ fields.onOff('soconfig_general_store','toppanel_status', objlang.get('general_stickyheader'),'parent stickyheader' )}} 
+						{{ fields.select('soconfig_general_store','toppanel_type',param_toppanel, objlang.get('general_positionheader'),'child stickyheader stickyheader_1') }} 
+						
+						{{ fields.onOff('soconfig_general_store','iconWishlist_status', objlang.get('design_iconWishlist') )}} 
+						{{ fields.onOff('soconfig_general_store','iconCompare_status', objlang.get('design_iconCompare') )}} 
+
+						 {{ fields.onOff('soconfig_general_store','custom_status', objlang.get('general_primaryMessage'), 'parent primaryMessage' )}} 
+						{{ fields.langTextarea(languages,'soconfig_general_store','custom_html',' ', 'child primaryMessage primaryMessage_1') }} 
+
+						{{ fields.onOff('soconfig_general_store','header_socials', objlang.get('general_displaySocials'), 'parent displaySocials' )}} 
+						{{ fields.langTextarea(languages,'soconfig_general_store','custom_socials',' ', 'child displaySocials displaySocials_1') }}
+						
+						{{ fields.onOff('soconfig_general_store','welcome_message_status', objlang.get('general_secondaryMessage'), 'parent secondaryMessage' )}} 
+						{{ fields.langTextarea(languages,'soconfig_general_store','welcome_message',' ', 'child secondaryMessage secondaryMessage_1') }}
+						
+					</div>
+					
+				</div>
+				
+				<div class="so-ultimate-group-wrap so-ultimate-group-footer">
+					{{ fields.groupHeaderBox(objlang.get('general_tab_footer'))}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.headerStyle('soconfig_general_store','typefooter',homeStyle, objlang.get('general_stylefooter'),'' )}} 
+						{{ fields.goLink('Configure Module Footer','index.php?route=extension/module/so_page_builder')}} 
+						{{ fields.onOff('soconfig_general_store','imgpayment_status',objlang.get('general_statusPayment' ) , 'parent statusPayment')}} 
+						{{ fields.field_addimage('soconfig_general_store','imgpayment',' ', 'child statusPayment statusPayment_1' ) }}
+						{{ fields.onOff('soconfig_general_store','copyright_status',objlang.get('general_statusCopyright' ) , 'parent statusCopyright')}} 
+						{{ fields.langTextarea(languages,'soconfig_general_store','copyright', objlang.get('general_copyright') ) }} 
+					</div>
+					
+				</div>
+				
+			</div>
+		
+		</div>
+    </div>
+	{#============= /Tab Header & Footer ============== #}
+	
+    {#============= Tab Design Color============== #}
+    <div class="so-ultimate-fieldset so-ultimate-fieldset-designcolor" >
+		{{ fields.fieldsetHeader(objlang.get('maintabs_layout'),'icon-colors')}} 
+	
+		<div class="so-ultimate-group-list">
+			{{ fields.fieldsetHeader(objlang.get('maintabs_layout'),'sub-header',true)}} 
+			
+			<div class="so-ultimate-group-list__content">
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox(objlang.get('design_tabLayout'))}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.select('soconfig_layout_store','layoutstyle', param_layoutStyle, objlang.get('design_layoutStyle'))}} 
+						{{ fields.shoppingIcon('soconfig_layout_store','iconcart',param_carticon, objlang.get('design_shoppingIcon') )}} 
+					</div>
+					
+				</div>
+				
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox(objlang.get('designtab_bodybackground') )}} 
+					<div class="so-ultimate-field-list">
+						
+						{{ fields.field_colors('soconfig_layout_store','theme_bgcolor',objlang.get('design_backgroundColor')) }}  
+						{{ fields.field_addimage('soconfig_layout_store','contentbg',' ',' ',objlang.get('desc_bodybackground')) }} 
+						
+						{{ fields.select('soconfig_layout_store','content_bg_mode',param_contentbgMode, objlang.get('design_backgroundSize') )}} 
+						{{ fields.select('soconfig_layout_store','content_attachment',param_contentAttachment, objlang.get('design_backgroundAttachment') )}} 
+					</div>
+					
+				</div>
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox(objlang.get('designtab_headerbackground') )}} 
+					<div class="so-ultimate-field-list field-list--liveColors">
+						
+						{{ fields.onOff('soconfig_layout_store','headercolor_status', objlang.get('design_headerColor'),'parent headerColor' )}} 
+						{{ fields.liveColors('soconfig_layout_store','headerparent','Header Parent ','child headerColor headerColor_1 ' )}}  
+						{{ fields.liveColors('soconfig_layout_store','headertop','Header Top','child headerColor headerColor_1 ' )}}  
+						{{ fields.liveColors('soconfig_layout_store','headercenter','Header Middle','child headerColor headerColor_1 ' )}}  
+						{{ fields.liveColors('soconfig_layout_store','headerbottom','Header Bottom','child headerColor headerColor_1 ' )}}  
+					</div>
+					
+				</div>
+				
+			</div>
+		
+		</div>
+    </div>
+	{#============= /Tab Background============== #}
+	
+	
+	{#============= Tab Fonts============== #}
+    <div class="so-ultimate-fieldset so-ultimate-fieldset-fonts">
+		{{ fields.fieldsetHeader(objlang.get('maintabs_fonts'),'icon-font')}} 
+	
+		<div class="so-ultimate-group-list">
+			{{ fields.fieldsetHeader(objlang.get('maintabs_fonts'),'sub-header',true)}} 
+			
+			<div class="so-ultimate-group-list__content">
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox('Body')}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.onOff('soconfig_fonts_store','body_status','Enable','parent fontBody' )}}
+						{{ fields.gfonts('soconfig_fonts_store','body_font','child fontBody fontBody_1')}}
+					</div>
+					
+				</div>
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox('Headings ')}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.onOff('soconfig_fonts_store','h1_font_status','Headings 1','parent h1font' )}}
+						{{ fields.gfonts('soconfig_fonts_store','h1_font','child fontheading h1font h1font_1')}}
+						
+						{{ fields.onOff('soconfig_fonts_store','h2_font_status','Headings 2','parent h2font' )}}
+						{{ fields.gfonts('soconfig_fonts_store','h2_font','child h2font h2font_1')}}
+						
+						{{ fields.onOff('soconfig_fonts_store','h3_font_status','Headings 3','parent h3font' )}}
+						{{ fields.gfonts('soconfig_fonts_store','h3_font','child h3font h3font_1')}}
+						
+						{{ fields.onOff('soconfig_fonts_store','h4_font_status','Headings 4','parent h4font' )}}
+						{{ fields.gfonts('soconfig_fonts_store','h4_font','child h4font h4font_1')}}
+						
+						
+					</div>
+				</div>	
+				
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox('Main navigation')}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.onOff('soconfig_fonts_store','navigation_font_status','Enable','parent naviFont' )}}
+						{{ fields.gfonts('soconfig_fonts_store','navigation_font','child naviFont naviFont_1')}}
+					</div>
+				</div>
+				
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox('Store')}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.onOff('soconfig_fonts_store','moduleTitle_font_status','Widgets Titles / Module title','parent moduleTitleFont' )}}
+						{{ fields.gfonts('soconfig_fonts_store','moduleTitle_font','child moduleTitleFont moduleTitleFont_1')}}
+						
+						{{ fields.onOff('soconfig_fonts_store','productTitle_font_status','Product title','parent productTitleFont' )}}
+						{{ fields.gfonts('soconfig_fonts_store','productTitle_font','child productTitleFont productTitleFont_1')}}
+						
+						{{ fields.onOff('soconfig_fonts_store','productPrice_font_status','Product price','parent productPriceFont' )}}
+						{{ fields.gfonts('soconfig_fonts_store','productPrice_font','child productPriceFont productPriceFont_1')}}
+					</div>
+				</div>
+				
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox('Custom Selectors')}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.onOff('soconfig_fonts_store','custom_font_status','Enable','parent fontcustom' )}}
+						{{ fields.gfonts('soconfig_fonts_store','custom_font','child fontcustom fontcustom_1')}}
+						{{ fields.textarea('soconfig_fonts_store','customFont_content','Custom Selectors',customSelectorsDesc,'child fontcustom fontcustom_1') }} 
+					</div>
+				</div>
+				
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox('Update Font List')}} 
+					<div class="so-ultimate-field-list">
+						<div class="control-group group-style-update_font">
+							<div class="control-group-inner">
+								<div class="controls"><a id="update_fonts" class="btn btn-primary btn-update-so-ultimate-fonts" href="#" target="_self">One Click update</a></div>
+							</div>
+							<div class="control-help">Click this button to refresh the list of Google fonts.</div>
+						</div>
+					</div>
+				</div>	
+			</div>				
+   
+		</div>
+   </div>
+	{#============= /Tab Fonts============== #}
+	
+	
+	{#============= Tab Store============== #}
+    <div class="so-ultimate-fieldset so-ultimate-fieldset-store" >
+		{{ fields.fieldsetHeader(objlang.get('maintabs_products'),'icon-shop')}} 
+	
+		<div class="so-ultimate-group-list">
+			{{ fields.fieldsetHeader(objlang.get('maintabs_products'),'sub-header',true)}} 
+			
+			<div class="so-ultimate-group-list__content">
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox(pages_common)}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.select('soconfig_pages_store','catalog_display_sidebar', {'disable' : 'No Sidebar','left':'Sidebar Left','right':'Sidebar Right','all':'Sidebar All'},objlang.get('product_catalog_sidebar_display'),'',desc_Sidebar )}} 
+						{{ fields.select('soconfig_pages_store','catalog_col_position', {'outside' : 'Outside content','inside':'Inside content'}, objlang.get('product_catalog_col_position'),'', desc_NoSidebar)}} 
+						{{ fields.select('soconfig_pages_store','catalog_col_type', {'default' : 'Default','off_canvas':'Column Off Canvas'}, objlang.get('product_catalog_col_type'),'', desc_NoSidebar )}} 
+						{{ fields.select('soconfig_pages_store','catalog_sidebar_sticky', {'disable' : 'Disable','left':'Sidebar Left','right':'Sidebar Right','all':'Sidebar All'},objlang.get('product_catalog_sidebar_sticky'),'', desc_NoSidebar )}} 
+					</div>
+					
+				</div>
+				
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox(pages_subcategory)}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.onOff('soconfig_pages_store','featured_cate_status','Display Category Featured' )}} 
+						{{ fields.select('soconfig_pages_store','lstimg_cate_status', {0:'Disable',1 : 'Show Description',2 : 'Show all'},objlang.get('product_catalog_show') )}} 
+						{{ fields.select('soconfig_pages_store','product_catalog_refine', param_refineSearch ,objlang.get('product_catalog_refine') )}} 
+						{{ fields.select('soconfig_pages_store','catalog_refine_number',param_columns, objlang.get('product_catalog_refine_col') ) }} 
+					</div>
+				</div>	
+				
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox(pages_pro_listings)}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.select('soconfig_pages_store','product_catalog_mode', param_catalogMode, objlang.get('product_catalog_mode') )}} 
+						{{ fields.select('soconfig_pages_store','card_gallery',param_cardGallery, objlang.get('product_catalog_gallery'))}} 
+						{{ fields.select('soconfig_pages_store','desktop_addcart_position',  {'left':'Align Left','right' : 'Align Right','center' : 'Align Center','bottom' : 'Align Bottom'},objlang.get('product_catalog_cartinfo'))}} 
+						{{ fields.onOff('soconfig_pages_store','placeholder_status', objlang.get('product_catalog_placeholder'),'parent placeholder')}} 
+						{{ fields.field_addimage('soconfig_pages_store','placeholder_img',' ','child placeholder placeholder_1') }} 
+						
+						<div class="control-group control-group-element">
+							<div class="control-group-inner ">
+								<label class="control-label">Element visibility</label>
+								<div class="controls ">
+									<table class="table" cellspacing="0">
+										<thead>
+											<tr class="s_open">
+												<th width="260">Element</th><th  class="align_center">Default</th>
+											</tr>
+										</thead>
+										<tbody>
+											<tr class="s_open s_nosep tbProductElementVisibilityCartButton">
+												<td>Add to cart button</td><td>{{ fields.checkbox('soconfig_pages_store','listing_cart_status')}} </td>
+											</tr>
+											<tr class="s_open s_nosep tbProductElementVisibilityCompareButton">
+												<td>Compare button</td><td>{{ fields.checkbox('soconfig_pages_store','listing_compare_status')}} </td>
+											</tr>
+											<tr class="s_open s_nosep tbProductElementVisibilityWishlistButton">
+												<td>Wishlist button</td><td>{{ fields.checkbox('soconfig_pages_store','listing_wishlist_status')}} </td>
+											</tr>
+											<tr class="s_open s_nosep tbProductElementVisibilityWishlistButton">
+												<td>QuickView button</td><td>{{ fields.checkbox('soconfig_pages_store','listing_quickview_status')}} </td>
+											</tr>
+											<tr class="s_open s_nosep">
+												<td>Rating</td><td>{{ fields.checkbox('soconfig_pages_store','listing_rating_status')}} </td>
+											</tr>
+											<tr class="s_open s_nosep">
+												<td>Discount label</td><td>{{ fields.checkbox('soconfig_pages_store','listing_discount_status')}} </td>
+											</tr>
+											
+											<tr class="s_open s_nosep">
+												<td>Countdown </td><td>{{ fields.checkbox('soconfig_pages_store','listing_countdown_status')}} </td>
+											</tr>
+											<tr class="s_open s_nosep">
+												<td>Image gallery</td><td>{{ fields.checkbox('soconfig_pages_store','listing_gallery_status')}} </td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="so-ultimate-group-wrap">
+					{{ fields.groupHeaderBox(pages_pro_detail)}} 
+					<div class="so-ultimate-field-list">
+						{{ fields.select('soconfig_pages_store','thumbnails_position', param_productGallery, objlang.get('product_catalog_productgallery') )}} 
+						{{ fields.onOff('soconfig_pages_store','radio_style',objlang.get('product_catalog_checkradio') )}} 
+						{{ fields.onOff('soconfig_pages_store','product_enablezoom',objlang.get('product_catalog_zoomimage'))}} 
+						
+						{{ fields.onOff('soconfig_pages_store','product_sold',objlang.get('text_productsold'))}} 
+						
+						{{ fields.onOff('soconfig_pages_store','product_enablesizechart',objlang.get('product_catalog_sizechart'),'parent sizechart')}} 
+						{{ fields.field_addimage('soconfig_general_store','img_sizechart',' ','child sizechart sizechart_1') }} 
+						
+						{{ fields.select('soconfig_pages_store','tabs_position', param_tabsPosition,objlang.get('product_catalog_tabs') )}} 
+						{{ fields.onOff('soconfig_pages_store','product_enableshowmore',objlang.get('product_catalog_showmore') )}} 
+						
+						{{ fields.onOff('soconfig_pages_store','product_enableshipping',objlang.get('product_catalog_shipping') ,'parent content_shipping')}} 
+						{{ fields.langTextarea(languages,'soconfig_pages_store','product_contentshipping',' ','child content_shipping content_shipping_1') }}
+						
+						{{ fields.onOff('soconfig_pages_store','product_page_button',objlang.get('product_catalog_shared'),'parent content_social')}} 
+						{{ fields.langTextarea(languages,'soconfig_pages_store','product_socialshare',' ','child content_social content_social_1') }}
+						
+						{{ fields.onOff('soconfig_pages_store','related_status',objlang.get('product_catalog_related'),'parent relatedProduct')}} 
+						{{ fields.devices('soconfig_pages_store','product_related_column_','Related products per row','child relatedProduct relatedProduct_1') }} 
+					</div>
+				</div>	
+				
+			</div>
+       
+		</div>
+    </div>
+	{#============= Tab Store============== #}
+	
+	{#============= Tab Blog============== #}
+	<div class="so-ultimate-fieldset so-ultimate-fieldset-social">
+		{{ fields.fieldsetHeader(objlang.get('maintabs_blog'),'icon-blog')}} 
+		
+		<div class="so-ultimate-group-list">
+			{{ fields.fieldsetHeader(objlang.get(maintabs_blog),'sub-header',true)}} 
+			
+			
+			<div class="so-ultimate-group-list__content">
+				<div class="so-ultimate-group-wrap so-ultimate-group-social">
+					{{ fields.groupHeaderBox('Blog Category')}} 
+					
+				   <div class="so-ultimate-field-list">
+						{{ fields.text('soconfig_social_store','blogImgSize','Category Images Size',' ','E.g. Images Size: 600x340') }} 
+						{{ fields.select('soconfig_social_store','blogColumn', param_blogColumn,'Blog Grid View')}} 
+						{{ fields.onOff('soconfig_social_store','blogDateTime','Show Date Timer' )}}
+						{{ fields.onOff('soconfig_social_store','blogAuthor','Show Post Author' )}}
+						{{ fields.onOff('soconfig_social_store','blogReadmore','Show Readmore' )}}
+						
+					</div>	
+					
+				</div>
+				<div class="so-ultimate-group-wrap so-ultimate-group-social">
+					{{ fields.groupHeaderBox('Blog Articles')}} 
+				   <div class="so-ultimate-field-list">
+						{{ fields.onOff('soconfig_social_store','blogSocial','Social Share' )}}
+						{{ fields.blogArticle('soconfig_social_store','blogArticles', param_articlesStyle,'Blog Articles Style')}} 
+					
+					</div>	
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	{#============= /Tab Blog============== #}
+   
+	{#============= Tab Social============== #}
+	<div class="so-ultimate-fieldset so-ultimate-fieldset-social">
+		{{ fields.fieldsetHeader(objlang.get('maintabs_social'),'icon-social')}} 
+		
+		<div class="so-ultimate-group-list">
+			{{ fields.fieldsetHeader(objlang.get('maintabs_social'),'sub-header',true)}} 
+			
+			
+			<div class="so-ultimate-group-list__content">
+				<div class="so-ultimate-group-wrap so-ultimate-group-social">
+					{{ fields.groupHeaderBox('Sidebar social')}} 
+					
+				   <div class="so-ultimate-field-list">
+						{{ fields.select('soconfig_social_store','social_sidebar', {0:'Disable',1 : 'Sidebar Left',2 : 'Sidebar Right'},'Enable Social Sidebar')}} 
+						
+						{{ fields.onOff('soconfig_social_store','social_fb_status','Show Facebook','parent social_fb' )}}
+						
+						{{ fields.text('soconfig_social_store','facebook','Facebook Username','child social_fb social_fb_1') }} 
+						
+						{{ fields.onOff('soconfig_social_store','social_twitter_status','Show Twitter','parent social_tt' )}}
+						
+						{{ fields.text('soconfig_social_store','twitter','Twitter username','child social_tt social_tt_1') }} 
+						
+						{{ fields.onOff('soconfig_social_store','social_custom_status','Show Youtube','parent social_custom' )}} 
+						
+						{{ fields.text('soconfig_social_store','video_code','Video Youtube','child social_custom social_custom_1','E.g. https://www.youtube.com/watch?v=Wdtw_A5FDGs') }}
+						
+						{{ fields.onOff('soconfig_social_store','social_instagram_status','Show Instagram','parent social_instagram' )}} 
+						{{ fields.text('soconfig_social_store','instagram_user','Instagram Users ID','child social_instagram social_instagram_1') }} 
+						{{ fields.text('soconfig_social_store','instagram_token','Access Token','child social_instagram social_instagram_1') }} 
+					</div>	
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	{#============= /Tab Social============== #}
+	{#============= Tab Custom============== #}
+	<div class="so-ultimate-fieldset so-ultimate-fieldset-custom">
+		{{ fields.fieldsetHeader(objlang.get('maintabs_custom'),'icon-custom')}} 
+		
+		<div class="so-ultimate-group-list">
+			{{ fields.fieldsetHeader(objlang.get('maintabs_custom'),'sub-header',true)}} 
+			
+			<div class="so-ultimate-group-list__content">
+				<div class="so-ultimate-group-wrap so-ultimate-group-customcode">
+				{{ fields.groupHeaderBox(objlang.get('maintabs_custom'))}} 
+				
+					<div class="so-ultimate-field-list">
+						{{ fields.onOff('soconfig_custom_store','cssinput_status','Location Header on page ','parent customcss' )}} 
+						{{ fields.textarea('soconfig_custom_store','cssinput_content','Script contents',customCssDesc,'child customcss customcss_1') }} 
+						
+						{{ fields.onOff('soconfig_custom_store','jsinput_status','Location Footer on page ','parent customjs' )}}
+						{{ fields.textarea('soconfig_custom_store','jsinput_content','Script contents','','child customjs customjs_1') }}
+						
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+	{#============= /Tab Custom============== #}
+	
+	{#============= Tab Advanced============== #}
+	<div class="so-ultimate-fieldset so-ultimate-fieldset-advanced">
+		{{ fields.fieldsetHeader(objlang.get('maintabs_advanced'),'icon-wrench','')}} 
+		
+		<div class="so-ultimate-group-list">
+			{{ fields.fieldsetHeader(objlang.get('maintabs_advanced'),'sub-header',true)}} 
+		
+			<div class="so-ultimate-group-list__content">
+				<div class="so-ultimate-group-wrap so-ultimate-group-advanced">
+					{{ fields.groupHeaderBox('SCSS Compile')}} 
+					
+					<div class="so-ultimate-field-list">
+						{{ fields.onOff('soconfig_advanced_store','scsscompile','SCSS Compile' )}} 
+						{{ fields.select('soconfig_advanced_store','scssformat', param_scssFormat,'CSS Format')}} 
+						{{ fields.onOff('soconfig_advanced_store','compileMutiColor','Developer Compile Muti Color' )}} 
+					</div>
+					
+				</div>
+				<div class="so-ultimate-group-wrap so-ultimate-group-performance">
+					{{ fields.groupHeaderBox('Performance')}} 
+					
+					<div class="so-ultimate-field-list">
+						
+						{{ fields.onOff('soconfig_advanced_store','cssminify','Show CSS Minify','parent cssminify' )}} 
+						
+						<div class="control-group control-group-advanced ">
+							<!-- cssminify -->
+							<div id="tab-field-cssminify" class="control-group-inner child cssminify cssminify_1">
+								
+								<div class="form-group2">
+									<a onclick="add_cssExclude();" class="btn btn-default btn-sm"> <i class="fa fa-file-o" ></i> Add file css</a>			
+								</div>
+								<table class="table table-hover" id="listgroup-cssminify">
+									<thead>
+										<tr>
+											<td class="first">Exclude file css</td>
+											<td >Delete</td>
+										</tr>
+									</thead>
+									<tbody >
+									{% set listcss_row = 0 %}
+									{% if cssExcludes and  cssExcludes !=''%}
+
+										{% for cssExclude in cssExcludes %}
+											{% if cssExclude.namecss is not empty %}
+												
+													<tr id="listcssExclude{{listcss_row}}">
+														<td class="first">
+															<input class="form-control" type="text" class="form-control" value="{{cssExclude.namecss}}" name="soconfig_advanced_store[cssExclude][{{listcss_row}}][namecss]">
+														</td>
+														<td>
+															<a onclick="$('#listcssExclude{{listcss_row}}').remove();" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></a>
+														</td>
+													</tr>
+												
+											{%set listcss_row = listcss_row + 1 %}
+											{% endif %}
+										{% endfor %}	
+									{% endif %}
+									</tbody>
+									<tfoot></tfoot>
+								</table>
+
+								
+								<script type="text/javascript">
+								var listcss_row = {{listcss_row}} ;
+								var languages = {{languages|json_encode}} ;
+								
+								function add_cssExclude() {
+
+									html  = '<tbody id="listcssExclude' + listcss_row + '">';
+									html += '  <tr>';
+									html += '    <td>';
+									html += '		<input class="form-control" type="text" value="catalog/view/javascript/font-awesome/css/font-awesome.min.css" name="soconfig_advanced_store[cssExclude][' + listcss_row + '][namecss]">';
+									html += '    </td>';
+									html += '    <td><a onclick="$(\'#listcssExclude' + listcss_row + '\').remove();" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></a></td>';
+									html += '  </tr>';
+									html += '</tbody>';
+									
+									$('#listgroup-cssminify tfoot').before(html);
+									listcss_row++;
+								}
+								</script> 
+								
+							</div>
+							<!--  END cssminify -->
+							
+						
+						</div>
+						
+						{{ fields.onOff('soconfig_advanced_store','jsminify','Show JS Minify','parent jsminify' )}} 
+						
+						<div class="control-group control-group-advanced">
+							<!-- jsminify -->
+							<div id="tab-field-jsminify" class="form-group child jsminify jsminify_1">
+								<div class="form-group2">
+									<a onclick="add_jsExclude();" class="add-item-payment btn btn-default btn-sm"> <i class="fa fa-file-o" ></i> Add file JS</a>			
+								</div>
+								<table class="table table-hover" id="listgroup-jsminify">
+									<thead>
+										<tr>
+											<td class="first" >Exclude file Javascript</td>
+											<td>Delete</td>
+										</tr>
+									</thead>
+									<tbody >
+									{% set listjs_row = 0 %}
+									{% if jsExcludes and  jsExcludes !=''%}
+										
+										{% for jsExclude in jsExcludes %}
+											{% if jsExclude.namecss is not empty %}
+												
+													<tr id="listjsExclude{{listjs_row}}">
+														<td class="first">
+															<input class="form-control" type="text" class="form-control" value="{{jsExclude.namecss}}" name="soconfig_advanced_store[jsExclude][{{listjs_row}}][namecss]">
+														</td>
+														
+														<td>
+															<a onclick="$('#listjsExclude{{listjs_row}}').remove();" class="btn btn-danger  btn-sm"><i class="fa fa-close"></i></a>
+														</td>
+													</tr>
+												
+											{%set listjs_row = listjs_row + 1 %}
+											{% endif %}
+										{% endfor %}	
+									{% endif %}
+									</tbody>
+									<tfoot></tfoot>
+								</table>
+
+								
+								<script type="text/javascript">
+								var listjs_row = {{listjs_row}} ;
+								
+								function add_jsExclude() {
+
+									html  = '<tbody id="listjsExclude' + listjs_row + '">';
+									html += '  <tr>';
+									html += '    <td>';
+									html += '		<input class="form-control" type="text" value="catalog/view/javascript/jquery/datetimepicker/moment/moment-with-locales.min.js" name="soconfig_advanced_store[jsExclude][' + listjs_row + '][namecss]">';
+									html += '    </td>';
+									html += '    <td><a onclick="$(\'#listjsExclude' + listjs_row + '\').remove();" class="btn btn-danger btn-sm"><i class="fa fa-close"></i></a></td>';
+									html += '  </tr>';
+									html += '</tbody>';
+									
+									$('#listgroup-jsminify tfoot').before(html);
+									listjs_row++;
+								}
+								</script> 
+							</div>
+							<!--  END jsminify -->
+							<div class="control-group-inner" >
+								<a href="{{clear_cache}}"><button class="btn btn-warning btn-sm" type="button"><i class="fa fa-eraser"></i> Clear Minify</button></a>
+								<p class="control-help">Delete all of the theme css, js file path: catalog/view/theme/so-emarket/css/minify</p>
+								
+							</div>
+							
+						</div>
+						
+					</div>
+					
+				</div>
+			</div>
+		</div>
+	</div>
+	{#============= End Tab Advanced============== #}
+	
+	{#============= Tab Support============== #}
+	<div class="so-ultimate-fieldset so-ultimate-fieldset-custom">
+		{{ fields.fieldsetHeader(objlang.get('maintabs_support'),'next-account')}} 
+		
+		<div class="so-ultimate-group-list">
+			{{ fields.fieldsetHeader(objlang.get('maintabs_support'),'sub-header',true)}} 
+			
+			<div class="so-ultimate-group-list__content">
+				<div class="so-ultimate-group-wrap so-ultimate-group-customcode">
+				{{ fields.groupHeaderBox(objlang.get('maintabs_support'))}} 
+				
+					<div class="so-ultimate-field-list">
+						<div class="control-group control-group-advanced">
+							<div class="control-group-inner ">
+								<div class="thumbnail">
+								<svg class="next-icon" style="    margin: 20px auto 10px;display: block;width: 30px;height: 30px;"><use xlink:href="#icon-blog"></use></svg>
+								<div class="caption" style="text-align:center;padding-top:0px;"><h3>Tickets</h3><p>Want to communicate one-to-one with our tech people? Then open a support ticket.</p><p style="padding-top: 5px;"><a href="http://support.opencartworks.com/" target="_blank" class="btn btn-md btn-default">Open a Ticket</a></p></div></div>
+							</div>
+						</div>
+						
+						<div class="control-group control-group-advanced">
+							<div class="control-group-inner ">
+								<div class="thumbnail">
+								<svg class="next-icon" style="    margin: 20px auto 10px;display: block;width: 30px;height: 30px;"><use xlink:href="#next-account"></use></svg>
+								<div class="caption" style="text-align:center;padding-top:0px;"><h3>Pre-Sale</h3><p>Have a brilliant idea for your OpenCart? Our team of developers can make it real.</p><p style="padding-top: 5px;"><a href="http://support.opencartworks.com/" target="_blank" class="btn btn-md btn-default">Drive More Sales</a></p></div></div>
+							</div>
+						</div>
+						
+						<div class="control-group control-group-advanced">
+							<div class="control-group-inner ">
+								<div class="thumbnail">
+								<svg class="next-icon" style="    margin: 20px auto 10px;display: block;width: 30px;height: 30px;"><use xlink:href="#icon-colors"></use></svg>
+								<div class="caption" style="text-align:center;padding-top:0px;"><h3>Document</h3><p>This documentation  describes the installation, configuration and setting</p><p style="padding-top: 5px;"><a href="https://smartaddons.s3.amazonaws.com/userguides/so-document/index.html" target="_blank" class="btn btn-md btn-default">Read more</a></p></div></div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				
+			</div>
+			
+		</div>
+	</div>
+	{#============= /Tab Support============== #}

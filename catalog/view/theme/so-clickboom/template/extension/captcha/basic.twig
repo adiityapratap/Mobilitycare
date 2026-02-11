@@ -1,0 +1,40 @@
+<fieldset>
+  <div class="form-group required">
+    {% if route|slice(0, 9) == 'checkout/' %}
+      <div class="captcha-container">
+           <img src="index.php?route=extension/captcha/basic/captcha" alt="Captcha" class="captcha-image" />
+        <input type="text" name="captcha" id="input-payment-captcha" class="form-control" autocomplete="off" />
+       
+      </div>
+    {% else %}
+      <div class="col-sm-12">
+        <div class="captcha-container">
+            <img src="index.php?route=extension/captcha/basic/captcha" alt="Captcha" class="captcha-image" />
+          <input type="text" name="captcha" id="input-captcha" required class="form-control" placeholder="Enter Captcha code" />
+          
+        </div>
+        {% if error_captcha %}
+          <div class="text-red">{{ error_captcha }}</div>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</fieldset>
+
+<style>
+  .captcha-container {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Adds spacing between input and image */
+  }
+
+  .captcha-container input {
+    flex: 1;
+    height: 40px; /* Adjust height as needed */
+  }
+
+  .captcha-container img {
+    height: 40px; /* Same height as input */
+    width: auto;
+  }
+</style>

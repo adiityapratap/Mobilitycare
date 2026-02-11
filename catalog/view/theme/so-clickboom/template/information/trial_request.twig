@@ -1,0 +1,194 @@
+ {{ header }}
+ <link href="catalog/view/theme/so-clickboom/css/customerForms.css" rel="stylesheet" type="text/css" />
+
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+     <div id="content" class="{{ class }}">{{ content_top }}
+            <div class="container text-black">
+                <div class="row mt-5">
+                    <div class="demo-request-container">
+                        <div class="demo-request-left col-md-5 col-sm-12" style="margin-top:-250px">
+                            <h1>Request a Product Trial </h1>
+                            <p>See the difference in real life for you and your client.
+Trials are available for clinicians and clients across Australia. We work directly with therapists to
+ensure the process is smooth, supported and clinically appropriate.</p>
+                            <ul>
+                                <li>✅  Trials are coordinated through the treating therapist (we don’t send directly to clients)</li>
+                                <li>✅  A new product unit will be provided for the trial period</li>
+                                <li>✅  If the trial is successful, the client can purchase that same unit</li>
+                                <li>✅  If the product isn’t the right fit, MobilityCare covers the initial shipping to you, and the client covers the return shipping cost (funding can often be used for this)</li>
+                                <li> ✅ Our team provides setup support, product guidance, and follow-up as needed</li>
+                            </ul>
+                            
+                        </div>
+                        <div class="demo-request-right col-md-7 col-sm-12">
+                            <form action="{{ action }}" method="post" id="demoRequestForm">
+                                <!-- Therapist Details -->
+                                <div>
+                                    <input type="text" name="fullname" id="fullname" value="{{ fullname }}" placeholder="Full Name *" required>
+                                    {% if error_fullname %}
+                                    <div class="text-red">{{ error_fullname }}</div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <input type="email" name="email" id="email" value="{{ email }}" placeholder="Email *" required>
+                                    {% if error_email %}
+                                    <div class="text-red">{{ error_email }}</div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                             <input type="text" name="phone" id="phone" value="{{ phone }}" placeholder="Phone Number (10 digits) *" maxlength="10" pattern="\d{10}" title="Please enter a 10-digit phone number" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                    {% if error_phone %}
+                                    <div class="text-red">{{ error_phone }}</div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <input type="text" name="organisation" id="organisation" value="{{ organisation }}" placeholder="Organisation / Clinic *" required>
+                                    {% if error_organisation %}
+                                    <div class="text-red">{{ error_organisation }}</div>
+                                    {% endif %}
+                                </div>
+                                <div>
+                                    <textarea name="address" id="address" placeholder="Address *" required>{{ address }}</textarea>
+                                    {% if error_address %}
+                                    <div class="text-red">{{ error_address }}</div>
+                                    {% endif %}
+                                </div>
+                                
+                                 <div>
+           <input type="text" name="postcode" placeholder="Postcode *" maxlength="4" pattern="^[0-9]{1,4}$" title="Please enter up to 4 digits only" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,4);" required>
+                                </div>
+                                <div>
+                                    <select name="profession" id="profession" class="form-control" required>
+                                        <option value="" disabled {% if not profession %}selected{% endif %}>Select Profession *</option>
+                                        <option value="Occupational Therapist" {% if profession == 'Occupational Therapist' %}selected{% endif %}>Occupational Therapist</option>
+                                        <option value="Physiotherapist" {% if profession == 'Physiotherapist' %}selected{% endif %}>Physiotherapist</option>
+                                        <option value="Other" {% if profession == 'Other' %}selected{% endif %}>Other</option>
+                                    </select>
+                                    {% if error_profession %}
+                                    <div class="text-red">{{ error_profession }}</div>
+                                    {% endif %}
+                                </div>
+                                <div id="profession_other_group" style="display: {% if profession == 'Other' %}block{% else %}none{% endif %};">
+                                    <input type="text" name="profession_other" id="profession_other" value="{{ profession_other }}" placeholder="Specify Profession">
+                                    {% if error_profession_other %}
+                                    <div class="text-red">{{ error_profession_other }}</div>
+                                    {% endif %}
+                                </div>
+                                <!-- Client Details -->
+                                <div>
+                                    <input type="text" name="client_fullname" id="client_fullname" value="{{ client_fullname }}" placeholder="Client Full Name">
+                                    {% if error_client_fullname %}
+                                    <div class="text-red">{{ error_client_fullname }}</div>
+                                    {% endif %}
+                                </div>
+                                <div>
+<input type="text" name="client_phone" id="client_phone" value="{{ client_phone }}" placeholder="Client Phone (10 digits)" maxlength="10" pattern="\d{10}" title="Please enter a 10-digit phone number" required oninput="this.value = this.value.replace(/[^0-9]/g, '');">
+                                    {% if error_client_phone %}
+                                    <div class="text-red">{{ error_client_phone }}</div>
+                                    {% endif %}
+                                </div>
+                                <div>
+   <select name="manufacturer_id" id="manufacturer_id" class="form-control" required>
+    <option value="" disabled {% if not manufacturer_id %}selected{% endif %}>Product Requested *</option>
+    {% for manufacturer in manufacturers %}
+        {% if manufacturer.name != 'AUTOCHAIR  Scooter Hoist' %}
+            <option value="{{ manufacturer.manufacturer_id }}" {% if manufacturer_id == manufacturer.manufacturer_id %}selected{% endif %}>
+                {{ manufacturer.name }}
+            </option>
+        {% endif %}
+    {% endfor %}
+</select>
+
+    {% if error_manufacturer_id %}
+        <div class="text-red">{{ error_manufacturer_id }}</div>
+    {% endif %}
+</div>
+
+                                <div>
+                                    <textarea name="notes" id="notes" placeholder="Notes">{{ notes }}</textarea>
+                                </div>
+                                <!-- Captcha -->
+                            
+                                <div>
+                                    
+                                   {{ captcha }}
+                                </div>
+                                  <input type="hidden" name="originalCaptcha" value={{ originalCaptcha }}>
+                                <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> {{ button_submit }}</button>
+                            </form>
+                            <div id="toastMessage" class="toast"></div>
+                            <div id="loaderOverlay" class="loader-overlay"><div class="loader"></div> </div>
+        
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {{ column_right }}
+    </div> 
+     </div> 
+     {{ footer }}
+     
+     <script>
+        $(document).ready(function() {
+             $('#loaderOverlay').hide();
+            // Show/hide profession_other field
+            $('#profession').change(function() {
+                if ($(this).val() === 'Other') {
+                    $('#profession_other_group').show();
+                    $('#profession_other').prop('required', true);
+                } else {
+                    $('#profession_other_group').hide();
+                    $('#profession_other').prop('required', false);
+                }
+            });
+
+            // AJAX form submission
+//             $('#demoRequestForm').submit(function(e) {
+//                 e.preventDefault();
+//                 var form = $(this);
+//                 $('.text-red').remove(); // Clear previous errors
+// $('#loaderOverlay').show();
+//                 $.ajax({
+//                     url: form.attr('action'),
+//                     type: 'POST',
+//                     data: form.serialize(),
+//                     dataType: 'json',
+//                     success: function(response) {
+//                         if (response.success) {
+//                             $('#toastMessage').text(response.success).removeClass('error').show();
+//                             $('#loaderOverlay').hide();
+//                             setTimeout(function() {
+//                                 $('#toastMessage').fadeOut();
+//                             }, 3000);
+//                             form[0].reset();
+//                             $('#profession_other_group').hide();
+//                             $('#profession_other').prop('required', false);
+//                         } else if (response.error) {
+//                             $.each(response.error, function(key, value) {
+//                                 $('#' + key).after('<div class="text-red">' + value + '</div>');
+//                             });
+//                             $('#toastMessage').text('Please fix the errors in the form.').addClass('error').show();
+//                             setTimeout(function() {
+//                                 $('#toastMessage').fadeOut();
+//                             }, 3000);
+//                         }
+//                     },
+//                     error: function() {
+//                         $('#toastMessage').text('An error occurred. Please try again.').addClass('error').show();
+//                         setTimeout(function() {
+//                             $('#toastMessage').fadeOut();
+//                         }, 3000);
+//                     }
+//                 });
+//             });
+        });
+    </script>

@@ -1,0 +1,255 @@
+.shopping_cart{
+    .fa-check-circle{
+        display: none;
+    }
+    .btn-shopping-cart .checkout{
+        padding: 10px 20px;
+    }
+    .dropdown-menu .content-item{
+        max-height: 245px;
+        overflow: auto;
+    }
+} 
+#header #sosearchpro.so-search .searchbox .select_category select:hover{
+    cursor: pointer;
+}
+
+header .account .dropdown-menu{
+    li{
+        a{
+            padding: 5px 15px;
+            position: relative;
+            &:before{
+              background-color: #fff;
+              border: 1px solid #555;
+              border-radius: 50%;
+              content: "";
+              height: 5px;
+              #{$left}: 0;
+              position: absolute;
+              top: 14px;
+              width: 5px;
+            }
+            &:hover{
+                &:before{
+                    background-color: $background;
+                    border-color: $linkColor;
+                }
+            }
+        }
+    }
+}
+
+header .megamenu-style-dev .navbar-default .horizontal .navbar-toggle{
+    background-color: $background;
+}
+/*============ HEADER  ==================*/
+.common-home .horizontal  ul.megamenu > li.home > a{
+    background: transparent;
+    color: $linkColor;
+}
+.common-home .typeheader-2 .container-megamenu.horizontal ul.megamenu > li.home > a {
+    background-color: $background;
+    color: #fff;
+}
+.typeheader-2 .container-megamenu.horizontal ul.megamenu > li{
+    &:hover,
+    &.active{
+        > a{
+            background-color: $background;
+            color: #fff;
+        }
+    }
+}
+.common-home .typeheader-3 .container-megamenu.horizontal ul.megamenu > li.home > a {
+    color: $linkColor;
+}
+.typeheader-3 .container-megamenu.horizontal ul.megamenu > li{
+    &:hover,
+    &.active{
+        > a{
+             background: transparent;
+             color: $linkColor;
+        }
+    }
+}
+
+.container-megamenu.horizontal{
+    ul.megamenu > li.home > a,
+    ul.megamenu > li.active > a, 
+    ul.megamenu > li:hover > a{
+        background-color: transparent;
+        color: $linkColor;
+    }
+    .subcategory li a{@include linkGray();}
+}
+.header-top .header-top-left .welcome-msg .owl2-carousel .owl2-stage-outer{ direction: ltr; }
+.mega-horizontal .navbar-default{border: none;background: transparent;}
+@media (max-width: 991px){
+    .responsive ul.megamenu > li.click:before,
+    .responsive ul.megamenu > li.hover:before {
+        #{$right}: 0;
+        #{$left}: auto;
+    }
+    .responsive ul.megamenu > li.active .close-menu{
+        #{$right}: 0;
+        #{$left}: auto;
+    }
+}
+
+.header-bottom .content_menu .container{overflow: visible;}
+.btn-shopping-cart {
+    .dropdown-menu{
+        min-width: 350px;        
+        .cart_product_name{@include linkGray();}
+        .empty{
+            padding: 15px;
+            margin: 0;
+    
+        }
+    }
+    .table>tbody>tr>td{border: none;border-bottom: 1px solid $gray-lighter;vertical-align: middle;}
+    .checkout{padding: 0 20px 10px;}
+    .added_items{padding: 10px;}
+}   
+
+
+.megamenu-style-dev{position: relative;
+    .vertical{
+        ul.megamenu{position: absolute; width: 100%; background: #222; z-index: 99;
+            > li > a{font-size: 11px;}
+        } 
+        .vertical ul.megamenu > li{margin: 0; border-right: 0; background: #222;
+            strong i{display: none;}
+                    >a {padding-left: 15px;padding-right: 12px; color: #fff;
+                                    &:hover{color: #fff;}
+            }
+            &.css-menu{
+                .sub-menu .content{padding: 0;}
+                .hover-menu .menu >ul{padding: 0; margin: 0;
+                    li{
+                        border-bottom: 1px solid #eee;
+                        &:hover{background: #eee;
+                            > a{color: $linkColor;}
+                        }
+                        a{line-height: 37px;
+                            b{line-height: 37px; font-size: 16px;margin: 0 20px;}
+                        }
+                        &:last-child{border: none;}
+                    }
+                    ul{padding: 0; left: 100%;margin: 0;box-shadow: none;border: 1px solid #eee;min-width: 200px;
+                        &:before, &:after{display: none;}
+                    }
+                } 
+            }
+            &.item-style3{
+                        .sub-menu .content{padding-right: 0;}
+            }
+            &.with-sub-menu{
+                > a:after{content: "\f105";color: #fff;font-family: Fontawesome; font-size: 13px; float: right; margin: 0;}
+                
+                &:hover > a:after{position: static; border-color: transparent;}
+                
+            }
+            &:hover{background-color: #444;
+                >a{color: #fff;}
+            }
+            &.active > a{background: transparent !important;}
+            
+            &.style1 .content:after{
+            }       
+            .sub-menu .content{border-top: 1px solid #ddd;
+                .banner{margin-top: -21px; margin-bottom: -22px; margin-right: -1px;}
+                .static-menu .menu ul a.main-menu{padding: 0;}
+            }
+        }
+        ul.megamenu .sub-menu .content .static-menu .menu ul {padding-bottom: 0;
+            li >a{line-height: inherit; padding-bottom: 0; border-bottom: none; min-height: auto;
+                 &:hover{color: $linkColor;}
+            }
+            ul a{padding: 0;
+                 &:hover{color: $linkColor;} 
+            }
+        }
+    }
+}
+
+
+.typeheader-1 .header-top .socials-wrap ul > li a:hover{ color: $linkColor;}
+.typeheader-1 .shopping_cart .btn-shopping-cart a.top_cart:hover,
+.typeheader-1 .shopping_cart .btn-shopping-cart a.top_cart:hover .shopcart .text-shopping-cart,
+.typeheader-1 .header-top-right ul.top-link > li:hover > a,
+.typeheader-1 .shopping_cart .btn-shopping-cart .total-shopping-cart .items_carts,
+.typeheader-1 .header-top-right ul.top-link > li > a:hover{
+    color: $linkColor !important;
+}
+.typeheader-1 .shopping_cart .handle.pull-left,
+.typeheader-1 #sosearchpro.so-search .searchbox form .input-group-btn .button-search:hover{
+    background-color: $background !important;
+}
+
+.typeheader-2 .socials-wrap ul > li a:hover,
+.typeheader-2 .shopping_cart .btn-shopping-cart a.top_cart:hover,
+.typeheader-2 .shopping_cart .btn-shopping-cart a.top_cart:hover .shopcart .text-shopping-cart,
+.typeheader-2 .header-top-right ul.top-link > li:hover > a,
+.typeheader-2 .shopping_cart .btn-shopping-cart .total-shopping-cart .items_carts,
+.typeheader-2 .header-top-right ul.top-link > li > a:hover{
+    color: $linkColor !important;
+}
+.typeheader-2 .shopping_cart .btn-shopping-cart .total-shopping-cart .items_cart,
+.typeheader-2 #sosearchpro.so-search .searchbox form .input-group-btn .button-search:hover{
+    background-color: $background !important;
+}
+
+.typeheader-3 .header-top-right ul.top-link > li.account::before,
+.typeheader-3 .header-top-right ul.top-link > li.wishlist::before,
+.typeheader-3 .header-top .block-email span,
+.typeheader-3 .header-top .block-text .fa,
+.typeheader-3 .socials-wrap ul > li a:hover,
+.typeheader-3 .shopping_cart .btn-shopping-cart a.top_cart:hover,
+.typeheader-3 .shopping_cart .btn-shopping-cart a.top_cart:hover .shopcart .text-shopping-cart,
+.typeheader-3 .header-top-right ul.top-link > li:hover > a,
+.typeheader-3 .shopping_cart .btn-shopping-cart .total-shopping-cart .items_carts,
+.typeheader-3 .header-top-right ul.top-link > li > a:hover{
+    color: $linkColor !important;
+}
+.typeheader-3 .container-megamenu.vertical #menuHeading .megamenuToogle-pattern .container,
+.typeheader-3 .shopping_cart .btn-shopping-cart .total-shopping-cart .items_cart,
+.typeheader-3 #sosearchpro.so-search .searchbox form .input-group-btn .button-search{
+    background-color: $background !important;
+}
+.typeheader-3 .container-megamenu.vertical .vertical-wrapper ul.megamenu{
+    border-color: $background !important;
+}
+.typeheader-3 #sosearchpro.so-search .searchbox form .input-group-btn .button-search:hover{ background-color: darken($background,10%);}
+.typeheader-3 .header-top-right ul.top-link > li .btn-group .btn-link:hover{color: $linkColor;}
+
+
+.typeheader-4 .container-megamenu.vertical #menuHeading .megamenuToogle-pattern .container{ background-color: darken($background,10%);}
+.typeheader-4 .container-megamenu.horizontal ul.megamenu > li:hover > a, 
+.typeheader-4 .container-megamenu.horizontal ul.megamenu > li.active > a,
+.common-home .typeheader-4 .container-megamenu.horizontal ul.megamenu > li.home > a {
+    background-color: darken($background,10%);
+    color: #fff;
+}
+
+.typeheader-4 .header-bottom{
+    background-color: $background;
+}
+
+.typeheader-4 #sosearchpro.so-search .searchbox{border-color: $background !important;}
+.typeheader-4 .shopping_cart .btn-shopping-cart a.top_cart:hover .shopcart .text-shopping-cart,
+.typeheader-4 #sosearchpro.so-search .searchbox form .input-group-btn .button-search::before,
+.typeheader-4 .header-top-right ul.top-link > li:hover > a,
+.typeheader-4 .shopping_cart .btn-shopping-cart a.top_cart:hover,
+.typeheader-4 .shopping_cart .btn-shopping-cart .total-shopping-cart .items_carts,
+.typeheader-4 .header-top-right ul.top-link > li > a:hover,
+.typeheader-4 .header-top-right ul.top-link > li.wishlist::before,
+.typeheader-4 .header-top .block-email span,
+.typeheader-4 .header-top .block-text .fa,
+.typeheader-4 .header-top-right ul.top-link > li.account::before{
+    color: $linkColor !important;;
+}
+.typeheader-4 .header-top-right ul.top-link > li .btn-group .btn-link:hover{
+    color: $linkColor;
+}

@@ -1,0 +1,180 @@
+{{ header }}
+<style>
+.caret-arrow {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease-in-out;
+    margin-left: 10px;
+}
+
+.faq-toggle:not(.collapsed) .caret-arrow {
+    transform: rotate(-135deg);
+}
+</style>
+<div class="container mt-5">
+    <div class="row">{{ column_left }}
+        {% if column_left and column_right %}
+        {% set class = 'col-sm-6' %}
+        {% elseif column_left or column_right %}
+        {% set class = 'col-sm-9' %}
+        {% else %}
+        {% set class = 'col-sm-12' %}
+        {% endif %}
+        <div id="content" class="{{ class }}">{{ content_top }}
+            {% block content %}
+            <div class="container text-black hidden">
+                <div class="row ">
+                    <div class="col-md-12">
+                        <h1>What is NDIS?</h1>
+                        <p>NDIS stands for National Disability Insurance Scheme. It is a government funding scheme which aims to help people under the age of 65 with disabilities get the care and support they need.</p>
+                        <p>It recognises that disability-related support is an entitlement, and means you have a choice of service providers in an open market – it gives you more choice and control.</p>
+                        <p>NDIS also provides families and carers with the information they require about services to support people with disabilities.</p>
+                        <p>For more information about the NDIS funding scheme, visit the <a href="https://www.ndis.gov.au/" target="_blank" class="text-success">official NDIS website</a>.</p>
+                    </div>
+                </div>
+                
+                <div class="row mt-5">
+                    <div class="col-md-12">
+                        <h2>Who is eligible?</h2>
+                        <p>To qualify and become a participant of NDIS, people must first meet the access requirements.</p>
+                        <p>These requirements are:</p>
+                        <ul>
+                            <li>Availability of NDIS in your area</li>
+                            <li>Your age</li>
+                            <li>Your residency status</li>
+                            <li>Your disability and in some cases your early intervention requirements</li>
+                        </ul>
+                        <p>For information about access requirements, visit the <a href="https://www.ndis.gov.au/applying-access-ndis/am-i-eligible" target="_blank" class="text-success">official NDIS website</a>.</p>
+                    </div>
+                </div>
+                
+               
+            </div>
+            
+            <div class="container text-black">
+    
+
+    <h1 class="page-title">NDIS Ordering Process</h1>
+
+    <p><strong>Provider Name:</strong> MobilityCare Pty Ltd</p>
+    <p><strong>Provider Number:</strong> 80392061</p>
+     <p><strong>NDIS Organisation ID:</strong> 4050000656  </p>
+    <p><strong>Provider ABN:</strong> 84 071 351 838 </p>
+    
+    <p>Please see below for instructions depending on your funding type:</p>
+
+    <ul class="nav nav-tabs">
+        <li class="active"><a class="text-red" data-toggle="tab" href="#plan-managed">NDIS Plan Managed</a></li>
+        <li><a data-toggle="tab" class="text-red" href="#self-managed">NDIS Self Managed</a></li>
+        <li><a data-toggle="tab" class="text-red" href="#agency-managed">NDIS Agency Managed</a></li>
+    </ul>
+
+    <div class="tab-content">
+        <div id="plan-managed" class="tab-pane fade in active">
+    <h3 class="section-title">Plan Managed NDIS Funding</h3>
+
+    <p>For participants with Plan managed NDIS funding, the process of purchasing through MobilityCare is simple and efficient. Here's how you can get started:</p>
+
+    <h4>Select the Product:</h4>
+    <ul>
+        <li>Visit your desired product page.</li>
+        <li>Click on the "<strong>Generate Quote</strong>" button located on the product page.</li>
+    </ul>
+
+    <h4>Generate Your Quote:</h4>
+    <ul>
+        <li>After clicking "Generate Quote", fill out the required fields and hit <strong>Submit</strong>.</li>
+        <li>A quote will be created based on your selected products and will be emailed to you.</li>
+    </ul>
+
+    <h4>Send the Quote to Your Plan Manager:</h4>
+    <ul>
+        <li>Once you receive your quote, send it to your Plan Manager for approval.</li>
+        <li>Your Plan Manager will review the quote and confirm whether your NDIS funding can cover the purchase.</li>
+        <li>After approval, ask your Plan Manager to send written confirmation to <a href="mailto:admin@mobilitycare.net.au">admin@mobilitycare.net.au</a> to proceed with the order. This ensures that the purchase is processed correctly and in line with your plan.</li>
+    </ul>
+
+    <h4>Required Participant’s Details (to include in the confirmation email):</h4>
+    <ul>
+        <li>Full Name</li>
+        <li>NDIS Number</li>
+        <li>Date of Birth (necessary for claims in the myplace provider portal)</li>
+        <li>Plan Start and End Dates (to ensure the purchase falls within the active plan period)</li>
+    </ul>
+
+    <h4>Required Plan Manager Details (to include in the confirmation email):</h4>
+    <ul>
+        <li>Plan Manager Full Name</li>
+        <li>Plan Manager NDIS Provider Number</li>
+        <li>Plan Manager Contact Information (email, phone number)</li>
+        <li>Individual Planner's Name and Contact Details (if applicable)</li>
+    </ul>
+
+    <h4>Payment Process through Your Plan Manager:</h4>
+    <p>After the Plan Manager approves the purchase, they will use the myplace provider portal to pay for the goods using your NDIS plan funds.</p>
+    <p>If required, you also have the option to pay out of pocket and receive reimbursement from your Plan Manager. This option can help speed up the process if you need the items sooner.</p>
+
+    <h4>Need Assistance?</h4>
+    <p>If you need any help throughout this process, feel free to contact us at <a href="mailto:admin@mobilitycare.net.au">admin@mobilitycare.net.au</a> or consult your Plan Manager for guidance on how to best manage your NDIS funding.</p>
+</div>
+
+
+       <div id="self-managed" class="tab-pane fade">
+    <h3 class="section-title">Self Managed NDIS Funding</h3>
+
+    <p>For participants with self-managed NDIS funding, you can now purchase your MobilityCare products upfront using a credit or debit card and then claim your funds back through the myplace portal or my NDIS app.</p>
+
+    <h4>How it Works:</h4>
+    <ul>
+        <li>Add the products to your cart by clicking "<strong>Buy Now</strong>" on the product page, then complete your purchase using Visa or Mastercard.</li>
+        <li>You will receive a Tax Invoice upon purchase.</li>
+        <li>Submit the Tax Invoice through the myplace portal or my NDIS app to claim your reimbursement.</li>
+    </ul>
+
+    <p>If you have any questions or need assistance, feel free to contact our team at <a href="mailto:admin@mobilitycare.net.au">admin@mobilitycare.net.au</a>.</p>
+</div>
+
+
+       <div id="agency-managed" class="tab-pane fade">
+    <h3 class="section-title">NDIA-managed Funding</h3>
+    <p>For participants with NDIA-managed funding (sometimes referred to as Agency-managed), please email us at <a href="mailto:admin@mobilitycare.net.au">admin@mobilitycare.net.au</a> with the subject "<strong>NDIA-managed Funding</strong>" to proceed with your purchase. We’ll guide you through the process and assist in managing your NDIS claim.</p>
+</div>
+
+    </div>
+
+    <p class="text-center mt-5"><a href="https://www.ndis.gov.au/" class="btn btn-primary">Click Here To View NDIS Guide To Paying Your Providers </a></p>
+</div>
+            {% endblock %}
+        </div>
+        {{ column_right }}
+    </div>
+</div>
+<style>
+    .page-title {
+        font-size: 24px;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+    .section-title {
+        font-size: 20px;
+        font-weight: bold;
+        margin-top: 20px;
+    }
+    .breadcrumb {
+        background-color: #f8f8f8;
+    }
+    .tab-content {
+        padding: 15px;
+        border: 1px solid #ddd;
+        border-top: none;
+    }
+    .btn-primary {
+        background-color: #7d4cd4;
+        border-color: #7d4cd4;
+    }
+</style>
+{{ footer }}

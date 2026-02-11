@@ -1,0 +1,46 @@
+{{ header }}
+<div id="common-success" class="container mt-5">
+ 
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+      <h1 style="font-size: 15px;">{{ heading_title }}</h1>
+      
+      <div class="order-success-message" style="
+  background-color: #f8f9fa;
+  border-left: 6px solid #28a745;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border-radius: 6px;
+  padding: 25px 30px;
+  margin: 40px auto;
+  max-width: 800px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #212529;
+">
+  <p style="font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #002a5c;">
+    <i class="fa fa-user-check" style="color: #28a745; margin-right: 8px;"></i>
+    Registration Successful!
+  </p>
+  <p style="margin-bottom: 10px;">
+    Welcome to <strong>MobilityCare</strong>. Your account has been created successfully.
+  </p>
+  <p style="margin-bottom: 10px;">
+    You can now log in and start shopping, track orders, and manage your account easily.
+  </p>
+  
+</div>
+
+
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+{{ footer }}

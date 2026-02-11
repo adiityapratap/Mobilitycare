@@ -1,0 +1,76 @@
+footer .copyright a{
+	color: $linkColor !important;
+}
+footer #collapse-footer{
+	   display: block;
+}
+.typefooter-1 .box-footer .modcontent ul li a:hover::before{
+	background-color: $background;
+	border-color: $background;
+}
+.typefooter-1 ul.links-contact > li.contact-phone,
+.typefooter-1 .box-footer .modcontent ul li a:hover{
+	color: $linkColor;
+}
+.typefooter-1 .newsletter-footer1 .newsletter .block_content form.signup .subcribe button:hover,
+.typefooter-1 .socials-wrap ul li a:hover{
+	background-color: $background;
+}
+
+
+.typefooter-2 .box-footer .modcontent ul li a:hover::before{
+	background-color: $background;
+	border-color: $background;
+}
+.typefooter-2 .slider-above-footer .owl2-controls .owl2-nav div:hover::before,
+.typefooter-2 ul.links-contact > li.contact-phone,
+.typefooter-2 .box-footer .modcontent ul li a:hover{
+	color: $linkColor;
+}
+.typefooter-2 .socials-wrap ul li a:hover{
+	background-color: $background;
+}
+
+.typefooter-3 .box-footer .modcontent ul li a:hover::before{
+	background-color: $background;
+	border-color: $background;
+}
+.typefooter-3 .slider-above-footer .owl2-controls .owl2-nav div:hover::before,
+.typefooter-3 .box-footer .modcontent ul li a:hover{
+	color: $linkColor;
+}
+.typefooter-3 .modtitle::before,
+.typefooter-3 .socials-wrap ul li a:hover{
+	background-color: $background;
+}
+
+
+
+.typefooter-4 .box-footer .modcontent ul li a:hover::before,
+.typefooter-4 .slider-brand-footer .owl2-controls .owl2-nav > div:hover,
+.typefooter-4 .socials-wrap ul li a:hover,
+
+.typefooter-4 .policy-v4 .item:hover::after{
+	background-color: $background !important;
+}
+.typefooter-4 .newsletter .block_content form.signup .form-group #txtemail{
+	border-color: $linkColor !important;
+}
+.typefooter-4 .slider-brand-footer .owl2-controls .owl2-nav > div::before,
+.typefooter-4 .newsletter .block_content form.signup .subcribe button::before,
+.typefooter-4 .box-footer .modcontent ul li a:hover,
+.typefooter-4 .socials-wrap ul li a{
+	color: $linkColor !important;
+}
+
+.typefooter-4 .newsletter .block_content form.signup .subcribe button:hover:before{color: darken($background,10%);}
+
+.typefooter-5 .footer-links li a:hover,
+.typefooter-5 .newsletter .block_content form.signup .subcribe button:hover::before,
+.typefooter-5 .socials-footer li a:hover{
+	color: $linkColor !important;
+}
+
+.typeheader-5 .shopping_cart .btn-shopping-cart .total-shopping-cart .items_cart{
+	background-color: $background !important;
+}

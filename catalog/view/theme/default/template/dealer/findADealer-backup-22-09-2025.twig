@@ -1,0 +1,738 @@
+{{ header }}
+
+<style>
+body {
+  background: #f8f9fb;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+/* filter css start */
+
+/* ====== FILTER WRAPPER ====== */
+.filters {
+  padding: 20px;
+  background: #fff;
+}
+
+.filters h2 {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #000;
+}
+
+/* ====== STATE TABS ====== */
+.state-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.state-tabs .btn {
+  background: #f7f8fa;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 18px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  box-shadow: none;
+  transition: all 0.2s ease-in-out;
+}
+
+.state-tabs .btn:hover {
+  background: #e9ecef;
+}
+
+.state-tabs .btn.active {
+  background: #000;
+  color: #fff;
+}
+
+/* ====== FORM CONTROLS ====== */
+.custom-form-control {
+  height: 44px;
+  background: #f7f8fa;
+  border: none;
+  border-radius: 8px;
+  padding: 0 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #333;
+  box-shadow: none;
+}
+
+.custom-form-control:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #d1d5db;
+}
+
+/* ====== POSTCODE INPUT WITH ICON ====== */
+.custom-input-icon {
+  height: 44px;
+  background: #f7f8fa url('data:image/svg+xml;utf8,<svg fill="%23999" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path d="M168 0C75.12 0 0 75.12 0 168c0 87.27 150.4 308.5 158.8 320.6C161.5 492.9 164.7 496 168 496c3.301 0 6.453-3.066 9.197-7.422C185.6 476.5 336 255.3 336 168C336 75.12 260.9 0 168 0zm0 256c-48.53 0-88-39.47-88-88s39.47-88 88-88 88 39.47 88 88S216.5 256 168 256z"/></svg>') no-repeat 12px center;
+  background-size: 16px;
+  padding-left: 36px;
+  border: none;
+  border-radius: 8px;
+  font-size: 14px;
+}
+
+.custom-input-icon:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #d1d5db;
+}
+
+/* ====== SEARCH BUTTON ====== */
+#searchBtn {
+  border-radius: 8px;
+  font-weight: 600;
+  background-color: #000;
+  border: none;
+  margin-left:20px;
+  font-size: 14px;
+}
+
+#searchBtn:hover {
+  background-color: #333;
+}
+
+/* ====== RESPONSIVE ====== */
+@media (max-width: 768px) {
+  .state-tabs {
+    justify-content: center;
+  }
+
+  .filters .row > div {
+    margin-bottom: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .state-tabs {
+    gap: 6px;
+  }
+  
+  .state-tabs .btn {
+    font-size: 13px;
+    padding: 6px 14px;
+  }
+}
+
+
+
+
+/*filter css end*/
+
+h3.section-title {
+  font-weight: 700;
+  font-size: 24px;
+  margin: 40px 0 25px;
+  text-align: left;
+  padding-left: 15px;
+  color: #1e1e1e;
+}
+
+
+
+/* ===== Dealer Card Layout ===== */
+
+/* Column container (Bootstrap 3 override for flex equal height) */
+/* Dealer list card + InfoWindow style (Bootstrap 3) */
+
+.dealer-col { display:flex; flex-direction:column; margin-bottom:20px; }
+.dealer-card {
+  background:#fff;
+  border-radius:10px;
+  padding:14px;
+  box-shadow:0 2px 10px rgba(0,0,0,0.06);
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  height:100%;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size:14px;
+  color:#2c3e50;
+}
+.dealer-card strong { font-size:16px; margin-bottom:8px; display:block; color:#111827; }
+.dealer-card .icon-with-text { margin:5px 0; color:#4b5563; display:flex; align-items:center; }
+.dealer-card .icon-with-text i { margin-right:8px; color:#6b7280; width:18px; text-align:center; }
+
+/* distance shows near bottom */
+.dealer-card .distance { margin-top:auto; font-style:italic; color:#374151; font-size:13px; }
+
+/* rounded square location button (bottom-right) */
+.btn-map {
+  background:#f5f6f8;
+  border:none;
+  width:40px; height:40px;
+  border-radius:10px;
+  display:flex; align-items:center; justify-content:center;
+  position:absolute; bottom:14px; right:14px;
+  font-size:18px; color:#2c3e50; cursor:pointer;
+  transition:background .15s, transform .06s;
+}
+.btn-map:hover{ background:#000000;color:#fff; transform:translateY(-1px); }
+.btn-map i{ pointer-events:none; }
+
+/* favorite icon top-right */
+.dealer-card .fa-star, .dealer-card .fa-star-o {
+  position:absolute; top:12px; left:14px; font-size:16px; color:#d1d5db;
+}
+.dealer-card .fa-star.highlight { color:#facc15; }
+
+/* small info card used inside InfoWindow (keeps consistent look) */
+.gm-info-card {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  max-width:260px;
+  color:#111827;
+}
+.gm-info-card strong { display:block; font-size:14px; margin-bottom:4px; }
+.gm-info-card .addr { font-size:13px; color:#444; margin-bottom:6px; }
+.gm-info-card .phone { font-size:13px; color:#444; margin-bottom:8px; }
+.gm-info-card .gm-btn {
+  display:inline-block; padding:6px 10px; background:#007bff; color:#fff; border-radius:4px;
+  text-decoration:none; font-size:13px;
+}
+
+/* responsive */
+@media (max-width:991px) {
+  .dealer-card { padding:12px; font-size:13px; }
+  .btn-map { width:36px; height:36px; font-size:16px; bottom:12px; right:12px; }
+}
+@media (max-width:767px) {
+  .dealer-col { flex:1 0 100%; }
+  .dealer-card { margin-bottom:12px; }
+}
+
+
+
+#map {
+  height: 400px;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.alert-success {
+  background-color: #d4edda;
+  color: #155724;
+  padding: 10px;
+  border-radius: 5px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+
+@media (min-width: 992px) {
+  .dealer-col {
+    min-height: 200px;
+  }
+}
+
+.custom-form-control {
+  background-color: #f9fafb !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  color: #374151 !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  height: 44px !important;
+  padding: 10px 14px !important;
+  box-shadow: none !important;
+  transition: border-color 0.2s ease-in-out !important;
+  -webkit-appearance: none !important;
+  -moz-appearance: none !important;
+  appearance: none !important;
+  position: relative !important;
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 10px center !important;
+  background-size: 16px !important;
+  padding-right: 36px !important;
+}
+
+.custom-form-control:focus {
+  border-color: #3b82f6 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+.custom-input-icon {
+  background-color: #f9fafb !important;
+  border: 1px solid #d1d5db !important;
+  border-radius: 8px !important;
+  color: #6b7280 !important;
+  font-size: 14px !important;
+  height: 44px !important;
+  padding: 10px 14px 10px 36px !important;
+  font-weight: 600 !important;
+  background-image: url("data:image/svg+xml,%3Csvg fill='none' stroke='%236B7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M17.657 16.657L13 21.314 8.343 16.657a8 8 0 1111.314 0z'%3E%3C/path%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: left 10px center !important;
+  background-size: 16px !important;
+}
+
+.custom-input-icon:focus {
+  border-color: #3b82f6 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+
+</style>
+
+<div class="container">
+  {% if success %}
+    <div class="alert alert-success">{{ success }}</div>
+  {% endif %}
+
+  <div class="filters">
+    <h2 class="text-center text-black">Find a Dealer</h2>
+    <div class="state-tabs">
+      <button class="btn active" data-state="All">All</button>
+      <button class="btn" data-state="ACT">ACT</button>
+      <button class="btn" data-state="NSW">NSW</button>
+      <button class="btn" data-state="VIC">VIC</button>
+      <button class="btn" data-state="QLD">QLD</button>
+      <button class="btn" data-state="WA">WA</button>
+      <button class="btn" data-state="NT">NT</button>
+      <button class="btn" data-state="SA">SA</button>
+      <button class="btn" data-state="TAS">TAS</button>
+    </div>
+    <br>
+   <div class="row text-center" style="margin-top: 20px;">
+  <div class="col-sm-3">
+    <select name="manufacturer" id="manufacturer" class="form-control custom-form-control">
+      <option value="">Select Brand</option>
+      {% for manufacturer in manufacturers %}
+        <option value="{{ manufacturer.id }}">{{ manufacturer.name }}</option>
+      {% endfor %}
+    </select>
+  </div>
+
+  <div class="col-sm-3">
+    <select name="brandProduct" id="brandProduct" class="form-control custom-form-control">
+      <option value="">Select Product (Optional)</option>
+    </select>
+  </div>
+
+  <div class="col-sm-3">
+    <div class="input-group">
+      <input type="text" id="postcode" placeholder="Enter Postcode" class="form-control custom-input-icon">
+      <span class="input-group-btn">
+        <button id="searchBtn" class="btn btn-primary" type="button" style="height: 44px; padding: 0 16px;">Search</button>
+      </span>
+    </div>
+  </div>
+</div>
+
+  </div>
+
+  <h3 class="section-title">Dealers Near You</h3>
+  
+  <div class="row">
+    <div id="map"></div>
+    <div id="dealer-results"></div>
+  </div>
+</div>
+
+{{ footer }}
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script>
+$(document).ready(function(){
+    localStorage.setItem("updatedPostcodes", '');
+})
+  // Define initMap globally
+  window.initMap = function () {
+    var mapEl = document.getElementById('map');
+    if (!mapEl) {
+      console.error('Map container not found');
+      return;
+    }
+
+    var defaultLocation = { lat: -37.813629, lng: 144.963058 };
+    window.map = new google.maps.Map(mapEl, {
+      zoom: 10,
+      center: defaultLocation
+    });
+
+    window.bounds = new google.maps.LatLngBounds();
+    window.infoWindow = new google.maps.InfoWindow();
+
+    if (typeof jQuery !== 'undefined') {
+      $('.state-tabs .btn').off('click').on('click', function () {
+        $('.state-tabs .btn').removeClass('active');
+        $(this).addClass('active');
+      });
+
+      $('#manufacturer').off('change').on('change', function () {
+        let manufacturerId = $(this).val();
+        let selectedState = $('.state-tabs .btn.active').data('state');
+        console.log(selectedState); // Outputs: VIC
+        let updatedPostcodes = localStorage.getItem("updatedPostcodes") || '';
+        if (!manufacturerId) return;
+        $.ajax({
+          url: 'index.php?route=dealer/dealer/getDealers',
+          type: 'POST',
+          data: { manufacturer_id: manufacturerId,selectedState : selectedState ,updatedPostcodes: updatedPostcodes ? updatedPostcodes : '' },
+          dataType: 'json',
+          success: function (response) {
+            if (response.success) {
+              displayDealers(response.dealers);
+              if (response.dealersProducts) {
+                var productOptions = '<option value="">Select Product (Optional)</option>';
+                $.each(response.dealersProducts, function (index, product) {
+                  productOptions += '<option value="' + product.product_id + '">' + product.name + '</option>';
+                });
+                $('#brandProduct').html(productOptions);
+              } else {
+                $('#brandProduct').html('<option value="">No products found</option>');
+              }
+              setTimeout(function () {
+                if (window.bounds && !window.bounds.isEmpty()) {
+                  window.map.fitBounds(window.bounds);
+                }
+              }, 500);
+            }
+          },
+          error: function () {
+            console.error('Failed to fetch dealers');
+          }
+        });
+      });
+      
+    //   when changing the state from top
+    
+    $('.state-tabs .btn').off('click').on('click', function () {
+  // Set active state
+  $('.state-tabs .btn').removeClass('active');
+  $(this).addClass('active');
+
+  let selectedState = $(this).data('state');
+  let manufacturerId = $('#manufacturer').val();
+
+  // Optional: Trigger AJAX only if manufacturer is selected
+  if (!manufacturerId) {
+    console.log('No manufacturer selected');
+    return;
+  }
+
+  $.ajax({
+    url: 'index.php?route=dealer/dealer/getDealers',
+    type: 'POST',
+    data: { manufacturer_id: manufacturerId, selectedState: selectedState },
+    dataType: 'json',
+    success: function (response) {
+      if (response.success) {
+        displayDealers(response.dealers);
+        if (response.dealersProducts) {
+          var productOptions = '<option value="">Select Product (Optional)</option>';
+          $.each(response.dealersProducts, function (index, product) {
+            productOptions += '<option value="' + product.product_id + '">' + product.name + '</option>';
+          });
+          $('#brandProduct').html(productOptions);
+        } else {
+          $('#brandProduct').html('<option value="">No products found</option>');
+        }
+        setTimeout(function () {
+          if (window.bounds && !window.bounds.isEmpty()) {
+            window.map.fitBounds(window.bounds);
+          }
+        }, 500);
+      }
+    },
+    error: function () {
+      console.error('Failed to fetch dealers');
+    }
+  });
+});
+
+      $('#searchBtn').off('click').on('click', function () {
+        var $searchBtn = $(this);
+        $searchBtn.html('Loading...').prop('disabled', true);
+        var postcode = $('#postcode').val();
+        if (!postcode) {
+          alert('Please enter a postcode.');
+          resetButton();
+          return;
+        }
+        // Proxy Geocoding request to avoid CORS
+        $.ajax({
+          url: 'index.php?route=dealer/googleproxy/geocode',
+          type: 'POST',
+          data: { address: postcode },
+          dataType: 'json',
+          success: function (data) {
+            if (data.status === 'OK' && data.results && data.results.length) {
+              var userLocation = data.results[0].geometry.location;
+              findNearbyPostcodes(postcode, userLocation.lat, userLocation.lng, $searchBtn);
+            } else {
+              alert('Invalid postcode. Please try again.');
+              resetButton();
+            }
+          },
+          error: function () {
+            alert('Error fetching location.');
+            resetButton();
+          }
+        });
+      });
+    }
+  };
+
+  function findNearbyPostcodes(userPostcode, lat, lng, $searchBtn) {
+    // Proxy Places request to avoid CORS
+    $.ajax({
+      url: 'index.php?route=dealer/googleproxy/nearby',
+      type: 'POST',
+      data: { lat: lat, lng: lng, radius: 50000 },
+      dataType: 'json',
+      success: function (data) {
+        if (data.status === 'OK' && data.results) {
+          var geocodePromises = data.results.map(function (place) {
+            var placeLat = place.geometry.location.lat;
+            var placeLng = place.geometry.location.lng;
+            return getPostcode(placeLat, placeLng);
+          });
+          Promise.all(geocodePromises).then(function (postcodes) {
+            var validPostcodes = postcodes.filter(pc => pc !== null);
+            sendPostcodesToServer(userPostcode, lat, lng, validPostcodes);
+          }).catch(function () {
+            resetButton();
+          });
+        } else {
+          alert('No nearby places found.');
+          resetButton();
+        }
+      },
+      error: function () {
+        resetButton();
+      }
+    });
+  }
+
+  function getPostcode(lat, lng) {
+    return $.ajax({
+      url: 'index.php?route=dealer/googleproxy/geocodeReverse',
+      type: 'POST',
+      data: { lat: lat, lng: lng },
+      dataType: 'json'
+    }).then(function (data) {
+      if (data.status === 'OK' && data.results && data.results.length) {
+        var comps = data.results[0].address_components || [];
+        var pcComp = comps.find(c => c.types && c.types.indexOf('postal_code') !== -1);
+        return pcComp ? pcComp.long_name : null;
+      }
+      return null;
+    }).catch(() => null);
+  }
+
+  function sendPostcodesToServer(userPostcode, userLat, userLng, postcodes) {
+    var manufacturerId = (typeof jQuery !== 'undefined') ? $('#manufacturer').val() : null;
+    var updatedPostcodes = postcodes.concat([userPostcode]);
+    localStorage.setItem("updatedPostcodes",updatedPostcodes);
+    fetch('index.php?route=dealer/dealer/fetchDealerfromPostcode', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ updatedPostcodes, manufacturerId })
+    }).then(r => r.json()).then(function (data) {
+      if (data && data.dealers && data.dealers.length) {
+        calculateDistance(userPostcode, userLat, userLng, data.dealers);
+      } else {
+        var el = document.getElementById('dealer-results');
+        if (el) el.innerHTML = '<p>No dealers found.</p>';
+        resetButton();
+      }
+    }).catch(function () {
+      resetButton();
+    });
+  }
+
+  function calculateDistance(userPostcode, userLat, userLng, dealers) {
+    var apiKey = 'AIzaSyAUYQoibGkVMIs-FqDBinouadk32_1UiF0';
+    var origins = encodeURIComponent(userLat + ',' + userLng);
+    var destinations = dealers.map(d => encodeURIComponent((d.business_address || '') + ', ' + d.postcode + ', Australia')).join('|');
+    // Proxy Distance Matrix request
+    $.ajax({
+      url: 'index.php?route=dealer/googleproxy/distance',
+      type: 'POST',
+      data: { origins: origins, destinations: destinations },
+      dataType: 'json',
+      success: function (data) {
+        if (data.status === 'OK' && data.rows && data.rows.length) {
+          data.rows[0].elements.forEach(function (el, i) {
+            if (el.status === 'OK') {
+              var distText = el.distance.text;
+              var distValue = distText.includes('km') ? parseFloat(distText) : parseFloat(distText) / 1000;
+              dealers[i].distance = distText;
+              dealers[i].distanceValue = distValue;
+            }
+          });
+          dealers.sort((a, b) => a.distanceValue - b.distanceValue);
+        }
+        displayDealers(dealers);
+      },
+      error: function () {
+        displayDealers(dealers);
+      }
+    });
+  }
+
+  function displayDealers(dealers) {
+    clearMarkers();
+    if (window.map && typeof google !== 'undefined') {
+        window.bounds = new google.maps.LatLngBounds();
+    }
+    var output = '<div class="row">';
+    var markerCount = 0;
+
+    dealers.forEach(function (dealer) {
+        var fullAddress = (dealer.business_address || '') + ', ' + (dealer.postcode || '') + ', Australia';
+        output += `
+    <div class="col-sm-6 col-md-4 dealer-col">
+        <div class="dealer-card">
+            <strong class="dealer-name">${dealer.full_name}</strong>
+            <p><i class="fa fa-phone"></i> ${dealer.phone || ''}</p>
+            <p><i class="fa fa-map-marker"></i> ${dealer.business_address || ''} ${dealer.suburb || ''} ${dealer.state || ''} ${dealer.postcode || ''}</p>
+            ${dealer.distance ? `<div class="distance"><i class="fa fa-road"></i> ${dealer.distance} away</div>` : ''}
+            <button class="btn-map" data-address="${dealer.business_address || ''} ${dealer.suburb || ''} ${dealer.state || ''} ${dealer.postcode || ''}">
+                <i class="fa fa-location-arrow"></i>
+            </button>
+        </div>
+    </div>
+`;
+
+        if (dealer.business_address && dealer.postcode && window.map && typeof google !== 'undefined') {
+            let fullAddress = dealer.business_address + ', ' + dealer.suburb+ '  ' + dealer.state + '  ' + dealer.postcode + ', Australia';
+            console.log("dealer full address :",fullAddress)
+            geocodeAndAddMarker(fullAddress, dealer.full_name, dealer.phone);
+            markerCount++;
+        }
+    });
+    output += '</div>';
+    $('#dealer-results').html(output);
+    
+  // delegate click event to dynamically created buttons
+$(document).on('click', '.btn-map', function() {
+    let fullAddress = $(this).data('address'); 
+    
+    let decodedAddress = decodeURIComponent(fullAddress);
+
+    geocodeAddress(decodedAddress, function (lat, lng) {
+        if (lat && lng) {
+            window.open(`https://www.google.com/maps?q=${lat},${lng}`, '_blank');
+        } else {
+            window.open(
+                'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(decodedAddress),
+                '_blank'
+            );
+        }
+    });
+});
+
+
+    
+
+    // Wait for markers to be added and update map
+    setTimeout(function () {
+        resetButton();
+        if (window.bounds && window.map && !window.bounds.isEmpty()) {
+            window.map.fitBounds(window.bounds);
+            console.log('Map bounds updated with', window.markers.length, 'markers');
+        } else {
+            console.warn('Cannot fit bounds, map or bounds invalid, markers:', window.markers.length);
+        }
+    }, 1000 * markerCount || 1000); // Delay based on number of markers, minimum 1s
+}
+
+  function geocodeAndAddMarker(address, name, phone) {
+    $.ajax({
+        url: 'index.php?route=dealer/googleproxy/geocode',
+        type: 'POST',
+        data: { address: address },
+        dataType: 'json',
+        success: function (data) {
+            if (data.status === 'OK' && data.results[0]) {
+                var position = data.results[0].geometry.location;
+                if (!window.map || !window.map instanceof google.maps.Map) {
+                    console.error('Map is not initialized:', window.map);
+                    return;
+                }
+                let marker = new google.maps.Marker({
+                    map: window.map, // Explicitly set the map
+                    position: position,
+                    title: name
+                });
+                console.log("Marker created with map:", marker, "Map:", window.map);
+                window.markers.push(marker);
+                if (window.bounds) {
+                    window.bounds.extend(position);
+                } else {
+                    console.warn('Bounds not initialized, creating new LatLngBounds');
+                    window.bounds = new google.maps.LatLngBounds();
+                    window.bounds.extend(position);
+                }
+                // Add click listener
+                google.maps.event.addListener(marker, 'click', function () {
+                    var html = `
+                        <div class="marker-card">
+                            <strong>${name}</strong><br>
+                            ${address}<br>
+                            <i class="fa fa-phone"></i> ${phone || ''}<br>
+                            <a href="https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(address)}" target="_blank" class="btn-directions">Get Directions</a>
+                        </div>
+                    `;
+                    window.infoWindow.setContent(html);
+                    window.infoWindow.open(window.map, marker);
+                });
+                // Trigger map update
+                if (window.map) {
+                    window.map.panTo(position); // Center map on new marker
+                }
+            } else {
+                console.error('Geocode failed or no results:', data);
+            }
+        },
+        error: function (xhr, status, error) {
+            console.error('AJAX error in geocodeAndAddMarker:', error);
+        }
+    });
+}
+
+  function geocodeAddress(address, callback) {
+    if (!google.maps) {
+      callback(null, null);
+      return;
+    }
+    $.ajax({
+      url: 'index.php?route=dealer/googleproxy/geocode',
+      type: 'POST',
+      data: { address: address },
+      dataType: 'json',
+      success: function (data) {
+        if (data.status === 'OK' && data.results[0]) {
+          var loc = data.results[0].geometry.location;
+          callback(loc.lat, loc.lng);
+        } else {
+          callback(null, null);
+        }
+      }
+    });
+  }
+
+  function clearMarkers() {
+    console.log('Clearing markers, window.markers:', window.markers);
+    if (!Array.isArray(window.markers)) {
+        window.markers = [];
+        console.log('Initialized window.markers as empty array');
+        return;
+    }
+    window.markers.forEach(function (m) { m.setMap(null); });
+    window.markers = [];
+    console.log('Markers cleared');
+}
+
+  function resetButton() {
+    var sb = document.getElementById('searchBtn');
+    if (sb) { sb.innerHTML = 'Search'; sb.disabled = false; }
+  }
+</script>

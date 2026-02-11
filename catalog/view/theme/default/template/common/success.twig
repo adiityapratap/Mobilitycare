@@ -1,0 +1,80 @@
+{{ header }}
+<div id="common-success" class="container mt-5">
+ 
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+      <h1 style="font-size: 15px;">{{ heading_title }}</h1>
+      
+      {% if ndis_message %}
+  <div class="order-success-message" style="
+  background-color: #f8f9fa;
+  border-left: 6px solid #e63946;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border-radius: 6px;
+  padding: 25px 30px;
+  margin: 40px auto;
+  max-width: 800px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #212529;
+">
+  <p style="font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #002a5c;">
+    <i class="fa fa-check-circle" style="color: #28a745; margin-right: 8px;"></i>
+    {{ ndis_message }}
+  </p>
+  <p style="margin-bottom: 10px;">
+    Thank you for shopping with <strong>MobilityCare</strong>. You’ll receive an order confirmation email shortly with all the details.
+  </p>
+  <p style="margin-bottom: 10px;">
+    If you have any questions about your order, please contact our team at 
+    <a href="tel:+61395688383" style="color: #e63946; font-weight: 600;">(03) 9568 8383</a> or email 
+    <a href="mailto:contact@mobilitycare.net.au" style="color: #e63946; font-weight: 600;">contact@mobilitycare.net.au</a>.
+  </p>
+  <p style="margin-bottom: 0;">
+    We’ll be in touch during our normal business hours (<strong>9am–5pm, Mon–Fri</strong>).
+  </p>
+</div>
+   
+{% else %}
+<div class="order-success-message" style="
+  background-color: #f8f9fa;
+  border-left: 6px solid #e63946;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  border-radius: 6px;
+  padding: 25px 30px;
+  margin: 40px auto;
+  max-width: 800px;
+  font-family: 'Helvetica Neue', Arial, sans-serif;
+  color: #212529;
+">
+  <p style="font-size: 18px; font-weight: 600; margin-bottom: 10px; color: #002a5c;">
+    <i class="fa fa-check-circle" style="color: #28a745; margin-right: 8px;"></i>
+    Your order has been successfully placed!
+  </p>
+  <p style="margin-bottom: 10px;">
+    Thank you for shopping with <strong>MobilityCare</strong>. You’ll receive an order confirmation email shortly with all the details.
+  </p>
+  <p style="margin-bottom: 10px;">
+    If you have any questions about your order, please contact our team at 
+    <a href="tel:+61395688383" style="color: #e63946; font-weight: 600;">(03) 9568 8383</a> or email 
+    <a href="mailto:contact@mobilitycare.net.au" style="color: #e63946; font-weight: 600;">contact@mobilitycare.net.au</a>.
+  </p>
+  <p style="margin-bottom: 0;">
+    We’ll be in touch during our normal business hours (<strong>9am–5pm, Mon–Fri</strong>).
+  </p>
+</div>
+{% endif %}
+
+      <div class="buttons">
+        <div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+      </div>
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+{{ footer }}

@@ -1,0 +1,142 @@
+
+{{ header }}{{ column_left }}
+<div id="content">
+    <style>
+.table-warning{
+        background-color: #fc0b0636;
+}
+.color-box {
+  width: 16px;
+  height: 16px;
+  background-color: #f8d7da;
+  border: 1px solid #f5c2c7;
+  border-radius: 3px;
+  display: inline-block;
+  margin-right: 6px;
+}
+</style>
+  <div class="page-header">
+    <div class="container-fluid">
+      <div class="pull-right">
+        <a href="{{ add }}" class="btn btn-primary"><i class="fa fa-plus"></i> {{ button_add }}</a>
+      </div>
+      <h1>{{ heading_title }}</h1>
+      <ul class="breadcrumb">
+        {% for breadcrumb in breadcrumbs %}
+        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+  <div class="container-fluid">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <h3 class="panel-title"><i class="fa fa-list"></i> {{ text_list }}</h3>
+      </div>
+      <div class="panel-body">
+          <div class="row" style="margin-bottom: 15px;">
+  <div class="col-sm-4">
+    <input type="text" id="dealerFilter" class="form-control" placeholder="Filter by Name, State, Postcode, Email, or Phone...">
+  </div>
+</div>
+
+        <div class="table-responsive">
+            <div class="mb-3">
+  <span class="d-inline-block align-middle me-2 color-box" style="width: 16px; height: 16px; background-color: #f8d7da; border: 1px solid #f5c2c7; border-radius: 3px;"></span>
+  <span class="align-middle">Red rows indicate <strong>new dealers</strong></span>
+</div>
+          <table class="table table-bordered table-hover">
+            <thead>
+              <tr>
+                <td class="text-left">{{ column_name }}</td>
+                <td class="text-left">State</td>
+                 <td class="text-left">Postcode</td>
+                <td class="text-left">{{ column_email }}</td>
+                <td class="text-left">{{ column_phone }}</td>
+                <td class="text-right">{{ column_action }}</td>
+              </tr>
+            </thead>
+           <tbody>
+  {% if dealers %}
+    {% for dealer in dealers %}
+      <tr class="{% if dealer.is_new %}table-warning{% endif %}">
+        <td class="text-left">{{ dealer.name }}</td>
+        <td class="text-left">{{ dealer.state }}</td>
+        <td class="text-left">{{ dealer.postcode }}</td>
+        <td class="text-left">{{ dealer.email }}</td>
+        <td class="text-left">{{ dealer.phone }}</td>
+        <td class="text-right">
+          <a href="{{ dealer.edit }}" class="btn btn-primary">
+            <i class="fa fa-pencil"></i>
+          </a>
+          {% if dealer.is_approved ==0 %}
+          <a href="{{ dealer.approve }}" class="btn btn-success">
+            <i class="fa fa-thumbs-up"></i>
+          </a>
+          {% endif %}
+          
+          <button class="btn btn-danger btn-delete" data-id="{{ dealer.dealer_id }}">
+            <i class="fa fa-trash"></i>
+          </button>
+        </td>
+      </tr>
+    {% endfor %}
+  {% else %}
+    <tr>
+      <td class="text-center" colspan="6">{{ text_no_results }}</td>
+    </tr>
+  {% endif %}
+</tbody>
+
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{ footer }}
+<script type="text/javascript">
+
+$(document).ready(function() {
+
+  // Filter functionality (keeping your previous filter)
+  $('#dealerFilter').on('keyup', function() {
+    var value = $(this).val().toLowerCase();
+    $('table tbody tr').filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+    });
+  });
+
+  // Delete dealer
+  $('.btn-delete').on('click', function() {
+    var dealerId = $(this).data('id');
+    var row = $(this).closest('tr');
+
+    if (confirm('Are you sure you want to delete this dealer?')) {
+      $.ajax({
+        url: 'index.php?route=dealer/dealer/delete&user_token={{ user_token }}',
+        type: 'POST',
+        data: { dealer_id: dealerId },
+        dataType: 'json',
+        success: function(response) {
+          if (response.success) {
+            alert(response.success);
+            row.fadeOut(400, function() {
+              $(this).remove();
+            });
+          } else {
+            alert('Error: ' + (response.error || 'Unable to delete dealer.'));
+          }
+        },
+        error: function(xhr, status, error) {
+          alert('AJAX Error: ' + error);
+        }
+      });
+    }
+  });
+
+});
+</script>
+
+
+

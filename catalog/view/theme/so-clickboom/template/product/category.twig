@@ -1,0 +1,152 @@
+
+{{ header }}
+{#====  Loader breadcrumbs ==== #}
+{% include theme_directory~'/template/soconfig/breadcrumbs.twig' %}
+<style>
+.category-image {
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.category-name {
+    margin-top: 10px;
+    text-align: center;
+    color: white !important;
+    background-color: #003264 !important;
+    padding: 12px;
+}
+
+</style>
+
+{#====  Variables url parameter ==== #}
+{% if url_asidePosition %}{% set col_position = url_asidePosition %}
+{% else %}{% set col_position = soconfig.get_settings('catalog_col_position') %} {% endif %}
+
+{% if url_asideType %} {% set col_canvas = url_asideType %}
+{% else %}{% set col_canvas = soconfig.get_settings('catalog_col_type') %}{% endif %}
+{% set desktop_canvas = col_canvas =='off_canvas' ? 'desktop-offcanvas' : '' %}
+{% set displaySidebar = soconfig.get_settings('catalog_display_sidebar')%}
+
+{% if col_position == 'inside' %}
+<div class="container">
+	{% include theme_directory~'/template/soconfig/subcategory.twig' %}
+	
+</div>
+{% endif %}
+
+<div class="container product-listing content-main {{desktop_canvas}}">
+  
+  <div class="row">
+	{% if displaySidebar =='left' or displaySidebar =='all'%}
+		{{ column_left }}
+	{% endif %}
+	 
+    {% if col_canvas =='off_canvas' %}
+    	{% set class = 'col-sm-12' %}
+    {% elseif displaySidebar =='left' and displaySidebar =='right' %}
+    	{% set class = 'col-md-6 col-sm-12 col-xs-12 fluid-allsidebar' %}
+    {% elseif displaySidebar =='left' or displaySidebar =='right' %}
+    	{% set class = 'col-md-9 col-sm-12 col-xs-12 fluid-sidebar' %}
+	{% elseif displaySidebar =='all' %}
+    	{% set class = 'col-md-8 col-sm-12 col-xs-12 fluid-sidebar' %}
+    {% else %}
+    	{% set class = 'col-sm-12' %}
+    {% endif %}
+
+    <div id="content" class="{{ class }} mt-5">
+		
+    	{% if soconfig.get_settings('featured_cate_status') %} {{ content_top }}{% endif %}
+		
+		<div class="products-category clearfix">
+
+			{% if col_position== 'outside' %}
+				{% include theme_directory~'/template/soconfig/subcategory.twig' %}
+			{% endif %}
+			
+				{% if products %}
+				{#==== Product Listing ==== #}
+				{% include theme_directory~'/template/soconfig/listing.twig' with {listingType: listingType} %}
+				
+			{% endif %}
+	  
+			  {% if categories %}
+  
+  <div class="row">
+    {% for category in categories %}
+    <div class="col-sm-3 col-6">
+      <div class="card mb-3">
+        <div class="category-image">
+          <a href="{{ category.href }}" class="thumbnail" style="border:none">
+            <img src="{{ category.thumb }}" alt="{{ category.name }}" title="{{ category.name }}" class="img-responsive" />
+          </a>
+        </div>
+        <div class="card-body text-center">
+          <h5 class="card-title category-name">{{ category.name }}</h5>
+        </div>
+      </div>
+    </div>
+    {% endfor %}
+</div>
+  {% endif %}
+		  
+		  	{% if description %}
+	<div class="{{class_category_info}} mt-5">{{ description }}</div>
+	{% endif %}
+	
+			{% if not categories and not products %}
+			  <p>{{ text_empty }}</p>
+			  <div class="buttons">
+				<div class="pull-right"><a href="{{ continue }}" class="btn btn-primary">{{ button_continue }}</a></div>
+			  </div>
+			{% endif %}
+
+	      	{{ content_bottom }}
+
+	  	</div>
+	 </div>
+	
+	{% if displaySidebar =='right' or displaySidebar =='all'%}
+		{{ column_right }}
+	{% endif %}
+    
+
+    {% if url_sidebarsticky %} {% set sidebar_sticky = url_sidebarsticky %}
+	{% else %} {% set sidebar_sticky = soconfig.get_settings('catalog_sidebar_sticky') %}{% endif %}
+    <script type="text/javascript"><!--
+		$(window).load(sidebar_sticky_update());
+		$(window).resize(sidebar_sticky_update());
+
+    	function sidebar_sticky_update(){
+    		 var viewportWidth = $(window).width();
+    		 if (viewportWidth > 1200) {
+	    		// Initialize the sticky scrolling on an item 
+				sidebar_sticky = '{{sidebar_sticky}}';
+				
+				if(sidebar_sticky=='left'){
+					$(".left_column").stick_in_parent({
+					    offset_top: 10,
+					    bottoming   : true
+					});
+				}else if (sidebar_sticky=='right'){
+					$(".right_column").stick_in_parent({
+					    offset_top: 10,
+					    bottoming   : true
+					});
+				}else if (sidebar_sticky=='all'){
+					$(".content-aside").stick_in_parent({
+					    offset_top: 10,
+					    bottoming   : true
+					});
+				}
+			}
+    	}
+		
+		
+	//--></script> 
+
+	</div>
+</div>
+{{ footer }} 

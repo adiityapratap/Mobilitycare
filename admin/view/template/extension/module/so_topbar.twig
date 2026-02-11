@@ -1,0 +1,1892 @@
+{{ header }}
+{{ column_left }}
+<div id="content">
+  	<div class="page-header">
+    	<div class="container-fluid">
+      		<div class="pull-right">
+        		<button type="submit" form="form-so-tools" data-toggle="tooltip" title="{{ button_save }}" class="btn btn-primary"><i class="fa fa-save"></i> {{ button_save }}</button>
+        		<a class="btn btn-success" onclick="$('#action').val('save_edit');$('#form-so-tools').submit();" data-toggle="tooltip" title="{{ button_savestay }}" ><i class="fa fa-pencil-square-o"></i> {{ button_savestay }}</a>
+                <a href="{{ cancel }}" data-toggle="tooltip" title="{{ button_cancel }}" class="btn btn-default"><i class="fa fa-reply"></i> {{ button_cancel }}</a>
+        	</div>
+			<h1>{{ heading_title_so }}</h1>
+      		<ul class="breadcrumb">
+        		{% for breadcrumb in breadcrumbs %}
+        			<li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+        		{% endfor %}
+      		</ul>
+    	</div>
+  	</div>
+  	<div class="container-fluid">
+  		{% if error_warning %}
+    		<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error_warning }}
+      			<button type="button" class="close" data-dismiss="alert">&times;</button>
+    		</div>
+    	{% endif %}
+    	{% if success %}
+    		<div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }}
+      			<button type="button" class="close" data-dismiss="alert">&times;</button>
+    		</div>
+    	{% endif %}
+    	<div class="panel panel-default">
+      		<div class="panel-heading">
+        		<h3 class="panel-title"><i class="fa fa-pencil"></i> {{ text_edit }}</h3>
+      		</div>
+      		<div class="panel-body">
+	   			<form action="{{ action }}" method="post" enctype="multipart/form-data" id="form-so-tools" class="form-horizontal">
+	   				<input type="hidden" name="action" id="action" value=""/>
+					<div class="form-group">
+						<label class="col-sm-2 control-label" for="input-status">{{ text_status }}</label>
+						<div class="col-sm-3">
+							<select name="module_so_topbar_status" id="input-status" class="form-control">
+								{% if module_so_topbar_status %}
+	                				<option value="1" selected="selected">{{ text_enabled }}</option>
+	                				<option value="0">{{ text_disabled }}</option>
+	                			{% else %}
+	                				<option value="1">{{ text_enabled }}</option>
+	                				<option value="0" selected="selected">{{ text_disabled }}</option>
+	                			{% endif %}
+	                		</select>
+		  				</div>
+					</div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label" for="input-type">{{ text_type }}</label>
+                        <div class="col-sm-3">
+                            <select name="module_so_topbar_type" id="input-type" class="form-control">
+                                <option value="social" {% if module_so_topbar_type and module_so_topbar_type == 'social' %}selected="selected"{% endif %}>{{ text_type_social_network }}</option>
+                                <option value="banner" {% if module_so_topbar_type and module_so_topbar_type == 'banner' %}selected="selected"{% endif %}>{{ text_type_banner }}</option>
+                                <option value="newsletter" {% if module_so_topbar_type and module_so_topbar_type == 'newsletter' %}selected="selected"{% endif %}>{{ text_type_newsletter }}</option>
+                                <option value="twitter" {% if module_so_topbar_type and module_so_topbar_type == 'twitter' %}selected="selected"{% endif %}>{{ text_type_twitter }}</option>
+                                <option value="countdown1" {% if module_so_topbar_type and module_so_topbar_type == 'countdown1' %}selected="selected"{% endif %}>{{ text_type_countdown1 }}</option>
+                                <option value="countdown2" {% if module_so_topbar_type and module_so_topbar_type == 'countdown2' %}selected="selected"{% endif %}>{{ text_type_countdown2 }}</option>
+                                <option value="html" {% if module_so_topbar_type and module_so_topbar_type == 'html' %}selected="selected"{% endif %}>{{ text_type_html }}</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ text_allow_close }}</label>
+                        <div class="col-sm-10">
+                            <label class="checkbox-inline">
+                                {% if module_so_topbar_allow_close %}
+                                    <input type="checkbox" name="module_so_topbar_allow_close" value="1" checked="checked" />
+                                {% else %}
+                                    <input type="checkbox" name="module_so_topbar_allow_close" value="1" />
+                                {% endif %}
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label class="col-sm-2 control-label">{{ text_background_close_color }}</label>
+                            <div class="col-sm-2">
+                                <div id="close_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_close_background_color }}"></div></div>
+                                <input type="hidden" name="module_so_topbar_close_background_color" value="{{ module_so_topbar_close_background_color }}" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="col-xs-12">
+                            <label class="col-sm-2 control-label">{{ text_text_close_color }}</label>
+                            <div class="col-sm-2">
+                                <div id="close_textcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_close_text_color }}"></div></div>
+                                <input type="hidden" name="module_so_topbar_close_text_color" value="{{ module_so_topbar_close_text_color }}" class="form-control colorselector" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-2 control-label">{{ text_time_cookie }}</label>
+                        <div class="col-sm-10">
+                            <input type="text" name="module_so_topbar_time_cookie" value="{{ module_so_topbar_time_cookie }}" class="form-control" />
+                            <div class="help-block">Time in hours</div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="accordion" id="accordion" role="tablist" aria-multiselectable="true">
+                            <div class="accordion-group">
+                                <div class="accordion-heading" role="tab" id="headingOne">
+                                    <a class="collapsed accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                        <div class="accordion-bar">{{ entry_social_network_section }}</div>
+                                    </a>
+                                </div>
+                                <div id="collapseOne" class="collapse" role="tabpanel" aria-labelledby="headingOne">
+                                    <div class="accordion-body">
+                                        <div class="accordion-inner">
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_status }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_social_network_show%}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_start }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_social_network_date_start" value="{{ module_so_topbar_social_network_date_start }}" placeholder="{{ text_date_start }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_end }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_social_network_date_end" value="{{ module_so_topbar_social_network_date_end }}" placeholder="{{ text_date_end }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="social_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_social_network_background_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_social_network_background_color" value="{{ module_so_topbar_social_network_background_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_text_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="social_textcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_social_network_text_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_social_network_text_color" value="{{ module_so_topbar_social_network_text_color }}" class="form-control colorselector" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_social_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="social_socialcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_social_network_social_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_social_network_social_color" value="{{ module_so_topbar_social_network_social_color }}" class="form-control colorselector" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_social_hover_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="social_socialhovercolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_social_network_social_hover_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_social_network_social_hover_color" value="{{ module_so_topbar_social_network_social_hover_color }}" class="form-control colorselector" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_heading_text }}</label>
+                                                    <div class="col-sm-10">
+                                                        {% for language in languages %}
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+                                                                </span>
+                                                                <input type="text" name="module_so_topbar_social_network_heading_text[{{ language.language_id }}]" value="{% if module_so_topbar_social_network_heading_text[language.language_id] %}{{ module_so_topbar_social_network_heading_text[language.language_id] }}{% endif %}" placeholder="{{ text_heading_text }}" class="form-control" />
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_show_facebook }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_social_network_fb_show %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_fb_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_fb_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_facebook_url }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_social_network_fb_url" class="form-control" value="{{ module_so_topbar_social_network_fb_url }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_show_twitter }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_social_network_tw_show %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_tw_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_tw_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_twitter_url }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_social_network_tw_url" class="form-control" value="{{ module_so_topbar_social_network_tw_url }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_show_rss }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_social_network_rss_show %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_rss_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_rss_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_rss_url }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_social_network_rss_url" class="form-control" value="{{ module_so_topbar_social_network_rss_url }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_show_linkedin }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_social_network_linkedin_show %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_linkedin_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_linkedin_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_linkedin_url }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_social_network_linkedin_url" class="form-control" value="{{ module_so_topbar_social_network_linkedin_url }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_show_google }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_social_network_google_show %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_google_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_google_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_google_url }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_social_network_google_url" class="form-control" value="{{ module_so_topbar_social_network_google_url }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_show_youtube }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_social_network_youtube_show %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_youtube_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_youtube_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_youtube_url }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_social_network_youtube_url" class="form-control" value="{{ module_so_topbar_social_network_youtube_url }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_show_pinterest }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_social_network_pinterest_show %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_pinterest_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_pinterest_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_pinterest_url }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_social_network_pinterest_url" class="form-control" value="{{ module_so_topbar_social_network_pinterest_url }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_show_skype }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_social_network_skype_show %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_skype_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_social_network_skype_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_skype_url }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_social_network_skype_url" class="form-control" value="{{ module_so_topbar_social_network_skype_url }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-group">
+                                <div class="accordion-heading" role="tab" id="headingTwo">
+                                    <a class="collapsed accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                        <div class="accordion-bar">{{ entry_image_banner_section }}</div>
+                                    </a>
+                                </div>
+                                <div id="collapseTwo" class="collapse" role="tabpanel" aria-labelledby="headingTwo">
+                                    <div class="accordion-body">
+                                        <div class="accordion-inner">
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_status }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_image_banner_show %}
+                                                                <input type="checkbox" name="module_so_topbar_image_banner_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_image_banner_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_start }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_image_banner_date_start" value="{{ module_so_topbar_image_banner_date_start }}" placeholder="{{ text_date_start }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_end }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_image_banner_date_end" value="{{ module_so_topbar_image_banner_date_end }}" placeholder="{{ text_date_end }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label" for="input-image-banner">{{ entry_image_banner_upload_image }}</label>
+                                                    <div class="col-sm-10">
+                                                        <a href="#" id="thumb-image-banner" data-toggle="image" class="img-thumbnail">
+                                                            <img src="{{ thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" />
+                                                        </a>
+                                                        <input type="hidden" name="module_so_topbar_image_banner" value="{{ module_so_topbar_image_banner }}" id="input-image-banner" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_image_width }}</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name="module_so_topbar_image_banner_width" class="form-control" value="{{ module_so_topbar_image_banner_width }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_image_height }}</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name="module_so_topbar_image_banner_height" class="form-control" value="{{ module_so_topbar_image_banner_height }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ entry_image_banner_show_button }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_image_banner_show_button %}
+                                                                <input type="checkbox" name="module_so_topbar_image_banner_show_button" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_image_banner_show_button" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ entry_image_banner_button_text }}</label>
+                                                    <div class="col-sm-10">
+                                                        {% for language in languages %}
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+                                                                </span>
+                                                                <input type="text" name="module_so_topbar_image_banner_button_text[{{ language.language_id }}]" value="{% if module_so_topbar_image_banner_button_text[language.language_id] %}{{ module_so_topbar_image_banner_button_text[language.language_id] }}{% endif %}" placeholder="{{ entry_image_banner_button_text }}" class="form-control" />
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ entry_image_banner_button_link }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_image_banner_button_link" class="form-control" value="{{ module_so_topbar_image_banner_button_link }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="banner_button_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_image_banner_background_button_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_image_banner_background_button_color" value="{{ module_so_topbar_image_banner_background_button_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_hover_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="banner_button_hover_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_image_banner_background_button_hover_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_image_banner_background_button_hover_color" value="{{ module_so_topbar_image_banner_background_button_hover_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_text_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="banner_button_text_color_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_image_banner_background_button_text_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_image_banner_background_button_text_color" value="{{ module_so_topbar_image_banner_background_button_text_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_text_hover_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="banner_button_text_hover_color_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_image_banner_background_button_text_hover_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_image_banner_background_button_text_hover_color" value="{{ module_so_topbar_image_banner_background_button_text_hover_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-group">
+                                <div class="accordion-heading" role="tab" id="headingThree">
+                                    <a class="collapsed accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                        <div class="accordion-bar">{{ entry_subcribe_newsletter_section }}</div>
+                                    </a>
+                                </div>
+                                <div id="collapseThree" class="collapse" role="tabpanel" aria-labelledby="headingThree">
+                                    <div class="accordion-body">
+                                        <div class="accordion-inner">
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_status }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_subcribe_newsletter_show %}
+                                                                <input type="checkbox" name="module_so_topbar_subcribe_newsletter_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_subcribe_newsletter_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_start }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_subcribe_newsletter_date_start" value="{{ module_so_topbar_subcribe_newsletter_date_start }}" placeholder="{{ text_date_start }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_end }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_subcribe_newsletter_date_end" value="{{ module_so_topbar_subcribe_newsletter_date_end }}" placeholder="{{ text_date_end }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="subcribe_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_subcribe_newsletter_background_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_subcribe_newsletter_background_color" value="{{ module_so_topbar_subcribe_newsletter_background_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_text_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="subcribe_textcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_subcribe_newsletter_text_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_subcribe_newsletter_text_color" value="{{ module_so_topbar_subcribe_newsletter_text_color }}" class="form-control colorselector" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_heading_text }}</label>
+                                                    <div class="col-sm-10">
+                                                        {% for language in languages %}
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+                                                                </span>
+                                                                <input type="text" name="module_so_topbar_subcribe_newsletter_heading_text[{{ language.language_id }}]" value="{% if module_so_topbar_subcribe_newsletter_heading_text[language.language_id] %}{{ module_so_topbar_subcribe_newsletter_heading_text[language.language_id] }}{% endif %}" placeholder="{{ text_heading_text }}" class="form-control" />
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ entry_image_banner_show_button }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_subcribe_newsletter_show_button %}
+                                                                <input type="checkbox" name="module_so_topbar_subcribe_newsletter_show_button" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_subcribe_newsletter_show_button" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ entry_image_banner_button_text }}</label>
+                                                    <div class="col-sm-10">
+                                                        {% for language in languages %}
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+                                                                </span>
+                                                                <input type="text" name="module_so_topbar_subcribe_newsletter_button_text[{{ language.language_id }}]" value="{% if module_so_topbar_subcribe_newsletter_button_text[language.language_id] %}{{ module_so_topbar_subcribe_newsletter_button_text[language.language_id] }}{% endif %}" placeholder="{{ entry_image_banner_button_text }}" class="form-control" />
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="subcribe_button_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_subcribe_newsletter_background_button_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_subcribe_newsletter_background_button_color" value="{{ module_so_topbar_subcribe_newsletter_background_button_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_hover_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="subcribe_button_hover_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_subcribe_newsletter_background_button_hover_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_subcribe_newsletter_background_button_hover_color" value="{{ module_so_topbar_subcribe_newsletter_background_button_hover_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_text_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="subcribe_button_text_color_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_subcribe_newsletter_background_button_text_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_subcribe_newsletter_background_button_text_color" value="{{ module_so_topbar_subcribe_newsletter_background_button_text_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_text_hover_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="subcribe_button_text_hover_color_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_subcribe_newsletter_background_button_text_hover_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_subcribe_newsletter_background_button_text_hover_color" value="{{ module_so_topbar_subcribe_newsletter_background_button_text_hover_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-group">
+                                <div class="accordion-heading" role="tab" id="headingFour">
+                                    <a class="collapsed accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFour" aria-expanded="false" aria-controls="collapseFour">
+                                        <div class="accordion-bar">{{ entry_twitter_feed_slider_section }}</div>
+                                    </a>
+                                </div>
+                                <div id="collapseFour" class="collapse" role="tabpanel" aria-labelledby="headingFour">
+                                    <div class="accordion-body">
+                                        <div class="accordion-inner">
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_status }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_twitter_feed_slider_show %}
+                                                                <input type="checkbox" name="module_so_topbar_twitter_feed_slider_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_twitter_feed_slider_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_start }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_twitter_feed_slider_date_start" value="{{ module_so_topbar_twitter_feed_slider_date_start }}" placeholder="{{ text_date_start }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_end }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_twitter_feed_slider_date_end" value="{{ module_so_topbar_twitter_feed_slider_date_end }}" placeholder="{{ text_date_end }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_screen_name }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_twitter_feed_slider_screen_name" class="form-control" value="{{ module_so_topbar_twitter_feed_slider_screen_name }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_id }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_twitter_feed_slider_id" class="form-control" value="{{ module_so_topbar_twitter_feed_slider_id }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_count }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_twitter_feed_slider_count" class="form-control" value="{{ module_so_topbar_twitter_feed_slider_count }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="twitter_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_twitter_feed_slider_background_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_twitter_feed_slider_background_color" value="{{ module_so_topbar_twitter_feed_slider_background_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_text_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="twitter_textcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_twitter_feed_slider_text_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_twitter_feed_slider_text_color" value="{{ module_so_topbar_twitter_feed_slider_text_color }}" class="form-control colorselector" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-group">
+                                <div class="accordion-heading" role="tab" id="headingFive">
+                                    <a class="collapsed accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseFive" aria-expanded="false" aria-controls="collapseFive">
+                                        <div class="accordion-bar">{{ entry_countdown_layout1_section }}</div>
+                                    </a>
+                                </div>
+                                <div id="collapseFive" class="collapse" role="tabpanel" aria-labelledby="headingFive">
+                                    <div class="accordion-body">
+                                        <div class="accordion-inner">
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_status }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_countdown_layout1_show %}
+                                                                <input type="checkbox" name="module_so_topbar_countdown_layout1_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_countdown_layout1_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_start }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_countdown_layout1_date_start" value="{{ module_so_topbar_countdown_layout1_date_start }}" placeholder="{{ text_date_start }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_end }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_countdown_layout1_date_end" value="{{ module_so_topbar_countdown_layout1_date_end }}" placeholder="{{ text_date_end }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                        {% if countdown1_date_end %}
+                                                            <div class="text-danger">{{ countdown1_date_end }}</div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_heading_text }}</label>
+                                                    <div class="col-sm-10">
+                                                        {% for language in languages %}
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+                                                                </span>
+                                                                <input type="text" name="module_so_topbar_countdown_layout1_heading_text[{{ language.language_id }}]" value="{% if module_so_topbar_countdown_layout1_heading_text[language.language_id] %}{{ module_so_topbar_countdown_layout1_heading_text[language.language_id] }}{% endif %}" placeholder="{{ text_heading_text }}" class="form-control" />
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown1_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout1_background_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout1_background_color" value="{{ module_so_topbar_countdown_layout1_background_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_text_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown1_textcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout1_text_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout1_text_color" value="{{ module_so_topbar_countdown_layout1_text_color }}" class="form-control colorselector" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_countdown_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown1_countdowncolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout1_countdown_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout1_countdown_color" value="{{ module_so_topbar_countdown_layout1_countdown_color }}" class="form-control colorselector" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_countdown_fontsize }}</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name="module_so_topbar_countdown_layout1_countdown_fontsize" value="{{ module_so_topbar_countdown_layout1_countdown_fontsize }}" class="form-control" />
+                                                        <div class="help-block">Example: 20px or 200%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-group">
+                                <div class="accordion-heading" role="tab" id="headingSix">
+                                    <a class="collapsed accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSix" aria-expanded="false" aria-controls="collapseSix">
+                                        <div class="accordion-bar">{{ entry_countdown_layout2_section }}</div>
+                                    </a>
+                                </div>
+                                <div id="collapseSix" class="collapse" role="tabpanel" aria-labelledby="headingSix">
+                                    <div class="accordion-body">
+                                        <div class="accordion-inner">
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_status }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_countdown_layout2_show %}
+                                                                <input type="checkbox" name="module_so_topbar_countdown_layout2_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_countdown_layout2_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_start }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_countdown_layout2_date_start" value="{{ module_so_topbar_countdown_layout2_date_start }}" placeholder="{{ text_date_start }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_end }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_countdown_layout2_date_end" value="{{ module_so_topbar_countdown_layout2_date_end }}" placeholder="{{ text_date_end }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                        {% if countdown2_date_end %}
+                                                            <div class="text-danger">{{ countdown1_date_end }}</div>
+                                                        {% endif %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_heading_text }}</label>
+                                                    <div class="col-sm-10">
+                                                        {% for language in languages %}
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+                                                                </span>
+                                                                <input type="text" name="module_so_topbar_countdown_layout2_heading_text[{{ language.language_id }}]" value="{% if module_so_topbar_countdown_layout2_heading_text[language.language_id] %}{{ module_so_topbar_countdown_layout2_heading_text[language.language_id] }}{% endif %}" placeholder="{{ text_heading_text }}" class="form-control" />
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_show_button }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_countdown_layout2_show_button %}
+                                                                <input type="checkbox" name="module_so_topbar_countdown_layout2_show_button" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_countdown_layout2_show_button" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ entry_image_banner_button_text }}</label>
+                                                    <div class="col-sm-10">
+                                                        {% for language in languages %}
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+                                                                </span>
+                                                                <input type="text" name="module_so_topbar_countdown_layout2_button_text[{{ language.language_id }}]" value="{% if module_so_topbar_countdown_layout2_button_text[language.language_id] %}{{ module_so_topbar_countdown_layout2_button_text[language.language_id] }}{% endif %}" class="form-control" />
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ entry_image_banner_button_link }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_countdown_layout2_button_link" class="form-control" value="{{ module_so_topbar_countdown_layout2_button_link }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown2_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout2_background_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout2_background_color" value="{{ module_so_topbar_countdown_layout2_background_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_text_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown2_textcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout2_text_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout2_text_color" value="{{ module_so_topbar_countdown_layout2_text_color }}" class="form-control colorselector" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown2_button_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout2_background_button_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout2_background_button_color" value="{{ module_so_topbar_countdown_layout2_background_button_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_hover_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown2_button_hover_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout2_background_button_hover_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout2_background_button_hover_color" value="{{ module_so_topbar_countdown_layout2_background_button_hover_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_text_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown2_button_text_color_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout2_background_button_text_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout2_background_button_text_color" value="{{ module_so_topbar_countdown_layout2_background_button_text_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_text_hover_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown2_button_text_hover_color_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout2_background_button_text_hover_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout2_background_button_text_hover_color" value="{{ module_so_topbar_countdown_layout2_background_button_text_hover_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_countdown_background_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown2_countdownbgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout2_countdown_bgcolor }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout2_countdown_bgcolor" value="{{ module_so_topbar_countdown_layout2_countdown_bgcolor }}" class="form-control colorselector" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_countdown_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="countdown2_countdowncolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_countdown_layout2_countdown_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_countdown_layout2_countdown_color" value="{{ module_so_topbar_countdown_layout2_countdown_color }}" class="form-control colorselector" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_countdown_fontsize }}</label>
+                                                    <div class="col-sm-2">
+                                                        <input type="text" name="module_so_topbar_countdown_layout2_countdown_fontsize" value="{{ module_so_topbar_countdown_layout2_countdown_fontsize }}" class="form-control" />
+                                                        <div class="help-block">Example: 20px or 200%</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="accordion-group">
+                                <div class="accordion-heading" role="tab" id="headingSeven">
+                                    <a class="collapsed accordion-toggle" data-toggle="collapse" data-parent="#accordion" href="#collapseSeven" aria-expanded="false" aria-controls="collapseSeven">
+                                        <div class="accordion-bar">{{ entry_html_section }}</div>
+                                    </a>
+                                </div>
+                                <div id="collapseSeven" class="collapse" role="tabpanel" aria-labelledby="headingSeven">
+                                    <div class="accordion-body">
+                                        <div class="accordion-inner">
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_status }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_html_show %}
+                                                                <input type="checkbox" name="module_so_topbar_html_show" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_html_show" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_start }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_html_date_start" value="{{ module_so_topbar_html_date_start }}" placeholder="{{ text_date_start }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_date_end }}</label>
+                                                    <div class="col-sm-3">
+                                                        <div class="input-group datetime">
+                                                            <input type="text" name="module_so_topbar_html_date_end" value="{{ module_so_topbar_html_date_end }}" placeholder="{{ text_date_end }}" data-date-format="YYYY-MM-DD HH:mm:ss" class="form-control" />
+                                                            <span class="input-group-btn">
+                                                                <button class="btn btn-default" type="button"><i class="fa fa-calendar"></i></button>
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_content_html }}</label>
+                                                    <div class="col-sm-10">
+                                                        {% for language in languages %}
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+                                                                </span>
+                                                                <textarea name="module_so_topbar_html_content[{{ language.language_id }}]" data-toggle="summernote" class="form-control">{% if module_so_topbar_html_content[language.language_id] %}{{ module_so_topbar_html_content[language.language_id] }}{% endif %}</textarea>
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ entry_image_banner_show_button }}</label>
+                                                    <div class="col-sm-10">
+                                                        <label class="checkbox-inline">
+                                                            {% if module_so_topbar_html_show_button %}
+                                                                <input type="checkbox" name="module_so_topbar_html_show_button" value="1" checked="checked" />
+                                                            {% else %}
+                                                                <input type="checkbox" name="module_so_topbar_html_show_button" value="1" />
+                                                            {% endif %}
+                                                        </label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ entry_image_banner_button_text }}</label>
+                                                    <div class="col-sm-10">
+                                                        {% for language in languages %}
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon">
+                                                                    <img src="language/{{ language.code }}/{{ language.code }}.png" title="{{ language.name }}" />
+                                                                </span>
+                                                                <input type="text" name="module_so_topbar_html_button_text[{{ language.language_id }}]" value="{% if module_so_topbar_html_button_text[language.language_id] %}{{ module_so_topbar_html_button_text[language.language_id] }}{% endif %}" class="form-control" />
+                                                            </div>
+                                                        {% endfor %}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ entry_image_banner_button_link }}</label>
+                                                    <div class="col-sm-10">
+                                                        <input type="text" name="module_so_topbar_html_button_link" class="form-control" value="{{ module_so_topbar_html_button_link }}" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="html_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_html_background_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_html_background_color" value="{{ module_so_topbar_html_background_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_text_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="html_textcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_html_text_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_html_text_color" value="{{ module_so_topbar_html_text_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="html_button_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_html_background_button_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_html_background_button_color" value="{{ module_so_topbar_html_background_button_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_hover_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="html_button_hover_bgcolor_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_html_background_button_hover_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_html_background_button_hover_color" value="{{ module_so_topbar_html_background_button_hover_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_text_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="html_button_text_color_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_html_background_button_text_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_html_background_button_text_color" value="{{ module_so_topbar_html_background_button_text_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-xs-12">
+                                                    <label class="col-sm-2 control-label">{{ text_background_button_text_hover_color }}</label>
+                                                    <div class="col-sm-2">
+                                                        <div id="html_button_text_hover_color_selector" class="colorSelector"><div style="background-color: {{ module_so_topbar_html_background_button_text_hover_color }}"></div></div>
+                                                        <input type="hidden" name="module_so_topbar_html_background_button_text_hover_color" value="{{ module_so_topbar_html_background_button_text_hover_color }}" class="form-control" />
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+	   		</div>
+	   	</div>
+	</div>
+</div>
+<script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
+<link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
+<script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script> 
+<script type="text/javascript" src="view/javascript/summernote/opencart.js"></script> 
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $('.date').datetimepicker({
+            pickDate: true,
+            pickTime: false
+        });
+
+        $('.datetime').datetimepicker({
+            pickDate: true,
+            pickTime: true
+        });
+
+        // $('#close_bgcolor_selector div').css('backgroundColor', '#ff0000');
+        // $('#close_bgcolor_selector').next().val('#ff0000');
+        $('#close_bgcolor_selector').ColorPicker({
+            color: '#ff0000',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#close_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#close_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#close_textcolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#close_textcolor_selector').next().val('#ffffff');
+        $('#close_textcolor_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#close_textcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#close_textcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#social_bgcolor_selector div').css('backgroundColor', '#0f8db3');
+        // $('#social_bgcolor_selector').next().val('#0f8db3');
+        $('#social_bgcolor_selector').ColorPicker({
+            color: '#0f8db3',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#social_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#social_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#social_textcolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#social_textcolor_selector').next().val('#ffffff');
+        $('#social_textcolor_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#social_textcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#social_textcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#social_socialcolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#social_socialcolor_selector').next().val('#ffffff');
+        $('#social_socialcolor_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#social_socialcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#social_socialcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#social_socialhovercolor_selector div').css('backgroundColor', '#f2d03b');
+        // $('#social_socialhovercolor_selector').next().val('#f2d03b');
+        $('#social_socialhovercolor_selector').ColorPicker({
+            color: '#f2d03b',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#social_socialhovercolor_selector div').css('backgroundColor', '#' + hex);
+                $('#social_socialhovercolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#banner_button_bgcolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#banner_button_bgcolor_selector').next().val('#ffffff');
+        $('#banner_button_bgcolor_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#banner_button_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#banner_button_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#banner_button_hover_bgcolor_selector div').css('backgroundColor', '#ffbf00');
+        // $('#banner_button_hover_bgcolor_selector').next().val('#ffbf00');
+        $('#banner_button_hover_bgcolor_selector').ColorPicker({
+            color: '#ffbf00',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#banner_button_hover_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#banner_button_hover_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#banner_button_text_color_selector div').css('backgroundColor', '#171721');
+        // $('#banner_button_text_color_selector').next().val('#171721');
+        $('#banner_button_text_color_selector').ColorPicker({
+            color: '#171721',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#banner_button_text_color_selector div').css('backgroundColor', '#' + hex);
+                $('#banner_button_text_color_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#banner_button_text_hover_color_selector div').css('backgroundColor', '#ffffff');
+        // $('#banner_button_text_hover_color_selector').next().val('#ffffff');
+        $('#banner_button_text_hover_color_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#banner_button_text_hover_color_selector div').css('backgroundColor', '#' + hex);
+                $('#banner_button_text_hover_color_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#subcribe_bgcolor_selector div').css('backgroundColor', '#ff7322');
+        // $('#subcribe_bgcolor_selector').next().val('#ff7322');
+        $('#subcribe_bgcolor_selector').ColorPicker({
+            color: '#ff7322',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#subcribe_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#subcribe_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#subcribe_textcolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#subcribe_textcolor_selector').next().val('#ffffff');
+        $('#subcribe_textcolor_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#subcribe_textcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#subcribe_textcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#subcribe_button_bgcolor_selector div').css('backgroundColor', '#252525');
+        // $('#subcribe_button_bgcolor_selector').next().val('#252525');
+        $('#subcribe_button_bgcolor_selector').ColorPicker({
+            color: '#252525',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#subcribe_button_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#subcribe_button_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#subcribe_button_hover_bgcolor_selector div').css('backgroundColor', '#252525');
+        // $('#subcribe_button_hover_bgcolor_selector').next().val('#252525');
+        $('#subcribe_button_hover_bgcolor_selector').ColorPicker({
+            color: '#252525',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#subcribe_button_hover_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#subcribe_button_hover_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#subcribe_button_hover_bgcolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#subcribe_button_hover_bgcolor_selector').next().val('#ffffff');
+        $('#subcribe_button_text_color_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#subcribe_button_text_color_selector div').css('backgroundColor', '#' + hex);
+                $('#subcribe_button_text_color_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#subcribe_button_text_hover_color_selector div').css('backgroundColor', '#ffffff');
+        // $('#subcribe_button_text_hover_color_selector').next().val('#ffffff');
+        $('#subcribe_button_text_hover_color_selector').ColorPicker({
+            color: '#0000ff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#subcribe_button_text_hover_color_selector div').css('backgroundColor', '#' + hex);
+                $('#subcribe_button_text_hover_color_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#twitter_bgcolor_selector div').css('backgroundColor', '#c2e1e3');
+        // $('#twitter_bgcolor_selector').next().val('#c2e1e3');
+        $('#twitter_bgcolor_selector').ColorPicker({
+            color: '#c2e1e3',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#twitter_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#twitter_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#twitter_textcolor_selector div').css('backgroundColor', '#171a21');
+        // $('#twitter_textcolor_selector').next().val('#171a21');
+        $('#twitter_textcolor_selector').ColorPicker({
+            color: '#171a21',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#twitter_textcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#twitter_textcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown1_bgcolor_selector div').css('backgroundColor', '#e31836');
+        // $('#countdown1_bgcolor_selector').next().val('#e31836');
+        $('#countdown1_bgcolor_selector').ColorPicker({
+            color: '#e31836',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown1_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown1_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown1_textcolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#countdown1_textcolor_selector').next().val('#ffffff');
+        $('#countdown1_textcolor_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown1_textcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown1_textcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown1_countdowncolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#countdown1_countdowncolor_selector').next().val('#ffffff');
+        $('#countdown1_countdowncolor_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown1_countdowncolor_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown1_countdowncolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown2_bgcolor_selector div').css('backgroundColor', '#14191f');
+        // $('#countdown2_bgcolor_selector').next().val('#14191f');
+        $('#countdown2_bgcolor_selector').ColorPicker({
+            color: '#14191f',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown2_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown2_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown2_textcolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#countdown2_textcolor_selector').next().val('#ffffff');
+        $('#countdown2_textcolor_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown2_textcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown2_textcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown2_button_bgcolor_selector div').css('backgroundColor', '#e31836');
+        // $('#countdown2_button_bgcolor_selector').next().val('#e31836');
+        $('#countdown2_button_bgcolor_selector').ColorPicker({
+            color: '#e31836',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown2_button_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown2_button_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown2_button_hover_bgcolor_selector div').css('backgroundColor', '#e31836');
+        // $('#countdown2_button_hover_bgcolor_selector').next().val('#e31836');
+        $('#countdown2_button_hover_bgcolor_selector').ColorPicker({
+            color: '#e31836',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown2_button_hover_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown2_button_hover_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown2_button_text_color_selector div').css('backgroundColor', '#ffffff');
+        // $('#countdown2_button_text_color_selector').next().val('#ffffff');
+        $('#countdown2_button_text_color_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown2_button_text_color_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown2_button_text_color_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown2_button_text_hover_color_selector div').css('backgroundColor', '#ffffff');
+        // $('#countdown2_button_text_hover_color_selector').next().val('#ffffff');
+        $('#countdown2_button_text_hover_color_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown2_button_text_hover_color_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown2_button_text_hover_color_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown2_countdownbgcolor_selector div').css('backgroundColor', '#353535');
+        // $('#countdown2_countdownbgcolor_selector').next().val('#353535');
+        $('#countdown2_countdownbgcolor_selector').ColorPicker({
+            color: '#353535',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown2_countdownbgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown2_countdownbgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#countdown2_countdowncolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#countdown2_countdowncolor_selector').next().val('#ffffff');
+        $('#countdown2_countdowncolor_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#countdown2_countdowncolor_selector div').css('backgroundColor', '#' + hex);
+                $('#countdown2_countdowncolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#html_bgcolor_selector div').css('backgroundColor', '#a02806');
+        // $('#html_bgcolor_selector').next().val('#a02806');
+        $('#html_bgcolor_selector').ColorPicker({
+            color: '#a02806',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#html_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#html_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#html_textcolor_selector div').css('backgroundColor', '#ffffff');
+        // $('#html_textcolor_selector').next().val('#ffffff');
+        $('#html_textcolor_selector').ColorPicker({
+            color: '#ffffff',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#html_textcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#html_textcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#html_button_bgcolor_selector div').css('backgroundColor', '#f1e500');
+        // $('#html_button_bgcolor_selector').next().val('#f1e500');
+        $('#html_button_bgcolor_selector').ColorPicker({
+            color: '#f1e500',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#html_button_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#html_button_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#html_button_hover_bgcolor_selector div').css('backgroundColor', '#f1e500');
+        // $('#html_button_hover_bgcolor_selector').next().val('#f1e500');
+        $('#html_button_hover_bgcolor_selector').ColorPicker({
+            color: '#f1e500',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#html_button_hover_bgcolor_selector div').css('backgroundColor', '#' + hex);
+                $('#html_button_hover_bgcolor_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#html_button_text_color_selector div').css('backgroundColor', '#121212');
+        // $('#html_button_text_color_selector').next().val('#121212');
+        $('#html_button_text_color_selector').ColorPicker({
+            color: '#121212',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#html_button_text_color_selector div').css('backgroundColor', '#' + hex);
+                $('#html_button_text_color_selector').next().val('#' + hex);
+            }
+        });
+
+        // $('#html_button_text_hover_color_selector div').css('backgroundColor', '#121212');
+        // $('#html_button_text_hover_color_selector').next().val('#121212');
+        $('#html_button_text_hover_color_selector').ColorPicker({
+            color: '#121212',
+            onShow: function (colpkr) {
+                $(colpkr).fadeIn(500);
+                return false;
+            },
+            onHide: function (colpkr) {
+                $(colpkr).fadeOut(500);
+                return false;
+            },
+            onChange: function (hsb, hex, rgb) {
+                $('#html_button_text_hover_color_selector div').css('backgroundColor', '#' + hex);
+                $('#html_button_text_hover_color_selector').next().val('#' + hex);
+            }
+        });
+    });
+</script>
+{{ footer }}

@@ -1,0 +1,73 @@
+{{ header }}{{ column_left }}
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> {{ text_list }}</h3>
+            </div>
+            <div class="panel-body">
+                {% if trial_requests %}
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                               
+<td class="text-left">Full Name</td>
+<td class="text-left">Email</td>
+<td class="text-left">Phone</td>
+<td class="text-left">Postcode</td>
+
+<td class="text-left">Product/Brand</td>
+<td class="text-left">Message</td>
+<td class="text-left">Date Added</td>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for trial_request in trial_requests %}
+                            <tr>
+                               
+                                <td class="text-left">{{ trial_request.fullname }}</td>
+                                <td class="text-left">{{ trial_request.email }}</td>
+                                <td class="text-left">{{ trial_request.phone }}</td>
+                                <td class="text-left">{{ trial_request.postcode }}</td>
+                                <td class="text-left">{{ trial_request.product_name }}</td>
+                                <td class="text-left">{{ trial_request.message }}</td>
+                                <td class="text-left">{{ trial_request.date_added }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                
+                {% else %}
+                <p>{{ text_no_results }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+<style>
+    .text-black, .table, .table th, .table td, .panel-heading, .panel-title {
+        color: #000 !important;
+    }
+    .table-responsive {
+        -webkit-overflow-scrolling: touch;
+    }
+    @media (max-width: 767px) {
+        .table-responsive {
+            overflow-x: auto;
+        }
+    }
+</style>
+{{ footer }}

@@ -1,0 +1,145 @@
+ {{ header }}
+  <link href="catalog/view/theme/so-clickboom/css/customerForms.css" rel="stylesheet" type="text/css" />
+
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+    <div class="container text-black">
+    <div class="row mt-5">
+        <div class="demo-request-container">
+    <div class="demo-request-left col-md-5 col-sm-12">
+        <h1>Check your eligibility</h1>
+        <p>Mobility aids can be quite expensive for many of us to afford.  </p>
+        <p>
+            
+
+Thankfully, nearly all products we sell are subsidised by the Government through state funding agencies and organisations such as NDIS, DVA, VMSS, EnableNSW, ILC and MASS. 
+
+This means that you can purchase a piece of equipment from us at a much more affordable price. 
+
+To see if you’re eligible to receive Government funding for the mobility aids you require, simply fill out the form  and we’ll get back to you as soon as possible. 
+        </p>
+        <div class="profile">
+            
+            <p><strong>Submit your request </strong></p>
+        </div>
+    </div>
+    
+    <div class="demo-request-right col-md-7 col-sm-12">
+        <form action="{{ action }}" method="post" id="demoRequestForm">
+            
+            <div class="">
+               <input type="text" name="fullname"  placeholder="Full Name *" required>
+               {% if error_name %} 
+             <div class="text-red">{{ error_name }}</div>
+             {% endif %} 
+             </div>
+
+            <div class="">
+              <input type="email" name="email"  placeholder="Email *" required>
+              {% if error_email %} 
+              <div class="text-red">{{ error_email }}</div>
+              {% endif %} 
+            </div>
+
+            <div class="">
+            <input type="number" name="phone"  placeholder="Phone Number *" maxlength="10" required>
+            {% if error_phone %} 
+             <div class="text-red">{{ error_phone }}</div>
+             {% endif %} 
+            </div>
+
+            <div class="">
+<input type="text" name="postcode" placeholder="Postcode *" maxlength="4" pattern="^[0-9]{1,4}$" title="Please enter up to 4 digits only" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,4);" required>
+             </div>
+
+           
+
+            <div class="">
+                 <select name="manufacturer_id" id="manufacturer_id" class="form-control" required>
+    <option value="" disabled {% if not manufacturer_id %}selected{% endif %}>Product of interest *</option>
+    {% for manufacturer in manufacturers %}
+            <option value="{{ manufacturer.manufacturer_id }}" {% if manufacturer_id == manufacturer.manufacturer_id %}selected{% endif %}>
+                {{ manufacturer.name }}
+            </option>
+    {% endfor %}
+</select>
+
+    {% if error_manufacturer_id %}
+        <div class="text-red">{{ error_manufacturer_id }}</div>
+    {% endif %}
+             
+            </div>
+            
+            <div class="">
+                <textarea name="message" class="form-control" placeholder="Message"></textarea>
+            </div>
+              <div class="">
+             {{ captcha }}
+              </div>
+                <input type="hidden" name="originalCaptcha" value={{ originalCaptcha }}>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Submit Your Request</button>
+        </form>
+        <div id="toastMessage" class="toast"></div>
+        <div id="loaderOverlay" class="loader-overlay">
+        <div class="loader"></div>
+         </div>
+    </div>
+</div>
+
+
+    </div> 
+    </div>
+    </div> 
+    {{ column_right }}
+    </div> 
+     </div> 
+     {{ footer }}
+     <script>
+      $('#loaderOverlay').hide();
+    //  $('#demoRequestForm').submit(function(e) {
+    //             e.preventDefault();
+    //             var form = $(this);
+    //             $('.text-red').remove(); // Clear previous errors
+    //           $('#loaderOverlay').show();
+    //             $.ajax({
+    //                 url: form.attr('action'),
+    //                 type: 'POST',
+    //                 data: form.serialize(),
+    //                 dataType: 'json',
+    //                 success: function(response) {
+    //                     if (response.success) {
+    //                         $('#toastMessage').text(response.success).removeClass('error').show();
+    //                         $('#loaderOverlay').hide();
+    //                         setTimeout(function() {
+    //                             $('#toastMessage').fadeOut();
+    //                         }, 3000);
+    //                         form[0].reset();
+    //                         $('#profession_other_group').hide();
+    //                         $('#profession_other').prop('required', false);
+    //                     } else if (response.error) {
+    //                         $('#loaderOverlay').hide();
+    //                         $.each(response.error, function(key, value) {
+    //                             $('#' + key).after('<div class="text-red">' + value + '</div>');
+    //                         });
+    //                         $('#toastMessage').text('Please fill form correctly.').addClass('error').show();
+    //                         setTimeout(function() {
+    //                             $('#toastMessage').fadeOut();
+    //                         }, 3000);
+    //                     }
+    //                 },
+    //                 error: function() {
+    //                     $('#toastMessage').text('An error occurred. Please try again.').addClass('error').show();
+    //                     setTimeout(function() {
+    //                         $('#toastMessage').fadeOut();
+    //                     }, 3000);
+    //                 }
+    //             });
+    //         });
+     </script>

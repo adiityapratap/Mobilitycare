@@ -1,0 +1,352 @@
+{{ header }}
+<style>
+.brand-section{
+    border: 1px solid #337ab769;
+    padding-top: 5px;
+}
+.col-custom-2{
+   width: 10.666667% !important; 
+    padding-right: 15px;
+    padding-left: 15px;
+   display: inline-block;
+}
+  .card {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+        .btn-orange {
+            background-color: #e76f1f;
+            color: white;
+            margin-top: 5px;
+        }
+        .btn-orange:hover {
+            background-color: #c55b18;
+        }
+        .brandCardContainer{
+            height: 330px;
+        }
+        .partnerCard h4,.brandCard h4 {
+         color: #034488; 
+          }
+.partnerCard{
+    text-align: center;
+}
+.partnerCard ul {
+   list-style-position: inside; /* Ensures bullets align with text */
+    display: inline-block; /* Allows centering */
+    text-align: left; /* Keeps list text aligned properly */
+    padding-left: 0; /* Removes default padding */
+}
+
+.partnerCard ul li {
+    
+    list-style-type: disc;
+}
+
+</style>
+
+ 
+
+<div class="container mb-5 mt-5">
+    <h2 class="text-center text-black">Become a Dealer</h2>
+
+    {% if success %}
+        <div class="alert alert-success">{{ success }}</div>
+    {% endif %}
+    <div class="row mt-5">
+   <div class="col-md-12">
+       <h4 class="text-center text-black">World Leading Manufacturers</h4>
+    <div class="row mt-5">
+       {% set logos = [
+  {'file': 'mangar.jpg', 'name': 'Patient inflatable moving & handling and bathing equipment (UK)', 'manufacturer_id': 8},
+  {'file': 'benoit.jpg', 'name': 'Wheelchair power assistance (France)', 'manufacturer_id': 14},
+  {'file': 'ustep.jpg', 'name': 'Walking Aid Stabilizers for Parkinsons (USA)', 'manufacturer_id': 13},
+  {'file': 'topro.jpg', 'name': 'Norwegian Designed Walkers & Rollators (Norway)', 'manufacturer_id': 12},
+  {'file': 'autochair.jpg', 'name': 'Vehicle adaptations & mobility driving aids (UK)', 'manufacturer_id': 11},
+  {'file': 'amf.png', 'name': 'Vehicle adaptations (Germany)', 'manufacturer_id': 16},
+  {'file': 'TrekineticLogo.jpg', 'name': 'Trekinetic', 'manufacturer_id': 15},
+  {'file': 'LiftSeatLogo.png', 'name': 'LiftSeat', 'manufacturer_id': 16}
+] %}
+
+        
+        {% for logo in logos %}
+  <div class="col-custom-2 text-center brand-section">
+
+    <a href="index.php?route=product/manufacturer/info&manufacturer_id={{ logo.manufacturer_id }}">
+      <img 
+        src="image/catalog/brands/{{ logo.file }}" 
+        alt="{{ logo.name }}" 
+        class="img-responsive" 
+        style="width: 100%; height: auto; margin-bottom: 5px; cursor:pointer;"
+      >
+    </a>
+
+    <div class="text-black mt-2" style="font-size: 12px;">
+      {# {{ logo.name }} #}
+    </div>
+
+  </div>
+{% endfor %}
+
+    </div>
+</div>
+</div>
+ 
+    <div class="row mt-5 text-black">
+        <div class="demo-request-container">
+        <div class="demo-request-left col-md-6 col-sm-12">
+        <h3>Become a dealer.</h3>
+        <p>Get a personalized quote tailored to your needs.</p>
+        <ul>
+    <li>✅ Exclusive Product Access</li>
+    <li>✅ Marketing & Sales Exposure</li>
+    <li>✅ Fast & Reliable Logistics</li>
+    <li>✅ Access to NDIS and healthcare-funded mobility solutions</li>
+        </ul>
+        
+    <div class="profile mt-5">
+    <h3>Why Dealers Partner with Mobilitycare</h3>
+     <p>Get a personalized quote tailored to your needs.</p>
+    <ul>
+    <li>✅ Over 250 dealers trust us for premium mobility solutions.</li>
+    <li>✅ Mobilitycare offers exclusive product lines to ensure a competitive edge.</li>
+    <li>✅ We provide full marketing and sales exposure, helping our dealers grow through industry visibility.</li>
+    <li>✅ Our dedicated dealer support ensures seamless operations and continuous business growth</li>
+        </ul>
+        </div>
+    </div>
+    
+         <div class="demo-request-right col-md-6 col-sm-12">
+            
+        <form action="{{ action }}" method="post">
+
+  <div class="">
+    <input type="text" name="full_name" placeholder="Full Name *" required>
+    {% if error_full_name %}
+      <div class="text-red">{{ error_full_name }}</div>
+    {% endif %}
+  </div>
+
+  <div class="">
+    <input type="text" name="business_name" placeholder="Business Name *" required>
+    {% if error_business_name %}
+      <div class="text-red">{{ error_business_name }}</div>
+    {% endif %}
+  </div>
+
+  <div class="">
+    <input type="email" name="email" placeholder="Email Address *" required>
+    {% if error_email %}
+      <div class="text-red">{{ error_email }}</div>
+    {% endif %}
+  </div>
+
+  <div class="">
+    <input type="number" name="phone" maxlength="10" placeholder="Phone Number *" required>
+    {% if error_phone %}
+      <div class="text-red">{{ error_phone }}</div>
+    {% endif %}
+  </div>
+
+  <div class="">
+    <textarea name="business_address" placeholder="Business Address *" required></textarea>
+    {% if error_business_address %}
+      <div class="text-red">{{ error_business_address }}</div>
+    {% endif %}
+  </div>
+
+  <div class="">
+    <input type="text" name="abn" placeholder="ABN (Australian Business Number) *" required>
+    {% if error_abn %}
+      <div class="text-red">{{ error_abn }}</div>
+    {% endif %}
+  </div>
+
+  <div class="">
+    <input type="text" name="website" placeholder="Website URL (if applicable)">
+  </div>
+
+  <div class="">
+    <textarea name="description" placeholder="Brief Description of the Business *" required></textarea>
+    {% if error_description %}
+      <div class="text-red">{{ error_description }}</div>
+    {% endif %}
+  </div>
+
+  <div class="">
+    <input type="text" name="postcode" placeholder="Postcode">
+  </div>
+
+  <div class="">
+    <input type="text" name="heard_about" placeholder="How did you hear about us?">
+  </div>
+  <div class="">
+ <label class="control-label"><strong>Preferred Category</strong></label>
+ 
+ <div class="form-group">
+ 
+  <div class="row">
+    {% for manufacturer in manufacturers %}
+      <div class="col-md-12 col-sm-6 col-xs-12">
+        <div class="checkbox">
+          <label>
+            <input type="checkbox" name="preferred_categories[]" value="{{ manufacturer.id }}">
+            {{ manufacturer.name }}
+          </label>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+ </div>
+  
+
+
+  <div class="">
+    {{ captcha }}
+  </div>
+
+  <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Submit</button>
+
+</form>
+   
+        </div>
+        </div>
+       </div>
+       
+        <h3 class="text-center text-black mt-5"><b>Our Exclusive Brands & Products</b></h3>
+       <div class="row mt-5 text-black brandCard">
+    <div class="col-md-4">
+        <div class="card brandCardContainer">
+            <h4><b>Autochair Vehicle Adaptations & Mobility Aids</b></h4>
+            <p>Smart Transfer solutions and Smart Lifter hoists in multiple lifting capacities.</p>
+
+            <a href="/buy/autochair-smart-lifter-lm" class="btn btn-orange btn-block">Smart Lifter LM</a>
+            <a href="/buy/autochair-smart-lifter-lp" class="btn btn-orange btn-block">Smart Lifter LP</a>
+            <a href="/buy/autochair-smart-lifter-lc" class="btn btn-orange btn-block">Smart Lifter LC</a>
+            <a href="/buy/autochair-smart-transfer" class="btn btn-orange btn-block">Smart Transfer</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card brandCardContainer">
+            <h4><b>Benoit Systems Light Drive</b></h4>
+            <p>Power assist solutions that transform manual wheelchairs into powered mobility devices.</p>
+
+            <a href="/buy/light-drive-wheelchair-power-assist" class="btn btn-orange btn-block">LightDrive Power Assist</a>
+            <a href="/buy/light-assist-wheelchair-power-assist" class="btn btn-orange btn-block">Light Assist</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card brandCardContainer">
+            <h4><b>Trekinetic All-Terrain Wheelchairs</b></h4>
+            <p>High-performance wheelchairs built for off-road and everyday mobility.</p>
+
+            <a href="/buy/trekinetic-k2-all-terrain-manual-wheelchair" class="btn btn-orange btn-block">Trekinetic K2</a>
+            <a href="/buy/trekinetic-gte-all-terrain-power-wheelchair" class="btn btn-orange btn-block">Trekinetic GTE</a>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-5 text-black brandCard">
+    <div class="col-md-4">
+        <div class="card brandCardContainer">
+            <h4><b>TOPRO Norwegian Walkers & Rollators</b></h4>
+            <p>Premium European rollators designed for stability and ease of use.</p>
+
+            <a href="/buy/topro-troja-5g-rollator" class="btn btn-orange btn-block">Troja 5G</a>
+            <a href="/buy/topro-troja-frame-walker" class="btn btn-orange btn-block">Troja Forearm Walker</a>
+            <a href="/buy/topro-olympos-all-terrain-offroader-rollator" class="btn btn-orange btn-block">Olympos Off Road Rollator</a>
+            <a href="/buy/topro-neuro-walker" class="btn btn-orange btn-block">Neuro Walker</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card brandCardContainer">
+            <h4><b>U-STEP Parkinson’s Walker</b></h4>
+            <p>Specialized training walker engineered to support neurodegenerative conditions.</p>
+
+            <a href="/buy/u-step-parkinsons-walker" class="btn btn-orange btn-block">U-Step Walker</a>
+            <a href="/buy/in-step-laser-cane" class="btn btn-orange btn-block">In Step Laser Cane</a>
+        </div>
+    </div>
+
+    <div class="col-md-4">
+        <div class="card brandCardContainer">
+            <h4><b>Mangar Lifting Cushions</b></h4>
+            <p>Emergency lifting solutions trusted by aged care and healthcare professionals.</p>
+
+            <a href="/buy/mangar-elk-lifting-cushion" class="btn btn-orange btn-block">ELK Cushion</a>
+            <a href="/buy/mangar-camel" class="btn btn-orange btn-block">Camel Cushion</a>
+            <a href="/buy/mangar-eagle-lifting-cushion-airflo-24" class="btn btn-orange btn-block">Eagle Cushion</a>
+        </div>
+    </div>
+</div>
+
+    
+    {#form code starts here #}
+   
+  </div>
+
+{{ footer }}
+
+<style>
+.demo-request-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 40px;
+    background: #FDF3E7;
+}
+
+.demo-request-left h3 {
+    font-size: 26px;
+    font-weight: bold;
+}
+.demo-request-left ul {
+    list-style: none;
+    padding: 0;
+}
+.demo-request-left ul li {
+    margin-bottom: 10px;
+}
+
+.demo-request-right {
+    
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+}
+form {
+    display: flex;
+    flex-direction: column;
+}
+.form-group {
+    display: flex;
+    gap: 10px;
+}
+input, select, textarea {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+button {
+    background: #0066FF;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+button:hover {
+    background: #0055DD;
+}
+</style>

@@ -1,0 +1,72 @@
+{{ text_received }}
+
+{{ text_order_id }} {{ order_id }}
+{{ text_date_added }} {{ date_added }}
+{{ text_order_status }} {{ order_status }}
+
+
+<h3>Customer Details</h3>
+Name: {{ firstname }} {{ lastname }} <br>
+Email: {{ email }} <br>
+Phone: {{ telephone }} <br>
+
+{% if payment_method or payment_address %}
+<h3>Payment</h3>
+
+{% if payment_method %}
+Method: {{ payment_method }} <br>
+{% endif %}
+
+{% if payment_address %}
+Address: {{ payment_address }} <br>
+{% endif %}
+
+{% endif %}
+
+{% if shipping_method or shipping_address %}
+<h3>Shipping</h3>
+
+{% if shipping_method %}
+Method: {{ shipping_method }} <br>
+{% endif %}
+
+{% if shipping_address %}
+Address: {{ shipping_address }} <br>
+{% endif %}
+
+{% endif %}
+
+
+{% if customer_comment %}
+<h3>Order Comment</h3>
+{{ customer_comment }}
+{% endif %}
+
+
+{{ text_product }}
+
+{% for product in products %}
+{{ product.quantity }}x {{ product.name }} ({{ product.model }}) {{ product.total }}
+{% if product.option %}
+{% for option in product.option %}
+	- {{ option.name }} {{ option.value }}
+{% endfor %}
+{% endif %}
+{% endfor %}
+{% if vouchers %}
+
+{% for voucher in vouchers %}
+1x {{ voucher.description }} {{ voucher.amount }}
+{% endfor %}
+{% endif %}
+{{ text_total }}
+
+{% for total in totals %}
+{{ total.title }}: {{ total.value }}
+{% endfor %}
+  
+{% if comment %}
+{{ text_comment }}
+
+{{ comment }}
+{% endif %}

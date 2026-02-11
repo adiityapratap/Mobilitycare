@@ -1,0 +1,221 @@
+<style>
+@media (max-width: 768px) {
+  /* First Row: Align the 3 feature boxes */
+  .feature-box {
+    text-align: center;
+    width: 100%; /* Take full width for better alignment */
+    margin-bottom: 10px;
+  }
+
+  /* Second Row: Align Funding and Other Items */
+  .middle-right {
+    flex-wrap: wrap;
+    justify-content: center; /* Center items */
+  }
+  .headerRightItem {
+    flex: 1 0 45%; /* Make items fit in two columns */
+    margin: 5px;
+    text-align: center;
+  }
+
+  /* Third Row: Burger Icon (Left) and Cart + Account (Right) */
+  .third-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-top: 1px solid #dfdfdf;
+    background-color: #f7f7f7;
+  }
+  .burger-icon {
+    font-size: 24px;
+    cursor: pointer;
+  }
+  .cart-account {
+    display: flex;
+    gap: 10px;
+  }
+  .cart-account .shopping_cart,
+  .cart-account .dropdown-block {
+    display: inline-block;
+  }
+}
+.btn-custom-blue-red {
+    background: none;
+    color: #f33233;
+    padding: 10px 15px;
+    font-weight: bold;
+    border: 1px solid #f33233;
+        }
+</style>
+{#=====Get variable : Config Select Block on header=====#}
+{% set hidden_headercenter = soconfig.get_settings('toppanel_type') =='2'? 'hidden-compact' : '' %}
+{% set hidden_headerbottom = soconfig.get_settings('toppanel_type') =='1'? 'hidden-compact' : '' %}
+
+<header id="header" class=" variant typeheader-{{ typeheader ? typeheader : '1'}}">
+  <script src="https://www.google.com/recaptcha/enterprise.js?render=6Lfma80qAAAAAI8AWaxkdfBJvYWDkhUlu7BgM1_z"></script>
+    <!-- modified code by ady to add top bar in header 01-07-2025 -->
+    <div class="container-fluid">
+  <div class="row">
+    <div class="col-xs-4 feature-box light-blue">
+      <i class="glyphicon glyphicon-ok"></i>
+      <span>250+ Dealer Network</span>
+    </div>
+    <div class="col-xs-4 feature-box medium-blue">
+      <i class="glyphicon glyphicon-ok"></i>
+      <span>Expert Mobility Advice</span>
+    </div>
+    <div class="col-xs-4 feature-box dark-blue">
+      <i class="glyphicon glyphicon-ok"></i>
+      <span>Nationwide Delivery</span>
+    </div>
+  </div>
+</div>
+
+		{% if soconfig.get_settings('custom_status') %}
+	<div class="text-discount hidden-xs hidden-compact" >
+		<div class="container">
+			{{ soconfig.get_settings('custom_html') }}
+		</div>
+	</div>
+	{% endif %}
+
+	<div class="header-center {{hidden_headercenter}}" style="border-bottom: 1px solid #dfdfdf;">    
+    <div class="container">
+        <div class="row">        
+            <div class="pull-left col-left-top col-lg-3 col-md-3 col-sm-4 col-xs-12">
+                <div class="logo">
+                    {{soconfig.get_logo()}}
+                </div>    
+            </div>    
+            <div class="header-center col-lg-9 col-md-9 col-sm-8 col-xs-12 pull-right">
+                
+                <div class="middle-right col-right-top row col-left-top" style="width: 100%; display: flex; align-items: center; justify-content: flex-end; gap: 28px;">
+                     <!-- Item: NDIS & Funding -->
+                    <div class="headerRightItem">    
+                        <strong><a class="Funding" href="{{ ndis_link }}" style="color: black;"><i class="fa fa-usd" style="font-size: 18px;"></i> NDIS & Funding</a></strong>
+                    </div>
+
+                   
+                    <!-- Item: Dealers -->
+                    <div class="dropdown-block block-topsetting headerRightItem">
+                        <div class="dropdown-btn">
+                            <strong><a href="#" style="color: black;"><i class="fa fa-building"></i> Dealers</a></strong>
+                        </div>
+                        <div class="dropdown-list-setting">
+                            <ul class="account dropdown-menu">
+                                <li class="find-dealer">
+                                    <a href="{{ findDealer_link }}"><i class="fa fa-search"></i> Find A Dealer</a>
+                                </li>
+                                <li class="become-dealer">
+                                    <a href="{{ dealer_link }}"><i class="fa fa-handshake-o"></i> Become A Dealer</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Item: Contact Us -->
+                    <div class="dropdown-block block-topsetting headerRightItem">
+                        <div class="dropdown-btn">
+                            <strong><a href="#" style="color: black;"><i class="fa fa-envelope"></i> Talk to Experts</a></strong>
+                        </div>
+                        <div class="dropdown-list-setting">
+                            <ul class="account dropdown-menu">
+                                <li class="customer-support">
+                                    <a href="{{ customerSupport }}"><i class="fa fa-life-ring"></i> Customer Support</a>
+                                </li>
+                                <li class="request-quote">
+                                    <a href="{{ quote }}"><i class="fa fa-file-text-o"></i> Request a Quote</a>
+                                </li>
+                                <li class="book-demo">
+                                    <a href="{{ bookDemo }} "><i class="fa fa-calendar"></i> Book a Demonstration</a>
+                                </li>
+                                 <li class="book-demo">
+                                    <a href="index.php?route=information/information&information_id=7"><i class="fa fa-video-camera"></i> Demo Videos</a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                  
+                  
+                    <!-- Item: Search -->
+                    <div class="header_search headerRightItem">
+                        <div class="icon-search"><i class="fa fa-search"></i></div>
+                        {{ search_block }}
+                    </div>
+                    
+                    <div class="headerRightItem">
+                      <a class="btn btn-danger btn-md" href="{{ contact }}" > <i class="fa fa-envelope"></i>Contact Now</a>     
+                    </div>
+                    <div class="headerRightItem">
+                        <a class="btn btn-custom-blue-red btn-md" href="#" ><i class="fa fa-phone"></i> (03) 9568 8383</a>     
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+	
+	<div class="header-center {{hidden_headercenter}}" >	
+		<div class="container">
+			<div class="row">		
+			<div class="header-center col-lg-10 col-md-10 col-sm-8 col-xs-12 pull-left">
+					<div class="main-menu-w">
+						{{ content_menu1 }}	
+					</div>				
+					
+				</div>
+			<div class="header-center col-lg-2 col-md-2 col-sm-4 col-xs-12 pull-right">
+                
+                <div class="middle-right col-right-top row col-left-top" style="width: 100%; display: flex; align-items: center; justify-content: flex-end; gap: 28px;">
+                    
+                    <div class="dropdown-block block-topsetting headerRightItem">
+                        <div class="dropdown-btn">
+                            <i class="fa fa-user"></i>
+                        </div>
+                        <div class="dropdown-list-setting">
+                            <ul class="account dropdown-menu">
+                                {% if logged %}
+                                <li class="logout">
+                                    <a class="link-lg" href="{{ logout }}">{{ text_logout }}</a>
+                                </li>
+                                {% else %}
+                                <!-- <li class="login">
+                                    <a class="link-lg" href="{{ login }}">{{ text_login }}</a>
+                                </li>
+                                <li class="register">
+                                    <a class="register" href="{{ register }}">{{ text_register }}</a>
+                                </li> -->
+                                {% endif %}
+                               <!-- <li class="resources">
+                                    <a class="resources" href="#"><i class="fa fa-book"></i> Resources</a>
+                                </li>
+                                <li class="Blog">
+                                    <a class="Blog" href="#"><i class="fa fa-pencil"></i> Blog</a>
+                                </li>
+                                <li class="FAQs">
+                                    <a class="FAQs" href="#"><i class="fa fa-question-circle"></i> FAQs</a>
+                                </li> 
+                                <li class="demovideos">
+                                    <a class="demovideos" href="index.php?route=information/information&information_id=7"><i class="fa fa-video-camera"></i> Demo Videos</a>
+                                </li>
+                                <li class="Contact">
+                                    <a class="Contact" href="#"><i class="fa fa-envelope"></i> Contact Us</a>
+                                </li> -->
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="shopping_cart headerRightItem">
+                        {{ cart }}
+                    </div>
+
+                </div>
+            </div>	
+			</div>
+		</div>
+	</div>
+	
+</header>

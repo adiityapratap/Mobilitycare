@@ -1,0 +1,477 @@
+   <link href="catalog/view/theme/so-clickboom/css/customerForms.css" rel="stylesheet" type="text/css" />
+
+<style>
+        .contact-box {
+            height: 100px;
+            box-shadow: 2px 2px 8px #ececec;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 8px;
+            background-color: #001a35; /* Change as needed */
+            margin: 10px; /* Adds spacing between columns */
+        }
+
+        .contact-box h4 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 16px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .contact-box i {
+            margin-right: 8px;
+            font-size: 18px;
+        }
+        .StayconnectedSection .fa{
+         font-size: 22px !important;   
+         color:red
+        }
+    </style>
+    {{ header }}
+<!-- <div class="breadcrumbs">
+	<div class="inner">
+	    <div class="container">
+	       <div class="current-name">   
+	        {% set last = breadcrumbs|length %}
+	        {% set i = 0 %}
+	        {% for breadcrumb, crumbInfo in breadcrumbs %}  
+	            {% set i = i + 1 %}     
+	            {% if i == last  %} 
+	            {{ crumbInfo.text }}
+	          {% endif %}  
+	        {% endfor %}
+	      </div>
+	      <ul class="breadcrumb">
+	        {% for breadcrumb in breadcrumbs %}
+	        <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+	        {% endfor %}
+	      </ul>
+	    </div>
+	</div>
+</div> -->
+<div class="container-fluid mt-5">
+ 
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+    
+    <div class="row mt-5 text-center">
+        <div class="col-sm-4 col-xs-12">
+            <div class="contact-box">
+                <h4><i class="fa fa-phone"></i> (03) 9568 8383</h4>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-xs-12">
+            <div class="contact-box" >
+                <h4><i class="fa fa-envelope"></i> contact@mobilitycare.net.au</h4>
+            </div>
+        </div>
+
+        <div class="col-sm-4 col-xs-12">
+            <div class="contact-box">
+                <h4><i class="fa fa-map-marker"></i> 39 Cambro Road, Clayton VIC 3168</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-5"> <div class="col-sm-12 col-xs-12 text-center"><legend><h2>{{ heading_title }}</h2></legend> </div></div>
+		<div class="info-contact row gap-5 d-flex">
+			
+			 <div class="col-sm-6 col-xs-12 info-store">
+			   <h4> Business Hours </h4>
+
+   
+
+<p>We’re available during the following hours: </p>
+
+<p>Monday to Friday: 9:00 AM – 5:00 PM </p>
+<p>Saturday - Sunday: Closed </p>
+
+<small>(Business hours may change for public holidays) </small>
+<p>NDIS Organisation ID: 4050000656 </p>
+<p>Stay connected with us: </p>
+
+<div class="row mt-5">
+<div class="col-lg-4 col-md-4 col-sm-6 col-xs-6 col_1wuz  col-style">
+	<ul class="socials-footer gap-5 d-flex StayconnectedSection">
+
+ <li class="Facebook" style=""><a class="_blank" href="https://www.facebook.com/MobilityCareAu/" target="_blank"><i class="fa fa-facebook" style=""></i></a></li>
+
+ <li class="Instagram"><a class="_blank" href="https://www.instagram.com/mobilitycare.au" target="_blank"><i class="fa fa-instagram"></i></a></li>
+ 
+ <li class="Youtube"><a class="_blank" href="https://www.youtube.com/MobilityCareOakleigh" target="_blank"><i class="fa fa-youtube"></i></a></li>
+
+ <li><a href="https://www.linkedin.com/in/mobility-care-939a92113/" title="Linkedin"><i class="fa fa-linkedin"></i></a></li>
+
+</ul>
+																						
+													</div>
+</div>
+ 
+			 </div>
+			<div class="col-sm-6 col-xs-12 contact-form">
+			   <form action="{{ action }}" method="post" enctype="multipart/form-data" class="form-horizontal quoteForm">
+        <fieldset>
+           
+            <p>{{ comment }}</p>
+            
+            <div class="form-group required">
+                <div class="col-sm-12">
+                    <input type="text" name="name" value="{{ name }}" id="input-name" class="form-control" placeholder="Enter your full name *"/>
+                    {% if error_name %} 
+                    <div class="text-danger">{{ error_name }}</div>
+                    {% endif %} 
+                </div>
+            </div>
+            
+            <div class="form-group required">
+                <div class="col-sm-12">
+                    <input type="email" name="email" value="{{ email }}" id="input-email" class="form-control" placeholder="Enter your email address *" />
+                    {% if error_email %} 
+                    <div class="text-danger">{{ error_email }}</div>
+                    {% endif %} 
+                </div>
+            </div>
+            
+            <div class="form-group required">
+                <div class="col-sm-12">
+                    <input type="number" name="phone" value="{{ phone }}" id="input-phone" class="form-control" placeholder="Enter your phone number *" />
+                    {% if error_phone %} 
+                    <div class="text-danger">{{ error_phone }}</div>
+                    {% endif %} 
+                </div>
+            </div>
+            
+            <div class="form-group required">
+                <div class="col-sm-12">
+                   <input type="text" class="form-control" name="postcode" placeholder="Postcode *" maxlength="4" pattern="^[0-9]{1,4}$" title="Please enter up to 4 digits only" oninput="this.value=this.value.replace(/[^0-9]/g,'').slice(0,4);" required>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-12">
+                  
+                   <select name="manufacturer_id" id="manufacturer_id" class="form-control" >
+    <option value="" disabled {% if not manufacturer_id %}selected{% endif %}>Product of interest *</option>
+    {% for manufacturer in manufacturers %}
+            <option value="{{ manufacturer.manufacturer_id }}" {% if manufacturer_id == manufacturer.manufacturer_id %}selected{% endif %}>
+                {{ manufacturer.name }}
+            </option>
+    {% endfor %}
+    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <label>Are you contacting us as?</label>
+                    <select name="contact_type" id="contact_type" class="form-control">
+                       
+                        <option value="For Myself">For Myself</option>
+                        <option value="For a Friend/Family Member">For a Friend/Family Member</option>
+                        <option value="Healthcare Professional">Healthcare Professional</option>
+                        <option value="Dealer or Business">Dealer or Business</option>
+                        <option value="Government or Non-Profit Organisation">Government or Non-Profit Organisation</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group" id="healthcare_profession" style="display: none;">
+                <div class="col-sm-12">
+                    <label>If Healthcare Professional, please specify:</label>
+                    <select name="healthcare_profession" class="form-control">
+                        <option value="Occupational Therapist">Occupational Therapist</option>
+                        <option value="Physiotherapist">Physiotherapist</option>
+                        <option value="Rehabilitation Specialist">Rehabilitation Specialist</option>
+                        <option value="Aged Care Professional">Aged Care Professional</option>
+                        <option value="Nurse or Caregiver">Nurse or Caregiver</option>
+                        <option value="Neurologist">Neurologist</option>
+                        <option value="Orthopedic Specialist">Orthopedic Specialist</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group required">
+                <div class="col-sm-12">
+                    <label>Reason for Inquiry</label>
+                    <select name="inquiry_reason" class="form-control">
+                        <option value="General Inquiry">General Inquiry</option>
+                        <option value="Demonstration">Demonstration</option>
+                        <option value="Quote">Quote</option>
+                        <option value="Find a dealer near me">Find a dealer near me</option>
+                        <option value="Product Information">Product Information</option>
+                        <option value="Dealer or Business Partnership">Dealer or Business Partnership</option>
+                        <option value="Technical Support">Technical Support</option>
+                        <option value="Warranty or Returns">Warranty or Returns</option>
+                        <option value="Other">Other</option>
+                    </select>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <div class="col-sm-12">
+                    <textarea name="enquiry" rows="5" id="input-enquiry" placeholder="Type your message here" class="form-control">{{ enquiry }}</textarea>
+                    {% if error_enquiry %} 
+                    <div class="text-danger">{{ error_enquiry }}</div>
+                    {% endif %} 
+                </div>
+            </div>
+            
+            {{ captcha }}
+        </fieldset>
+        
+         <input type="hidden" name="originalCaptcha" value={{ originalCaptcha }}>
+        <div class="form-group">
+       <button  style="width: 100%;" class="btn loadButton" type="submit">{{ button_submit }}</button>
+          </div>
+          
+          <script>
+document.getElementById("contact_type").addEventListener("change", function() {
+    const manufacturerField = document.querySelector("[name='manufacturer_id']");
+    const healthcareField = document.getElementById("healthcare_profession");
+
+    if (this.value === "Healthcare Professional") {
+        healthcareField.style.display = "block";
+        manufacturerField.setAttribute("required", "required");
+    } else {
+        healthcareField.style.display = "none";
+        manufacturerField.removeAttribute("required");
+    }
+});
+</script>
+
+    </form>
+			</div>
+		</div>
+		<div class="row mt-5 mb-5">
+		    <div class="col-sm-12 col-xs-12">
+			  {% if image %} 
+			<!--	<div id="map-canvas"><img src="{{ image }} " alt="{{ store }} " title="{{ store }} " /></div> -->
+			<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3147.4418261595256!2d145.13878147574178!3d-37.92010747194916!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x6ad6152d8df81e27%3A0xae1bed1d308f9771!2s39%20Cambro%20Rd%2C%20Clayton%20VIC%203168%2C%20Australia!5e0!3m2!1sen!2sin!4v1738749034159!5m2!1sen!2sin" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			  {% else %} 
+				<div id="map-canvas"></div>
+				<script src="https://maps.googleapis.com/maps/api/js?key={{soconfig.get_settings('mapkeys')}}"></script>
+				<script type="text/javascript">
+					
+					function showLatLgn() {
+						var geocoder = new google.maps.Geocoder();
+						var latlng = new google.maps.LatLng({{soconfig.get_settings('mapgeocode')}});
+
+						geocoder.geocode({"latLng": latlng}, function (results, status) {
+						
+							if (status == google.maps.GeocoderStatus.OK) {
+							
+								var add = results[1].formatted_address; //this is the full address
+								var myOptions = {
+									zoom: {{soconfig.get_settings('mapzoom')}},
+									center: latlng,
+									mapTypeId: google.maps.MapTypeId.ROADMAP
+								};
+								var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+								var marker = new google.maps.Marker({
+									map: map,
+									position: latlng
+								});
+								marker.setTitle('Address');
+								attachSecretMessage(marker,add);
+							} else {
+								try {
+									alert("Address not found");
+								} catch (e) {
+								}
+							}
+
+						})
+					}
+					
+				
+					
+					function attachSecretMessage(marker, message) {
+						var infowindow = new google.maps.InfoWindow(
+							{
+								content: message
+							});
+						google.maps.event.addListener(marker, 'click', function () {
+							infowindow.open(marker.get('map'), marker);
+						});
+					}
+					
+					
+					function showLocation() {
+						var address = "{{soconfig.get_settings('mapaddress')}}";
+						var geocoder = new google.maps.Geocoder();
+						geocoder.geocode({"address": address}, function (results, status) {
+							// If the Geocoding was successful
+							if (status == google.maps.GeocoderStatus.OK) {
+								var myOptions = {
+									zoom: {{soconfig.get_settings('mapzoom')}},
+									scaleControl: false,
+									scrollwheel: false,
+									disableDoubleClickZoom: true,
+									center: results[0].geometry.location,
+
+									mapTypeId: google.maps.MapTypeId.ROADMAP
+								};
+								var map = new google.maps.Map(document.getElementById("map-canvas"), myOptions);
+
+								// Add a marker at the address.
+								var marker = new google.maps.Marker({
+									map: map,
+									position: results[0].geometry.location
+								});
+								marker.setTitle('Address');
+								attachSecretMessage(marker, address);
+							} else {
+								try {
+									alert(address + " not found");
+								} catch (e) {
+								}
+							}
+						});
+					}
+					
+					
+					{% if soconfig.get_settings('mapaddress') is empty %}
+						google.maps.event.addDomListener(window, 'load', showLatLgn);
+					{% else %}
+						google.maps.event.addDomListener(window, 'load', showLocation);
+					{% endif %} 
+
+				</script>
+				{% endif %}   
+			</div>
+		    </div>
+		
+	<div id="toastMessage" class="toast">
+                        
+                    </div>
+       
+      <script>
+document.getElementById("contact_type").addEventListener("change", function() {
+    var healthcareField = document.getElementById("healthcare_profession");
+    if (this.value === "Healthcare Professional") {
+        healthcareField.style.display = "block";
+    } else {
+        healthcareField.style.display = "none";
+    }
+});
+</script>
+<style>
+.info-contact p, .info-contact span, .info-contact b, .info-contact h4, .info-contact small{
+    color:black !important;
+}
+.btn .btn-danger span{
+    color:white !important;
+}
+</style>
+	  
+      
+      
+      {{ content_bottom }}</div>
+    {{ column_right }}</div>
+</div>
+{{ footer }}
+
+        
+<script>
+
+// $(document).on('submit', '.quoteForm', function(e) {
+//                 e.preventDefault();
+//                 var form = $(this);
+//                 $('.text-red').remove(); // Clear previous errors
+//               $(".loadButton").html("Saving....");
+//                 $.ajax({
+//   url: form.attr('action'),
+//   type: 'POST',
+//   data: form.serialize(),
+//   dataType: 'json',
+//   success: function(response) {
+//     $('#loaderOverlay').hide();
+//     $(".loadButton").attr("id", "triggerSuccessFormSubmission");
+//          // add the ID
+    
+    
+//     $('.text-red').remove(); // remove old validation messages
+//     if (response.success) {
+//         form[0].reset();
+//         $(".loadButton").html("Submit");
+//          $('#profession_other_group').hide();
+//         $('#profession_other').prop('required', false);
+//       $('#toastMessage')
+//         .text(response.success)
+//         .removeClass('error')
+//         .show();
+
+//       setTimeout(function() {
+//         $('#toastMessage').fadeOut();
+//       }, 20000);
+
+//       form[0].reset();
+    
+//     } 
+//      else if (response.error) {
+//          $(".loadButton").html("Submit");
+//       // if it's an object (like { field1: "msg", field2: "msg2" })
+//       if (typeof response.error === 'object') {
+//   $('.text-red').remove(); // clear old errors
+
+//   let lastError = ''; // variable to store last message
+//   $.each(response.error, function(key, value) {
+//     $('#' + key).after('<div class="text-red">' + value + '</div>');
+//     lastError = value; // keep updating with latest error
+//   });
+
+//   // show only the last one in toast
+//   $('#toastMessage')
+//     .text(lastError)
+//     .addClass('error')
+//     .show();
+
+//   setTimeout(() => $('#toastMessage').fadeOut(), 20000);
+// }
+
+//       // if it's a string
+//       else if (typeof response.error === 'string') {
+//         $('#toastMessage')
+//           .text(response.error)
+//           .addClass('error')
+//           .show();
+//       }
+
+//       setTimeout(function() {
+//         $('#toastMessage').fadeOut();
+//       }, 20000);
+//     }
+//   }
+ 
+// });
+
+//             });
+
+
+$(document).on('submit', '.quoteForm', function () {
+    var $btn = $(this).find('.loadButton');
+
+    if ($btn.prop('disabled')) {
+        return false;
+    }
+
+    $btn.text('Saving...').prop('disabled', true);
+       
+        
+});
+
+
+
+</script>
+

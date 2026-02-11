@@ -1,0 +1,33 @@
+<h2>{{ text_instruction }}</h2>
+<p><b>{{ text_description }}</b></p>
+<div class="well well-sm">
+  <p>{{ bank }}</p>
+  <p>{{ text_payment }}</p>
+</div>
+<div class="buttons">
+  <div class="pull-right">
+    <input type="button" value="{{ button_confirm }}" id="button-confirmBT" data-loading-text="{{ text_loading }}" class="btn btn-primary" />
+  </div>
+</div>
+<script type="text/javascript"><!--
+$('#button-confirmBT').on('click', function() {
+	$.ajax({
+		url: 'index.php?route=extension/payment/bank_transfer/confirm',
+		dataType: 'json',
+		beforeSend: function() {
+			$('#button-confirmBT').button('loading');
+		},
+		complete: function() {
+			$('#button-confirmBT').button('reset');
+		},
+		success: function(json) {
+			if (json['redirect']) {
+				location = json['redirect'];	
+			}
+		},
+		error: function(xhr, ajaxOptions, thrownError) {
+			alert(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText);
+		}
+	});
+});
+//--></script>

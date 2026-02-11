@@ -1,0 +1,178 @@
+{{ header }}{{ column_left }}
+
+<div id="content">
+    <div class="page-header">
+        <div class="container-fluid">
+            <h1>{{ heading_title }}</h1>
+            <ul class="breadcrumb">
+                {% for breadcrumb in breadcrumbs %}
+                <li><a href="{{ breadcrumb.href }}">{{ breadcrumb.text }}</a></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title"><i class="fa fa-list"></i> {{ text_list }}</h3>
+            </div>
+            <div class="panel-body">
+                {% if requests %}
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" id="general-enquiries-table">
+                        <!-- Filter Row -->
+                        <thead>
+                            <tr>
+                                <th><input type="text" class="form-control input-sm filter" data-column="0" placeholder="Full Name..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="1" placeholder="Email..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="2" placeholder="Phone..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="3" placeholder="Postcode..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="4" placeholder="Organisation..."></th>
+                                <th>
+                                    <select class="form-control input-sm filter" data-column="5">
+                                        <option value="">All Contact Types</option>
+                                        <option value="Individual">Individual</option>
+                                        <option value="Healthcare Professional">Healthcare Professional</option>
+                                        <option value="Business">Business</option>
+                                        <option value="Distributor">Distributor</option>
+                                        <!-- Update with your actual contacting-as options -->
+                                    </select>
+                                </th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="6" placeholder="Profession..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="7" placeholder="Product/Brand..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="8" placeholder="Message..."></th>
+                                <th><input type="text" class="form-control input-sm filter" data-column="9" placeholder="Date (dd Mmm yyyy)..."></th>
+                            </tr>
+
+                            <!-- Header Row -->
+                            <tr>
+                                <td class="text-left">Full Name</td>
+                                <td class="text-left">Email</td>
+                                <td class="text-left">Phone</td>
+                                <td class="text-left">Postcode</td>
+                                <td class="text-left">Organisation / Business Name</td>
+                                <td class="text-left">Contacting as</td>
+                                <td class="text-left">Healthcare Profession</td>
+                                <td class="text-left">Product/Brand</td>
+                                <td class="text-left">Message</td>
+                                <td class="text-left">Date Added</td>
+                            </tr>
+                        </thead>
+
+                        <tbody id="general-table-body">
+                            {% for request in requests %}
+                            <tr>
+                                <td class="text-left">{{ request.fullname }}</td>
+                                <td class="text-left">{{ request.email }}</td>
+                                <td class="text-left">{{ request.phone }}</td>
+                                <td class="text-left">{{ request.postcode }}</td>
+                                <td class="text-left">{{ request.business_name }}</td>
+                                <td class="text-left">{{ request.contact_type }}</td>
+                                <td class="text-left">{{ request.healthcare_profession }}</td>
+                                <td class="text-left">{{ request.product_name }}</td>
+                                <td class="text-left">{{ request.message }}</td>
+                                <td class="text-left">
+                                    {% if request.date_added and request.date_added != '0000-00-00 00:00:00' %}
+                                        {{ request.date_added|date("d M Y") }}
+                                    {% else %}
+                                        -
+                                    {% endif %}
+                                </td>
+                            </tr>
+                            {% else %}
+                            <tr>
+                                <td colspan="10" class="text-center">No enquiries found.</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                {% else %}
+                <p>{{ text_no_results }}</p>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .text-black, .table, .table th, .table td, .panel-heading, .panel-title {
+        color: #000 !important;
+    }
+    .table-responsive {
+        -webkit-overflow-scrolling: touch;
+    }
+    @media (max-width: 767px) {
+        .table-responsive {
+            overflow-x: auto;
+        }
+    }
+    .filter {
+        width: 100%;
+        margin-bottom: 4px;
+        font-size: 12px;
+        padding: 4px;
+    }
+</style>
+
+{{ footer }}
+
+<script>
+// Plain JavaScript column filtering - General Enquiries
+document.addEventListener('DOMContentLoaded', function () {
+    const table = document.getElementById('general-enquiries-table');
+    if (!table) return;
+
+    const tbody = document.getElementById('general-table-body');
+    const filters = document.querySelectorAll('#general-enquiries-table .filter');
+    const rows = Array.from(tbody.querySelectorAll('tr'));
+
+    function applyFilters() {
+        let anyVisible = false;
+
+        rows.forEach(row => {
+            let show = true;
+
+            filters.forEach(filter => {
+                const columnIndex = parseInt(filter.dataset.column);
+                const filterValue = filter.value.trim().toLowerCase();
+                const cell = row.cells[columnIndex];
+
+                if (!cell) return;
+
+                const cellText = cell.textContent.trim().toLowerCase();
+
+                if (filterValue && !cellText.includes(filterValue)) {
+                    show = false;
+                }
+            });
+
+            row.style.display = show ? '' : 'none';
+            if (show) anyVisible = true;
+        });
+
+        // Show/hide "no matching results" row
+        const noResultsRow = document.querySelector('#no-results-general');
+        if (!anyVisible && rows.length > 0) {
+            if (!noResultsRow) {
+                const tr = document.createElement('tr');
+                tr.id = 'no-results-general';
+                tr.innerHTML = '<td colspan="10" class="text-center">No matching enquiries found</td>';
+                tbody.appendChild(tr);
+            }
+        } else if (noResultsRow) {
+            noResultsRow.remove();
+        }
+    }
+
+    // Attach event listeners
+    filters.forEach(filter => {
+        filter.addEventListener('input', applyFilters);
+        filter.addEventListener('change', applyFilters); // for select
+    });
+
+    // Run once on page load
+    applyFilters();
+});
+</script>

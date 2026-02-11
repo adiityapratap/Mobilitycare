@@ -1,0 +1,88 @@
+{{ header }} 
+<div id="content">
+	
+    <div id="frontend-themes">
+        <div class="so-ultimate-sidebar">
+			
+			{% if error.warning %}
+			<div class="alert alert-danger"><i class="fa fa-exclamation-circle"></i> {{ error.warning }} 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			{% endif %} 
+			
+			{% if success  and  success %} 
+			<div class="alert alert-success"><i class="fa fa-check-circle"></i> {{ success }} 
+				<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			</div>
+			{% endif %} 
+			
+			<div class="so-ultimate-logo">
+				<div class="btn-group">
+					{% for store  in stores %}  
+						{% if store.store_id == active_store %}
+							<a class="btn  dropdown-toggle" data-toggle="dropdown" href="#">{{ store.name }} <span class="fa fa-angle-down"></span></a>
+						{% endif %}
+					{% endfor %} 
+					
+					<ul class="dropdown-menu store_dropdown">
+						{% for store  in stores %}  
+							{% if store.status  %}
+							{% set store_active = store.store_id == active_store  ? 'active' :  '' %}
+							<li class="{{ store_active }}" ><a href="{{base_href}}&store_id={{ store.store_id }}" >{{ store.name }} </a></li>
+							{% endif %}
+						{% endfor %} 
+					</ul>
+				</div>
+				
+				<div class="form-group-info clearfix">
+					<span class="label label-primary pull-left">{{theme_version}}</span>
+					{% if status_product_option %}
+							<a href="{{href_product}}" class="btn btn-link  pull-right" target="_blank" ><i class="fa fa-file-text"></i> {{objlang.get('lang_product_feature')}}</a>
+					{% else %}
+						<a href="{{add_db_product}}" class="btn btn-link pull-right" target="_blank" ><i class="fa fa-wrench"></i> {{objlang.get('lang_create_feature')}}</a>
+					{% endif %}
+				</div>
+				
+				<a href="{{ cancel }}" title="{{ button_cancel }} " class="btn btn-link action-ultimate-exit"><i class="fa fa-close fa-2x"></i></a>
+			</div>
+          
+			<div class="so-ultimate-wrap">
+				<div id="so-ultimate-options">
+				<form name="settingsform" action="{{ action }} " method="post" enctype="multipart/form-data" id="form-optimus" class="form-vertical">
+					{% for store in stores %}  
+						{% if store.store_id == active_store %}
+							{% include 'extension/soconfig/options_stores.twig' with {'store': store, 'user_token': user_token} %}
+							<input name="storeUrl" type="hidden"  value="{{store.url}}" />
+						{% endif %}
+					{% endfor %} 
+					<input name="buttonForm" type="hidden"  value="" />
+				</form>
+				</div>
+			</div>
+			
+			<div class="so-ultimate-footer clearfix">
+				<div class="copyright-info pull-left">
+					SO Framework 3.1  by <br> <a href="http://www.opencartworks.com" target="_blank">Opencartworks</a>
+				</div>
+				
+				<div class="pull-right">
+					{% if not validate %} 
+						<a  href="{{href_preview}}" target="_blank" class="btn btn-success " ><i class="fa fa-external-link"></i> Preview </a>
+					{% else %}
+						<a  class="btn btn-success action-save-template " ><i class="fa fa-save"></i> Save </a>
+					{% endif %}
+					
+				</div>
+				
+			</div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% include 'extension/soconfig/class/icon-defs.twig' %}
+<script type="text/javascript"><!--
+function buttonApplyColor() {document.settingsform.buttonForm.value='color'; $('#form-optimus').submit(); }
+//--></script>

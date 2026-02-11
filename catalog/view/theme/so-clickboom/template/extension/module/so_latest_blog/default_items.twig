@@ -1,0 +1,116 @@
+
+	{% if type_show == 'simple' %}
+	<div class="item item-{{ k }}">
+		<div class="item-inner">
+			<div class="media-left">
+				{% if blog.thumb and blog_image %}
+					<a href="{{ blog.link }}" target="{{ item_link_target }}" class="font-custom">
+						<img data-sizes="auto" src="image/catalog/loading.svg" data-src="{{ blog.thumb }}" alt="{{ blog.title  }}" class="lazyload">
+					</a>
+				{% endif %}
+				
+			</div>
+			<div class="media-body">
+				{% if display_date_added %}
+					<div class="media-date-added">
+						<span><p>{{ blog.date_modified|date("d")}}</p>
+									{{ blog.date_modified|date("M")}}
+									</span>
+						
+					</div>					
+				{% endif %}
+				{% if display_title %}
+					<h4 class="media-heading font-custom">
+						<a href="{{ blog.link }}" title="{{ blog.title }}" target="{{ item_link_target }}">{{ blog.title_maxlength }}</a>
+					</h4>
+				{% endif %}
+				<div class="media-content">
+					
+					{% if display_description %}
+						<div class="description">
+							{{ blog.description|striptags|slice(0, 200) }}
+						</div>
+					{% endif %}
+					
+					{% if display_author or display_comment or display_view %}
+						<div class="media-subcontent">
+							{% if display_author %}
+								<span class="media-author">{{ blog.author }}</span>
+							{% endif %}
+							{% if display_comment %}
+								<span class="media-comment"><i class="fa fa-comments"></i>{{ blog.comment_count }} {# {{ blog.text_comment }} #}</span>
+							{% endif %}
+							{% if display_view %}
+								<span class="media-view">{{ blog.view_count }} {{ blog.text_view }}</span>
+							{% endif %}
+						</div>
+					{% endif %}
+					
+					{% if display_readmore %}
+						<div class="readmore">
+							<a href="{{ blog.link }}" target="{{ item_link_target }}">{{ readmore_text }} <i class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+	{% else %}
+		<div class="item">
+			<div class="media-left">
+			{% if blog_image %}		
+				<a class="imag" href="{{ blog.link }}" target="{{ item_link_target }}">
+					<img data-sizes="auto" src="image/catalog/loading.svg" data-src="{{ blog.thumb }}" alt="{{ blog.title  }}" class="lazyload">
+				</a>
+			{% endif %}
+		
+			</div>
+			<div class="media-body">
+				{% if display_date_added %}
+							<div class="media-date-added">
+								<span><p>{{ blog.date_modified|date("d")}}</p>
+									{{ blog.date_modified|date("M")}}
+									</span>
+								
+							</div>	
+						{% endif %}
+				<div class="media-content">
+							
+						{% if display_author %}
+							{{ text_by }} <span class="media-author">{{ blog.author|capitalize }}</span>
+						{% endif %}
+						
+					{% if display_title %}
+						<h4 class="media-heading font-title">
+							<a href="{{ blog.link }}" title="{{ blog.title }}" target="{{ item_link_target }}">{{ blog.title_maxlength }}</a>
+						</h4>
+					{% endif %}
+
+					
+
+					{% if display_description %}
+						<div class="description">
+							{{ blog.description|striptags|slice(0, 200) }}
+						</div>
+					{% endif %}
+					
+					{% if display_comment or display_view %}
+						<div class="media-subcontent">
+							{% if display_comment %}
+								<span class="media-comment"><i class="fa fa-comments"></i> {{ blog.comment_count }} {# {{ blog.text_comment }} #}</span>
+							{% endif %}
+							{% if display_view %}
+								<span class="media-view">{{ blog.view_count }} {{ blog.text_view }}</span>
+							{% endif %}
+						</div>
+					{% endif %}
+					
+					{% if display_readmore %}
+						<div class="readmore font-title">
+							<a href="{{ blog.link }}" target="{{ item_link_target }}"><span>{{ readmore_text }}</span> <i class="fa fa-arrow-circle-right"></i></a>
+						</div>
+					{% endif %}
+				</div>
+			</div>
+    	</div>
+	{% endif %}

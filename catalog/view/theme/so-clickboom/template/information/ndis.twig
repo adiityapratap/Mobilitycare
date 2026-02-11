@@ -1,0 +1,453 @@
+{{ header }}
+   <link href="catalog/view/theme/so-clickboom/css/customerForms.css" rel="stylesheet" type="text/css" />
+
+<div class="container mt-5">
+    <div class="row">{{ column_left }}
+        {% if column_left and column_right %}
+        {% set class = 'col-sm-6' %}
+        {% elseif column_left or column_right %}
+        {% set class = 'col-sm-9' %}
+        {% else %}
+        {% set class = 'col-sm-12' %}
+        {% endif %}
+        <div id="content" class="{{ class }}">{{ content_top }}
+            {% block content %}
+            {% set base_url =  'https://www.mobilitycare.net.au/' %}
+            <div class="container">
+                <!-- Header Section -->
+                <div class="jumbotron" style="background-color: #f8f9fa; padding: 40px; border-radius: 8px; margin-bottom: 40px;">
+                    <h1 class="text-center" style="color: #2c3e50; font-size: 32px; font-weight: 700;">Mobility Aid Funding in Australia</h1>
+                    <h4 class="text-center text-muted" style="font-size: 20px; margin-bottom: 20px;">National & State Programs</h4>
+                    <p style="font-size: 17px; line-height: 1.8; color: #34495e; margin-bottom: 20px;">
+                        Mobility aids like wheelchairs, scooters, walkers, and hoists are essential for independence but can be costly. Fortunately, a wide range of funding bodies across Australia provide support for people with physical disabilities, whether you’re a child, adult, senior, veteran, or someone injured in an accident. This guide covers all major national and state-based schemes, as well as other options like private health insurance and community grants.
+                    </p>
+                    <p class="text-muted" style="font-size: 15px;"><em>This page focuses solely on physical mobility equipment. It excludes funding for hearing or vision aids.</em></p>
+                </div>
+                <!-- National Funding Programs -->
+                <h2 style="color: #2c3e50; font-size: 26px; margin-bottom: 30px;">National Funding Programs</h2>
+                <p style="font-size: 17px; line-height: 1.8; margin-bottom: 30px;">The following schemes are available across every state and territory:</p>
+                <div class="row" style="margin-bottom: 30px;">
+                    <!-- NDIS Card -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="panel panel-default funding-card" style="border: 1px solid #ddd; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                            <div class="panel-body" style="padding: 25px;">
+                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141 75" width="111px" height="35px">
+                                    <path fill="#6A2875" d="M9.9,0.14H107.18c33.63,0,33.63,33.77,33.63,33.77v30.14c0,9.84-9.8,9.84-9.8,9.84H10.74C0.09,73.89,0.09,63.2,0.09,63.2V9.98C0.09,0.14,9.9,0.14,9.9,0.14Z"/>
+                                    <path fill="#FFF" d="M17.64,26.7c3.38,0,3.99,0.14,4.27,0.89.19.61.34,1.74.48,2.71,2.2-2.54,5.78-4.33,9.95-4.33,4.17,0,7.5,1.37,9.61,3.72,2.26,2.55,3.25,5.89,3.25,11.11v21.24c0,.75-.42,1.03-4.45,1.03h-.33c-4.46,0-4.6-.28-4.6-1.03v-18.65c0-4.76-.29-6.22-1.37-7.45-.89-.99-2.63-1.56-4.6-1.56-1.6,0-3.38.33-4.6,1.09-1.46.89-1.75,2.02-1.89,3.65-.14,1.6-.14,4.14-.14,6.78v15.14c0,.75-.42,1.03-4.45,1.03h-.33c-4.46,0-4.6-.28-4.6-1.03V43.09c0-5.37-.19-11.4-.47-15.12-.05-.94.14-1.28,4.06-1.28Z"/>
+                                    <path fill="#FFF" d="M71.81,37.3c-1.74-2.07-3.8-3.16-6.19-3.16-5.02,0-7.4,4.01-7.4,11.3,0,4.05.93,6.69,2.33,8.28,1.22,1.46,3.24,1.97,5.14,1.97,1.92,0,4.1-.71,5.16-1.79.75-.84.94-1.93.94-3.72V37.3Zm4.97-26.61c4.03,0,4.42.28,4.42,1.04v42.15c0,1.5.6,1.93,1.97,1.93.84,0,.89.33.89,2.83v.75c0,2.4-.14,2.97-.61,3.18-1.22.47-3.09.85-4.94.85-3.05,0-5.06-1.37-5.97-3.43-2.37,2.5-5.79,3.87-9.58,3.87-9.01,0-14.5-7.06-14.5-18.36,0-12.19,6.10-19.43,15.11-19.43,3.23,0,5.9,1.07,8.13,3.1V11.73c0-.75.14-1.04,4.60-1.04h.42Z"/>
+                                    <path fill="#FFF" d="M101.27,55.33c1.17-2.07,1.78-2.66,2.53-2.11,2.68,1.79,5.91,2.96,8.82,2.96,3.66,0,5.78-1.37,5.78-3.26,0-5.37-17.59-2.07-17.59-15.4,0-7.25,6.19-11.65,14.24-11.65,4.57,0,8.45,1.24,11.35,3.44.71.47.61,1.04-.75,3.4l-.61,1.03c-1.24,2.11-1.75,2.5-2.49,2-2.21-1.37-4.33-2.21-7.06-2.21-1.97,0-3.56.42-4.45,1.18-.61.56-.89,1.18-.89,1.97,0,5.19,17.59,2.5,17.59,14.94,0,3.15-1.32,6.18-3.53,8.33-2.55,2.5-6.34,3.81-11.36,3.81-5.3,0-9.95-1.74-12.84-4.14-.56-.47-.47-1.04.61-3Z"/>
+                                    <path fill="#FFF" d="M92.78,26.7c4.08,0,4.45.28,4.45,1.03v34.38c0,.75-.42,1.03-4.45,1.03h-.38c-4.45,0-4.60-.28-4.60-1.03V27.74c0-.75.14-1.03,4.60-1.03h.38Z"/>
+                                    <circle fill="#82C341" cx="92.4" cy="16.77" r="6.05"/>
+                                </svg>
+                                <h3 class="panel-title mt-3">
+                                    <a href="https://www.ndis.gov.au/" target="_blank" style="color: #2c3e50; text-decoration: none; font-size: 22px; font-weight: 600; line-height: 32px;">NDIS (National Disability Insurance Scheme)</a>
+                                </h3>
+                                <p style="font-size: 15px; line-height: 1.8; color: #34495e; margin-bottom: 20px;">
+                                    <strong>Who it’s for:</strong> Australians under 65 with a permanent and significant disability.<br>
+                                    <strong>What’s covered:</strong> Assistive technology like manual or powered wheelchairs, walkers, hoists, scooters, ramps, and home modifications.<br>
+                                    <strong>Access:</strong> Requires NDIS plan approval. An OT or AT assessor provides supporting documentation and quotes.<br>
+                                    <strong>Funding model:</strong> No fixed cap – funding must be “reasonable and necessary” and falls under Capital Supports.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- My Aged Care Card -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="panel panel-default funding-card" style="border: 1px solid #ddd; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                            <div class="panel-body" style="padding: 25px;">
+                                <h3 class="panel-title" style="margin-top: 0;">
+                                    <a href="https://www.myagedcare.gov.au/" target="_blank" style="color: #2c3e50; text-decoration: none; font-size: 22px; font-weight: 600; line-height: 32px;">My Aged Care (CHSP & Home Care Packages)</a>
+                                </h3>
+                                <p style="font-size: 15px; line-height: 1.8; color: #34495e; margin-bottom: 20px;">
+                                    <strong>Who it’s for:</strong> Australians over 65 (or over 50 for Aboriginal or Torres Strait Islander people) not eligible for NDIS.<br>
+                                    <strong>What’s covered:</strong> CHSP offers small subsidies (up to ~$1,000/yr) for items like walkers, shower chairs; HCP provides larger budgets (up to ~$52,000/yr) for wheelchairs or lift chairs.<br>
+                                    <strong>Access:</strong> Requires an ACAT assessment. Items must be approved in your care plan.<br>
+                                    <strong>Funding model:</strong> Subsidised or consumer directed. Some co-payments may apply.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- DVA Card -->
+                    <div class="col-md-4 col-sm-6">
+                        <div class="panel panel-default funding-card" style="border: 1px solid #ddd; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                            <div class="panel-body" style="padding: 25px;">
+                                <h3 class="panel-title" style="margin-top: 0;">
+                                    <a href="https://www.dva.gov.au/" target="_blank" style="color: #2c3e50; text-decoration: none; font-size: 22px; font-weight: 600; line-height: 32px;">DVA (Department of Veterans' Affairs – RAP Program)</a>
+                                </h3>
+                                <p style="font-size: 15px; line-height: 1.8; color: #34495e; margin-bottom: 20px;">
+                                    <strong>Who it’s for:</strong> Veterans and war widows with Gold or White cards.<br>
+                                    <strong>What’s covered:</strong> Mobility devices including powered or manual wheelchairs, scooters, walkers, beds, hoists, ramps, and home modifications.<br>
+                                    <strong>Access:</strong> Via GP or allied health provider who submits prescription to DVA-approved suppliers.<br>
+                                    <strong>Funding model:</strong> Equipment is provided on long-term loan. Fully funded and maintained by DVA.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- State-Based Funding Programs -->
+                <h2 style="color: #2c3e50; font-size: 26px; margin: 40px 0 30px;">State-Based Funding Programs</h2>
+                <p style="font-size: 17px; line-height: 1.8; margin-bottom: 30px;">Each state and territory offers its own disability equipment funding, particularly for people not eligible for national schemes.</p>
+                <div class="table-responsive">
+                    <table class="table table-bordered table-hover" style="font-size: 15px; margin-bottom: 30px;">
+                        <thead>
+                            <tr style="background-color: #f1f1f1;">
+                                <th style="width: 20%;color: #2c3e50;">State/Territory</th>
+                                <th style="width: 25%;color: #2c3e50;">Program</th>
+                                <th style="color: #2c3e50;">Details</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Victoria</td>
+                                <td><a href="https://swep.bhs.org.au/" target="_blank">SWEP (State-Wide Equipment Program)</a></td>
+                                <td>Subsidises mobility aids and home modifications for people with long-term physical disabilities or frailty. Items include wheelchairs, scooters, walking frames, transfer equipment, and bathroom aids. Requires OT assessment and prescription.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><a href="https://www.tac.vic.gov.au/" target="_blank">TAC (Transport Accident Commission)</a></td>
+                                <td>Covers mobility aids for people injured in Victorian road accidents.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><a href="https://www.worksafe.vic.gov.au/" target="_blank">WorkSafe Victoria</a></td>
+                                <td>Provides mobility and rehab equipment for those injured at work.</td>
+                            </tr>
+                            <tr>
+                                <td>New South Wales</td>
+                                <td><a href="https://www.enable.health.nsw.gov.au/" target="_blank">EnableNSW</a></td>
+                                <td>Provides subsidised assistive technology including mobility aids, scooters, shower chairs, and hoists for people with chronic health conditions or disabilities. Annual co-payment applies.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><a href="https://www.icare.nsw.gov.au/" target="_blank">icare NSW</a></td>
+                                <td>Funds equipment for people seriously injured in motor vehicle or workplace accidents.</td>
+                            </tr>
+                            <tr>
+                                <td>Queensland</td>
+                                <td><a href="https://www.health.qld.gov.au/mass" target="_blank">MASS (Medical Aids Subsidy Scheme)</a></td>
+                                <td>Offers subsidies for manual and powered wheelchairs, walking aids, hoists, shower chairs, and pressure care. Requires OT/PT assessment and application through MASS-eApply.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><a href="https://niis.qld.gov.au/" target="_blank">NIISQ (National Injury Insurance Scheme QLD)</a></td>
+                                <td>Covers lifetime mobility aid costs for people with serious road accident injuries.</td>
+                            </tr>
+                            <tr>
+                                <td>South Australia</td>
+                                <td><a href="https://equipmentprogram.sa.gov.au/" target="_blank">SA Equipment Program</a></td>
+                                <td>Supports South Australians with permanent disabilities who are not eligible for NDIS. Includes mobility equipment and home modifications.</td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                                <td><a href="https://www.lifetimesupport.sa.gov.au/" target="_blank">Lifetime Support Scheme</a></td>
+                                <td>Provides funded mobility equipment and rehab support for those with serious road accident injuries.</td>
+                            </tr>
+                            <tr>
+                                <td>Western Australia</td>
+                                <td><a href="https://www.wa.gov.au/service/health-care/community-health-services/community-aids-and-equipment-program-caep" target="_blank">CAEP (Community Aids and Equipment Program)</a></td>
+                                <td>Provides subsidised mobility aids and assistive technology for people with permanent disabilities or frailty not covered by NDIS. Requires OT referral.</td>
+                            </tr>
+                            <tr>
+                                <td>Tasmania</td>
+                                <td><a href="https://www.health.tas.gov.au/patients/support-services-your-visit-hospital/medical-aids-and-equipment-tasequip" target="_blank">TasEquip</a></td>
+                                <td>Equipment loan service offering wheelchairs, walkers, hoists, shower chairs, and more to Tasmanians with disability or chronic illness. Available to non-NDIS clients with OT assessment. <a href="https://www.health.tas.gov.au/tasequip" target="_blank">Visit TasEquip</a>.</td>
+                            </tr>
+                            <tr>
+                                <td>Australian Capital Territory</td>
+                                <td><a href="https://www.canberrahealthservices.act.gov.au/services-and-clinics/services/act-equipment-scheme-actes" target="_blank">ACTES (ACT Equipment Scheme)</a></td>
+                                <td>Provides mobility aids and home support equipment for eligible ACT residents with long-term disabilities who are not part of the NDIS. Applicants must hold a Pensioner or Low-Income Health Care Card. <a href="https://www.health.act.gov.au/services/act-equipment-scheme" target="_blank">Visit ACT Health</a>.</td>
+                            </tr>
+                            <tr>
+                                <td>Northern Territory</td>
+                                <td><a href="https://health.nt.gov.au/professionals/disability-equipment-program" target="_blank">Territory Equipment Program (TEP)</a></td>
+                                <td>Offers subsidies or loans for mobility equipment to eligible NT residents with long-term physical disabilities. Available to non-NDIS clients with a referral from a health provider. <a href="https://nt.gov.au/wellbeing/disability-services/territory-equipment-program" target="_blank">Visit NT Health</a>.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <!-- Other Sources of Support -->
+                <h2 style="color: #2c3e50; font-size: 26px; margin: 40px 0 30px;">Other Sources of Support</h2>
+                <div class="row" style="margin-bottom: 30px;">
+                    <div class="col-md-6 col-sm-12">
+                        <div class="panel panel-default funding-card" style="border: 1px solid #ddd; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                            <div class="panel-body" style="padding: 25px;">
+                                <h3 class="panel-title" style="margin-top: 0; font-size: 22px; font-weight: 600; color: #2c3e50;">Private Health Insurance</h3>
+                                <p style="font-size: 15px; line-height: 1.8; color: #34495e; margin-bottom: 20px;">
+                                    Some extras policies offer rebates for mobility aids like manual wheelchairs and walking frames. Coverage varies, check your insurer’s policy details.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <div class="panel panel-default funding-card" style="border: 1px solid #ddd; border-radius: 8px; margin-bottom: 30px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                            <div class="panel-body" style="padding: 25px;">
+                                <h3 class="panel-title" style="margin-top: 0; font-size: 22px; font-weight: 600; color: #2c3e50;">Charities & Community Grants</h3>
+                                <p style="font-size: 15px; line-height: 1.8; color: #34495e; margin-bottom: 20px;">
+                                    Organisations like Variety the Children’s Charity, The Lions Club, or local community foundations may provide financial support for equipment when other funding options are not available. Visit their websites or ask your OT for more information.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Get Support Section -->
+                <div class="text-center support-section" style="margin: 50px 0; padding: 40px; background-color: #e9ecef; border-radius: 8px; box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                    <h2 style="color: #2c3e50; font-size: 28px; margin-bottom: 20px;">Need Assistance with Funding?</h2>
+                    <p style="font-size: 17px; line-height: 1.8; color: #34495e; margin-bottom: 30px;">Our team can guide you through the funding process, connect you with occupational therapists, or help you find the right mobility equipment. Contact us for personalized support.</p>
+                    <button class="btn btn-primary btn-lg get-support-btn" data-toggle="modal" data-target="#supportModal" style="background-color: #003264; border-color: #003264; padding: 12px 30px; font-size: 18px;">
+                        <i class="fa fa-question-circle" style="margin-right: 8px;"></i> Get Support
+                    </button>
+                </div>
+                <!-- Call to Action -->
+                <div class="text-center" style="margin: 40px 0;">
+                    <h2 style="color: #2c3e50; font-size: 26px;">Need Help Navigating Funding?</h2>
+                    <p style="font-size: 17px; line-height: 1.8;">Occupational therapists and mobility equipment providers can help determine which funding scheme applies to you, prepare required documentation, and submit applications or quotes. Most programs require clinical justification, so speak to your allied health provider early.</p>
+                    <a href="{{ base_url }}contact-mobilitycare" class="btn btn-primary btn-lg" style="background-color: #003264; border-color: #003264; padding: 12px 25px;">Contact Provider</a>
+                </div>
+                <!-- Support Modal -->
+                <div class="modal fade" id="supportModal" tabindex="-1" role="dialog" aria-labelledby="supportModalLabel">
+                    <div class="modal-dialog" role="document">
+                        <form action="{{ action }}" method="post" enctype="multipart/form-data" class="form-horizontal quoteForm">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">×</span></button>
+                                    <h4 class="modal-title" id="supportModalLabel" style="color: #2c3e50;">Get Support</h4>
+                                </div>
+                                <div class="modal-body">
+                                    <div class="contact-form">
+                                        <fieldset>
+                                            <p>{{ comment }}</p>
+                                            <div class="form-group required">
+                                                <div class="col-sm-12">
+                                                    <input type="text" name="name" value="{{ name }}" id="input-name" class="form-control" placeholder="Enter your full name *"/>
+                                                    {% if error_name %}
+                                                    <div class="text-danger">{{ error_name }}</div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <div class="col-sm-12">
+                                                    <input type="email" name="email" value="{{ email }}" id="input-email" class="form-control" placeholder="Enter your email address *" />
+                                                    {% if error_email %}
+                                                    <div class="text-danger">{{ error_email }}</div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <div class="col-sm-12">
+                                                    <input type="number" name="phone" value="{{ phone }}" id="input-phone" class="form-control" placeholder="Enter your phone number *" />
+                                                    {% if error_phone %}
+                                                    <div class="text-danger">{{ error_phone }}</div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <div class="col-sm-12">
+                                                    <label>Are you contacting us as?</label>
+                                                    <select name="contact_type" id="contact_type" class="form-control">
+                                                       
+                                                        <option value="For Myself">For Myself</option>
+                                                        <option value="For a Friend/Family Member">For a Friend/Family Member</option>
+                                                        <option value="Healthcare Professional">Healthcare Professional</option>
+                                                        <option value="Dealer or Business">Dealer or Business</option>
+                                                        <option value="Government or Non-Profit Organisation">Government or Non-Profit Organisation</option>
+                                                        <option value="Other">Other</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group" id="healthcare_profession" style="display: none;">
+                                                <div class="col-sm-12">
+                                                    <label>If Healthcare Professional, please specify:</label>
+                                                    <select name="healthcare_profession" class="form-control">
+                                                        <option value="Occupational Therapist">Occupational Therapist</option>
+                                                        <option value="Physiotherapist">Physiotherapist</option>
+                                                        <option value="Rehabilitation Specialist">Rehabilitation Specialist</option>
+                                                        <option value="Aged Care Professional">Aged Care Professional</option>
+                                                        <option value="Nurse or Caregiver">Nurse or Caregiver</option>
+                                                        <option value="Neurologist">Neurologist</option>
+                                                        <option value="Orthopedic Specialist">Orthopedic Specialist</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group required">
+                                                <div class="col-sm-12">
+                                                    <label>Reason for Inquiry</label>
+                                                    <select name="inquiry_reason" class="form-control">
+                                                        <option value="General Inquiry">General Inquiry</option>
+                                                        <option value="Demonstration">Demonstration</option>
+                                                        <option value="Quote">Quote</option>
+                                                        <option value="Find a dealer near me">Find a dealer near me</option>
+                                                        <option value="Product Information">Product Information</option>
+                                                        <option value="Dealer or Business Partnership">Dealer or Business Partnership</option>
+                                                        <option value="Technical Support">Technical Support</option>
+                                                        <option value="Warranty or Returns">Warranty or Returns</option>
+                                                        <option value="Other">Other</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="col-sm-12">
+                                                    <textarea name="enquiry" rows="5" id="input-enquiry" placeholder="Type your message here" class="form-control">{{ enquiry }}</textarea>
+                                                    {% if error_enquiry %}
+                                                    <div class="text-danger">{{ error_enquiry }}</div>
+                                                    {% endif %}
+                                                </div>
+                                            </div>
+                                            {{ captcha }}
+                                        </fieldset>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn " data-dismiss="modal">Close</button>
+                                    <button class="btn" type="submit" style="background-color: #003264; border-color: #003264;">{{ button_submit }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <!-- Custom CSS -->
+                <style>
+                    .funding-card:hover {
+                        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+                        transition: box-shadow 0.3s;
+                    }
+                    .panel-title a:hover {
+                        color: #003264;
+                        text-decoration: underline;
+                    }
+                    .get-support-btn:hover {
+                        background-color: #002244;
+                        border-color: #002244;
+                    }
+                    .support-section {
+                        transition: transform 0.3s;
+                    }
+                    .support-section:hover {
+                        transform: translateY(-5px);
+                    }
+                    .table-hover tbody tr:hover {
+                        background-color: #f8f9fa;
+                    }
+                    @media (max-width: 767px) {
+                        .col-sm-6 {
+                            width: 100%;
+                        }
+                        .funding-card {
+                            margin-bottom: 20px;
+                        }
+                        .table-responsive {
+                            font-size: 14px;
+                        }
+                        .jumbotron h1 {
+                            font-size: 24px;
+                        }
+                        .jumbotron h4 {
+                            font-size: 16px;
+                        }
+                        .panel-body {
+                            padding: 15px;
+                        }
+                        .support-section {
+                            padding: 20px;
+                        }
+                    }
+                </style>
+            </div>
+            <!-- Font Awesome (for icons) -->
+            <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+            {% endblock %}
+        </div>
+        {{ column_right }}
+    </div>
+    
+    {{ marketing_popup }}
+    
+</div>
+
+<div id="toastMessage" class="toast">
+                        
+                    </div>
+        <div id="loaderOverlay" class="loader-overlay">
+        <div class="loader"></div>
+                </div>
+                
+ <script>
+document.getElementById("contact_type").addEventListener("change", function() {
+    var healthcareField = document.getElementById("healthcare_profession");
+    if (this.value === "Healthcare Professional") {
+        healthcareField.style.display = "block";
+    } else {
+        healthcareField.style.display = "none";
+    }
+});
+</script>
+{{ footer }}
+
+<script>
+ $('#loaderOverlay').hide();
+$(document).on('submit', '.quoteForm', function(e) {
+                e.preventDefault();
+                var form = $(this);
+                $('.text-red').remove(); // Clear previous errors
+               $('#loaderOverlay').show();
+                $.ajax({
+  url: form.attr('action'),
+  type: 'POST',
+  data: form.serialize(),
+  dataType: 'json',
+  success: function(response) {
+    $('#loaderOverlay').hide();
+    $('.text-red').remove(); // remove old validation messages
+    if (response.success) {
+        form[0].reset();
+         $('#profession_other_group').hide();
+        $('#profession_other').prop('required', false);
+      $('#toastMessage')
+        .text(response.success)
+        .removeClass('error')
+        .show();
+
+      setTimeout(function() {
+        $('#toastMessage').fadeOut();
+      }, 20000);
+
+      form[0].reset();
+    
+    } 
+     else if (response.error) {
+      // if it's an object (like { field1: "msg", field2: "msg2" })
+      if (typeof response.error === 'object') {
+  $('.text-red').remove(); // clear old errors
+
+  let lastError = ''; // variable to store last message
+  $.each(response.error, function(key, value) {
+    $('#' + key).after('<div class="text-red">' + value + '</div>');
+    lastError = value; // keep updating with latest error
+  });
+
+  // show only the last one in toast
+  $('#toastMessage')
+    .text(lastError)
+    .addClass('error')
+    .show();
+
+  setTimeout(() => $('#toastMessage').fadeOut(), 20000);
+}
+
+      // if it's a string
+      else if (typeof response.error === 'string') {
+        $('#toastMessage')
+          .text(response.error)
+          .addClass('error')
+          .show();
+      }
+
+      setTimeout(function() {
+        $('#toastMessage').fadeOut();
+      }, 20000);
+    }
+  }
+ 
+});
+
+            });
+</script>

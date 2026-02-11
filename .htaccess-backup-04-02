@@ -1,0 +1,298 @@
+############################################################
+# OpenCart .htaccess for ROOT (public_html)
+############################################################
+# Enable mod_rewrite
+Options +FollowSymlinks
+RewriteEngine On
+RewriteBase /
+
+############################################################
+# Custom SEO Routes
+############################################################
+# Product Trial
+RewriteRule ^organise-a-product-trial/?$ index.php?route=information/trial_request [L,QSA]
+# Product Demonstration
+RewriteRule ^organise-a-product-demonstration/?$ index.php?route=information/demo_request [L,QSA]
+# Funding Support
+RewriteRule ^am-i-eligible-for-funding-support/?$ index.php?route=information/funding_support [L,QSA]
+
+RewriteRule ^funding-support/?$ index.php?route=information/funding_support [L,QSA]
+RewriteRule ^ndis/?$ index.php?route=information/ndis [L,QSA]
+# Place Order
+RewriteRule ^place-an-order/?$ index.php?route=information/place_order [L,QSA]
+# Request Quote
+RewriteRule ^request-quote/?$ index.php?route=information/quote_request [L,QSA]
+# Warranty Claim
+RewriteRule ^warranty-claim/?$ index.php?route=information/warranty_claim [L,QSA]
+# Contact
+RewriteRule ^contact-mobilitycare/?$ index.php?route=information/contact [L,QSA]
+RewriteRule ^product_enq/?$ index.php?route=information/product_enq [L,QSA]
+RewriteRule ^find-a-dealer/?$ index.php?route=dealer/findDealer [L,QSA]
+RewriteRule ^become-a-dealer/?$ index.php?route=dealer/dealer [L,QSA]
+RewriteRule ^customer-service/?$ index.php?route=information/support [L,QSA]
+RewriteRule ^returns-warranty-policy/?$ index.php?route=information/information&information_id=8 [L,QSA]
+RewriteRule ^light-drive-2-enquiry/?$ index.php?route=information/lightDriveEnquiry [L,QSA]
+RewriteRule ^autochair-smart-lifter-enquiry/?$ index.php?route=information/autochairEnquiry [L,QSA]
+RewriteRule ^request-local-dealer/?$ index.php?route=information/find_dealer_form [L,QSA]
+
+RewriteRule ^home/?$ index.php?route=extension/mobile/home [L,QSA]
+RewriteRule ^sitemap.xml$ index.php?route=extension/feed/google_sitemap [L,QSA]
+
+
+
+
+
+# Redirect old topro product tag URLs
+RewriteCond %{THE_REQUEST} \s/product-tag/topro
+RewriteRule ^product-tag/topro/?$ https://www.mobilitycare.net.au/shop/mobility-aids/rollators-walkers-walking-aids/rollators-walking-frames [R=301,L]
+
+# Redirect old Smart Transfer URL to new URL
+RewriteRule ^buy/smart-transfer/?$ https://www.mobilitycare.net.au/buy/autochair-smart-transfer [R=301,L]
+RewriteRule ^shop/mobility-aids/power-assist-wheelchair/?$ https://www.mobilitycare.net.au/shop/mobility-aids/wheelchairs/power-assist-wheelchairs [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/shop/mobility-aids/toileting/?$ [NC]
+RewriteRule ^.*$ /shop/mobility-aids/toilet-aids? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/shop/mobility-aids/rollators-walkers-walking-aids/?$ [NC]
+RewriteRule ^.*$ /shop/mobility-aids/walking-aids/rollators-walking-frames? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/shop/mobility-aids/transfer-lifting-hoists/?$ [NC]
+RewriteRule ^.*$ /shop/lifting-transfer-aids? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/shop/mobility-aids/transfer-lifting-hoists/scooter-wheelchair-hoist-lift/?$ [NC]
+RewriteRule ^.*$ /shop/scooter-wheelchair-hoist-lift? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/shop/mobility-aids/ramps/?$ [NC]
+RewriteRule ^.*$ /shop/portable-ramps? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/shop/mobility-aids/disabled-emergency-aids/?$ [NC]
+RewriteRule ^.*$ /shop/mobility-aids/lifting-transfer-aids/emergency-aids? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/shop/mobility-aids/bathroom-aids/?$ [NC]
+RewriteRule ^.*$ /shop/electric-toilet? [R=301,L]
+
+RewriteCond %{REQUEST_URI} ^/buy/topro-olympos-offroad-rollator/?$ [NC]
+RewriteRule ^.*$ /buy/topro-olympos-all-terrain-offroader-rollator? [R=301,L]
+
+
+# Topro Olympos Offroad Rollator → All Terrain Offroader
+RewriteCond %{REQUEST_URI} ^/buy/topro-olympos-offroad-rollator/?$ [NC]
+RewriteRule ^.*$ /buy/topro-olympos-all-terrain-offroader-rollator? [R=301,L]
+
+# Topro Troja Forearm Gutter Frame Walker → New URL
+RewriteCond %{REQUEST_URI} ^/buy/topro-troja-forearm-gutter-frame-walker/?$ [NC]
+RewriteRule ^.*$ /buy/topro-troja-frame-walker? [R=301,L]
+
+# OnTrac Solid Ramp → PVI OnTrac Solid Ramp
+RewriteCond %{REQUEST_URI} ^/buy/ontrac-solid-ramp/?$ [NC]
+RewriteRule ^.*$ /buy/pvi-ontrac-solid-ramp? [R=301,L]
+
+# AL1 Panorama Linearlift → AMF Bruns AL1 Panorama Linearlift
+RewriteCond %{REQUEST_URI} ^/buy/al1-panorama-linearlift/?$ [NC]
+RewriteRule ^.*$ /buy/amf-bruns-al1-panorama-linearlift? [R=301,L]
+
+# Light Assist → Light Assist Wheelchair Power Assist
+RewriteCond %{REQUEST_URI} ^/buy/light-assist/?$ [NC]
+RewriteRule ^.*$ /buy/light-assist-wheelchair-power-assist? [R=301,L]
+ 
+
+# Redirect old Topro manufacturer URL (ID=12) → new SEO URL
+
+
+
+
+RewriteCond %{QUERY_STRING} ^route=product/manufacturer/info(&|&amp;)manufacturer_id=8$ [NC]
+RewriteRule ^index\.php$ /shop/mangar-lifting-cushion? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^route=product/manufacturer/info(&|&amp;)manufacturer_id=11$ [NC]
+RewriteRule ^index\.php$ /shop/autochair-scooter-hoist? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^route=product/manufacturer/info(&manufacturer_id=12)?$ [NC]
+RewriteRule ^index\.php$ /shop/rollators-walking-frames? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^route=product/manufacturer/info(&|&amp;)manufacturer_id=13$ [NC]
+RewriteRule ^index\.php$ /shop/u-step-parkinsons-walker? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^route=product/manufacturer/info(&|&amp;)manufacturer_id=14$ [NC]
+RewriteRule ^index\.php$ /shop/benoit-systemes-light-drive? [R=301,L]
+
+# Redirect old Trekinetic manufacturer URL (ID=15) → new SEO URL
+RewriteCond %{QUERY_STRING} ^route=product/manufacturer/info(&|&amp;)manufacturer_id=15$ [NC]
+RewriteRule ^index\.php$ /shop/trekinetic-gte-all-terrain-power-wheelchair? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^route=product/manufacturer/info(&|&amp;)manufacturer_id=16$ [NC]
+RewriteRule ^index\.php$ /shop/liftseat-electric? [R=301,L]
+
+
+
+# === NEW SEO-FRIENDLY STATIC PAGES ===
+RewriteRule ^about-us/?$ index.php?route=information/aboutUs [L,QSA]
+RewriteRule ^blog/?$ index.php?route=extension/simple_blog/article [L,QSA]
+RewriteRule ^terms-conditions/?$ index.php?route=information/information&information_id=5 [L,QSA]
+RewriteRule ^privacy-policy/?$ index.php?route=information/information&information_id=3 [L,QSA]
+RewriteRule ^faq/?$ index.php?route=information/support [L,QSA]
+RewriteRule ^delivery-information/?$ index.php?route=information/information&information_id=6 [L,QSA]
+RewriteRule ^demo-videos/?$ index.php?route=information/information&information_id=7 [L,QSA]
+RewriteRule ^featured-products/?$ index.php?route=product/category&path=101 [L,QSA]
+
+
+############################################################
+# Correct Old → New Redirects for Static Pages (301)
+############################################################
+
+# about-us
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/aboutUs[\s?] [NC]
+RewriteRule ^index\.php$ /about-us? [R=301,L]
+
+# terms & conditions
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/information&information_id=5[\s?] [NC]
+RewriteRule ^index\.php$ /terms-conditions? [R=301,L]
+
+# privacy policy
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/information&information_id=3[\s?] [NC]
+RewriteRule ^index\.php$ /privacy-policy? [R=301,L]
+
+# delivery information
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/information&information_id=6[\s?] [NC]
+RewriteRule ^index\.php$ /delivery-information? [R=301,L]
+
+# demo videos
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/information&information_id=7[\s?] [NC]
+RewriteRule ^index\.php$ /demo-videos? [R=301,L]
+
+# faq
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/support[\s?] [NC]
+RewriteRule ^index\.php$ /faq? [R=301,L]
+
+# blog
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=extension/simple_blog/article[\s?] [NC]
+RewriteRule ^index\.php$ /blog? [R=301,L]
+
+
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=product/category&path=101[\s?] [NC]
+RewriteRule ^index\.php$ /featured-products? [R=301,L]
+
+
+
+
+
+
+
+
+############################################################
+# Prevent access to sensitive folders (now in root)
+############################################################
+RedirectMatch 403 ^/system/
+RedirectMatch 403 ^/storage/
+RedirectMatch 403 ^/config\.php$
+
+# Canonical redirect: place order success → /thankyou
+# Serve thankyou page
+RewriteRule ^thank-you-order/?$ index.php?route=checkout/success [L,QSA]
+
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=checkout/success[\s&] [NC]
+RewriteRule ^index\.php$ /thank-you-order [R=301,L,QSD]
+
+
+# Canonical redirect: contact_success → /thankyou
+# Serve thankyou page
+RewriteRule ^thank-you-contact/?$ index.php?route=information/contact_success [L,QSA]
+
+# Canonical redirect (THIS LINE FIXES YOUR ISSUE)
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/contact_success[\s&] [NC]
+RewriteRule ^index\.php$ /thank-you-contact [R=301,L,QSD]
+
+# quote success
+
+RewriteRule ^thank-you-quote/?$ index.php?route=information/form_success/quote [L,QSA]
+
+# Canonical redirect (THIS LINE FIXES YOUR ISSUE)
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/form_success/quote[\s&] [NC]
+RewriteRule ^index\.php$ /thank-you-quote [R=301,L,QSD]
+
+# demo success
+
+RewriteRule ^thank-you-demo/?$ index.php?route=information/form_success/demo [L,QSA]
+
+# Canonical redirect (THIS LINE FIXES YOUR ISSUE)
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/form_success/demo[\s&] [NC]
+RewriteRule ^index\.php$ /thank-you-demo [R=301,L,QSD]
+
+# find a dealer success
+
+RewriteRule ^thank-you-find-a-dealer/?$ index.php?route=information/form_success/find_dealer [L,QSA]
+
+# Canonical redirect (THIS LINE FIXES YOUR ISSUE)
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/form_success/find_dealer[\s&] [NC]
+RewriteRule ^index\.php$ /thank-you-find-a-dealer [R=301,L,QSD]
+
+
+# autochair form success
+
+RewriteRule ^thank-you-autochair/?$ index.php?route=information/form_success/autochair [L,QSA]
+
+# Canonical redirect (THIS LINE FIXES YOUR ISSUE)
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/form_success/autochair[\s&] [NC]
+RewriteRule ^index\.php$ /thank-you-autochair [R=301,L,QSD]
+
+# autochair form success
+
+RewriteRule ^thank-you-lightdrive/?$ index.php?route=information/form_success/lightdrive [L,QSA]
+
+# Canonical redirect (THIS LINE FIXES YOUR ISSUE)
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/form_success/lightdrive[\s&] [NC]
+RewriteRule ^index\.php$ /thank-you-lightdrive [R=301,L,QSD]
+
+
+# placeorder form success
+
+RewriteRule ^thank-you-placeOrder/?$ index.php?route=information/form_success/placeOrder [L,QSA]
+
+# Canonical redirect (THIS LINE FIXES YOUR ISSUE)
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/form_success/placeOrder[\s&] [NC]
+RewriteRule ^index\.php$ /thank-you-placeOrder [R=301,L,QSD]
+
+
+# product enq form success
+
+RewriteRule ^thank-you-product_enq/?$ index.php?route=information/form_success/product_enq [L,QSA]
+
+# Canonical redirect (THIS LINE FIXES YOUR ISSUE)
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/form_success/product_enq[\s&] [NC]
+RewriteRule ^index\.php$ /thank-you-product_enq [R=301,L,QSD]
+
+# product enq form success
+
+RewriteRule ^thank-you-trial_request/?$ index.php?route=information/form_success/trial_request [L,QSA]
+
+# Canonical redirect (THIS LINE FIXES YOUR ISSUE)
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/form_success/trial_request[\s&] [NC]
+RewriteRule ^index\.php$ /thank-you-trial_request [R=301,L,QSD]
+
+
+
+############################################################
+# SEO URL Rewrite (Default OpenCart rule)
+############################################################
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?_route_=$1 [L,QSA]
+
+############################################################
+# Redirect direct index.php GET requests to clean root URL
+############################################################
+RewriteCond %{THE_REQUEST} \s/+index\.php [NC]
+RewriteCond %{QUERY_STRING} ^$
+RewriteRule ^index\.php$ / [R=301,L]
+
+############################################################
+# Disable directory browsing
+############################################################
+Options -Indexes
+
+# php -- BEGIN cPanel-generated handler, do not edit
+# Set the “ea-php73” package as the default “PHP” programming language.
+<IfModule mime_module>
+  AddHandler application/x-httpd-ea-php73___lsphp .php .php7 .phtml
+</IfModule>
+# php -- END cPanel-generated handler, do not edit

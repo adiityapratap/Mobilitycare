@@ -1,0 +1,537 @@
+{#=====Check Home page=====#}
+{% set barStatic = soconfig.get_settings('barnav') ? '' : 'bar-static' %}
+{%  set menuMobileHeader = 1 %}
+
+{% if  menuMobileHeader == 1 %}
+ {# ===== HOLIDAY MESSAGE BANNER - MOBILE ONLY ===== #}
+  {#<div class="holiday-banner" style=" position: fixed;  z-index: 999;;background-color: #ea3a3c; color: white; padding: 10px 15px; text-align: center; font-size: 14px; line-height: 1.4;">#}
+  {#  <strong>We wish you a wonderful holiday season.</strong><br class="hidden-xs">#}
+  {#  Online orders will not be processed from 18 December to 4 January. Processing resumes on 5 January 2026.#}
+  {#</div>#}
+  
+	<header class=" bar bar-nav bar-navhome typeheader-{{soconfig.get_settings('mtypeheader')}} {{barStatic}}" >
+	    
+	      
+  
+		<div class="row navbar-bar ">
+		
+			<div class="navbar-menu col-xs-2">
+			   <a class="toggle-panel" href="#panel-menu">
+			   	<span class="icon-bar"></span>
+			   	<span class="icon-bar bar2"></span>
+			   	<span class="icon-bar"></span>
+			   </a>
+			</div>
+
+		<div class="navbar-logo col-xs-5 text-center">
+  <div class="mobile-logo-wrapper">
+    
+    <a href="{{ base }}home" >
+      <img src="{{ base }}image/catalog/logo.png" 
+           alt="NDIS Logo" 
+           title="NDIS" 
+           class="ndis-logo">
+    </a>
+    <a href="https://www.ndis.gov.au/" target="_blank"  style="width: 26px;">
+      <img src="{{ base }}image/catalog/Logo/NDISLogo.jpg" 
+           alt="NDIS Logo" 
+           title="NDIS" 
+           class="ndis-logo">
+    </a>
+  </div>
+</div>
+
+<div class="navbar-contact col-xs-5 text-right">
+  <a href="tel:+61395688383" class="navbar-phone-link" style="  font-size: 12px; color: #ea3a3c;font-weight: 600;"  >
+    <i class="fa fa-phone"></i> (03) 9568 8383
+  </a>
+</div>
+
+<style>
+ /*for ios scroll issue*/
+@supports (-webkit-touch-callout: none) {
+  .modal-backdrop {
+    position: relative !important;
+  }
+  
+  .modal {
+    position: relative !important;
+  }
+}
+
+/* Mobile specific styling */
+@media (max-width: 767px) {
+  .mobile-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px; /* space between logos */
+  }
+
+  .mobile-logo-wrapper img,
+  .mobile-logo-wrapper a img {
+    height: 24px;
+    width: auto;
+  }
+
+  .navbar-logo {
+    padding: 2px 0;
+  }
+  
+  .navbar-contact {
+    text-align: center;
+    margin-top: 5px;
+  }
+}
+</style>
+
+			
+		</div>
+	</header>
+{% else %}
+{#=====Check Subpage page =====#}
+	<header class="bar bar-nav {{barStatic}}">
+	    
+	   
+  
+		<a class="btn btn-link btn-nav pull-left" href="#" onClick="history.go(-1); return false;">
+			<span class="icon icon-left-nav"></span>
+		</a>
+		<a class="btn btn-link btn-nav pull-right toggle-panel" href="#panel-menu">
+			<span class="icon icon-bars"></span>
+		</a>
+		<h1 class="title">{{title}}</h1>
+	</header>
+	
+{% endif %}
+
+
+
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdIW7xk3UQDxMkhznl2gEyabtnGXHN2ww&libraries=places&callback=initMap" async defer></script>
+<script>
+    
+    $(document).ready(function(){
+    localStorage.setItem("updatedPostcodes", '');
+    let isPageLoadCall = false;
+    setTimeout(function() {
+    // Only run if map is ready and no search has been performed yet
+    if (window.map && $('#dealer-results').html().trim() === '') {
+        $('#searchBtn').html('Loading...').prop('disabled', true);
+
+        // Use geographic center of Australia as default location
+        var defaultLat = -25.274398;  // Approximate center of Australia
+        var defaultLng = 133.775136;
+        var largeRange = 5000;       // 5000 km → effectively covers all of Australia
+         isPageLoadCall = true;
+        // Trigger the dealer fetch with nationwide range
+        sendDealersRequest(defaultLat, defaultLng, '', $('#searchBtn'), largeRange,isPageLoadCall);
+    }
+}, 1000); 
+});
+
+
+$('.toggle-panel, .side-menu-blocker, .activeSideMenu').on('click', function(e) {
+    e.preventDefault();
+    // your code
+});
+
+if ($('.side-menu-blocker.activeSideMenu').length > 0) {
+    $('a').on('click', function (e) {
+      e.preventDefault();
+    });
+}
+// Define initMap globally
+window.initMap = function () {
+    var mapEl = document.getElementById('map');
+  if (!mapEl) return;
+
+  window.map = new google.maps.Map(mapEl, {
+    mapTypeId: google.maps.MapTypeId.ROADMAP,
+    gestureHandling: 'greedy'
+  });
+
+  // Fit whole Australia on load
+  var australiaBounds = new google.maps.LatLngBounds(
+    new google.maps.LatLng(-44.0, 112.0), // SW
+    new google.maps.LatLng(-10.0, 154.0)  // NE
+  );
+
+  map.fitBounds(australiaBounds);
+
+  window.bounds = new google.maps.LatLngBounds();
+  window.infoWindow = new google.maps.InfoWindow();
+  window.markers = [];
+
+    if (typeof jQuery !== 'undefined') {
+        // Consolidated state-tabs click handler
+        $('.state-tabs .btn').off('click').on('click', function () {
+            $('.state-tabs .btn').removeClass('active');
+            $(this).addClass('active');
+            var selectedState = $(this).data('state');
+            var manufacturerId = $('#manufacturer').val();
+            if (!manufacturerId) {
+                console.log('No manufacturer selected');
+                return;
+            }
+            $.ajax({
+                url: 'index.php?route=dealer/dealer/getDealers',
+                type: 'POST',
+                data: {
+                    manufacturer_id: manufacturerId,
+                    selectedState: selectedState,
+                    
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        // displayDealers(response.dealers);
+                        if (response.dealersProducts) {
+                            var productOptions = '<option value="">Select Product (Optional)</option>';
+                            $.each(response.dealersProducts, function (index, product) {
+                                productOptions += '<option value="' + product.product_id + '">' + product.name + '</option>';
+                            });
+                            $('#brandProduct').html(productOptions);
+                        } else {
+                            $('#brandProduct').html('<option value="">No products found</option>');
+                        }
+                        setTimeout(function () {
+                            if (window.bounds && !window.bounds.isEmpty()) {
+                                window.map.fitBounds(window.bounds);
+                            }
+                        }, 500);
+                    }
+                },
+                error: function () {
+                    console.error('Failed to fetch dealers');
+                }
+            });
+        });
+
+        $('#manufacturer').off('change').on('change', function () {
+            var manufacturerId = $(this).val();
+            var selectedState = $('.state-tabs .btn.active').data('state');
+            
+            
+            $('#brandProduct').html(
+        '<option value="" class="loading-option" selected disabled>' +
+        '<span class="loading-spinner"></span>Loading products...' +
+        '</option>'
+    );
+    
+            if (!manufacturerId) return;
+            $.ajax({
+                url: 'index.php?route=dealer/dealer/getDealers',
+                type: 'POST',
+                data: {
+                    manufacturer_id: manufacturerId,
+                    selectedState: selectedState,
+                    
+                },
+                dataType: 'json',
+                success: function (response) {
+                    if (response.success) {
+                        // displayDealers(response.dealers);
+                        if (response.dealersProducts) {
+                            var productOptions = '<option value="">Select Product (Optional)</option>';
+                            $.each(response.dealersProducts, function (index, product) {
+                                productOptions += '<option value="' + product.product_id + '">' + product.name + '</option>';
+                            });
+                            $('#brandProduct').html(productOptions);
+                        } else {
+                            $('#brandProduct').html('<option value="">No products found</option>');
+                        }
+                        setTimeout(function () {
+                            if (window.bounds && !window.bounds.isEmpty()) {
+                                window.map.fitBounds(window.bounds);
+                            }
+                        }, 500);
+                    }
+                },
+                error: function () {
+                    console.error('Failed to fetch dealers');
+                }
+            });
+        });
+
+        $('#searchBtn').off('click').on('click', function () {
+    var $searchBtn = $(this);
+    clearMarkers();
+    $('#dealer-results').html('');
+    $searchBtn.html('Loading...').prop('disabled', true);
+
+    let postcode = $('#postcode').val().trim();
+    let range = 200;
+     if (!postcode) {
+    fetch('https://ipapi.co/json/')
+    .then(response => response.json())
+    .then(data => {
+        postcode = data.postal;
+        range = 4000;
+        console.log('Postcode:', data.postal);
+        console.log('IP:', data.ip);
+    })
+    .catch(error => console.error('Error:', error));
+    
+     }
+    // First: get the user's lat/lng from the postcode using Google proxy
+    $.ajax({
+        url: 'index.php?route=dealer/googleproxy/geocode',
+        type: 'POST',
+        data: { address: postcode },
+        dataType: 'json',
+        success: function (data) {
+            if (data.status === 'OK' && data.results && data.results.length) {
+                var userLocation = data.results[0].geometry.location;
+
+                // Then: fetch nearby dealers from your backend
+                sendDealersRequest(userLocation.lat, userLocation.lng,  postcode, $searchBtn ,range);
+            } else {
+                alert('Invalid postcode. Please try again.');
+                resetButton();
+            }
+        },
+        error: function () {
+            alert('Error fetching location.');
+            resetButton();
+        }
+    });
+});
+    }
+};
+
+
+
+function sendDealersRequest(userLat, userLng,  userPostcode, $searchBtn , range,isPageLoadCall=false) {
+    
+     var manufacturerId = $('#manufacturer').val();
+    var brandProduct = $('#brandProduct').val();
+     var selectedState = $('.state-tabs .btn.active').data('state');
+    
+    $.ajax({
+        url: 'index.php?route=dealer/dealer/fetchDealerfromPostcode',
+        type: 'POST',
+        data: JSON.stringify({
+            lat: userLat,
+            lng: userLng,
+            range: range,
+            manufacturerId: manufacturerId || '',
+            product_id: brandProduct || '',
+            selectedState : selectedState || ''
+        }),
+        contentType: 'application/json',
+        dataType: 'json',
+        success: function (data) {
+            if(!isPageLoadCall){
+              $('html, body').animate({
+        scrollTop: $(window).scrollTop() + 500
+        }, 500); // 500ms for smooth scrolling   
+            }
+           
+            if (data && data.dealers && data.dealers.length) {
+                $searchBtn.html('Search').prop('disabled', false);
+                calculateDistance(userPostcode, userLat, userLng, data.dealers);
+            } else {
+                var el = document.getElementById('dealer-results');
+                if (el) el.innerHTML = '<p>No dealers found .</p>';
+                resetButton();
+            }
+        },
+        error: function () {
+            alert('Error fetching dealers.');
+            resetButton();
+        }
+    });
+}
+
+
+
+function calculateDistance(userPostcode, userLat, userLng, dealers) {
+    var origins = encodeURIComponent(userLat + ',' + userLng);
+    var destinations = dealers.map(d => encodeURIComponent((d.business_address || '') + ', ' + d.postcode + ', Australia')).join('|');
+    $.ajax({
+        url: 'index.php?route=dealer/googleproxy/distance',
+        type: 'POST',
+        data: { origins: origins, destinations: destinations },
+        dataType: 'json',
+        success: function (data) {
+            if (data.status === 'OK' && data.rows && data.rows.length) {
+                data.rows[0].elements.forEach(function (el, i) {
+                    if (el.status === 'OK') {
+                        var distText = el.distance.text;
+                        var distValue = distText.includes('km') ? parseFloat(distText) : parseFloat(distText) / 1000;
+                        dealers[i].distance = distText;
+                        dealers[i].distanceValue = distValue;
+                    }
+                });
+                // dealers.sort((a, b) => a.distanceValue - b.distanceValue);
+                
+                dealers.sort((a, b) => {
+    // Always put dealer_id 567(mobilitycare) at the top
+    if (a.dealer_id == 567) return -1;
+    if (b.dealer_id == 567) return 1;
+
+    // Otherwise sort normally by distance
+    return a.distanceValue - b.distanceValue;
+});
+
+
+            }
+            displayDealers(dealers);
+        },
+        error: function () {
+            displayDealers(dealers);
+        }
+    });
+}
+
+function displayDealers(dealers) {
+    clearMarkers();
+    if (window.map && typeof google !== 'undefined') {
+        window.bounds = new google.maps.LatLngBounds();
+    }
+    var output = '<div class="row">';
+    var markerCount = 0;
+    dealers.forEach(function (dealer) {
+        var fullAddress = (dealer.business_address || '') + ', ' + (dealer.postcode || '') + ', Australia';
+        output += `
+            <div class="col-sm-6 col-md-4 dealer-col">
+                <div class="dealer-card">
+                    <strong class="dealer-name">${dealer.full_name}</strong>
+                    <p><i class="fa fa-phone"></i> ${dealer.phone || ''}</p>
+                    <p><i class="fa fa-map-marker"></i> ${dealer.business_address || ''} ${dealer.suburb || ''} ${dealer.state || ''} ${dealer.postcode || ''}</p>
+                    ${dealer.distance ? `<div class="distance"><i class="fa fa-road"></i>  ${parseFloat(dealer.distance).toFixed(2)} Km away</div>` : ''}
+                    <button class="btn-map" data-address="${dealer.business_address || ''} ${dealer.suburb || ''} ${dealer.state || ''} ${dealer.postcode || ''}">
+                        <i class="fa fa-location-arrow"></i>
+                    </button>
+                </div>
+            </div>
+        `;
+        if (dealer.business_address && dealer.postcode && window.map && typeof google !== 'undefined') {
+            let fullAddress = dealer.business_address + ', ' + dealer.suburb + ' ' + dealer.state + ' ' + dealer.postcode + ', Australia';
+            geocodeAndAddMarker(fullAddress, dealer.full_name, dealer.phone);
+            markerCount++;
+        }
+    });
+    output += '</div>';
+    $('#dealer-results').html(output);
+
+    $(document).on('click', '.btn-map', function() {
+        let fullAddress = $(this).data('address');
+        let decodedAddress = decodeURIComponent(fullAddress);
+        geocodeAddress(decodedAddress, function (lat, lng) {
+            if (lat && lng) {
+                window.open(`https://www.google.com/maps?q=${lat},${lng}`, '_blank');
+            } else {
+                window.open(
+                    'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(decodedAddress),
+                    '_blank'
+                );
+            }
+        });
+    });
+
+    // setTimeout(function () {
+    //     resetButton();
+    //     if (window.bounds && window.map && !window.bounds.isEmpty()) {
+    //         window.map.fitBounds(window.bounds);
+    //         console.log('Map bounds updated with', window.markers.length, 'markers');
+    //     } else {
+    //         console.warn('Cannot fit bounds, map or bounds invalid, markers:', window.markers.length);
+    //     }
+    // }, 1000 * markerCount || 1000);
+}
+
+let pendingGeocodes = 0;
+
+function geocodeAndAddMarker(address, name, phone) {
+    pendingGeocodes++;
+
+    $.ajax({
+        url: 'index.php?route=dealer/googleproxy/geocode',
+        type: 'POST',
+        data: { address: address },
+        dataType: 'json',
+        success: function (data) {
+            if (data.status === 'OK' && data.results[0]) {
+                const position = data.results[0].geometry.location;
+
+                const marker = new google.maps.Marker({
+                    map: window.map,
+                    position: position,
+                    title: name
+                });
+
+                window.markers.push(marker);
+                window.bounds.extend(position);
+
+                google.maps.event.addListener(marker, 'click', function () {
+                    window.infoWindow.setContent(`
+                        <strong>${name}</strong><br>
+                        ${address}<br>
+                        <i class="fa fa-phone"></i> ${phone || ''}
+                    `);
+                    window.infoWindow.open(window.map, marker);
+                });
+            }
+        },
+        complete: function () {
+            pendingGeocodes--;
+
+            // ✅ FIT MAP ONLY ONCE (when all markers are done)
+            if (pendingGeocodes === 0 && !window.bounds.isEmpty()) {
+                window.map.fitBounds(window.bounds);
+
+                // Optional zoom cap
+                google.maps.event.addListenerOnce(window.map, 'bounds_changed', function () {
+                    if (window.map.getZoom() > 12) {
+                        window.map.setZoom(12);
+                    }
+                });
+
+                resetButton();
+            }
+        }
+    });
+}
+
+
+function geocodeAddress(address, callback) {
+    if (!google.maps) {
+        callback(null, null);
+        return;
+    }
+    $.ajax({
+        url: 'index.php?route=dealer/googleproxy/geocode',
+        type: 'POST',
+        data: { address: address },
+        dataType: 'json',
+        success: function (data) {
+            if (data.status === 'OK' && data.results[0]) {
+                var loc = data.results[0].geometry.location;
+                callback(loc.lat, loc.lng);
+            } else {
+                callback(null, null);
+            }
+        }
+    });
+}
+
+function clearMarkers() {
+    console.log('Clearing markers, window.markers:', window.markers);
+    if (!Array.isArray(window.markers)) {
+        window.markers = [];
+        console.log('Initialized window.markers as empty array');
+        return;
+    }
+    window.markers.forEach(function (m) { m.setMap(null); });
+    window.markers = [];
+    console.log('Markers cleared');
+}
+
+function resetButton() {
+    var sb = document.getElementById('searchBtn');
+    if (sb) { sb.innerHTML = 'Search'; sb.disabled = false; }
+}
+    
+</script>

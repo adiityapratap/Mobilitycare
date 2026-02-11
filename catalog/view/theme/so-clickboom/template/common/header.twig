@@ -1,0 +1,196 @@
+{#
+****************************************************** 
+ * @package	SO Framework for Opencart 3.x
+ * @author	http://www.opencartworks.com
+ * @license	GNU General Public License
+ * @copyright(C) 2008-2017 opencartworks.com. All rights reserved.
+ ******************************************************
+#}
+<!DOCTYPE html>
+<html dir="{{ direction }}" lang="{{ lang }}">
+<head>
+    
+    <!-- Google Tag Manager -->
+<script>
+(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NJLM87');
+</script>
+<!-- End Google Tag Manager -->
+
+<!-- Google Analytics (Universal Analytics - deprecated but still works) -->
+<script>
+(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+})(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+ga('create', 'UA-18508480-1', 'auto');
+ga('require', 'GTM-T9M52FR');
+ga('send', 'pageview');
+</script>
+<!-- End Google Analytics -->
+
+<!-- Facebook Pixel -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)n._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window,document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '270556233294516'); 
+fbq('track', 'PageView');
+</script>
+<noscript>
+  <img height="1" width="1" style="display:none"
+  src="https://www.facebook.com/tr?id=270556233294516&ev=PageView&noscript=1"/>
+</noscript>
+<!-- End Facebook Pixel -->
+
+<!-- CallRail (if applicable — update ID) -->
+<script type="text/javascript" src="//cdn.callrail.com/companies/221652502/0da3b62b0a183893e7ed/12/swap.js"></script> 
+
+
+<meta charset="UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>{{ title }}</title>
+<base href="{{ base }}" />
+<meta name="viewport" content="width=device-width, initial-scale=1"> 
+{% if description %}<meta name="description" content="{{ description }}" />{% endif %}
+{% if keywords %}<meta name="keywords" content="{{ keywords }}" />{% endif %}
+<link href="https://fonts.googleapis.com/css2?family=Avalon-Bold&display=swap" rel="stylesheet">
+
+<!--[if IE]><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"><![endif]-->
+{# =========== Begin General CSS ==============#}
+{% if direction=='ltr' %} {{soconfig.addCss('catalog/view/javascript/bootstrap/css/bootstrap.min.css')}}
+{% elseif direction=='rtl' %}{{soconfig.addCss('catalog/view/javascript/soconfig/css/bootstrap/bootstrap.rtl.min.css')}} 
+{% else %}{{soconfig.addCss('catalog/view/javascript/bootstrap/css/bootstrap.min.css')}} {% endif %}
+
+{{soconfig.addCss('catalog/view/javascript/font-awesome/css/font-awesome.min.css')}}
+{{soconfig.addCss('catalog/view/javascript/soconfig/css/lib.css')}}
+{{soconfig.addCss('catalog/view/javascript/soconfig/css/slick.css')}}
+
+{{soconfig.addCss('catalog/view/theme/'~theme_directory~'/css/ie9-and-up.css')}}
+{{soconfig.addCss('catalog/view/theme/'~theme_directory~'/css/custom.css')}}
+{{soconfig.addCss('catalog/view/javascript/pe-icon-7-stroke/css/pe-icon-7-stroke.css')}}
+{{soconfig.addCss('catalog/view/javascript/pe-icon-7-stroke/css/helper.css')}}
+{% for style in styles %}{{ soconfig.addCss(style.href)}}{% endfor %}
+{# =========== Begin General Scripts ==============#}
+
+{{soconfig.addJs('catalog/view/javascript/jquery/jquery-2.1.1.min.js')}}
+{{soconfig.addJs('catalog/view/javascript/bootstrap/js/bootstrap.min.js')}}
+{{soconfig.addJs('catalog/view/javascript/soconfig/js/libs.js')}}
+{{soconfig.addJs('catalog/view/javascript/soconfig/js/so.system.js')}}
+{{soconfig.addJs('catalog/view/javascript/soconfig/js/jquery.sticky-kit.min.js')}}
+{{soconfig.addJs('catalog/view/javascript/lazysizes/lazysizes.min.js')}}
+{% if class=='information-information' %} {{soconfig.addJs('catalog/view/javascript/soconfig/js/typo/element.js')}} {% endif %}
+{% if soconfig.get_settings('toppanel_status') %}{{soconfig.addJs('catalog/view/javascript/soconfig/js/toppanel.js')}}{% endif %}
+{% if soconfig.get_settings('typelayout') =='3' %}
+	{{soconfig.addJs('catalog/view/javascript/soconfig/js/slick.js')}}
+{% endif %}
+{{soconfig.addJs('catalog/view/javascript/soconfig/js/slick.js')}}
+{{soconfig.addJs('catalog/view/theme/'~theme_directory~'/js/common.js')}}
+{{soconfig.addJs('catalog/view/theme/'~theme_directory~'/js/so.custom.js')}}
+{{soconfig.addJs('catalog/view/javascript/googleMapIntegration.js')}}
+{{soconfig.addJs('catalog/view/javascript/googleAddressAutocomplete.js')}}
+{{soconfig.addJs('catalog/view/javascript/formValidate.js')}}
+
+{{soconfig.addJs('catalog/view/theme/'~theme_directory~'/js/custom.js')}}
+{{soconfig.addJs('catalog/view/theme/'~theme_directory~'/js/wow.js')}}
+
+{% for script in scripts %} {{soconfig.addJs(script)}} {% endfor %}
+{# =========== Begin Other CSS & JS  ==============#}
+{{soconfig.scss_compass}}
+{{soconfig.css_out(soconfig.get_settings('cssExclude'))}}
+{{soconfig.js_out(soconfig.get_settings('jsExclude'))}}
+{# =========== Custom Code Editor ==============#}
+{% if soconfig.get_settings('cssinput_status') and (soconfig.get_settings('cssinput_content')) is not empty %}{{ soconfig.get_settings('cssinput_content')  }} {% endif %} 
+{# =========== Begin Google Analytics ==============#}
+{% for link in links %}<link href="{{ link.href }}" rel="{{ link.rel }}" />{% endfor %}
+{% for analytic in analytics %}{{ analytic }}{% endfor %}
+
+{% if soconfig.get_settings('layoutstyle') == 'boxed'  %} 
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,600,600i,700,700i,800" rel="stylesheet">
+<style type="text/css">
+body {
+    background-color:{{ soconfig.get_settings('theme_bgcolor') ? soconfig.get_settings('theme_bgcolor') : 'none' }} ;       
+    {% if soconfig.get_settings('contentbg') !='' %}
+        background-image: url("image/{{soconfig.get_settings('contentbg') }} ");
+    {% endif %}
+    background-repeat:{{ soconfig.get_settings('content_bg_mode') is not empty ? soconfig.get_settings('content_bg_mode') : 'no-repeat' }} ;
+    background-attachment:{{ soconfig.get_settings('content_attachment') is not empty ? soconfig.get_settings('content_attachment') : 'inherit' }} ;
+    background-position:top center; 
+}
+</style>
+{% endif %} 
+
+<style>
+.feature-box {
+  text-align: center;
+  padding: 6px;
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  overflow: hidden;
+}
+
+
+.light-blue {
+  background-color: #044488; /* Light  indigo */
+ 
+}
+
+.medium-blue {
+  background-color: #023b77; /* Medium purple */
+}
+
+.dark-blue {
+  background-color: #003264; /* Dark purple */
+}
+
+.feature-box i {
+  margin-right: 5px;
+}
+</style>
+ 
+</head>
+{# =========== Add class Body ==============#}
+{% set layoutbox =  url_layoutbox is not empty  ? url_layoutbox : soconfig.get_settings('layoutstyle') %}
+{% set cls_body = class ~ ' ' %}
+{% set cls_body = cls_body ~ direction %}
+{% set cls_body = cls_body ~ ' layout-'~soconfig.get_settings('typelayout')%}
+{% set cls_wrapper = 'wrapper-'~layoutbox%}
+{% set cls_wrapper = cls_wrapper ~ ' banners-effect-'~soconfig.get_settings('type_banner')%}
+	
+<body class="{{cls_body}}">
+<div id="wrapper" class="{{cls_wrapper}}">  
+ 
+{# =========== Show Preloader ==============#}
+{% if soconfig.get_settings('preloader')%}
+	{% include theme_directory~'/template/soconfig/preloader.twig' with {preloader: soconfig.get_settings('preloader_animation')} %}
+{% endif %}
+{#<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCdIW7xk3UQDxMkhznl2gEyabtnGXHN2ww&libraries=places&callback=initMap" async defer></script>#}
+
+
+{# =========== Show Header==============#}
+{% if soconfig.get_settings('typeheader') %}
+	{% include theme_directory~'/template/header/header'~ soconfig.get_settings('typeheader') ~'.twig' with {typeheader: soconfig.get_settings('typeheader')} %}
+
+{% else%}	
+	<style>
+		.alert-primary .alert-link {color: #002752;}
+		.alert-link {font-weight: 700;text-decoration: none;}
+		.alert-link:hover{text-decoration: underline;}
+		.alert {color: #004085;background-color: #cce5ff;padding: .75rem 1.25rem;margin-bottom: 1rem;border: 1px solid #b8daff;border-radius: .25rem;
+		}
+	</style>
+	<div class="alert alert-primary">
+			Go to admin, find Extensions >>  <a class="alert-link" href="admin/index.php?route=marketplace/modification"  target=”_blank”> Modifications </a> and click 'Refresh' button. To apply the changes characterised by the uploaded modification file
+	</div>
+{% endif %}
+
+<div id="socialLogin"></div>

@@ -1,0 +1,166 @@
+ {{ header }}
+  <link href="catalog/view/theme/so-clickboom/css/customerForms.css" rel="stylesheet" type="text/css" />
+
+  <div class="row">{{ column_left }}
+    {% if column_left and column_right %}
+    {% set class = 'col-sm-6' %}
+    {% elseif column_left or column_right %}
+    {% set class = 'col-sm-9' %}
+    {% else %}
+    {% set class = 'col-sm-12' %}
+    {% endif %}
+    <div id="content" class="{{ class }}">{{ content_top }}
+    <div class="container text-black">
+        
+         <div class="row">
+  <div class="col-sm-12 col-xs-12 text-center">
+    <h3 class="text-blue" style="font-weight: 600; letter-spacing: 1px; margin-top: 20px; margin-bottom: 20px;color:#013b76">
+      Request local dealer
+    </h3>
+    <hr style="width: 60px; border-top: 3px solid #013b76; margin: 10px auto;">
+  </div>
+</div>
+
+    <div class="row ">
+        <div class="demo-request-container">
+   
+    
+    <div class="demo-request-right col-md-7 col-sm-12 col-xs-12">
+        <form action="{{ action }}" method="post" id="demoRequestForm" class="quoteForm">
+            
+            <div class="">
+               <input type="text" name="fullname"  placeholder="Full Name *" required>
+               {% if error_name %} 
+             <div class="text-red">{{ error_name }}</div>
+             {% endif %} 
+             </div>
+
+            <div class="">
+              <input type="email" name="email"  placeholder="Email *" required>
+              {% if error_email %} 
+              <div class="text-red">{{ error_email }}</div>
+              {% endif %} 
+            </div>
+
+            <div class="">
+            <input type="text" name="phone" class="phoneValidate"  placeholder="Phone Number *" maxlength="10" required>
+            {% if error_phone %} 
+             <div class="text-red">{{ error_phone }}</div>
+             {% endif %} 
+            </div>
+
+            <div class="">
+          
+<input type="text" name="postcode" placeholder="Postcode *" maxlength="4" class="postcodeValidate" title="Please enter up to 4 digits only" required>
+
+
+             </div>
+
+          
+
+            <div class="">
+                 <select name="manufacturer_id" id="manufacturer_id" class="form-control" required>
+    <option value="" disabled {% if not manufacturer_id %}selected{% endif %}>Product of interest *</option>
+    {% for manufacturer in manufacturers %}
+            <option value="{{ manufacturer.manufacturer_id }}" {% if manufacturer_id == manufacturer.manufacturer_id %}selected{% endif %}>
+                {{ manufacturer.name }}
+            </option>
+    {% endfor %}
+</select>
+
+    {% if error_manufacturer_id %}
+        <div class="text-red">{{ error_manufacturer_id }}</div>
+    {% endif %}
+             
+            </div>
+            
+            <div class="">
+                <textarea name="additional_info" class="form-control" placeholder="Additional Information"></textarea>
+            </div>
+              <div class="">
+             {{ captcha }}
+              </div>
+               <input type="hidden" name="originalCaptcha" value={{ originalCaptcha }}>
+            <button type="submit" class="btn btn-primary"><i class="fa fa-paper-plane"></i> Submit Your Request</button>
+        </form>
+        <div id="toastMessage" class="toast"></div>
+        <div id="loaderOverlay" class="loader-overlay"><div class="loader"></div> </div>
+    </div>
+</div>
+
+    </div> 
+    </div>
+    </div> 
+    {{ column_right }}
+    </div> 
+     
+     {{ footer }}
+     <script>
+ $('#loaderOverlay').hide();
+// $(document).on('submit', '.quoteForm', function(e) {
+//                 e.preventDefault();
+//                 var form = $(this);
+//                 $('.text-red').remove(); // Clear previous errors
+//               $('#loaderOverlay').show();
+//                 $.ajax({
+//   url: form.attr('action'),
+//   type: 'POST',
+//   data: form.serialize(),
+//   dataType: 'json',
+//   success: function(response) {
+//     $('#loaderOverlay').hide();
+//     $('.text-red').remove(); // remove old validation messages
+//     if (response.success) {
+//         form[0].reset();
+//          $('#profession_other_group').hide();
+//         $('#profession_other').prop('required', false);
+//       $('#toastMessage')
+//         .text(response.success)
+//         .removeClass('error')
+//         .show();
+
+//       setTimeout(function() {
+//         $('#toastMessage').fadeOut();
+//       }, 20000);
+
+//       form[0].reset();
+    
+//     } 
+//      else if (response.error) {
+//       // if it's an object (like { field1: "msg", field2: "msg2" })
+//       if (typeof response.error === 'object') {
+//   $('.text-red').remove(); // clear old errors
+
+//   let lastError = ''; // variable to store last message
+//   $.each(response.error, function(key, value) {
+//     $('#' + key).after('<div class="text-red">' + value + '</div>');
+//     lastError = value; // keep updating with latest error
+//   });
+
+//   // show only the last one in toast
+//   $('#toastMessage')
+//     .text(lastError)
+//     .addClass('error')
+//     .show();
+
+//   setTimeout(() => $('#toastMessage').fadeOut(), 20000);
+// }
+
+//       // if it's a string
+//       else if (typeof response.error === 'string') {
+//         $('#toastMessage')
+//           .text(response.error)
+//           .addClass('error')
+//           .show();
+//       }
+
+//       setTimeout(function() {
+//         $('#toastMessage').fadeOut();
+//       }, 20000);
+//     }
+//   }
+ 
+// });
+
+//             });
+</script>

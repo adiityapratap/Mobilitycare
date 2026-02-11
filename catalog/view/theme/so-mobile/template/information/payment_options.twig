@@ -1,0 +1,83 @@
+{{ header }}
+<style>
+.caret-arrow {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #333;
+    border-bottom: 2px solid #333;
+    transform: rotate(45deg);
+    transition: transform 0.3s ease-in-out;
+    margin-left: 10px;
+}
+
+.faq-toggle:not(.collapsed) .caret-arrow {
+    transform: rotate(-135deg);
+}
+</style>
+<div class="container mt-5">
+    <div class="row">{{ column_left }}
+        {% if column_left and column_right %}
+        {% set class = 'col-sm-6' %}
+        {% elseif column_left or column_right %}
+        {% set class = 'col-sm-9' %}
+        {% else %}
+        {% set class = 'col-sm-12' %}
+        {% endif %}
+        <div id="content" class="{{ class }}">{{ content_top }}
+            {% block content %}
+            <div class="container text-black">
+              
+<div class="row">
+    <h1><strong>Payment Options</strong></h1>
+    
+    <p>At <strong>MobilityCare</strong>, we strive to provide our customers with a seamless and flexible shopping experience. We offer a variety of payment methods tailored to your needs, ensuring you can conveniently purchase our products, whether they are available for direct online purchase, require a personalised quote, or are eligible for funding through agencies such as the NDIS.</p>
+    
+    <h2><strong>1. Direct Online Purchases</strong></h2>
+    <p>For products available for immediate purchase, we offer the following payment options:</p>
+    <ul>
+        <li><strong>Credit/Debit Cards:</strong> We accept major credit and debit cards, including Visa, MasterCard, American Express, and PayPal.</li>
+        <li><strong>Bank Transfer:</strong> Choose to pay via direct bank transfer. Use the following details for all purchases of any amount.</li>
+    </ul>
+    <p><strong>BSB:</strong> 633 000</p>
+    <p><strong>Account Number:</strong> 131874703</p>
+    <p><strong>Account Name:</strong> MobilityCare Pty Ltd</p>
+    <p><strong>Bank:</strong> Bendigo Bank</p>
+    
+    <h2><strong>2. Products Requiring a Quote</strong></h2>
+    <p>Some of our products are customised. To purchase these items:</p>
+    <ul>
+        <li><strong>Request a Quote:</strong> Click the "Get a Custom Quote" button on the product page or contact our sales team directly. We’ll provide a detailed quote based on your requirements.</li>
+        <li><strong>Payment Options After Quote Approval:</strong> Once you've received your quote and are ready to proceed, you can select from available payment methods, including credit card payments, bank transfer, and PayPal.</li>
+    </ul>
+    
+    <h2><strong>3. Purchasing Through NDIS or Other Funding Agencies</strong></h2>
+    <p>If you're eligible to purchase products through funding agencies such as the NDIS, we are here to assist you:</p>
+    <ul>
+        <li><strong>NDIS Funding:</strong> As an NDIS participant, we can process your purchase through your NDIS plan. Our team will assist in submitting quotes and invoices to your plan manager, ensuring a smooth process.</li>
+        <li><strong>Other Funding Options:</strong> We also accept payments through various funding sources, depending on eligibility. Contact us to discuss your funding option, and we’ll guide you through the necessary steps.</li>
+    </ul>
+    
+    <h3><strong>How to Use Your Funding for Payment</strong></h3>
+    <ul>
+        <li><strong>Add Items to Cart:</strong> Select the products you wish to purchase and proceed to checkout.</li>
+        <li><strong>Select Payment Method:</strong> Choose the "Pay via NDIS" or "Other Funding" option during checkout.</li>
+        <li><strong>Verification and Processing:</strong> Our team will contact you to verify your funding details and assist with processing the payment.</li>
+    </ul>
+    
+    <h2><strong>Additional Information</strong></h2>
+    <ul>
+        <li><strong>Security:</strong> We utilise the latest encryption technology to protect your personal and payment information, ensuring a secure transaction process.</li>
+        <li><strong>Billing and Shipping:</strong> Please ensure that your billing and shipping information is accurate during checkout to prevent any delays in processing your order.</li>
+    </ul>
+    
+    <p>For any questions regarding payment methods or purchasing through funding agencies, please contact our support team. We are committed to assisting you in finding the best payment solution for your needs.</p>
+</div>
+
+            </div>
+            {% endblock %}
+        </div>
+        {{ column_right }}
+    </div>
+</div>
+{{ footer }}
