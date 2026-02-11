@@ -1,6 +1,19 @@
 <?php
 class ModelDealerDealer extends Model {
     public function addDealer($data) {
+    // Convert preferred_categories IDs to names for display purposes
+    $preferred_category_names = '';
+    if (isset($data['preferred_categories']) && !empty($data['preferred_categories'])) {
+        $category_names = [];
+        foreach ($data['preferred_categories'] as $manufacturer_id) {
+            $query = $this->db->query("SELECT name FROM " . DB_PREFIX . "manufacturer WHERE manufacturer_id = '" . (int)$manufacturer_id . "'");
+            if ($query->num_rows) {
+                $category_names[] = $query->row['name'];
+            }
+        }
+        $preferred_category_names = implode(', ', $category_names);
+    }
+    
     $this->db->query("INSERT INTO `" . DB_PREFIX . "dealers` 
         (`status`,`is_approved`,`is_new`,`full_name`,`postcode`, `business_name`, `email`, `phone`, `business_address`, `abn`, `website`, `description`, `heard_about`, `preferred_categories`) 
         VALUES (
@@ -17,7 +30,7 @@ class ModelDealerDealer extends Model {
             '" . $this->db->escape($data['website']) . "', 
             '" . $this->db->escape($data['description']) . "', 
             '" . $this->db->escape($data['heard_about']) . "', 
-            '" . $this->db->escape(implode(',', $data['preferred_categories'])) . "'
+            '" . $this->db->escape($preferred_category_names) . "'
         )");
         
     $dealerId = $this->db->getLastId();
