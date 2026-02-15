@@ -251,8 +251,6 @@ class ControllerInformationContact extends Controller {
       $this->error['phone'] = 'Please enter a valid Australian phone number';
      }
 		
-	
-		
 
 		// Captcha
 		if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('contact', (array)$this->config->get('config_captcha_page'))) {

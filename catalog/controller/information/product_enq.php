@@ -209,9 +209,6 @@ class ControllerInformationProductEnq extends Controller {
      if (!is_valid_au_phone($this->request->post['phone'])) {
       $this->error['phone'] = 'Please enter a valid Australian phone number';
      }
-     
-
-	
 
 		// Captcha
 		if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('contact', (array)$this->config->get('config_captcha_page'))) {

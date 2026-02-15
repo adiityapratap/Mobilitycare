@@ -169,13 +169,13 @@ $html .= '</body></html>';
             $this->error['email'] = 'Please enter a valid email address.';
         }
 
-        // Phone
-        if (empty($this->request->post['phone']) || !preg_match('/^[0-9]+$/', $this->request->post['phone'])) {
-            $this->error['phone'] = 'Please enter a valid 10-digit phone number.';
+        // Phone - accept 10 digits (national) or 11-12 digits (international with/without +)
+        if (empty($this->request->post['phone']) || !preg_match('/^\+?[0-9]{10,12}$/', $this->request->post['phone'])) {
+            $this->error['phone'] = 'Please enter a valid phone number.';
         }
         
         $this->load->helper('phone');	
-     if (!is_valid_au_phone($this->request->post['phone'])) {
+     if (!isset($this->error['phone']) && !is_valid_au_phone($this->request->post['phone'])) {
       $this->error['phone'] = 'Please enter a valid Australian phone number';
      }
      

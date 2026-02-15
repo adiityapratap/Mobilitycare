@@ -164,13 +164,14 @@ class ControllerInformationTrialRequest extends Controller {
             $this->error['email'] = 'Please enter a valid email address';
         }
 
-        if (!preg_match('/^[0-9]{10}$/', $this->request->post['phone'])) {
-            $this->error['phone'] = 'Phone number must be exactly 10 digits';
+        // Phone - accept 10 digits (national) or 11-12 digits (international with/without +)
+        if (!preg_match('/^\+?[0-9]{10,12}$/', $this->request->post['phone'])) {
+            $this->error['phone'] = 'Please enter a valid phone number.';
         }
         
         	// validate phone no is from AUS
 	$this->load->helper('phone');	
-     if (!is_valid_au_phone($this->request->post['phone'])) {
+     if (!isset($this->error['phone']) && !is_valid_au_phone($this->request->post['phone'])) {
       $this->error['phone'] = 'Please enter a valid Australian phone number';
      }
      

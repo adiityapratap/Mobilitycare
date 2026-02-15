@@ -19,13 +19,15 @@ function is_valid_au_phone($phone) {
     }
 
     try {
-        // Clean the phone number (remove spaces, dashes, parentheses)
+        // Clean the phone number (remove spaces, dashes, parentheses, and leading +)
         $phone = preg_replace('/[\s\-\(\)]+/', '', $phone);
+        $phone = ltrim($phone, '+');
         
-        // If number starts with 61 (AU country code) without +, add the +
+        // If number starts with 61 (AU country code), add the +
         if (preg_match('/^61[2-9]/', $phone) && strlen($phone) >= 11) {
             $phone = '+' . $phone;
         }
+        // If number starts with 0 (local AU format), it will be parsed correctly with 'AU' region
         
         $number = $phoneUtil->parse($phone, 'AU');
 

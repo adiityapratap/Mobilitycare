@@ -178,20 +178,20 @@ class ControllerInformationPlaceOrder extends Controller {
 			$this->error['email'] = 'Email is required';
 		}
 
-		if ((utf8_strlen($this->request->post['phone']) < 5) || (utf8_strlen($this->request->post['phone']) > 14)) {
-			$this->error['phone'] = 'Please enter correct phone number';
+		// Phone - accept 10 digits (national) or 11-12 digits (international)
+		if ((utf8_strlen($this->request->post['phone']) < 10) || (utf8_strlen($this->request->post['phone']) > 12)) {
+			$this->error['phone'] = 'Please enter a valid phone number';
 		}
-		
 		
 			// validate phone no is from AUS
 	$this->load->helper('phone');	
-     if (!is_valid_au_phone($this->request->post['phone'])) {
+     if (!isset($this->error['phone']) && !is_valid_au_phone($this->request->post['phone'])) {
       $this->error['phone'] = 'Please enter a valid Australian phone number';
      }
      
 		
 		if ($this->request->post['manufacturer_id'] =='') {
-			$this->error['manufacturer_id'] = 'Please choose the product of intrest';
+			$this->error['manufacturer_id'] = 'Please choose the product of interest';
 		}
 
 		// Captcha
