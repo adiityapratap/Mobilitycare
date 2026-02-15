@@ -1,51 +1,51 @@
 <?php
 
 function is_valid_au_phone($phone) {
-    static $phoneUtil = null;
-
-    if ($phoneUtil === null) {
-        // Autoload libphonenumber classes
-        spl_autoload_register(function ($class) {
-            if (strpos($class, 'libphonenumber\\') === 0) {
-                $path = DIR_SYSTEM . 'library/libphonenumber/src/' .
-                        str_replace('\\', '/', substr($class, 14)) . '.php';
-                if (file_exists($path)) {
-                    require_once $path;
-                }
-            }
-        });
-
-        $phoneUtil = \libphonenumber\PhoneNumberUtil::getInstance();
-    }
-
-    try {
-        // Clean the phone number (remove spaces, dashes, parentheses, and leading +)
-        $phone = preg_replace('/[\s\-\(\)]+/', '', $phone);
-        $phone = ltrim($phone, '+');
-        
-        // If number starts with 61 (AU country code), add the +
-        if (preg_match('/^61[2-9]/', $phone) && strlen($phone) >= 11) {
-            $phone = '+' . $phone;
-        }
-        // If number starts with 0 (local AU format), it will be parsed correctly with 'AU' region
-        
-        $number = $phoneUtil->parse($phone, 'AU');
-
-        if (!$phoneUtil->isValidNumberForRegion($number, 'AU')) {
-            return false;
-        }
-
-        $type = $phoneUtil->getNumberType($number);
-
-        return in_array($type, [
-            \libphonenumber\PhoneNumberType::MOBILE,
-            \libphonenumber\PhoneNumberType::FIXED_LINE,
-            \libphonenumber\PhoneNumberType::FIXED_LINE_OR_MOBILE,
-        ], true);
-
-    } catch (Exception $e) {
+    // Clean the phone number (remove spaces, dashes, parentheses, and leading +)
+    $phone = preg_replace('/[\s\-\(\)\+]+/', '', $phone);
+    
+    // Empty check
+    if (empty($phone)) {
         return false;
     }
+    
+    // Must be digits only after cleaning
+    if (!preg_match('/^[0-9]+$/', $phone)) {
+        return false;
+    }
+    
+    // Convert international format to local format for validation
+    // 61411114916 (11 digits with country code) -> 0411114916 (10 digits local)
+    if (preg_match('/^61([2-9][0-9]{8})$/', $phone, $matches)) {
+        $phone = '0' . $matches[1];
+    }
+    
+    // Now validate as 10-digit Australian number starting with 0
+    // Australian mobile: 04XX XXX XXX
+    // Australian landline: 02/03/07/08 XXXX XXXX
+    if (strlen($phone) !== 10) {
+        return false;
+    }
+    
+    // Must start with 0
+    if ($phone[0] !== '0') {
+        return false;
+    }
+    
+    // Valid Australian prefixes:
+    // 04 - Mobile
+    // 02 - NSW/ACT
+    // 03 - VIC/TAS  
+    // 07 - QLD
+    // 08 - SA/WA/NT
+    $validPrefixes = ['02', '03', '04', '07', '08'];
+    $prefix = substr($phone, 0, 2);
+    
+    if (!in_array($prefix, $validPrefixes)) {
+        return false;
+    }
+    
+    return true;
 }
 
 function format_au_phone_e164($phone) {
