@@ -339,7 +339,10 @@
 
                         <div class="form-group">
                             <div class="col-sm-offset-3 col-sm-9">
-                                {{ captcha }}
+                                <div class="captcha-container" style="display: flex; align-items: center; gap: 10px;">
+                                    <img src="{{ captcha_image_data }}" alt="Captcha" class="captcha-image" />
+                                    <input type="text" name="captcha" class="form-control" placeholder="Enter Captcha code" required style="max-width: 150px;" />
+                                </div>
                             </div>
                         </div>
                         <input type="hidden" name="originalCaptcha" value="{{ originalCaptcha }}">

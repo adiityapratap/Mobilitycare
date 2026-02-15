@@ -197,13 +197,36 @@ class ControllerExtensionModuleSolistingtabs extends Controller {
             $this->load->model('catalog/demo_request');
             $quoteProducts = $this->model_catalog_demo_request->getProductsByCategory(101);
             $data = $this->readData($setting);
-            // Captcha
-	    	if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('contact', (array)$this->config->get('config_captcha_page'))) {
-			$data['captcha'] = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha'), $this->error);
-	    	} else {
-			$data['captcha'] = '';
-		    }
-            $data['originalCaptcha'] = isset($this->session->data['captcha']) ? $this->session->data['captcha'] : '';
+            
+            // Generate unique captcha for this module instance (avoids session conflicts with other forms)
+            $captcha_key = 'captcha_listing_tabs_' . $module_id;
+            $captcha_value = str_pad(mt_rand(0, 9999), 4, '0', STR_PAD_LEFT);
+            $this->session->data[$captcha_key] = $captcha_value;
+            
+            // Create captcha image as data URL to avoid separate HTTP request
+            $image = imagecreatetruecolor(150, 35);
+            $white = imagecolorallocate($image, 255, 255, 255);
+            $black = imagecolorallocate($image, 0, 0, 0);
+            $red = imagecolorallocatealpha($image, 255, 0, 0, 75);
+            $green = imagecolorallocatealpha($image, 0, 255, 0, 75);
+            $blue = imagecolorallocatealpha($image, 0, 0, 255, 75);
+            imagefilledrectangle($image, 0, 0, 150, 35, $white);
+            imagefilledellipse($image, ceil(rand(5, 145)), ceil(rand(0, 35)), 30, 30, $red);
+            imagefilledellipse($image, ceil(rand(5, 145)), ceil(rand(0, 35)), 30, 30, $green);
+            imagefilledellipse($image, ceil(rand(5, 145)), ceil(rand(0, 35)), 30, 30, $blue);
+            imagefilledrectangle($image, 0, 0, 150, 0, $black);
+            imagefilledrectangle($image, 149, 0, 149, 34, $black);
+            imagefilledrectangle($image, 0, 0, 0, 34, $black);
+            imagefilledrectangle($image, 0, 34, 150, 34, $black);
+            imagestring($image, 10, intval((150 - (strlen($captcha_value) * 9)) / 2), intval((35 - 15) / 2), $captcha_value, $black);
+            ob_start();
+            imagejpeg($image);
+            $image_data = ob_get_clean();
+            imagedestroy($image);
+            $data['captcha_image_data'] = 'data:image/jpeg;base64,' . base64_encode($image_data);
+            $data['originalCaptcha'] = $captcha_value;
+            $data['captcha_key'] = $captcha_key;
+            
             $data['products']  = $quoteProducts;
             $data['action'] = $this->url->link('information/quote_request', '', true);
 			// Check cache lite
