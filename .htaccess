@@ -36,6 +36,11 @@ RewriteRule ^autochair-smart-lifter-enquiry/?$ index.php?route=information/autoc
 RewriteRule ^request-local-dealer/?$ index.php?route=information/find_dealer_form [L,QSA]
 
 RewriteRule ^home/?$ index.php?route=extension/mobile/home [L,QSA]
+
+# Canonical redirect: mobile home URL
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=extension/mobile/home[\s&] [NC]
+RewriteRule ^index\.php$ /home? [R=301,L,QSD]
+
 RewriteRule ^sitemap.xml$ index.php?route=extension/feed/google_sitemap [L,QSA]
 
 

@@ -497,8 +497,11 @@ function openModal(productId) {
                 let lastError = '';
 
                 $.each(res.error, function (key, msg) {
-                    $('[name="' + key + '"]', form)
-                        .after('<div class="text-red">' + msg + '</div>');
+                    // Skip inline error for captcha (already shown in toast)
+                    if (key !== 'captcha') {
+                        $('[name="' + key + '"]', form)
+                            .after('<div class="text-red">' + msg + '</div>');
+                    }
                     lastError = msg;
                 });
 
