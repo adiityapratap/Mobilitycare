@@ -41,6 +41,61 @@ RewriteRule ^home/?$ index.php?route=extension/mobile/home [L,QSA]
 RewriteCond %{THE_REQUEST} \s/index\.php\?route=extension/mobile/home[\s&] [NC]
 RewriteRule ^index\.php$ /home? [R=301,L,QSD]
 
+############################################################
+# Canonical Redirects: Force SEO URLs for Information Pages
+############################################################
+# Quote Request
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/quote_request[\s&] [NC]
+RewriteRule ^index\.php$ /request-quote/? [R=301,L,QSD]
+
+# Demo Request
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/demo_request[\s&] [NC]
+RewriteRule ^index\.php$ /organise-a-product-demonstration/? [R=301,L,QSD]
+
+# Trial Request
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/trial_request[\s&] [NC]
+RewriteRule ^index\.php$ /organise-a-product-trial/? [R=301,L,QSD]
+
+# Funding Support
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/funding_support[\s&] [NC]
+RewriteRule ^index\.php$ /funding-support/? [R=301,L,QSD]
+
+# Place Order
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/place_order[\s&] [NC]
+RewriteRule ^index\.php$ /place-an-order/? [R=301,L,QSD]
+
+# Warranty Claim
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/warranty_claim[\s&] [NC]
+RewriteRule ^index\.php$ /warranty-claim/? [R=301,L,QSD]
+
+# Contact
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/contact[\s&] [NC]
+RewriteRule ^index\.php$ /contact-mobilitycare/? [R=301,L,QSD]
+
+# Product Enquiry
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/product_enq[\s&] [NC]
+RewriteRule ^index\.php$ /product_enq/? [R=301,L,QSD]
+
+# Light Drive Enquiry
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/lightDriveEnquiry[\s&] [NC]
+RewriteRule ^index\.php$ /light-drive-2-enquiry/? [R=301,L,QSD]
+
+# Autochair Enquiry
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/autochairEnquiry[\s&] [NC]
+RewriteRule ^index\.php$ /autochair-smart-lifter-enquiry/? [R=301,L,QSD]
+
+# Find Dealer Form
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/find_dealer_form[\s&] [NC]
+RewriteRule ^index\.php$ /request-local-dealer/? [R=301,L,QSD]
+
+# NDIS
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/ndis[\s&] [NC]
+RewriteRule ^index\.php$ /ndis/? [R=301,L,QSD]
+
+# Support / Customer Service
+RewriteCond %{THE_REQUEST} \s/index\.php\?route=information/support[\s&] [NC]
+RewriteRule ^index\.php$ /customer-service/? [R=301,L,QSD]
+
 RewriteRule ^sitemap.xml$ index.php?route=extension/feed/google_sitemap [L,QSA]
 
 
