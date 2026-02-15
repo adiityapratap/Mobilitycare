@@ -110,7 +110,7 @@ class ControllerInformationPlaceOrder extends Controller {
 
 		$data['button_submit'] = 'Submit your request';
 
-		$data['action'] = $this->url->link('information/place_order', '', true);
+		$data['action'] = '/place-an-order/';
 
 
 		if (isset($this->request->post['name'])) {

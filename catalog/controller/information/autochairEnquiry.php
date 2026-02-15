@@ -87,7 +87,7 @@ class ControllerInformationAutochairEnquiry extends Controller {
             } 
         }
 
-        $data['action'] = $this->url->link('information/autochairEnquiry', '', true);
+        $data['action'] = '/autochair-smart-lifter-enquiry/';
         
         $data['error_warning'] = isset($this->error['warning']) ? $this->error['warning'] : '';
         $data['error_fullname'] = isset($this->error['fullname']) ? $this->error['fullname'] : '';

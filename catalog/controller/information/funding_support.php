@@ -110,7 +110,7 @@ class ControllerInformationFundingSupport extends Controller {
 
 		$data['button_submit'] = 'Submit your request';
 
-		$data['action'] = $this->url->link('information/funding_support', '', true);
+		$data['action'] = '/funding-support/';
 
 
 		if (isset($this->request->post['name'])) {

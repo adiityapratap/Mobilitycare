@@ -94,7 +94,7 @@ class ControllerInformationWarrantyClaim extends Controller {
 
 		$data['button_submit'] = 'Submit your request';
 
-		$data['action'] = $this->url->link('information/warranty_claim', '', true);
+		$data['action'] = '/warranty-claim/';
         
 
 		if (isset($this->request->post['full_name'])) {

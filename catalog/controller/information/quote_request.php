@@ -84,7 +84,7 @@ class ControllerInformationQuoteRequest extends Controller {
             } 
         }
 
-        $data['action'] = $this->url->link('information/quote_request', '', true);
+        $data['action'] = '/request-quote/';
         $data['error_warning'] = isset($this->error['warning']) ? $this->error['warning'] : '';
         $data['error_fullname'] = isset($this->error['fullname']) ? $this->error['fullname'] : '';
         $data['error_email'] = isset($this->error['email']) ? $this->error['email'] : '';
