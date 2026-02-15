@@ -488,72 +488,53 @@ $(document).ready(function() {
     $('#loaderOverlay').hide();
 });
 
- $(document).on('submit', '.quoteForm', function(e) {
-                e.preventDefault();
-                console.log("Clicked");
-                var form = $(this);
-             
-                $('.text-red').remove(); // Clear previous errors
-               $('#loaderOverlay').show();
-                $.ajax({
-  url: form.attr('action'),
-  type: 'POST',
-  data: form.serialize(),
-  dataType: 'json',
-  success: function(response) {
-    $('#loaderOverlay').hide();
-    $('.text-red').remove(); // remove old validation messages
-    if (response.success) {
-      $('#toastMessage')
-        .text(response.success)
-        .removeClass('error')
-        .show();
-
-      setTimeout(function() {
-        $('#toastMessage').fadeOut();
-         $('#customQuoteModal').modal('hide');
-      }, 20000);
-
-      form[0].reset();
-     
-    } 
-    else if (response.error) {
-      // if it's an object (like { field1: "msg", field2: "msg2" })
-      if (typeof response.error === 'object') {
-  $('.text-red').remove(); // clear old errors
-
-  let lastError = ''; // variable to store last message
-  $.each(response.error, function(key, value) {
-    $('#' + key).after('<div class="text-red">' + value + '</div>');
-    lastError = value; // keep updating with latest error
-  });
-
-  // show only the last one in toast
-  $('#toastMessage')
-    .text(lastError)
-    .addClass('error')
-    .show();
-
-  setTimeout(() => $('#toastMessage').fadeOut(), 20000);
-}
-
-      // if it's a string
-      else if (typeof response.error === 'string') {
-        $('#toastMessage')
-          .text(response.error)
-          .addClass('error')
-          .show();
-      }
-
-      setTimeout(function() {
-        $('#toastMessage').fadeOut();
-      }, 20000);
+$(document).on('submit', '.quoteForm', function (e) {
+    $('#loaderOverlay').show();
+    // Guard: allow normal submit after validation
+    if ($(this).data('validated') === true) {
+        return true; // allow normal submit
     }
-  }
- 
-});
 
-            });
+    e.preventDefault();
+
+    var form = $(this);
+    $('.text-red').remove();
+
+    $.ajax({
+        url: 'index.php?route=information/quote_request/validateAjax',
+        type: 'POST',
+        data: form.serialize(),
+        dataType: 'json',
+        success: function (res) {
+            if (res.success) {
+                // Mark form as validated
+                form.data('validated', true);
+                $('#loaderOverlay').hide();
+                // Trigger normal submit (this time it will pass through)
+                form.trigger('submit');
+                return;
+            }
+
+            $('#loaderOverlay').hide();
+            if (res.error) {
+                let lastError = '';
+
+                $.each(res.error, function (key, msg) {
+                    $('[name="' + key + '"]', form)
+                        .after('<div class="text-red">' + msg + '</div>');
+                    lastError = msg;
+                });
+
+                $('#toastMessage')
+                    .text(lastError)
+                    .addClass('error')
+                    .show();
+
+                setTimeout(() => $('#toastMessage').fadeOut(), 8000);
+            }
+        }
+    });
+});
             
 </script>
 
