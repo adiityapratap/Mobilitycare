@@ -61,6 +61,7 @@ class ControllerInformationPlaceOrder extends Controller {
         $customerMessageHtml = $this->load->view('mail/enquiry_confirmation', $data);
         
         $customerMail->setHtml($customerMessageHtml);
+        $customerMail->addAttachment(DIR_IMAGE . 'mobilitycare-brochure-assistive-technology-web.pdf');
         $customerMail->send();
         
         
