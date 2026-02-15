@@ -185,7 +185,7 @@ class ControllerInformationProductEnq extends Controller {
         $html .= '<li><strong>Postcode:</strong> ' . htmlspecialchars($post['postcode']) . '</li>';
          $html .= '<li><strong>Contact type:</strong> ' . htmlspecialchars($post['contact_type']) . '</li>';
         if ($post['contact_type'] == 'Healthcare Professional') {
-        $html .= "<li><strong>Postcode:</strong> Healthcare Profession: " . $post['healthcare_profession'] . '</li>';
+        $html .= '<li><strong>Healthcare Profession:</strong> ' . htmlspecialchars($post['healthcare_profession']) . '</li>';
          }
         $html .= '<li><strong>Enquiry type:</strong> ' . htmlspecialchars($post['inquiry_reason']) . '</li>';
         $html .= '<li><strong>Brand Name:</strong> ' . htmlspecialchars($manufacturer_name) . '</li>';

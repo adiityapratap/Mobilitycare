@@ -70,9 +70,8 @@ class ControllerInformationQuoteRequest extends Controller {
     }
     
 } catch (Exception $e) {
-    // Log or show the error
+    // Log the error
     $this->log->write('MAIL ERROR: ' . $e->getMessage());
-    echo '<pre>Mail Error: ' . $e->getMessage() . '</pre>';
 }
 
 
@@ -87,7 +86,9 @@ class ControllerInformationQuoteRequest extends Controller {
 
         $data['action'] = $this->url->link('information/quote_request', '', true);
         $data['error_warning'] = isset($this->error['warning']) ? $this->error['warning'] : '';
-         $data['error_phone'] = isset($this->error['phone']) ? $this->error['phone'] : '';
+        $data['error_fullname'] = isset($this->error['fullname']) ? $this->error['fullname'] : '';
+        $data['error_email'] = isset($this->error['email']) ? $this->error['email'] : '';
+        $data['error_phone'] = isset($this->error['phone']) ? $this->error['phone'] : '';
         
         	if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') && in_array('contact', (array)$this->config->get('config_captcha_page'))) {
 			$data['captcha'] = $this->load->controller('extension/captcha/' . $this->config->get('config_captcha'), $this->error);
@@ -95,7 +96,7 @@ class ControllerInformationQuoteRequest extends Controller {
 			$data['captcha'] = '';
 		    }
 		    
-        $data['originalCaptcha'] = $this->session->data['captcha'];
+        $data['originalCaptcha'] = isset($this->session->data['captcha']) ? $this->session->data['captcha'] : '';
         $data['header'] = $this->load->controller('common/header');
         $data['footer'] = $this->load->controller('common/footer');
         $data['column_left'] = $this->load->controller('common/column_left');

@@ -195,7 +195,7 @@ class ControllerInformationContact extends Controller {
 		} else {
 			$data['captcha'] = '';
 		}
-		$data['originalCaptcha'] = $this->session->data['captcha'];
+		$data['originalCaptcha'] = isset($this->session->data['captcha']) ? $this->session->data['captcha'] : '';
 
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
@@ -223,7 +223,7 @@ class ControllerInformationContact extends Controller {
         $html .= '<li><strong>Postcode:</strong> ' . htmlspecialchars($post['postcode']) . '</li>';
         $html .= '<li><strong>Contact type:</strong> ' . htmlspecialchars($post['contact_type']) . '</li>';
         if ($post['contact_type'] == 'Healthcare Professional') {
-        $html .= "<li><strong>Postcode:</strong> Healthcare Profession: " . $post['healthcare_profession'] . '</li>';
+        $html .= '<li><strong>Healthcare Profession:</strong> ' . htmlspecialchars($post['healthcare_profession']) . '</li>';
          }
          $html .= '<li><strong>Brand Name:</strong> ' . htmlspecialchars($manufacturer_name) . '</li>';
         $html .= '<li><strong>Reason of Enquiry :</strong> ' . htmlspecialchars($post['inquiry_reason']) . '</li>';

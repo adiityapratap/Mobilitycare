@@ -14,6 +14,7 @@ class ControllerInformationLightDriveEnquiry extends Controller {
             if ($this->validate()) {
 
                 // Default empty for missing fields
+                $fields = ['contact_type', 'healthcare_profession', 'quote_type', 'additional_info'];
                 foreach ($fields as $field) {
                     if (!isset($this->request->post[$field])) {
                         $this->request->post[$field] = '';
@@ -86,6 +87,8 @@ class ControllerInformationLightDriveEnquiry extends Controller {
 
         $data['action'] = $this->url->link('information/lightDriveEnquiry', '', true);
         $data['error_warning'] = isset($this->error['warning']) ? $this->error['warning'] : '';
+        $data['error_fullname'] = isset($this->error['fullname']) ? $this->error['fullname'] : '';
+        $data['error_email'] = isset($this->error['email']) ? $this->error['email'] : '';
         $data['error_phone'] = isset($this->error['phone']) ? $this->error['phone'] : '';
         
         
@@ -95,7 +98,7 @@ class ControllerInformationLightDriveEnquiry extends Controller {
 			$data['captcha'] = '';
 		    }
 		    
-        $data['originalCaptcha'] = $this->session->data['captcha'];
+        $data['originalCaptcha'] = isset($this->session->data['captcha']) ? $this->session->data['captcha'] : '';
         $data['header'] = $this->load->controller('common/header');
         $data['footer'] = $this->load->controller('common/footer');
         $data['column_left'] = $this->load->controller('common/column_left');
@@ -149,7 +152,7 @@ $html .= '</body></html>';
 
     protected function validate() {
         // Name
-        if (empty($this->request->post['fullname']) || utf8_strlen($this->request->post['fullname']) < 1) {
+        if (empty($this->request->post['fullname']) || utf8_strlen($this->request->post['fullname']) < 2) {
             $this->error['fullname'] = 'Full name must be at least 2 characters.';
         }
 

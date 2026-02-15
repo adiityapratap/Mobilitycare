@@ -72,9 +72,8 @@ class ControllerInformationAutochairEnquiry extends Controller {
     
     
 }               catch (Exception $e) {
-    // Log or show the error
+    // Log the error
     $this->log->write('MAIL ERROR: ' . $e->getMessage());
-    echo '<pre>Mail Error: ' . $e->getMessage() . '</pre>';
 }
 
 
@@ -91,6 +90,8 @@ class ControllerInformationAutochairEnquiry extends Controller {
         $data['action'] = $this->url->link('information/autochairEnquiry', '', true);
         
         $data['error_warning'] = isset($this->error['warning']) ? $this->error['warning'] : '';
+        $data['error_fullname'] = isset($this->error['fullname']) ? $this->error['fullname'] : '';
+        $data['error_email'] = isset($this->error['email']) ? $this->error['email'] : '';
         $data['error_phone'] = isset($this->error['phone']) ? $this->error['phone'] : '';
         
         
@@ -100,7 +101,7 @@ class ControllerInformationAutochairEnquiry extends Controller {
 	    	} else {
 			$data['captcha'] = '';
 		    }
-		    $data['originalCaptcha'] = $this->session->data['captcha'];
+		    $data['originalCaptcha'] = isset($this->session->data['captcha']) ? $this->session->data['captcha'] : '';
 
         $data['header'] = $this->load->controller('common/header');
         $data['footer'] = $this->load->controller('common/footer');
@@ -159,7 +160,7 @@ $html .= '</body></html>';
 
     protected function validate() {
         // Name
-        if (empty($this->request->post['fullname']) || utf8_strlen($this->request->post['fullname']) < 1) {
+        if (empty($this->request->post['fullname']) || utf8_strlen($this->request->post['fullname']) < 2) {
             $this->error['fullname'] = 'Full name must be at least 2 characters.';
         }
 

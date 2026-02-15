@@ -137,7 +137,7 @@ class ControllerInformationPlaceOrder extends Controller {
 		} else {
 			$data['captcha'] = '';
 		}
-        $data['originalCaptcha'] = $this->session->data['captcha'];
+        $data['originalCaptcha'] = isset($this->session->data['captcha']) ? $this->session->data['captcha'] : '';
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
 		$data['content_top'] = $this->load->controller('common/content_top');
@@ -171,7 +171,7 @@ class ControllerInformationPlaceOrder extends Controller {
 
 	protected function validate() {
 		if ((utf8_strlen($this->request->post['fullname']) < 1) || (utf8_strlen($this->request->post['fullname']) > 112)) {
-			$this->error['name'] = 'Name is required';
+			$this->error['fullname'] = 'Name is required';
 		}
 
 		if (!filter_var($this->request->post['email'], FILTER_VALIDATE_EMAIL)) {

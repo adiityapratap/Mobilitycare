@@ -122,7 +122,7 @@ class ControllerInformationWarrantyClaim extends Controller {
 			$data['captcha'] = '';
 		}
         
-        $data['originalCaptcha'] = $this->session->data['captcha'];
+        $data['originalCaptcha'] = isset($this->session->data['captcha']) ? $this->session->data['captcha'] : '';
         
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
@@ -150,7 +150,7 @@ class ControllerInformationWarrantyClaim extends Controller {
 		
 			// validate phone no is from AUS
 	$this->load->helper('phone');	
-     if (!is_valid_au_phone($this->request->post['phone'])) {
+     if (!is_valid_au_phone($this->request->post['phone_number'])) {
       $this->error['phone'] = 'Please enter a valid Australian phone number';
      }
      

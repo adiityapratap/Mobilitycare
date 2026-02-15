@@ -107,7 +107,7 @@ class ControllerInformationFindDealerForm extends Controller {
 
 		$data['button_submit'] = 'Submit your request';
 
-		$data['action'] = $this->url->link('information/demo_request', '', true);
+		$data['action'] = $this->url->link('information/find_dealer_form', '', true);
 
 
 		if (isset($this->request->post['name'])) {
@@ -134,7 +134,7 @@ class ControllerInformationFindDealerForm extends Controller {
 		} else {
 			$data['captcha'] = '';
 		}
-         $data['originalCaptcha'] = $this->session->data['captcha'];
+         $data['originalCaptcha'] = isset($this->session->data['captcha']) ? $this->session->data['captcha'] : '';
 		$data['column_left'] = $this->load->controller('common/column_left');
 		$data['column_right'] = $this->load->controller('common/column_right');
 		$data['content_top'] = $this->load->controller('common/content_top');
@@ -215,17 +215,8 @@ class ControllerInformationFindDealerForm extends Controller {
 
         // Contact Type
         if (empty($this->request->post['manufacturer_id'])) {
-            $this->error['manufacturer_id'] = 'Please choose the product of intrest';
+            $this->error['manufacturer_id'] = 'Please choose the product of interest';
         }
-        
-        
-        	// validate phone no is from AUS
-	$this->load->helper('phone');	
-     if (!is_valid_au_phone($this->request->post['phone'])) {
-      $this->error['phone'] = 'Please enter a valid Australian phone number';
-     }
-     
-      
 
         // Captcha validation
         if ($this->config->get('captcha_' . $this->config->get('config_captcha') . '_status') 

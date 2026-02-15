@@ -113,7 +113,7 @@ class ControllerInformationTrialRequest extends Controller {
         } else {
             $data['captcha'] = '';
         }
-           $data['originalCaptcha'] = $this->session->data['captcha'];
+           $data['originalCaptcha'] = isset($this->session->data['captcha']) ? $this->session->data['captcha'] : '';
         $data['column_left'] = $this->load->controller('common/column_left');
         $data['column_right'] = $this->load->controller('common/column_right');
         $data['content_top'] = $this->load->controller('common/content_top');
