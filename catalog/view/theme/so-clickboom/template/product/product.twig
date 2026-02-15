@@ -2264,6 +2264,7 @@ $(document).on('submit', '.bookaDemoForm', function (e) {
             }
 
             if (res.error) {
+                $('#loaderOverlay').hide();
                 let lastError = '';
 
                 $.each(res.error, function (key, msg) {
@@ -2315,6 +2316,7 @@ $(document).on('submit', '.quoteForm', function (e) {
             }
 
             if (res.error) {
+                $('#loaderOverlay').hide();
                 let lastError = '';
 
                 $.each(res.error, function (key, msg) {
