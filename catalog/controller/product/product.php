@@ -238,8 +238,9 @@ $data['price_no_currency'] = preg_replace('/[^0-9.]/', '', $product_info['price'
        
        
 // 		echo "<pre>"; print_r($data['product_specs']); exit;
- $data['action'] = $this->url->link('information/quote_request', '');
-	$data['demo_form_action'] = $this->url->link('information/demo_request', '');	
+ // Use SEO-friendly URLs directly to avoid 301 redirect which converts POST to GET
+ $data['action'] = '/request-quote/';
+	$data['demo_form_action'] = '/organise-a-product-demonstration/';	
      	 // Get product features
             $product_features = $this->model_catalog_product->getProductFeatures($product_id);
             $data['product_features'] = array();
