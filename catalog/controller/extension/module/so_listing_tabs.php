@@ -203,6 +203,7 @@ class ControllerExtensionModuleSolistingtabs extends Controller {
 	    	} else {
 			$data['captcha'] = '';
 		    }
+            $data['originalCaptcha'] = isset($this->session->data['captcha']) ? $this->session->data['captcha'] : '';
             $data['products']  = $quoteProducts;
             $data['action'] = $this->url->link('information/quote_request', '', true);
 			// Check cache lite
