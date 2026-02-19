@@ -54979,3 +54979,2994 @@ To learn how to assemble and adjust the platform model, watch our video: “Sett
     [image] => catalog/productSpecification/spec-1754217994.jpeg
 )
 
+[16-Feb-2026 01:20:59 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/modern-scandinavian-frame-design-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/modern-scandinavian-frame-design-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 0: Array
+(
+    [title] => Modern Scandinavian Frame Design
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/modern-scandinavian-frame-design-1771204859-300x300.jpg
+    [video] => https://youtu.be/LlvR7-13uXw
+    [text] => The redesigned lightweight aluminium frame offers a clean, modern appearance with a slim profile that improves manoeuvrability indoors and out. Despite its minimal look, the frame retains TOPRO’s known durability and stability.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/slimline-wheels-with-shock-absorption-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/slimline-wheels-with-shock-absorption-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 1: Array
+(
+    [title] => Slimline Wheels with Shock Absorption
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/slimline-wheels-with-shock-absorption-1771204859-300x300.jpg
+    [video] => 
+    [text] => Newly designed wheels provide a slimmer look without compromising comfort. Integrated shock-absorbing tyres ensure a smoother, quieter ride across footpaths, pavements, and indoor flooring.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/detachable-shopping-bag-with-safety-reflector-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/detachable-shopping-bag-with-safety-reflector-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 2: Array
+(
+    [title] => Detachable Shopping Bag with Safety Reflector
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/detachable-shopping-bag-with-safety-reflector-1771204859-300x300.jpg
+    [video] => 
+    [text] => The rollator includes a detachable shopping bag in grey print fabric with a practical carry strap. A reflective band enhances visibility at night, while the 10 kg capacity, inner storage pockets, and zip closure make it functional for everyday use.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/quick-height-adjustment-with-memory-function-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/quick-height-adjustment-with-memory-function-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 3: Array
+(
+    [title] => Quick Height Adjustment with Memory Function
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/quick-height-adjustment-with-memory-function-1771204859-300x300.jpg
+    [video] => 
+    [text] => Handle height can be adjusted easily using a numbered scale, making it quick to set to your preferred level. The built-in memory function remembers your height setting after the rollator is folded and reopened.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/ergonomic-multi-position-handles-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/ergonomic-multi-position-handles-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 4: Array
+(
+    [title] => Ergonomic Multi-Position Handles
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/ergonomic-multi-position-handles-1771204859-300x300.jpg
+    [video] => 
+    [text] => TOPRO Ergo Grip handles allow multiple comfortable hand positions and double as padded armrests when seated. The ergonomic shape supports natural posture and reduces hand strain during long walks.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/easy-use-bell-for-signalling-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/easy-use-bell-for-signalling-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 5: Array
+(
+    [title] => Easy-Use Bell for Signalling
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/easy-use-bell-for-signalling-1771204859-300x300.jpg
+    [video] => 
+    [text] => A bell is mounted on the handle for drawing attention in shared spaces. It is designed for safe, intuitive operation while walking or seated.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/quick-release-wheels-for-versatile-terrain-use-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/quick-release-wheels-for-versatile-terrain-use-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 6: Array
+(
+    [title] => Quick-Release Wheels for Versatile Terrain Use
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/quick-release-wheels-for-versatile-terrain-use-1771204859-300x300.jpg
+    [video] => 
+    [text] => The rollator includes the TOPRO IBS (Internal Braking System) and Quick Release system, letting users swap out wheels to suit different terrain types or preferences without tools.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/smooth-suspension-and-handling-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/smooth-suspension-and-handling-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 7: Array
+(
+    [title] => Smooth Suspension and Handling
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/smooth-suspension-and-handling-1771204859-300x300.jpg
+    [video] => 
+    [text] => Shock-absorbing tyres and finely tuned engineering provide smooth rolling and easy turning. This reduces vibration and strain for users walking on uneven paths, gravel or kerbs.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/space-saving-lateral-fold-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/space-saving-lateral-fold-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 8: Array
+(
+    [title] => Space-Saving Lateral Fold
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/space-saving-lateral-fold-1771204859-300x300.jpg
+    [video] => 
+    [text] => The Topro Troja 5G rollator folds sideways like a pair of hands clapping, staying upright when folded and taking up minimal space. It fits easily into vehicle boots and narrow storage areas at home.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/compact--lightweight-and-portable-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/compact--lightweight-and-portable-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 9: Array
+(
+    [title] => Compact, Lightweight and Portable
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/compact--lightweight-and-portable-1771204859-300x300.jpg
+    [video] => 
+    [text] => Weighing just 7.6 kg (Small) or 7.8 kg (Medium), the Troja 5G is easy to lift and fold. When closed, it folds flat to a width of just 24 cm, ideal for transport in cars, buses or planes.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/built-for-everyday-use-indoors-and-out-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/built-for-everyday-use-indoors-and-out-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 10: Array
+(
+    [title] => Built for Everyday Use Indoors and Out
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/built-for-everyday-use-indoors-and-out-1771204859-300x300.jpg
+    [video] => 
+    [text] => Suitable for both interior spaces and outdoor travel, the Troja 5G delivers consistent support whether navigating shops, corridors, parks or streets.
+)
+
+[16-Feb-2026 01:20:59 UTC] Attempting to fetch URL: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/engineered-and-made-in-norway-1768263253-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/engineered-and-made-in-norway-1771204859-300x300.jpg
+[16-Feb-2026 01:20:59 UTC] Feature for index 11: Array
+(
+    [title] => Engineered and Made in Norway
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/engineered-and-made-in-norway-1771204859-300x300.jpg
+    [video] => 
+    [text] => With over 30 years of experience, TOPRO produces all rollators in Norway using advanced materials and manufacturing processes. The 7-year frame warranty reflects its long-term reliability.
+
+
+)
+
+[16-Feb-2026 01:20:59 UTC] Saving product features for product_id: 97
+[16-Feb-2026 01:20:59 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[16-Feb-2026 01:20:59 UTC] Using existing image path: catalog/productSpecification/spec-1754159271.jpeg
+[16-Feb-2026 01:20:59 UTC] Spec for index 0: Array
+(
+    [title] => 
+    [image] => catalog/productSpecification/spec-1754159271.jpeg
+)
+
+[16-Feb-2026 01:20:59 UTC] Saving product specs for product_id: 97
+[16-Feb-2026 01:20:59 UTC] Executed delete query: DELETE FROM oc_product_spec WHERE product_id = '97'
+[16-Feb-2026 01:20:59 UTC] Received product specs data: Array
+(
+    [0] => Array
+        (
+            [title] => 
+            [image] => catalog/productSpecification/spec-1754159271.jpeg
+        )
+
+)
+
+[16-Feb-2026 01:20:59 UTC] Executing insert query: INSERT INTO oc_product_spec SET 
+            product_id = '97', 
+            language_id = '1', 
+            title = '', 
+            image = 'catalog/productSpecification/spec-1754159271.jpeg'
+[16-Feb-2026 01:20:59 UTC] Successfully inserted spec: Array
+(
+    [title] => 
+    [image] => catalog/productSpecification/spec-1754159271.jpeg
+)
+
+[17-Feb-2026 02:11:47 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/set-up-in-4-easy-steps-in-under-20-seconds-1761675579-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/set-up-in-4-easy-steps-in-under-20-seconds-1771294307-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] Feature for index 0: Array
+(
+    [title] => Set Up in 4 Easy Steps in Under 20 Seconds
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/set-up-in-4-easy-steps-in-under-20-seconds-1771294307-300x300.jpg
+    [video] => https://youtu.be/ztRdKIVTEkI
+    [text] => You can transform your manual wheelchair into a powerchair in under 20 seconds with just four simple steps. Position the power add-on behind your wheelchair, lock the two ergonomic clutch handles into place, attach the joystick to your preferred side, then slide in the battery and insert the anti-tip wheels. It’s that quick and easy.
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/ultra-lightweight-at-just-8-8-kg-1761675579-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/ultra-lightweight-at-just-8-8-kg-1771294307-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] Feature for index 1: Array
+(
+    [title] => Ultra-Lightweight at Just 8.8 kg
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/ultra-lightweight-at-just-8-8-kg-1771294307-300x300.jpg
+    [video] => 
+    [text] => Weighing only 8.8 kg, Light Drive 2.1 is among the lightest wheelchair power add-ons available, designed for your convenience and effortless portability. 
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/automatic-downhill-safety-braking-1761675579-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/automatic-downhill-safety-braking-1771294307-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] Feature for index 2: Array
+(
+    [title] => Automatic Downhill Safety Braking
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/automatic-downhill-safety-braking-1771294307-300x300.jpg
+    [video] => 
+    [text] => Feel confident on slopes with the Light Drive’s automatic braking system. It safely manages your speed when going downhill to ensure reliable control and peace of mind.
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/adapts-to-most-manual-wheelchairs-1761675579-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/adapts-to-most-manual-wheelchairs-1771294307-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] Feature for index 3: Array
+(
+    [title] => Adapts to Most Manual Wheelchairs
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/adapts-to-most-manual-wheelchairs-1771294307-300x300.jpg
+    [video] => 
+    [text] => Light Drive 2.1 fits securely onto nearly all rigid and folding wheelchairs including leading brands like Quickie, TiLite, Karma, and Motion Composites without altering your chair’s width. Easily navigate tight doorways and narrow spaces as before. 
+&quot;Check the compatibility chart in Downloads &amp; User Guide tab&quot;.
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/ergonomic-retractable-joystick-1761675579-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/ergonomic-retractable-joystick-1771294307-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] Feature for index 4: Array
+(
+    [title] => Ergonomic Retractable Joystick
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/ergonomic-retractable-joystick-1771294307-300x300.jpg
+    [video] => 
+    [text] => Enjoy intuitive 360° control with the retractable joystick. Ergonomically positioned for smooth steering and effortless reversing, enhancing daily comfort.
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/anti-tip-wheels-for-extra-stability-1761675579-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/anti-tip-wheels-for-extra-stability-1771294307-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] Feature for index 5: Array
+(
+    [title] => Anti-Tip Wheels for Extra Stability
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/anti-tip-wheels-for-extra-stability-1771294307-300x300.jpg
+    [video] => 
+    [text] => Stay secure on uneven terrain and slopes. The built-in anti-tip wheels provide enhanced stability and safety wherever you go.
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/extended-range--amp--air-travel-approved-1761675579-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/extended-range--amp--air-travel-approved-1771294307-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] Feature for index 6: Array
+(
+    [title] => Extended Range &amp; Air Travel Approved
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/extended-range--amp--air-travel-approved-1771294307-300x300.jpg
+    [video] => 
+    [text] => Cover distances up to 20 km per charge with the reliable 19 Ah lithium-ion battery. For convenient air travel, an optional IATA-approved 11.4 Ah battery ensures worry-free journeys.
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/clear-battery-charge-indicator-1761675579-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/clear-battery-charge-indicator-1771294307-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] Feature for index 7: Array
+(
+    [title] => Clear Battery Charge Indicator
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/clear-battery-charge-indicator-1771294307-300x300.jpg
+    [video] => 
+    [text] => Stay aware of your battery life at all times with the clear and accessible battery indicator, ensuring you’re never caught off guard by low power.
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/available-in-light-drive-xl-2-1-for-larger-users-1761675579-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/available-in-light-drive-xl-2-1-for-larger-users-1771294307-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] Feature for index 8: Array
+(
+    [title] => Available in Light Drive XL 2.1 for Larger Users
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/available-in-light-drive-xl-2-1-for-larger-users-1771294307-300x300.jpg
+    [video] => 
+    [text] => Designed for bariatric users up to 160kg, the Light Drive XL 2.1 provides additional support while maintaining the foldability and portability of a manual wheelchair. It delivers the same smooth, powered assistance as the Light Drive 2.1, adapted for users who require higher weight capacity without compromising on mobility or convenience.
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/customise-with-colours-1761675579-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/customise-with-colours-1771294307-300x300.jpg
+[17-Feb-2026 02:11:47 UTC] Feature for index 9: Array
+(
+    [title] => Customise with Colours
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/customise-with-colours-1771294307-300x300.jpg
+    [video] => 
+    [text] => Express yourself with a wide range of vibrant, trendy, and classic colours, including black, white, sky blue, silver, champagne gold, and many more.
+)
+
+[17-Feb-2026 02:11:47 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/compact--amp--travel-friendly-1761675579-300x300.jpg
+[17-Feb-2026 02:11:48 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/compact--amp--travel-friendly-1771294308-300x300.jpg
+[17-Feb-2026 02:11:48 UTC] Feature for index 10: Array
+(
+    [title] => Compact &amp; Travel-Friendly
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/compact--amp--travel-friendly-1771294308-300x300.jpg
+    [video] => 
+    [text] => Its compact, removable design easily fits into small car boots and overhead compartments, allowing hassle-free transportation whether by car, plane or public transport
+)
+
+[17-Feb-2026 02:11:48 UTC] Attempting to fetch URL: https://mobilitycare.net.au//image/cache/catalog/productFeature/battery-operation-and-safety-1761675579-300x300.jpg
+[17-Feb-2026 02:11:48 UTC] URL image resized and saved: https://www.mobilitycare.net.au/image/cache/catalog/productFeature/battery-operation-and-safety-1771294308-300x300.jpg
+[17-Feb-2026 02:11:48 UTC] Feature for index 11: Array
+(
+    [title] => Battery Operation and Safety
+    [image] => https://www.mobilitycare.net.au/image/cache/catalog/productFeature/battery-operation-and-safety-1771294308-300x300.jpg
+    [video] => 
+    [text] => The battery is shipped deactivated for safety and activates easily by pressing and holding the power button for three seconds before first use. It automatically powers down after ten days of inactivity to preserve performance and battery life. Regular charging is recommended to maintain optimal function, and the sealed design must remain closed to retain warranty coverage.
+)
+
+[17-Feb-2026 02:11:48 UTC] Saving product features for product_id: 65
+[17-Feb-2026 02:11:48 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [1] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [2] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [3] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [4] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [5] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [6] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [7] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [8] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [9] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [10] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                    [11] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[17-Feb-2026 02:11:48 UTC] Using existing image path: catalog/productSpecification/spec-1754217111.jpg
+[17-Feb-2026 02:11:48 UTC] Spec for index 0: Array
+(
+    [title] => 
+    [image] => catalog/productSpecification/spec-1754217111.jpg
+)
+
+[17-Feb-2026 02:11:48 UTC] Saving product specs for product_id: 65
+[17-Feb-2026 02:11:48 UTC] Executed delete query: DELETE FROM oc_product_spec WHERE product_id = '65'
+[17-Feb-2026 02:11:48 UTC] Received product specs data: Array
+(
+    [0] => Array
+        (
+            [title] => 
+            [image] => catalog/productSpecification/spec-1754217111.jpg
+        )
+
+)
+
+[17-Feb-2026 02:11:48 UTC] Executing insert query: INSERT INTO oc_product_spec SET 
+            product_id = '65', 
+            language_id = '1', 
+            title = '', 
+            image = 'catalog/productSpecification/spec-1754217111.jpg'
+[17-Feb-2026 02:11:48 UTC] Successfully inserted spec: Array
+(
+    [title] => 
+    [image] => catalog/productSpecification/spec-1754217111.jpg
+)
+
+[17-Feb-2026 06:02:10 UTC] Executed delete query: DELETE FROM oc_product_spec WHERE product_id = '131'
+[17-Feb-2026 06:02:10 UTC] Received product specs data: Array
+(
+    [featured_image] => 
+    [product_geo_zone_shipping] => Array
+        (
+            [29] => 
+            [24] => 
+            [25] => 
+            [10] => 
+            [28] => 
+            [21] => 
+            [16] => 
+            [30] => 
+            [5] => 
+            [6] => 
+            [18] => 
+            [11] => 
+            [12] => 
+            [13] => 
+            [14] => 
+            [15] => 
+            [19] => 
+            [22] => 
+            [23] => 
+            [20] => 
+            [17] => 
+            [26] => 
+            [27] => 
+            [9] => 
+            [31] => 
+        )
+
+    [product_description] => Array
+        (
+            [1] => Array
+                (
+                    [name] => U-Step Neuro Platform
+                    [short_description] => 
+                    [tooltip_text] => 
+                    [description] => 
+                    [meta_title] => U-Step Neuro Platform
+                    [meta_description] => 
+                    [meta_keyword] => 
+                    [tag] => 
+                    [right_for_you] => This walker may be helpful if you lean heavily onto a walker, struggle to hold standard handles, or feel the frame moves faster than you can control. It is often considered after stroke, brain injury or other neurological conditions affecting posture, coordination or arm strength.
+The forearm platforms support your weight while keeping your body positioned inside the walker, helping walking feel more controlled and less effortful.
+It may not be necessary if a standard neurological walker already provides enough stability.
+                    [why_love] => Supports body weight through the forearms instead of relying on grip strength
+Encourages a more upright walking posture
+Helps control walking speed for safer stepping
+Reduces effort during short and indoor walking distances
+Can assist initiation of steps with optional cueing module
+                    [everyday_life] => Suitable for indoor mobility and therapy environments
+Helps maintain position inside the walker frame while turning
+Provides support when fatigue affects walking control
+Allows weight-bearing through arms for reduced strain on legs
+Can be adjusted as needs change during rehabilitation
+Encourages safer sit-to-stand transitions
+Compatible with clinical gait training programs
+Often used in supervised home and community mobility
+Designed for long-term neurological conditions where stability needs vary
+                    [what_different] => Reversed braking system prevents the walker from rolling away when standing up
+Adjustable rolling resistance allows the walker speed to match the user
+Forearm platforms rotate and angle to suit arm position and shoulder comfort
+Spring-loaded front wheel helps glide over small obstacles
+Optional laser and sound cueing available for irregular gait patterns
+Designed specifically as a neurological rehabilitation walker rather than a general rollator
+                    [desc_video] => 
+                    [video] => 
+                    [tab_title] => 
+                    [html_product_tab] => 
+                )
+
+        )
+
+    [display_add_to_cart] => 1
+    [display_custom_quote] => 0
+    [product_features] => Array
+        (
+            [0] => Array
+                (
+                    [title] => 
+                    [image] => 
+                    [video] => 
+                    [text] => 
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [0] => Array
+                (
+                    [title] => 
+                    [image] => 
+                )
+
+        )
+
+    [model] => U-Step Neuro Platform
+    [sku] => 
+    [upc] => 
+    [ean] => 
+    [jan] => 
+    [isbn] => 
+    [mpn] => 
+    [location] => 
+    [price] => 
+    [tax_class_id] => 0
+    [quantity] => 1
+    [minimum] => 1
+    [subtract] => 1
+    [stock_status_id] => 6
+    [shipping] => 1
+    [date_available] => 2026-02-17
+    [length] => 
+    [width] => 
+    [height] => 
+    [length_class_id] => 1
+    [weight] => 
+    [weight_class_id] => 1
+    [status] => 1
+    [sort_order] => 1
+    [manufacturer] => 
+    [manufacturer_id] => 0
+    [category] => 
+    [filter] => 
+    [product_store] => Array
+        (
+            [0] => 0
+        )
+
+    [download] => 
+    [related] => 
+    [option] => 
+    [ro_data_included] => 1
+    [ro_data] => Array
+        (
+            [0] => Array
+                (
+                    [rovp_id] => 0
+                    [use] => 
+                    [allow_zero_select] => 0
+                    [rov_id] => 1
+                )
+
+        )
+
+    [image] => 
+    [points] => 
+    [product_reward] => Array
+        (
+            [1] => Array
+                (
+                    [points] => 
+                )
+
+        )
+
+    [product_seo_url] => Array
+        (
+            [0] => Array
+                (
+                    [1] => 
+                )
+
+        )
+
+    [product_layout] => Array
+        (
+            [0] => 
+        )
+
+)
+
+[17-Feb-2026 06:02:10 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[17-Feb-2026 06:02:10 UTC] Feature for index 0: Array
+(
+    [title] => 
+    [image] => 
+    [video] => 
+    [text] => 
+)
+
+[17-Feb-2026 06:02:10 UTC] Saving product features for product_id: 131
+[17-Feb-2026 06:04:39 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[17-Feb-2026 06:04:39 UTC] Feature for index 0: Array
+(
+    [title] => 
+    [image] => 
+    [video] => 
+    [text] => 
+)
+
+[17-Feb-2026 06:04:39 UTC] Saving product features for product_id: 131
+[17-Feb-2026 06:04:39 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[17-Feb-2026 06:04:39 UTC] Spec for index 0: Array
+(
+    [title] => 
+    [image] => 
+)
+
+[17-Feb-2026 06:04:39 UTC] Saving product specs for product_id: 131
+[17-Feb-2026 06:04:39 UTC] Executed delete query: DELETE FROM oc_product_spec WHERE product_id = '131'
+[17-Feb-2026 06:04:39 UTC] Received product specs data: Array
+(
+    [0] => Array
+        (
+            [title] => 
+            [image] => 
+        )
+
+)
+
+[17-Feb-2026 06:05:10 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[17-Feb-2026 06:05:10 UTC] Feature for index 0: Array
+(
+    [title] => 
+    [image] => 
+    [video] => 
+    [text] => 
+)
+
+[17-Feb-2026 06:05:10 UTC] Saving product features for product_id: 131
+[17-Feb-2026 06:05:10 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[17-Feb-2026 06:05:10 UTC] Spec for index 0: Array
+(
+    [title] => 
+    [image] => 
+)
+
+[17-Feb-2026 06:05:10 UTC] Saving product specs for product_id: 131
+[17-Feb-2026 06:05:10 UTC] Executed delete query: DELETE FROM oc_product_spec WHERE product_id = '131'
+[17-Feb-2026 06:05:10 UTC] Received product specs data: Array
+(
+    [0] => Array
+        (
+            [title] => 
+            [image] => 
+        )
+
+)
+
+[17-Feb-2026 06:09:46 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[17-Feb-2026 06:09:46 UTC] Feature for index 0: Array
+(
+    [title] => 
+    [image] => 
+    [video] => 
+    [text] => 
+)
+
+[17-Feb-2026 06:09:46 UTC] Saving product features for product_id: 131
+[17-Feb-2026 06:09:46 UTC] Files received: Array
+(
+    [files] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [file] => Array
+        (
+            [name] => 
+            [type] => 
+            [tmp_name] => 
+            [error] => 4
+            [size] => 0
+        )
+
+    [product_features] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+    [product_specs] => Array
+        (
+            [name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [type] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [tmp_name] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 
+                        )
+
+                )
+
+            [error] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 4
+                        )
+
+                )
+
+            [size] => Array
+                (
+                    [0] => Array
+                        (
+                            [image_file] => 0
+                        )
+
+                )
+
+        )
+
+)
+
+[17-Feb-2026 06:09:46 UTC] Spec for index 0: Array
+(
+    [title] => 
+    [image] => 
+)
+
+[17-Feb-2026 06:09:46 UTC] Saving product specs for product_id: 131
+[17-Feb-2026 06:09:46 UTC] Executed delete query: DELETE FROM oc_product_spec WHERE product_id = '131'
+[17-Feb-2026 06:09:46 UTC] Received product specs data: Array
+(
+    [0] => Array
+        (
+            [title] => 
+            [image] => 
+        )
+
+)
+
